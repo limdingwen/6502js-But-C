@@ -3,29 +3,37 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/time.h>
+#include <unistd.h>
 
 /* RESERVED MEMORY BLOCKS
-*  0x0100 to 0x01FF for stack
+*  0x0100 to 0x01FF for stack (top to bottom)
 *  0x0200 to 0x05FF for screen
 *  0x0800 onwards for code
 */
 
 // Config
 #define TOTAL_MEM 65536
-#define PC_START 0x0800
+#define PC_START 0x0600
+#define STACK_TOP 0x01FF
 #define SCREEN_START 0x0200
 #define SCREEN_LENGTH 0x0400
 #define SCREEN_WIDTH 0x0020
 #define SCREEN_HEIGHT 0x0020
-#define PIXEL_SIZE 20
+#define PIXEL_SIZE 10
 #define FRAME_INTERVAL 16666666
-#define DEBUG_COREDUMP 1
-#define DEBUG_COREDUMP_START SCREEN_START
-#define DEBUG_COREDUMP_END SCREEN_START + 32
+#define LIMIT_ENABLE 1
+#define LIMIT_KHZ 10
+#define START_DELAY 500000000
+#define DEBUG_COREDUMP 0
+#define DEBUG_COREDUMP_START 0x0000
+#define DEBUG_COREDUMP_END 0x0820
 #define DEBUG_STEP 0
 #define DEBUG_LOG 1
+#define ABORT_ON_INVALID 1
 
 // Config colors
+// Must change rendering " & 0xf" code if changing color count!
+#define COLOR_COUNT 16
 float colors_rgb[] = {
 	0.00, 0.00, 0.00,
 	1.00, 1.00, 1.00,
@@ -60,9 +68,9 @@ struct sim_state { uint16_t *pc; uint8_t *ac; uint8_t *x; uint8_t *y;
 // Write memory and registers to STDOUT for debug
 void coredump(struct sim_state s) {
 	if (!DEBUG_COREDUMP) return;
-	for (int i = DEBUG_COREDUMP_START; i <= DEBUG_COREDUMP_END; i += 0xf) {
+	for (int i = DEBUG_COREDUMP_START; i <= DEBUG_COREDUMP_END; i += 0x10) {
 		printf("%04x: ", i);
-		for (int j = i; j < i + 0xf; j++)
+		for (int j = i; j < i + 0x10; j++)
 			printf("%02x ", s.mem[j]);
 		puts("");
 	}
@@ -87,20 +95,27 @@ uint8_t sr_nz(uint8_t *sr, uint8_t a) { // TODO: Make functional(?)
 }
 
 // Instructions
+// TODO: Inline addr code into main loop; pass in get and set flag+value only
 #define INS_DEF(N) void ins_##N(uint16_t (*get)(struct sim_state), \
 	void (*set)(uint8_t, struct sim_state), struct sim_state s)
 INS_DEF(JMP) { *s.pc = (*get)(s); *s.no_pc_inc = true; }
 INS_DEF(ADC) {
 	uint16_t t = *s.ac + (*get)(s) + bit_get(*s.sr, 0);
 	*s.sr = bit_set(*s.sr, 0, bit_get(t, 8)); // Carry
-	int v = !(bit_get(*s.ac, 7) ^ bit_get((*get)(s), 7)) && // Same sign? 
+	bool v = !(bit_get(*s.ac, 7) ^ bit_get((*get)(s), 7)) && // Same sign? 
 		bit_get(*s.ac, 7) ^ bit_get(t, 7); // Different sign for result?
 	*s.sr = bit_set(*s.sr, 6, v); // Overflow
 	*s.ac = sr_nz(s.sr, t);
 }
 INS_DEF(AND) { *s.ac = sr_nz(s.sr, *s.ac & (*get)(s)); }
+INS_DEF(ASL) {
+	*s.sr = bit_set(*s.sr, 0, bit_get((*get)(s), 7));
+	(*set)(sr_nz(s.sr, (*get)(s) << 1), s);
+}
 INS_DEF(BRK) { *s.halt = true; }
+INS_DEF(BEQ) { if (bit_get(*s.sr, 1)) { *s.pc = (*get)(s); } }
 INS_DEF(BNE) { if (!bit_get(*s.sr, 1)) { *s.pc = (*get)(s); } }
+INS_DEF(BPL) { if (!bit_get(*s.sr, 7)) { *s.pc = (*get)(s); } }
 INS_DEF(CLC) { *s.sr = bit_set(*s.sr, 0, 0); }
 INS_DEF(CMP) {
 	if (*s.ac < (*get)(s)) {
@@ -118,14 +133,33 @@ INS_DEF(CMP) {
 	}
 }
 INS_DEF(DEC) { (*set)(sr_nz(s.sr, (*get)(s) - 1), s); }
+INS_DEF(DEX) { *s.x = sr_nz(s.sr, *s.x - 1); }
 INS_DEF(DEY) { *s.y = sr_nz(s.sr, *s.y - 1); }
 INS_DEF(INC) { (*set)(sr_nz(s.sr, (*get)(s) + 1), s); }
 INS_DEF(INX) { *s.x = sr_nz(s.sr, *s.x + 1); }
+INS_DEF(INY) { *s.y = sr_nz(s.sr, *s.y + 1); }
 INS_DEF(LDA) { *s.ac = sr_nz(s.sr, (*get)(s)); }
 INS_DEF(LDX) { *s.x = sr_nz(s.sr, (*get)(s)); }
 INS_DEF(LDY) { *s.y = sr_nz(s.sr, (*get)(s)); }
+INS_DEF(PHA) { s.mem[(*s.sp)--] = *s.ac; }
+INS_DEF(PLA) { *s.ac = s.mem[++(*s.sp)]; }
+INS_DEF(RTS) { /* TODO Stub */ } 
+INS_DEF(SBC) {
+	// 2's complement, where the extra 1 is from carry
+	// If carry is 0, then we effectively subtract 1 more
+	uint8_t b = ~(*get)(s) + bit_get(*s.sr, 0);
+	uint16_t t = *s.ac + b;
+	*s.sr = bit_set(*s.sr, 0, bit_get(t, 8)); // Carry
+	bool v = !(bit_get(*s.ac, 7) ^ bit_get((*get)(s), 7)) && // Same sign? 
+		bit_get(*s.ac, 7) ^ bit_get(t, 7); // Different sign for result?
+	*s.sr = bit_set(*s.sr, 6, v); // Overflow
+	*s.ac = sr_nz(s.sr, t);
+}
 INS_DEF(STA) { (*set)(*s.ac, s); }
 INS_DEF(STX) { (*set)(*s.x, s); }
+INS_DEF(TAX) { *s.x = sr_nz(s.sr, *s.ac); }
+INS_DEF(TAY) { *s.y = sr_nz(s.sr, *s.ac); }
+INS_DEF(TXA) { *s.ac = sr_nz(s.sr, *s.x); }
 #undef INS_DEF
 
 // Address modes
@@ -136,6 +170,7 @@ struct addr { uint16_t (*get)(struct sim_state);
 	void addr_set_##N(uint8_t a, struct sim_state s) { SET } \
 	struct addr addr_##N = { .get = addr_get_##N, .set = addr_set_##N, \
 	.length = LEN };
+ADDR_DEF(ac, 1, return *s.ac;, *s.ac = a;);
 ADDR_DEF(abs, 3, return s.mem[i8to16(s.mem[*s.pc + 2], s.mem[*s.pc + 1])];,
 	s.mem[i8to16(s.mem[*s.pc + 2], s.mem[*s.pc + 1])] = a;);
 ADDR_DEF(abs_dir, 3, return i8to16(s.mem[*s.pc + 2], s.mem[*s.pc + 1]);, );
@@ -159,6 +194,9 @@ ADDR_DEF(impl, 1, return 0;, );
 ADDR_DEF(rel, 2, return *s.pc + (int8_t)s.mem[*s.pc + 1];, );
 ADDR_DEF(zpg, 2,
 	return s.mem[s.mem[*s.pc + 1]];, s.mem[s.mem[*s.pc + 1]] = a;);
+ADDR_DEF(zpg_x, 2,
+	return s.mem[s.mem[*s.pc + 1] + *s.x];,
+	s.mem[s.mem[*s.pc + 1] + *s.x] = a;);
 #undef ADDR_DEF
 
 // Opcodes
@@ -169,31 +207,49 @@ struct opcode {
 };
 void construct_opcodes_table(struct opcode *o) {
 	o[0x00] = (struct opcode){ ins_BRK, &addr_impl };
-	//o[0x60] = (struct opcode){ ins_RTS, &addr_impl };
+	o[0x10] = (struct opcode){ ins_BPL, &addr_rel };
+	o[0x60] = (struct opcode){ ins_RTS, &addr_impl };
 	o[0xA0] = (struct opcode){ ins_LDY, &addr_imm };
 	o[0xD0] = (struct opcode){ ins_BNE, &addr_rel };
+	o[0xF0] = (struct opcode){ ins_BEQ, &addr_rel };
 	o[0x81] = (struct opcode){ ins_STA, &addr_x_ind };
 	o[0x91] = (struct opcode){ ins_STA, &addr_ind_y };
+	o[0xB1] = (struct opcode){ ins_LDA, &addr_ind_y };
 	o[0xA2] = (struct opcode){ ins_LDX, &addr_imm };
 	o[0x85] = (struct opcode){ ins_STA, &addr_zpg };
+	o[0x95] = (struct opcode){ ins_STA, &addr_zpg_x };
 	o[0xA5] = (struct opcode){ ins_LDA, &addr_zpg };
+	o[0xB5] = (struct opcode){ ins_LDA, &addr_zpg_x };
+	o[0xF5] = (struct opcode){ ins_SBC, &addr_zpg_x };
 	o[0x86] = (struct opcode){ ins_STX, &addr_zpg };
 	o[0xA6] = (struct opcode){ ins_LDX, &addr_zpg };
 	o[0xC6] = (struct opcode){ ins_DEC, &addr_zpg };
 	o[0xE6] = (struct opcode){ ins_INC, &addr_zpg };
 	o[0x18] = (struct opcode){ ins_CLC, &addr_impl };
+	o[0x48] = (struct opcode){ ins_PHA, &addr_impl };
+	o[0x68] = (struct opcode){ ins_PLA, &addr_impl };
 	o[0x88] = (struct opcode){ ins_DEY, &addr_impl };
+	o[0xA8] = (struct opcode){ ins_TAY, &addr_impl };
+	o[0xC8] = (struct opcode){ ins_INY, &addr_impl };
 	o[0xE8] = (struct opcode){ ins_INX, &addr_impl };
 	o[0x29] = (struct opcode){ ins_AND, &addr_imm };
 	o[0x69] = (struct opcode){ ins_ADC, &addr_imm };
 	o[0xA9] = (struct opcode){ ins_LDA, &addr_imm };
 	o[0xC9] = (struct opcode){ ins_CMP, &addr_imm };
+	o[0x0A] = (struct opcode){ ins_ASL, &addr_ac };
+	o[0x8A] = (struct opcode){ ins_TXA, &addr_impl };
+	o[0xAA] = (struct opcode){ ins_TAX, &addr_impl };
+	o[0xCA] = (struct opcode){ ins_DEX, &addr_impl };
 	o[0x4C] = (struct opcode){ ins_JMP, &addr_abs_dir };
 	o[0x8D] = (struct opcode){ ins_STA, &addr_abs };
 	o[0x9D] = (struct opcode){ ins_STA, &addr_abs_x };
+	o[0xBD] = (struct opcode){ ins_LDA, &addr_abs_x };
 }
 
 int main() {
+	// Seed random
+	srand(time(NULL));
+
 	// =====
 	// INIT X
 	// =====
@@ -229,8 +285,8 @@ int main() {
 		(*protocol_rep).atom, 4, 32, 1, &(*del_win_rep).atom);
 
 	// Create all 16 colors
-	xcb_gcontext_t colors[16];
-	for (int i = 0; i < sizeof(colors_rgb) / sizeof(colors_rgb[0]); i++) {
+	xcb_gcontext_t colors[COLOR_COUNT];
+	for (int i = 0; i < COLOR_COUNT; i++) {
 		// Get color from list
 		float r = colors_rgb[i * 3 + 0];
 		float g = colors_rgb[i * 3 + 1];
@@ -276,7 +332,7 @@ int main() {
 	// Load binary into memory
 	{
 		FILE* fp;
-		fp = fopen("demos/random.bin", "rb");
+		fp = fopen("demos/auto/alive.bin", "rb");
 		fread(mem + PC_START, TOTAL_MEM - PC_START, 1, fp);
 		fclose(fp);
 	}
@@ -300,7 +356,12 @@ int main() {
 	unsigned long long start_time = 0;
 	unsigned long long ins_count = 0;
 	bool avg_speed_done = false;
-	
+
+	// Init speed limiting
+	unsigned long long prev_limit_time = get_clock_ns();
+	unsigned long long limit_interval_ns =
+		(1 / ((float)LIMIT_KHZ * 1000)) * 1000000000;
+
 	// =====
 	// START MAIN LOOP
 	// =====
@@ -338,7 +399,7 @@ int main() {
 		// =====
 
 		// Delayed start
-		if (get_clock_ns() - init_time > 500000000 && !started) {
+		if (get_clock_ns() - init_time > START_DELAY && !started) {
 			started = true;
 			start_time = get_clock_ns(); // Start counting average speed
 		}
@@ -365,7 +426,13 @@ int main() {
 			if (decoded.instruction)
 				decoded.instruction(decoded.addr_mode->get,
 					decoded.addr_mode->set, sim_state);
-			else printf("Invalid opcode %02x\n", op);
+			else {
+				if (DEBUG_LOG) printf("Invalid opcode %02x\n", op);
+				if (ABORT_ON_INVALID) {
+					coredump(sim_state);
+					abort();
+				}
+			}
 
 			// Log halt
 			if (DEBUG_LOG && halt) puts("Halted.");
@@ -383,9 +450,12 @@ int main() {
 
 		// Let user step through instructions, or coredump
 		if (DEBUG_STEP) {
-			char cmd = getchar();
-			if (cmd == 'c') coredump(sim_state);
-			if (cmd != '\n') getchar(); // Consume upcoming \n
+			while (true) {
+				char cmd = getchar();
+				if (cmd == '\n') break;
+				if (cmd == 'c') coredump(sim_state);
+				if (cmd != '\n') getchar(); // Consume upcoming \n
+			}
 		}
 
 		// Calculate average speed and print when either halted or quitting
@@ -404,9 +474,9 @@ int main() {
 		// =====
 
 		// Re-render every X nanoseconds, or if redraw is required
-		unsigned long long new_time = get_clock_ns();
-		if (new_time - prev_frame_time > FRAME_INTERVAL || full_redraw) {
-			prev_frame_time = new_time; // Record frame time for next frame
+		unsigned long long new_frame_time = get_clock_ns();
+		if (new_frame_time - prev_frame_time > FRAME_INTERVAL || full_redraw) {
+			prev_frame_time = new_frame_time;
 			bool dirty = false;
 			for (int i = 0; i < SCREEN_LENGTH; i++) {
 				// Render only if dirty, or if redraw is required
@@ -430,6 +500,17 @@ int main() {
 			if (dirty) xcb_flush(connection);
 		}
 		full_redraw = false;
+
+		// =====
+		// LIMIT
+		// =====
+		
+		unsigned long long new_limit_time = get_clock_ns();
+		long limit_time_diff_ns =
+			limit_interval_ns - (new_limit_time - prev_limit_time);
+		long limit_time_diff_us = limit_time_diff_ns / 1000;
+		if (LIMIT_ENABLE && limit_time_diff_us > 0) usleep(limit_time_diff_us);
+		prev_limit_time = get_clock_ns();
 	}
 
 	// =====
