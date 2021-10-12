@@ -24,17 +24,17 @@
 #define LIMIT_ENABLE 1
 #define LIMIT_KHZ 10
 #define START_DELAY 500000000
-#define DEBUG_COREDUMP 0
-#define DEBUG_COREDUMP_START 0x0000
-#define DEBUG_COREDUMP_END 0x0820
+#define DEBUG_COREDUMP 1
+#define DEBUG_COREDUMP_START 0x0100
+#define DEBUG_COREDUMP_END 0x01FF
 #define DEBUG_STEP 0
 #define DEBUG_LOG 1
-#define ABORT_ON_INVALID 1
+#define HALT_ON_INVALID 1
 
 // Config colors
 // Must change rendering " & 0xf" code if changing color count!
 #define COLOR_COUNT 16
-float colors_rgb[] = {
+const float colors_rgb[] = {
 	0.00, 0.00, 0.00,
 	1.00, 1.00, 1.00,
 	1.00, 0.00, 0.00,
@@ -74,7 +74,8 @@ void coredump(struct sim_state s) {
 			printf("%02x ", s.mem[j]);
 		puts("");
 	}
-	printf("PC:%04x, AC:%02x, X:%02x, Y:%02x\n", *s.pc, *s.ac, *s.x, *s.y);
+	printf("PC:%04x, AC:%02x, X:%02x, Y:%02x, SP:%02x\n",
+		*s.pc, *s.ac, *s.x, *s.y, *s.sp);
 }
 
 // Datatype converters 
@@ -92,6 +93,25 @@ uint8_t sr_nz(uint8_t *sr, uint8_t a) { // TODO: Make functional(?)
 	*sr = bit_set(*sr, 1, a == 0); // Zero
 	*sr = bit_set(*sr, 7, bit_get(a, 7)); // Negative
 	return a;
+}
+void push(uint8_t *mem, uint8_t *sp, uint8_t a) {
+	mem[(*sp)-- + 0x0100] = a;
+}
+uint8_t pop(uint8_t *mem, uint8_t *sp) { return mem[++(*sp) + 0x0100]; }
+void cmp(struct sim_state s, uint8_t a, uint8_t g) {
+	if (a < g) {
+		*s.sr = bit_set(*s.sr, 1, 0);
+		*s.sr = bit_set(*s.sr, 0, 0);
+	}
+	else if (a == g) {
+		*s.sr = bit_set(*s.sr, 7, 0);
+		*s.sr = bit_set(*s.sr, 1, 1);
+		*s.sr = bit_set(*s.sr, 0, 1);
+	}
+	else if (a > g) {
+		*s.sr = bit_set(*s.sr, 1, 0);
+		*s.sr = bit_set(*s.sr, 0, 1);
+	}
 }
 
 // Instructions
@@ -114,36 +134,42 @@ INS_DEF(ASL) {
 }
 INS_DEF(BRK) { *s.halt = true; }
 INS_DEF(BEQ) { if (bit_get(*s.sr, 1)) { *s.pc = (*get)(s); } }
+INS_DEF(BMI) { if (bit_get(*s.sr, 7)) { *s.pc = (*get)(s); } }
 INS_DEF(BNE) { if (!bit_get(*s.sr, 1)) { *s.pc = (*get)(s); } }
 INS_DEF(BPL) { if (!bit_get(*s.sr, 7)) { *s.pc = (*get)(s); } }
 INS_DEF(CLC) { *s.sr = bit_set(*s.sr, 0, 0); }
-INS_DEF(CMP) {
-	if (*s.ac < (*get)(s)) {
-		*s.sr = bit_set(*s.sr, 1, 0);
-		*s.sr = bit_set(*s.sr, 0, 0);
-	}
-	else if (*s.ac == (*get)(s)) {
-		*s.sr = bit_set(*s.sr, 7, 0);
-		*s.sr = bit_set(*s.sr, 1, 1);
-		*s.sr = bit_set(*s.sr, 0, 1);
-	}
-	else if (*s.ac > (*get)(s)) {
-		*s.sr = bit_set(*s.sr, 1, 0);
-		*s.sr = bit_set(*s.sr, 0, 1);
-	}
-}
+INS_DEF(CMP) { cmp(s, *s.ac, (*get)(s)); }
+INS_DEF(CPX) { cmp(s, *s.x, (*get)(s)); }
+INS_DEF(CPY) { cmp(s, *s.y, (*get)(s)); }
 INS_DEF(DEC) { (*set)(sr_nz(s.sr, (*get)(s) - 1), s); }
 INS_DEF(DEX) { *s.x = sr_nz(s.sr, *s.x - 1); }
 INS_DEF(DEY) { *s.y = sr_nz(s.sr, *s.y - 1); }
 INS_DEF(INC) { (*set)(sr_nz(s.sr, (*get)(s) + 1), s); }
 INS_DEF(INX) { *s.x = sr_nz(s.sr, *s.x + 1); }
 INS_DEF(INY) { *s.y = sr_nz(s.sr, *s.y + 1); }
+INS_DEF(JSR) {
+	uint16_t ret_addr = *s.pc + 3; // Differs from real 6502
+	push(s.mem, s.sp, ret_addr >> 8); // Push ret_h
+	push(s.mem, s.sp, ret_addr & 0xff); // Push ret_l
+	*s.pc = i8to16(s.mem[*s.pc + 2], s.mem[*s.pc + 1]);
+	*s.no_pc_inc = true;
+}
 INS_DEF(LDA) { *s.ac = sr_nz(s.sr, (*get)(s)); }
 INS_DEF(LDX) { *s.x = sr_nz(s.sr, (*get)(s)); }
 INS_DEF(LDY) { *s.y = sr_nz(s.sr, (*get)(s)); }
-INS_DEF(PHA) { s.mem[(*s.sp)--] = *s.ac; }
-INS_DEF(PLA) { *s.ac = s.mem[++(*s.sp)]; }
-INS_DEF(RTS) { /* TODO Stub */ } 
+INS_DEF(LSR) {
+	*s.sr = bit_set(*s.sr, 0, bit_get((*get)(s), 0));
+	(*set)(sr_nz(s.sr, (*get)(s) >> 1), s);
+}
+INS_DEF(ORA) { *s.ac = sr_nz(s.sr, (*get)(s) | *s.ac); }
+INS_DEF(PHA) { push(s.mem, s.sp, *s.ac); }
+INS_DEF(PLA) { *s.ac = pop(s.mem, s.sp); }
+INS_DEF(RTS) {
+	uint8_t ret_l = pop(s.mem, s.sp);
+	uint8_t ret_h = pop(s.mem, s.sp);
+	*s.pc = i8to16(ret_h, ret_l);
+	*s.no_pc_inc = true;
+} 
 INS_DEF(SBC) {
 	// 2's complement, where the extra 1 is from carry
 	// If carry is 0, then we effectively subtract 1 more
@@ -157,9 +183,11 @@ INS_DEF(SBC) {
 }
 INS_DEF(STA) { (*set)(*s.ac, s); }
 INS_DEF(STX) { (*set)(*s.x, s); }
+INS_DEF(STY) { (*set)(*s.y, s); }
 INS_DEF(TAX) { *s.x = sr_nz(s.sr, *s.ac); }
 INS_DEF(TAY) { *s.y = sr_nz(s.sr, *s.ac); }
 INS_DEF(TXA) { *s.ac = sr_nz(s.sr, *s.x); }
+INS_DEF(TYA) { *s.ac = sr_nz(s.sr, *s.y); }
 #undef INS_DEF
 
 // Address modes
@@ -168,7 +196,7 @@ struct addr { uint16_t (*get)(struct sim_state);
 #define ADDR_DEF(N, LEN, GET, SET) \
 	uint16_t addr_get_##N(struct sim_state s) { GET } \
 	void addr_set_##N(uint8_t a, struct sim_state s) { SET } \
-	struct addr addr_##N = { .get = addr_get_##N, .set = addr_set_##N, \
+	const struct addr addr_##N = { .get = addr_get_##N, .set = addr_set_##N, \
 	.length = LEN };
 ADDR_DEF(ac, 1, return *s.ac;, *s.ac = a;);
 ADDR_DEF(abs, 3, return s.mem[i8to16(s.mem[*s.pc + 2], s.mem[*s.pc + 1])];,
@@ -203,52 +231,86 @@ ADDR_DEF(zpg_x, 2,
 struct opcode {
 	void (*instruction)(uint16_t (*get)(struct sim_state), 
 		void (*set)(uint8_t, struct sim_state), struct sim_state s);
-	struct addr *addr_mode;
+	const struct addr *addr_mode;
 };
 void construct_opcodes_table(struct opcode *o) {
+	// -0
 	o[0x00] = (struct opcode){ ins_BRK, &addr_impl };
 	o[0x10] = (struct opcode){ ins_BPL, &addr_rel };
+	o[0x20] = (struct opcode){ ins_JSR, &addr_abs_dir };
+	o[0x30] = (struct opcode){ ins_BPL, &addr_rel };
 	o[0x60] = (struct opcode){ ins_RTS, &addr_impl };
 	o[0xA0] = (struct opcode){ ins_LDY, &addr_imm };
+	o[0xC0] = (struct opcode){ ins_CPY, &addr_imm };
 	o[0xD0] = (struct opcode){ ins_BNE, &addr_rel };
+	o[0xE0] = (struct opcode){ ins_CPX, &addr_imm };
 	o[0xF0] = (struct opcode){ ins_BEQ, &addr_rel };
+	// -1
 	o[0x81] = (struct opcode){ ins_STA, &addr_x_ind };
 	o[0x91] = (struct opcode){ ins_STA, &addr_ind_y };
 	o[0xB1] = (struct opcode){ ins_LDA, &addr_ind_y };
+	// -2
 	o[0xA2] = (struct opcode){ ins_LDX, &addr_imm };
+	// -4
+	o[0x84] = (struct opcode){ ins_STY, &addr_zpg };
+	// -5
+	o[0x05] = (struct opcode){ ins_ORA, &addr_zpg };
+	o[0x65] = (struct opcode){ ins_ADC, &addr_zpg };
 	o[0x85] = (struct opcode){ ins_STA, &addr_zpg };
 	o[0x95] = (struct opcode){ ins_STA, &addr_zpg_x };
-	o[0xA5] = (struct opcode){ ins_LDA, &addr_zpg };
+	o[0xA5] = (struct opcode){ ins_LDA, &addr_abs };
 	o[0xB5] = (struct opcode){ ins_LDA, &addr_zpg_x };
 	o[0xF5] = (struct opcode){ ins_SBC, &addr_zpg_x };
+	// -6
 	o[0x86] = (struct opcode){ ins_STX, &addr_zpg };
 	o[0xA6] = (struct opcode){ ins_LDX, &addr_zpg };
 	o[0xC6] = (struct opcode){ ins_DEC, &addr_zpg };
 	o[0xE6] = (struct opcode){ ins_INC, &addr_zpg };
+	// -8
 	o[0x18] = (struct opcode){ ins_CLC, &addr_impl };
 	o[0x48] = (struct opcode){ ins_PHA, &addr_impl };
 	o[0x68] = (struct opcode){ ins_PLA, &addr_impl };
 	o[0x88] = (struct opcode){ ins_DEY, &addr_impl };
+	o[0x98] = (struct opcode){ ins_TYA, &addr_impl };
 	o[0xA8] = (struct opcode){ ins_TAY, &addr_impl };
 	o[0xC8] = (struct opcode){ ins_INY, &addr_impl };
 	o[0xE8] = (struct opcode){ ins_INX, &addr_impl };
+	// -9
 	o[0x29] = (struct opcode){ ins_AND, &addr_imm };
 	o[0x69] = (struct opcode){ ins_ADC, &addr_imm };
 	o[0xA9] = (struct opcode){ ins_LDA, &addr_imm };
 	o[0xC9] = (struct opcode){ ins_CMP, &addr_imm };
+	o[0xCD] = (struct opcode){ ins_CMP, &addr_abs };
+	// -A
 	o[0x0A] = (struct opcode){ ins_ASL, &addr_ac };
+	o[0x4A] = (struct opcode){ ins_LSR, &addr_ac };
 	o[0x8A] = (struct opcode){ ins_TXA, &addr_impl };
 	o[0xAA] = (struct opcode){ ins_TAX, &addr_impl };
 	o[0xCA] = (struct opcode){ ins_DEX, &addr_impl };
+	// -C
 	o[0x4C] = (struct opcode){ ins_JMP, &addr_abs_dir };
+	o[0x8C] = (struct opcode){ ins_STY, &addr_abs };
+	o[0xAC] = (struct opcode){ ins_LDY, &addr_abs };
+	// -D
+	o[0x0D] = (struct opcode){ ins_ORA, &addr_abs };
 	o[0x8D] = (struct opcode){ ins_STA, &addr_abs };
 	o[0x9D] = (struct opcode){ ins_STA, &addr_abs_x };
+	o[0xAD] = (struct opcode){ ins_LDA, &addr_abs };
 	o[0xBD] = (struct opcode){ ins_LDA, &addr_abs_x };
+	// -E
+	o[0x8E] = (struct opcode){ ins_STX, &addr_abs };
+	o[0xAE] = (struct opcode){ ins_LDX, &addr_abs };
 }
 
-int main() {
+int main(int argc, char** argv) {
 	// Seed random
 	srand(time(NULL));
+
+	// Handle command line
+	if (argc != 2) {
+		puts("Usage: 6502 file.bin");
+		return 0;
+	}
 
 	// =====
 	// INIT X
@@ -266,7 +328,7 @@ int main() {
 		uint32_t masks = XCB_CW_BACK_PIXEL | XCB_CW_EVENT_MASK;
 		uint32_t values[] = {
 			screen->black_pixel,
-			XCB_EVENT_MASK_EXPOSURE
+			XCB_EVENT_MASK_EXPOSURE | XCB_EVENT_MASK_KEY_PRESS
 		};
 		xcb_create_window(connection, XCB_COPY_FROM_PARENT, window,
 			screen->root, 0, 0, SCREEN_WIDTH * PIXEL_SIZE,
@@ -332,7 +394,11 @@ int main() {
 	// Load binary into memory
 	{
 		FILE* fp;
-		fp = fopen("demos/auto/alive.bin", "rb");
+		fp = fopen(argv[1], "rb");
+		if (!fp) {
+			puts("Cannot read input binary file.");
+			return -1;
+		}
 		fread(mem + PC_START, TOTAL_MEM - PC_START, 1, fp);
 		fclose(fp);
 	}
@@ -376,17 +442,31 @@ int main() {
 			printf("Event %d\n", event->response_type);
 			switch (event->response_type & ~0x80) {
 				// Detect exiting
-				case XCB_CLIENT_MESSAGE: {
+				case XCB_CLIENT_MESSAGE:
 					if (((xcb_client_message_event_t*)event)->data.data32[0]
 						== del_win_rep->atom) {
 						puts("Exiting...");
 						running = false;
 					}
 					break;
-				}
 
 				// Detect redraw required
 				case XCB_EXPOSE: full_redraw = true; break;
+
+				case XCB_KEY_PRESS: {
+					// Hack just to try and get Adventure working
+					uint8_t keycode =((xcb_key_press_event_t*)event)->detail;
+					uint8_t ascii;
+					switch (keycode) {
+						case 21: ascii = 'w'; break;
+						case 8: ascii = 'a'; break;
+						case 9: ascii = 's'; break;
+						case 10: ascii = 'd'; break;
+					}
+					mem[0xFF] = ascii;
+					//printf("Key pressed: %d\n", ascii);
+					break;
+				}
 				
 				// Ignore all other events
 				default: break;
@@ -428,16 +508,16 @@ int main() {
 					decoded.addr_mode->set, sim_state);
 			else {
 				if (DEBUG_LOG) printf("Invalid opcode %02x\n", op);
-				if (ABORT_ON_INVALID) {
-					coredump(sim_state);
-					abort();
-				}
+				if (HALT_ON_INVALID) halt = true;
 			}
 
 			// Log halt
-			if (DEBUG_LOG && halt) puts("Halted.");
+			if (DEBUG_LOG && halt) {
+				coredump(sim_state);
+				puts("Halted.");
+			}
 
-			// Increment PC unless instruction said not to
+			// Increment PC unless instruction said not to, then reset for next
 			if (!no_pc_inc) reg_pc += length;
 			no_pc_inc = false;
 
