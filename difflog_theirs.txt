@@ -1,0 +1,4888 @@
+0: Ins 4c @ 0600, SR 00 -> 20
+1: Ins a2 @ 0686, SR 20 -> 22
+2: Ins a9 @ 0688, AC 00 -> b5
+2: Ins a9 @ 0688, SR 22 -> a0
+3: Ins 9d @ 068a, Memory 1895, 00 -> b5
+4: Ins a9 @ 068d, AC b5 -> 0c
+4: Ins a9 @ 068d, SR a0 -> 20
+5: Ins 9d @ 068f, Memory 1899, 00 -> 0c
+6: Ins e8 @ 0692, X 00 -> 01
+7: Ins a9 @ 0693, AC 0c -> f5
+7: Ins a9 @ 0693, SR 20 -> a0
+8: Ins 9d @ 0695, Memory 1896, 00 -> f5
+9: Ins a9 @ 0698, AC f5 -> 16
+9: Ins a9 @ 0698, SR a0 -> 20
+10: Ins 9d @ 069a, Memory 189a, 00 -> 16
+11: Ins e8 @ 069d, X 01 -> 02
+12: Ins a9 @ 069e, AC 16 -> 45
+13: Ins 9d @ 06a0, Memory 1897, 00 -> 45
+14: Ins a9 @ 06a3, AC 45 -> 17
+15: Ins 9d @ 06a5, Memory 189b, 00 -> 17
+16: Ins e8 @ 06a8, X 02 -> 03
+17: Ins a9 @ 06a9, AC 17 -> 88
+17: Ins a9 @ 06a9, SR 20 -> a0
+18: Ins 9d @ 06ab, Memory 1898, 00 -> 88
+19: Ins a9 @ 06ae, AC 88 -> 00
+19: Ins a9 @ 06ae, SR a0 -> 22
+27: Ins a9 @ 06c2, AC 00 -> 04
+27: Ins a9 @ 06c2, SR 22 -> 20
+28: Ins 8d @ 06c4, Memory 0082, 00 -> 04
+29: Ins 8d @ 06c7, Memory 0083, 00 -> 04
+30: Ins 8d @ 06ca, Memory 00ff, 00 -> 04
+31: Ins 20 @ 06cd, Memory 01fe, 00 -> cf
+31: Ins 20 @ 06cd, Memory 01ff, 00 -> 06
+32: Ins a9 @ 079f, AC 04 -> 00
+32: Ins a9 @ 079f, SR 20 -> 22
+33: Ins 20 @ 07a1, Memory 01fc, 00 -> a3
+33: Ins 20 @ 07a1, Memory 01fd, 00 -> 07
+35: Ins 20 @ 07bf, Memory 01fa, 00 -> c1
+35: Ins 20 @ 07bf, Memory 01fb, 00 -> 07
+42: Ins 69 @ 0805, AC 00 -> 55
+42: Ins 69 @ 0805, SR 22 -> 20
+43: Ins 85 @ 0807, Memory 0002, 00 -> 55
+44: Ins a9 @ 0809, AC 55 -> 00
+44: Ins a9 @ 0809, SR 20 -> 22
+45: Ins 69 @ 080b, AC 00 -> 17
+45: Ins 69 @ 080b, SR 22 -> 20
+46: Ins 85 @ 080d, Memory 0003, 00 -> 17
+47: Ins ad @ 080f, AC 17 -> 07
+49: Ins 0a @ 0814, AC 07 -> 0e
+50: Ins a8 @ 0815, Y 00 -> 0e
+51: Ins b1 @ 0816, AC 0e -> 32
+52: Ins aa @ 0818, X 03 -> 32
+53: Ins c8 @ 0819, Y 0e -> 0f
+55: Ins a8 @ 081c, Y 0f -> 32
+57: Ins 8e @ 07c2, Memory 07ba, 00 -> 32
+58: Ins 8c @ 07c5, Memory 07bb, 00 -> 32
+59: Ins ad @ 07c8, AC 32 -> 00
+59: Ins ad @ 07c8, SR 20 -> 22
+64: Ins 69 @ 07cf, AC 00 -> 46
+64: Ins 69 @ 07cf, SR 22 -> 20
+65: Ins 85 @ 07d1, Memory 0002, 55 -> 46
+66: Ins a9 @ 07d3, AC 46 -> 00
+66: Ins a9 @ 07d3, SR 20 -> 22
+67: Ins 69 @ 07d5, AC 00 -> 06
+67: Ins 69 @ 07d5, SR 22 -> 20
+68: Ins 85 @ 07d7, Memory 0003, 17 -> 06
+69: Ins a0 @ 07d9, Y 32 -> 00
+69: Ins a0 @ 07d9, SR 20 -> 22
+70: Ins ad @ 07db, AC 06 -> 32
+70: Ins ad @ 07db, SR 22 -> 20
+71: Ins 4a @ 07de, AC 32 -> 19
+72: Ins 4a @ 07df, AC 19 -> 0c
+72: Ins 4a @ 07df, SR 20 -> 21
+73: Ins 4a @ 07e0, AC 0c -> 06
+73: Ins 4a @ 07e0, SR 21 -> 20
+74: Ins 4a @ 07e1, AC 06 -> 03
+75: Ins 91 @ 07e2, Memory 0646, 00 -> 03
+76: Ins c8 @ 07e4, Y 00 -> 01
+77: Ins ad @ 07e5, AC 03 -> 32
+78: Ins 29 @ 07e8, AC 32 -> 02
+79: Ins 91 @ 07ea, Memory 0647, 05 -> 02
+80: Ins c8 @ 07ec, Y 01 -> 02
+81: Ins ad @ 07ed, AC 02 -> 32
+82: Ins 4a @ 07f0, AC 32 -> 19
+83: Ins 4a @ 07f1, AC 19 -> 0c
+83: Ins 4a @ 07f1, SR 20 -> 21
+84: Ins 4a @ 07f2, AC 0c -> 06
+84: Ins 4a @ 07f2, SR 21 -> 20
+85: Ins 4a @ 07f3, AC 06 -> 03
+86: Ins 91 @ 07f4, Memory 0648, 00 -> 03
+87: Ins c8 @ 07f6, Y 02 -> 03
+88: Ins ad @ 07f7, AC 03 -> 32
+89: Ins 29 @ 07fa, AC 32 -> 02
+90: Ins 91 @ 07fc, Memory 0649, 05 -> 02
+92: Ins a9 @ 07a4, AC 02 -> 01
+93: Ins 20 @ 07a6, Memory 01fc, a3 -> a8
+94: Ins 8d @ 07bc, Memory 07b9, 00 -> 01
+96: Ins 0a @ 07ff, AC 01 -> 02
+97: Ins 0a @ 0800, AC 02 -> 04
+98: Ins 0a @ 0801, AC 04 -> 08
+99: Ins 0a @ 0802, AC 08 -> 10
+100: Ins 0a @ 0803, AC 10 -> 20
+102: Ins 69 @ 0805, AC 20 -> 75
+103: Ins 85 @ 0807, Memory 0002, 46 -> 75
+104: Ins a9 @ 0809, AC 75 -> 00
+104: Ins a9 @ 0809, SR 20 -> 22
+105: Ins 69 @ 080b, AC 00 -> 17
+105: Ins 69 @ 080b, SR 22 -> 20
+106: Ins 85 @ 080d, Memory 0003, 06 -> 17
+107: Ins ad @ 080f, AC 17 -> 07
+109: Ins 0a @ 0814, AC 07 -> 0e
+110: Ins a8 @ 0815, Y 03 -> 0e
+111: Ins b1 @ 0816, AC 0e -> f4
+111: Ins b1 @ 0816, SR 20 -> a0
+112: Ins aa @ 0818, X 32 -> f4
+113: Ins c8 @ 0819, Y 0e -> 0f
+113: Ins c8 @ 0819, SR a0 -> 20
+114: Ins b1 @ 081a, AC f4 -> 02
+115: Ins a8 @ 081c, Y 0f -> 02
+117: Ins 8e @ 07c2, Memory 07ba, 32 -> f4
+118: Ins 8c @ 07c5, Memory 07bb, 32 -> 02
+119: Ins ad @ 07c8, AC 02 -> 01
+120: Ins 0a @ 07cb, AC 01 -> 02
+121: Ins 0a @ 07cc, AC 02 -> 04
+122: Ins 0a @ 07cd, AC 04 -> 08
+124: Ins 69 @ 07cf, AC 08 -> 4e
+125: Ins 85 @ 07d1, Memory 0002, 75 -> 4e
+126: Ins a9 @ 07d3, AC 4e -> 00
+126: Ins a9 @ 07d3, SR 20 -> 22
+127: Ins 69 @ 07d5, AC 00 -> 06
+127: Ins 69 @ 07d5, SR 22 -> 20
+128: Ins 85 @ 07d7, Memory 0003, 17 -> 06
+129: Ins a0 @ 07d9, Y 02 -> 00
+129: Ins a0 @ 07d9, SR 20 -> 22
+130: Ins ad @ 07db, AC 06 -> f4
+130: Ins ad @ 07db, SR 22 -> a0
+131: Ins 4a @ 07de, AC f4 -> 7a
+131: Ins 4a @ 07de, SR a0 -> 20
+132: Ins 4a @ 07df, AC 7a -> 3d
+133: Ins 4a @ 07e0, AC 3d -> 1e
+133: Ins 4a @ 07e0, SR 20 -> 21
+134: Ins 4a @ 07e1, AC 1e -> 0f
+134: Ins 4a @ 07e1, SR 21 -> 20
+135: Ins 91 @ 07e2, Memory 064e, 01 -> 0f
+136: Ins c8 @ 07e4, Y 00 -> 01
+137: Ins ad @ 07e5, AC 0f -> f4
+137: Ins ad @ 07e5, SR 20 -> a0
+138: Ins 29 @ 07e8, AC f4 -> 04
+138: Ins 29 @ 07e8, SR a0 -> 20
+139: Ins 91 @ 07ea, Memory 064f, 05 -> 04
+140: Ins c8 @ 07ec, Y 01 -> 02
+141: Ins ad @ 07ed, AC 04 -> 02
+142: Ins 4a @ 07f0, AC 02 -> 01
+143: Ins 4a @ 07f1, AC 01 -> 00
+143: Ins 4a @ 07f1, SR 20 -> 23
+144: Ins 4a @ 07f2, SR 23 -> 22
+147: Ins c8 @ 07f6, Y 02 -> 03
+147: Ins c8 @ 07f6, SR 22 -> 20
+148: Ins ad @ 07f7, AC 00 -> 02
+150: Ins 91 @ 07fc, Memory 0651, 05 -> 02
+153: Ins 20 @ 07ab, Memory 01fc, a8 -> ad
+154: Ins 8d @ 07bc, Memory 07b9, 01 -> 02
+156: Ins 0a @ 07ff, AC 02 -> 04
+157: Ins 0a @ 0800, AC 04 -> 08
+158: Ins 0a @ 0801, AC 08 -> 10
+159: Ins 0a @ 0802, AC 10 -> 20
+160: Ins 0a @ 0803, AC 20 -> 40
+162: Ins 69 @ 0805, AC 40 -> 95
+162: Ins 69 @ 0805, SR 20 -> e0
+163: Ins 85 @ 0807, Memory 0002, 4e -> 95
+164: Ins a9 @ 0809, AC 95 -> 00
+164: Ins a9 @ 0809, SR e0 -> 62
+165: Ins 69 @ 080b, AC 00 -> 17
+165: Ins 69 @ 080b, SR 62 -> 20
+166: Ins 85 @ 080d, Memory 0003, 06 -> 17
+167: Ins ad @ 080f, AC 17 -> 07
+169: Ins 0a @ 0814, AC 07 -> 0e
+170: Ins a8 @ 0815, Y 03 -> 0e
+171: Ins b1 @ 0816, AC 0e -> c1
+171: Ins b1 @ 0816, SR 20 -> a0
+172: Ins aa @ 0818, X f4 -> c1
+173: Ins c8 @ 0819, Y 0e -> 0f
+173: Ins c8 @ 0819, SR a0 -> 20
+174: Ins b1 @ 081a, AC c1 -> 91
+174: Ins b1 @ 081a, SR 20 -> a0
+175: Ins a8 @ 081c, Y 0f -> 91
+177: Ins 8e @ 07c2, Memory 07ba, f4 -> c1
+178: Ins 8c @ 07c5, Memory 07bb, 02 -> 91
+179: Ins ad @ 07c8, AC 91 -> 02
+179: Ins ad @ 07c8, SR a0 -> 20
+180: Ins 0a @ 07cb, AC 02 -> 04
+181: Ins 0a @ 07cc, AC 04 -> 08
+182: Ins 0a @ 07cd, AC 08 -> 10
+184: Ins 69 @ 07cf, AC 10 -> 56
+185: Ins 85 @ 07d1, Memory 0002, 95 -> 56
+186: Ins a9 @ 07d3, AC 56 -> 00
+186: Ins a9 @ 07d3, SR 20 -> 22
+187: Ins 69 @ 07d5, AC 00 -> 06
+187: Ins 69 @ 07d5, SR 22 -> 20
+188: Ins 85 @ 07d7, Memory 0003, 17 -> 06
+189: Ins a0 @ 07d9, Y 91 -> 00
+189: Ins a0 @ 07d9, SR 20 -> 22
+190: Ins ad @ 07db, AC 06 -> c1
+190: Ins ad @ 07db, SR 22 -> a0
+191: Ins 4a @ 07de, AC c1 -> 60
+191: Ins 4a @ 07de, SR a0 -> 21
+192: Ins 4a @ 07df, AC 60 -> 30
+192: Ins 4a @ 07df, SR 21 -> 20
+193: Ins 4a @ 07e0, AC 30 -> 18
+194: Ins 4a @ 07e1, AC 18 -> 0c
+195: Ins 91 @ 07e2, Memory 0656, 0d -> 0c
+196: Ins c8 @ 07e4, Y 00 -> 01
+197: Ins ad @ 07e5, AC 0c -> c1
+197: Ins ad @ 07e5, SR 20 -> a0
+198: Ins 29 @ 07e8, AC c1 -> 01
+198: Ins 29 @ 07e8, SR a0 -> 20
+199: Ins 91 @ 07ea, Memory 0657, 05 -> 01
+200: Ins c8 @ 07ec, Y 01 -> 02
+201: Ins ad @ 07ed, AC 01 -> 91
+201: Ins ad @ 07ed, SR 20 -> a0
+202: Ins 4a @ 07f0, AC 91 -> 48
+202: Ins 4a @ 07f0, SR a0 -> 21
+203: Ins 4a @ 07f1, AC 48 -> 24
+203: Ins 4a @ 07f1, SR 21 -> 20
+204: Ins 4a @ 07f2, AC 24 -> 12
+205: Ins 4a @ 07f3, AC 12 -> 09
+206: Ins 91 @ 07f4, Memory 0658, 0d -> 09
+207: Ins c8 @ 07f6, Y 02 -> 03
+208: Ins ad @ 07f7, AC 09 -> 91
+208: Ins ad @ 07f7, SR 20 -> a0
+209: Ins 29 @ 07fa, AC 91 -> 01
+209: Ins 29 @ 07fa, SR a0 -> 20
+210: Ins 91 @ 07fc, Memory 0659, 05 -> 01
+212: Ins a9 @ 07ae, AC 01 -> 03
+213: Ins 20 @ 07b0, Memory 01fc, ad -> b2
+214: Ins 8d @ 07bc, Memory 07b9, 02 -> 03
+216: Ins 0a @ 07ff, AC 03 -> 06
+217: Ins 0a @ 0800, AC 06 -> 0c
+218: Ins 0a @ 0801, AC 0c -> 18
+219: Ins 0a @ 0802, AC 18 -> 30
+220: Ins 0a @ 0803, AC 30 -> 60
+222: Ins 69 @ 0805, AC 60 -> b5
+222: Ins 69 @ 0805, SR 20 -> e0
+223: Ins 85 @ 0807, Memory 0002, 56 -> b5
+224: Ins a9 @ 0809, AC b5 -> 00
+224: Ins a9 @ 0809, SR e0 -> 62
+225: Ins 69 @ 080b, AC 00 -> 17
+225: Ins 69 @ 080b, SR 62 -> 20
+226: Ins 85 @ 080d, Memory 0003, 06 -> 17
+227: Ins ad @ 080f, AC 17 -> 07
+229: Ins 0a @ 0814, AC 07 -> 0e
+230: Ins a8 @ 0815, Y 03 -> 0e
+231: Ins b1 @ 0816, AC 0e -> c3
+231: Ins b1 @ 0816, SR 20 -> a0
+232: Ins aa @ 0818, X c1 -> c3
+233: Ins c8 @ 0819, Y 0e -> 0f
+233: Ins c8 @ 0819, SR a0 -> 20
+234: Ins b1 @ 081a, AC c3 -> 64
+235: Ins a8 @ 081c, Y 0f -> 64
+237: Ins 8e @ 07c2, Memory 07ba, c1 -> c3
+238: Ins 8c @ 07c5, Memory 07bb, 91 -> 64
+239: Ins ad @ 07c8, AC 64 -> 03
+240: Ins 0a @ 07cb, AC 03 -> 06
+241: Ins 0a @ 07cc, AC 06 -> 0c
+242: Ins 0a @ 07cd, AC 0c -> 18
+244: Ins 69 @ 07cf, AC 18 -> 5e
+245: Ins 85 @ 07d1, Memory 0002, b5 -> 5e
+246: Ins a9 @ 07d3, AC 5e -> 00
+246: Ins a9 @ 07d3, SR 20 -> 22
+247: Ins 69 @ 07d5, AC 00 -> 06
+247: Ins 69 @ 07d5, SR 22 -> 20
+248: Ins 85 @ 07d7, Memory 0003, 17 -> 06
+249: Ins a0 @ 07d9, Y 64 -> 00
+249: Ins a0 @ 07d9, SR 20 -> 22
+250: Ins ad @ 07db, AC 06 -> c3
+250: Ins ad @ 07db, SR 22 -> a0
+251: Ins 4a @ 07de, AC c3 -> 61
+251: Ins 4a @ 07de, SR a0 -> 21
+252: Ins 4a @ 07df, AC 61 -> 30
+253: Ins 4a @ 07e0, AC 30 -> 18
+253: Ins 4a @ 07e0, SR 21 -> 20
+254: Ins 4a @ 07e1, AC 18 -> 0c
+255: Ins 91 @ 07e2, Memory 065e, 0d -> 0c
+256: Ins c8 @ 07e4, Y 00 -> 01
+257: Ins ad @ 07e5, AC 0c -> c3
+257: Ins ad @ 07e5, SR 20 -> a0
+258: Ins 29 @ 07e8, AC c3 -> 03
+258: Ins 29 @ 07e8, SR a0 -> 20
+259: Ins 91 @ 07ea, Memory 065f, 05 -> 03
+260: Ins c8 @ 07ec, Y 01 -> 02
+261: Ins ad @ 07ed, AC 03 -> 64
+262: Ins 4a @ 07f0, AC 64 -> 32
+263: Ins 4a @ 07f1, AC 32 -> 19
+264: Ins 4a @ 07f2, AC 19 -> 0c
+264: Ins 4a @ 07f2, SR 20 -> 21
+265: Ins 4a @ 07f3, AC 0c -> 06
+265: Ins 4a @ 07f3, SR 21 -> 20
+266: Ins 91 @ 07f4, Memory 0660, 0e -> 06
+267: Ins c8 @ 07f6, Y 02 -> 03
+268: Ins ad @ 07f7, AC 06 -> 64
+269: Ins 29 @ 07fa, AC 64 -> 04
+270: Ins 91 @ 07fc, Memory 0661, 05 -> 04
+273: Ins 20 @ 07b5, Memory 01fc, b2 -> b7
+274: Ins 8d @ 07bc, Memory 07b9, 03 -> 04
+276: Ins 0a @ 07ff, AC 04 -> 08
+277: Ins 0a @ 0800, AC 08 -> 10
+278: Ins 0a @ 0801, AC 10 -> 20
+279: Ins 0a @ 0802, AC 20 -> 40
+280: Ins 0a @ 0803, AC 40 -> 80
+280: Ins 0a @ 0803, SR 20 -> a0
+282: Ins 69 @ 0805, AC 80 -> d5
+283: Ins 85 @ 0807, Memory 0002, 5e -> d5
+284: Ins a9 @ 0809, AC d5 -> 00
+284: Ins a9 @ 0809, SR a0 -> 22
+285: Ins 69 @ 080b, AC 00 -> 17
+285: Ins 69 @ 080b, SR 22 -> 20
+286: Ins 85 @ 080d, Memory 0003, 06 -> 17
+287: Ins ad @ 080f, AC 17 -> 07
+289: Ins 0a @ 0814, AC 07 -> 0e
+290: Ins a8 @ 0815, Y 03 -> 0e
+291: Ins b1 @ 0816, AC 0e -> 66
+292: Ins aa @ 0818, X c3 -> 66
+293: Ins c8 @ 0819, Y 0e -> 0f
+294: Ins b1 @ 081a, AC 66 -> 71
+295: Ins a8 @ 081c, Y 0f -> 71
+297: Ins 8e @ 07c2, Memory 07ba, c3 -> 66
+298: Ins 8c @ 07c5, Memory 07bb, 64 -> 71
+299: Ins ad @ 07c8, AC 71 -> 04
+300: Ins 0a @ 07cb, AC 04 -> 08
+301: Ins 0a @ 07cc, AC 08 -> 10
+302: Ins 0a @ 07cd, AC 10 -> 20
+304: Ins 69 @ 07cf, AC 20 -> 66
+305: Ins 85 @ 07d1, Memory 0002, d5 -> 66
+306: Ins a9 @ 07d3, AC 66 -> 00
+306: Ins a9 @ 07d3, SR 20 -> 22
+307: Ins 69 @ 07d5, AC 00 -> 06
+307: Ins 69 @ 07d5, SR 22 -> 20
+308: Ins 85 @ 07d7, Memory 0003, 17 -> 06
+309: Ins a0 @ 07d9, Y 71 -> 00
+309: Ins a0 @ 07d9, SR 20 -> 22
+310: Ins ad @ 07db, AC 06 -> 66
+310: Ins ad @ 07db, SR 22 -> 20
+311: Ins 4a @ 07de, AC 66 -> 33
+312: Ins 4a @ 07df, AC 33 -> 19
+312: Ins 4a @ 07df, SR 20 -> 21
+313: Ins 4a @ 07e0, AC 19 -> 0c
+314: Ins 4a @ 07e1, AC 0c -> 06
+314: Ins 4a @ 07e1, SR 21 -> 20
+315: Ins 91 @ 07e2, Memory 0666, 0d -> 06
+316: Ins c8 @ 07e4, Y 00 -> 01
+317: Ins ad @ 07e5, AC 06 -> 66
+318: Ins 29 @ 07e8, AC 66 -> 06
+319: Ins 91 @ 07ea, Memory 0667, 04 -> 06
+320: Ins c8 @ 07ec, Y 01 -> 02
+321: Ins ad @ 07ed, AC 06 -> 71
+322: Ins 4a @ 07f0, AC 71 -> 38
+322: Ins 4a @ 07f0, SR 20 -> 21
+323: Ins 4a @ 07f1, AC 38 -> 1c
+323: Ins 4a @ 07f1, SR 21 -> 20
+324: Ins 4a @ 07f2, AC 1c -> 0e
+325: Ins 4a @ 07f3, AC 0e -> 07
+326: Ins 91 @ 07f4, Memory 0668, 0c -> 07
+327: Ins c8 @ 07f6, Y 02 -> 03
+328: Ins ad @ 07f7, AC 07 -> 71
+329: Ins 29 @ 07fa, AC 71 -> 01
+330: Ins 91 @ 07fc, Memory 0669, 05 -> 01
+333: Ins 20 @ 06d0, Memory 01fe, cf -> d2
+334: Ins ae @ 0a0c, X 66 -> 00
+334: Ins ae @ 0a0c, SR 20 -> 22
+335: Ins ac @ 0a0f, Y 03 -> 00
+336: Ins 20 @ 0a12, Memory 01fc, b7 -> 14
+336: Ins 20 @ 0a12, Memory 01fd, 07 -> 0a
+337: Ins 98 @ 0a82, AC 01 -> 00
+350: Ins 86 @ 0a95, Memory 0002, 66 -> 00
+353: Ins bd @ 0a9a, AC 00 -> 04
+353: Ins bd @ 0a9a, SR 22 -> 20
+354: Ins 20 @ 0a9d, Memory 01fa, c1 -> 9f
+354: Ins 20 @ 0a9d, Memory 01fb, 07 -> 0a
+355: Ins a8 @ 0af5, Y 00 -> 04
+356: Ins 0a @ 0af6, AC 04 -> 08
+357: Ins 0a @ 0af7, AC 08 -> 10
+358: Ins 0a @ 0af8, AC 10 -> 20
+359: Ins 0a @ 0af9, AC 20 -> 40
+360: Ins 0a @ 0afa, AC 40 -> 80
+360: Ins 0a @ 0afa, SR 20 -> a0
+361: Ins 85 @ 0afb, Memory 0002, 00 -> 80
+362: Ins 98 @ 0afd, AC 80 -> 04
+362: Ins 98 @ 0afd, SR a0 -> 20
+363: Ins 4a @ 0afe, AC 04 -> 02
+364: Ins 4a @ 0aff, AC 02 -> 01
+365: Ins 4a @ 0b00, AC 01 -> 00
+365: Ins 4a @ 0b00, SR 20 -> 23
+366: Ins 85 @ 0b01, Memory 0003, 06 -> 00
+367: Ins 18 @ 0b03, SR 23 -> 22
+368: Ins a5 @ 0b04, AC 00 -> 80
+368: Ins a5 @ 0b04, SR 22 -> a0
+369: Ins 69 @ 0b06, AC 80 -> 35
+369: Ins 69 @ 0b06, SR a0 -> 61
+370: Ins 85 @ 0b08, Memory 0002, 80 -> 35
+371: Ins a5 @ 0b0a, AC 35 -> 00
+371: Ins a5 @ 0b0a, SR 61 -> 63
+372: Ins 69 @ 0b0c, AC 00 -> 0d
+372: Ins 69 @ 0b0c, SR 63 -> 20
+373: Ins 85 @ 0b0e, Memory 0003, 00 -> 0d
+374: Ins a0 @ 0b10, Y 04 -> 00
+374: Ins a0 @ 0b10, SR 20 -> 22
+376: Ins b1 @ 0b14, AC 0d -> 55
+376: Ins b1 @ 0b14, SR 22 -> 20
+377: Ins 4a @ 0b16, AC 55 -> 2a
+377: Ins 4a @ 0b16, SR 20 -> 21
+378: Ins 4a @ 0b17, AC 2a -> 15
+378: Ins 4a @ 0b17, SR 21 -> 20
+379: Ins 4a @ 0b18, AC 15 -> 0a
+379: Ins 4a @ 0b18, SR 20 -> 21
+380: Ins 4a @ 0b19, AC 0a -> 05
+380: Ins 4a @ 0b19, SR 21 -> 20
+381: Ins 9d @ 0b1a, Memory 0606, 0f -> 05
+382: Ins e8 @ 0b1d, X 00 -> 01
+383: Ins b1 @ 0b1e, AC 05 -> 55
+384: Ins 29 @ 0b20, AC 55 -> 05
+385: Ins 9d @ 0b22, Memory 0607, 0f -> 05
+386: Ins e8 @ 0b25, X 01 -> 02
+387: Ins c8 @ 0b26, Y 00 -> 01
+388: Ins c0 @ 0b27, SR 20 -> a0
+390: Ins b1 @ 0b14, AC 05 -> 55
+390: Ins b1 @ 0b14, SR a0 -> 20
+391: Ins 4a @ 0b16, AC 55 -> 2a
+391: Ins 4a @ 0b16, SR 20 -> 21
+392: Ins 4a @ 0b17, AC 2a -> 15
+392: Ins 4a @ 0b17, SR 21 -> 20
+393: Ins 4a @ 0b18, AC 15 -> 0a
+393: Ins 4a @ 0b18, SR 20 -> 21
+394: Ins 4a @ 0b19, AC 0a -> 05
+394: Ins 4a @ 0b19, SR 21 -> 20
+395: Ins 9d @ 0b1a, Memory 0608, 0f -> 05
+396: Ins e8 @ 0b1d, X 02 -> 03
+397: Ins b1 @ 0b1e, AC 05 -> 55
+398: Ins 29 @ 0b20, AC 55 -> 05
+399: Ins 9d @ 0b22, Memory 0609, 0f -> 05
+400: Ins e8 @ 0b25, X 03 -> 04
+401: Ins c8 @ 0b26, Y 01 -> 02
+402: Ins c0 @ 0b27, SR 20 -> a0
+404: Ins b1 @ 0b14, AC 05 -> 55
+404: Ins b1 @ 0b14, SR a0 -> 20
+405: Ins 4a @ 0b16, AC 55 -> 2a
+405: Ins 4a @ 0b16, SR 20 -> 21
+406: Ins 4a @ 0b17, AC 2a -> 15
+406: Ins 4a @ 0b17, SR 21 -> 20
+407: Ins 4a @ 0b18, AC 15 -> 0a
+407: Ins 4a @ 0b18, SR 20 -> 21
+408: Ins 4a @ 0b19, AC 0a -> 05
+408: Ins 4a @ 0b19, SR 21 -> 20
+409: Ins 9d @ 0b1a, Memory 060a, 0f -> 05
+410: Ins e8 @ 0b1d, X 04 -> 05
+411: Ins b1 @ 0b1e, AC 05 -> 55
+412: Ins 29 @ 0b20, AC 55 -> 05
+413: Ins 9d @ 0b22, Memory 060b, 0f -> 05
+414: Ins e8 @ 0b25, X 05 -> 06
+415: Ins c8 @ 0b26, Y 02 -> 03
+416: Ins c0 @ 0b27, SR 20 -> a0
+418: Ins b1 @ 0b14, AC 05 -> 55
+418: Ins b1 @ 0b14, SR a0 -> 20
+419: Ins 4a @ 0b16, AC 55 -> 2a
+419: Ins 4a @ 0b16, SR 20 -> 21
+420: Ins 4a @ 0b17, AC 2a -> 15
+420: Ins 4a @ 0b17, SR 21 -> 20
+421: Ins 4a @ 0b18, AC 15 -> 0a
+421: Ins 4a @ 0b18, SR 20 -> 21
+422: Ins 4a @ 0b19, AC 0a -> 05
+422: Ins 4a @ 0b19, SR 21 -> 20
+423: Ins 9d @ 0b1a, Memory 060c, 0f -> 05
+424: Ins e8 @ 0b1d, X 06 -> 07
+425: Ins b1 @ 0b1e, AC 05 -> 55
+426: Ins 29 @ 0b20, AC 55 -> 05
+427: Ins 9d @ 0b22, Memory 060d, 0f -> 05
+428: Ins e8 @ 0b25, X 07 -> 08
+429: Ins c8 @ 0b26, Y 03 -> 04
+430: Ins c0 @ 0b27, SR 20 -> a0
+432: Ins b1 @ 0b14, AC 05 -> 55
+432: Ins b1 @ 0b14, SR a0 -> 20
+433: Ins 4a @ 0b16, AC 55 -> 2a
+433: Ins 4a @ 0b16, SR 20 -> 21
+434: Ins 4a @ 0b17, AC 2a -> 15
+434: Ins 4a @ 0b17, SR 21 -> 20
+435: Ins 4a @ 0b18, AC 15 -> 0a
+435: Ins 4a @ 0b18, SR 20 -> 21
+436: Ins 4a @ 0b19, AC 0a -> 05
+436: Ins 4a @ 0b19, SR 21 -> 20
+437: Ins 9d @ 0b1a, Memory 060e, 0f -> 05
+438: Ins e8 @ 0b1d, X 08 -> 09
+439: Ins b1 @ 0b1e, AC 05 -> 55
+440: Ins 29 @ 0b20, AC 55 -> 05
+441: Ins 9d @ 0b22, Memory 060f, 0f -> 05
+442: Ins e8 @ 0b25, X 09 -> 0a
+443: Ins c8 @ 0b26, Y 04 -> 05
+444: Ins c0 @ 0b27, SR 20 -> a0
+446: Ins b1 @ 0b14, AC 05 -> dd
+447: Ins 4a @ 0b16, AC dd -> 6e
+447: Ins 4a @ 0b16, SR a0 -> 21
+448: Ins 4a @ 0b17, AC 6e -> 37
+448: Ins 4a @ 0b17, SR 21 -> 20
+449: Ins 4a @ 0b18, AC 37 -> 1b
+449: Ins 4a @ 0b18, SR 20 -> 21
+450: Ins 4a @ 0b19, AC 1b -> 0d
+451: Ins 9d @ 0b1a, Memory 0610, 0f -> 0d
+452: Ins e8 @ 0b1d, X 0a -> 0b
+453: Ins b1 @ 0b1e, AC 0d -> dd
+453: Ins b1 @ 0b1e, SR 21 -> a1
+454: Ins 29 @ 0b20, AC dd -> 0d
+454: Ins 29 @ 0b20, SR a1 -> 21
+455: Ins 9d @ 0b22, Memory 0611, 0f -> 0d
+456: Ins e8 @ 0b25, X 0b -> 0c
+457: Ins c8 @ 0b26, Y 05 -> 06
+458: Ins c0 @ 0b27, SR 21 -> a0
+460: Ins b1 @ 0b14, AC 0d -> dd
+461: Ins 4a @ 0b16, AC dd -> 6e
+461: Ins 4a @ 0b16, SR a0 -> 21
+462: Ins 4a @ 0b17, AC 6e -> 37
+462: Ins 4a @ 0b17, SR 21 -> 20
+463: Ins 4a @ 0b18, AC 37 -> 1b
+463: Ins 4a @ 0b18, SR 20 -> 21
+464: Ins 4a @ 0b19, AC 1b -> 0d
+465: Ins 9d @ 0b1a, Memory 0612, 0f -> 0d
+466: Ins e8 @ 0b1d, X 0c -> 0d
+467: Ins b1 @ 0b1e, AC 0d -> dd
+467: Ins b1 @ 0b1e, SR 21 -> a1
+468: Ins 29 @ 0b20, AC dd -> 0d
+468: Ins 29 @ 0b20, SR a1 -> 21
+469: Ins 9d @ 0b22, Memory 0613, 0f -> 0d
+470: Ins e8 @ 0b25, X 0d -> 0e
+471: Ins c8 @ 0b26, Y 06 -> 07
+472: Ins c0 @ 0b27, SR 21 -> a0
+474: Ins b1 @ 0b14, AC 0d -> 55
+474: Ins b1 @ 0b14, SR a0 -> 20
+475: Ins 4a @ 0b16, AC 55 -> 2a
+475: Ins 4a @ 0b16, SR 20 -> 21
+476: Ins 4a @ 0b17, AC 2a -> 15
+476: Ins 4a @ 0b17, SR 21 -> 20
+477: Ins 4a @ 0b18, AC 15 -> 0a
+477: Ins 4a @ 0b18, SR 20 -> 21
+478: Ins 4a @ 0b19, AC 0a -> 05
+478: Ins 4a @ 0b19, SR 21 -> 20
+479: Ins 9d @ 0b1a, Memory 0614, 0f -> 05
+480: Ins e8 @ 0b1d, X 0e -> 0f
+481: Ins b1 @ 0b1e, AC 05 -> 55
+482: Ins 29 @ 0b20, AC 55 -> 05
+483: Ins 9d @ 0b22, Memory 0615, 0f -> 05
+484: Ins e8 @ 0b25, X 0f -> 10
+485: Ins c8 @ 0b26, Y 07 -> 08
+486: Ins c0 @ 0b27, SR 20 -> a0
+488: Ins b1 @ 0b14, AC 05 -> 5d
+488: Ins b1 @ 0b14, SR a0 -> 20
+489: Ins 4a @ 0b16, AC 5d -> 2e
+489: Ins 4a @ 0b16, SR 20 -> 21
+490: Ins 4a @ 0b17, AC 2e -> 17
+490: Ins 4a @ 0b17, SR 21 -> 20
+491: Ins 4a @ 0b18, AC 17 -> 0b
+491: Ins 4a @ 0b18, SR 20 -> 21
+492: Ins 4a @ 0b19, AC 0b -> 05
+493: Ins 9d @ 0b1a, Memory 0616, 0f -> 05
+494: Ins e8 @ 0b1d, X 10 -> 11
+495: Ins b1 @ 0b1e, AC 05 -> 5d
+496: Ins 29 @ 0b20, AC 5d -> 0d
+497: Ins 9d @ 0b22, Memory 0617, 0f -> 0d
+498: Ins e8 @ 0b25, X 11 -> 12
+499: Ins c8 @ 0b26, Y 08 -> 09
+500: Ins c0 @ 0b27, SR 21 -> a0
+502: Ins b1 @ 0b14, AC 0d -> d9
+503: Ins 4a @ 0b16, AC d9 -> 6c
+503: Ins 4a @ 0b16, SR a0 -> 21
+504: Ins 4a @ 0b17, AC 6c -> 36
+504: Ins 4a @ 0b17, SR 21 -> 20
+505: Ins 4a @ 0b18, AC 36 -> 1b
+506: Ins 4a @ 0b19, AC 1b -> 0d
+506: Ins 4a @ 0b19, SR 20 -> 21
+507: Ins 9d @ 0b1a, Memory 0618, 0f -> 0d
+508: Ins e8 @ 0b1d, X 12 -> 13
+509: Ins b1 @ 0b1e, AC 0d -> d9
+509: Ins b1 @ 0b1e, SR 21 -> a1
+510: Ins 29 @ 0b20, AC d9 -> 09
+510: Ins 29 @ 0b20, SR a1 -> 21
+511: Ins 9d @ 0b22, Memory 0619, 0f -> 09
+512: Ins e8 @ 0b25, X 13 -> 14
+513: Ins c8 @ 0b26, Y 09 -> 0a
+514: Ins c0 @ 0b27, SR 21 -> a0
+516: Ins b1 @ 0b14, AC 09 -> 99
+517: Ins 4a @ 0b16, AC 99 -> 4c
+517: Ins 4a @ 0b16, SR a0 -> 21
+518: Ins 4a @ 0b17, AC 4c -> 26
+518: Ins 4a @ 0b17, SR 21 -> 20
+519: Ins 4a @ 0b18, AC 26 -> 13
+520: Ins 4a @ 0b19, AC 13 -> 09
+520: Ins 4a @ 0b19, SR 20 -> 21
+521: Ins 9d @ 0b1a, Memory 061a, 0f -> 09
+522: Ins e8 @ 0b1d, X 14 -> 15
+523: Ins b1 @ 0b1e, AC 09 -> 99
+523: Ins b1 @ 0b1e, SR 21 -> a1
+524: Ins 29 @ 0b20, AC 99 -> 09
+524: Ins 29 @ 0b20, SR a1 -> 21
+525: Ins 9d @ 0b22, Memory 061b, 0f -> 09
+526: Ins e8 @ 0b25, X 15 -> 16
+527: Ins c8 @ 0b26, Y 0a -> 0b
+528: Ins c0 @ 0b27, SR 21 -> a0
+530: Ins b1 @ 0b14, AC 09 -> dd
+531: Ins 4a @ 0b16, AC dd -> 6e
+531: Ins 4a @ 0b16, SR a0 -> 21
+532: Ins 4a @ 0b17, AC 6e -> 37
+532: Ins 4a @ 0b17, SR 21 -> 20
+533: Ins 4a @ 0b18, AC 37 -> 1b
+533: Ins 4a @ 0b18, SR 20 -> 21
+534: Ins 4a @ 0b19, AC 1b -> 0d
+535: Ins 9d @ 0b1a, Memory 061c, 0f -> 0d
+536: Ins e8 @ 0b1d, X 16 -> 17
+537: Ins b1 @ 0b1e, AC 0d -> dd
+537: Ins b1 @ 0b1e, SR 21 -> a1
+538: Ins 29 @ 0b20, AC dd -> 0d
+538: Ins 29 @ 0b20, SR a1 -> 21
+539: Ins 9d @ 0b22, Memory 061d, 0f -> 0d
+540: Ins e8 @ 0b25, X 17 -> 18
+541: Ins c8 @ 0b26, Y 0b -> 0c
+542: Ins c0 @ 0b27, SR 21 -> a0
+544: Ins b1 @ 0b14, AC 0d -> 5d
+544: Ins b1 @ 0b14, SR a0 -> 20
+545: Ins 4a @ 0b16, AC 5d -> 2e
+545: Ins 4a @ 0b16, SR 20 -> 21
+546: Ins 4a @ 0b17, AC 2e -> 17
+546: Ins 4a @ 0b17, SR 21 -> 20
+547: Ins 4a @ 0b18, AC 17 -> 0b
+547: Ins 4a @ 0b18, SR 20 -> 21
+548: Ins 4a @ 0b19, AC 0b -> 05
+549: Ins 9d @ 0b1a, Memory 061e, 0f -> 05
+550: Ins e8 @ 0b1d, X 18 -> 19
+551: Ins b1 @ 0b1e, AC 05 -> 5d
+552: Ins 29 @ 0b20, AC 5d -> 0d
+553: Ins 9d @ 0b22, Memory 061f, 0f -> 0d
+554: Ins e8 @ 0b25, X 19 -> 1a
+555: Ins c8 @ 0b26, Y 0c -> 0d
+556: Ins c0 @ 0b27, SR 21 -> a0
+558: Ins b1 @ 0b14, AC 0d -> 99
+559: Ins 4a @ 0b16, AC 99 -> 4c
+559: Ins 4a @ 0b16, SR a0 -> 21
+560: Ins 4a @ 0b17, AC 4c -> 26
+560: Ins 4a @ 0b17, SR 21 -> 20
+561: Ins 4a @ 0b18, AC 26 -> 13
+562: Ins 4a @ 0b19, AC 13 -> 09
+562: Ins 4a @ 0b19, SR 20 -> 21
+563: Ins 9d @ 0b1a, Memory 0620, 0f -> 09
+564: Ins e8 @ 0b1d, X 1a -> 1b
+565: Ins b1 @ 0b1e, AC 09 -> 99
+565: Ins b1 @ 0b1e, SR 21 -> a1
+566: Ins 29 @ 0b20, AC 99 -> 09
+566: Ins 29 @ 0b20, SR a1 -> 21
+567: Ins 9d @ 0b22, Memory 0621, 0f -> 09
+568: Ins e8 @ 0b25, X 1b -> 1c
+569: Ins c8 @ 0b26, Y 0d -> 0e
+570: Ins c0 @ 0b27, SR 21 -> a0
+572: Ins b1 @ 0b14, AC 09 -> 99
+573: Ins 4a @ 0b16, AC 99 -> 4c
+573: Ins 4a @ 0b16, SR a0 -> 21
+574: Ins 4a @ 0b17, AC 4c -> 26
+574: Ins 4a @ 0b17, SR 21 -> 20
+575: Ins 4a @ 0b18, AC 26 -> 13
+576: Ins 4a @ 0b19, AC 13 -> 09
+576: Ins 4a @ 0b19, SR 20 -> 21
+577: Ins 9d @ 0b1a, Memory 0622, 0f -> 09
+578: Ins e8 @ 0b1d, X 1c -> 1d
+579: Ins b1 @ 0b1e, AC 09 -> 99
+579: Ins b1 @ 0b1e, SR 21 -> a1
+580: Ins 29 @ 0b20, AC 99 -> 09
+580: Ins 29 @ 0b20, SR a1 -> 21
+581: Ins 9d @ 0b22, Memory 0623, 0f -> 09
+582: Ins e8 @ 0b25, X 1d -> 1e
+583: Ins c8 @ 0b26, Y 0e -> 0f
+584: Ins c0 @ 0b27, SR 21 -> a0
+586: Ins b1 @ 0b14, AC 09 -> 99
+587: Ins 4a @ 0b16, AC 99 -> 4c
+587: Ins 4a @ 0b16, SR a0 -> 21
+588: Ins 4a @ 0b17, AC 4c -> 26
+588: Ins 4a @ 0b17, SR 21 -> 20
+589: Ins 4a @ 0b18, AC 26 -> 13
+590: Ins 4a @ 0b19, AC 13 -> 09
+590: Ins 4a @ 0b19, SR 20 -> 21
+591: Ins 9d @ 0b1a, Memory 0624, 0f -> 09
+592: Ins e8 @ 0b1d, X 1e -> 1f
+593: Ins b1 @ 0b1e, AC 09 -> 99
+593: Ins b1 @ 0b1e, SR 21 -> a1
+594: Ins 29 @ 0b20, AC 99 -> 09
+594: Ins 29 @ 0b20, SR a1 -> 21
+595: Ins 9d @ 0b22, Memory 0625, 0f -> 09
+596: Ins e8 @ 0b25, X 1f -> 20
+597: Ins c8 @ 0b26, Y 0f -> 10
+598: Ins c0 @ 0b27, SR 21 -> a0
+600: Ins b1 @ 0b14, AC 09 -> 5d
+600: Ins b1 @ 0b14, SR a0 -> 20
+601: Ins 4a @ 0b16, AC 5d -> 2e
+601: Ins 4a @ 0b16, SR 20 -> 21
+602: Ins 4a @ 0b17, AC 2e -> 17
+602: Ins 4a @ 0b17, SR 21 -> 20
+603: Ins 4a @ 0b18, AC 17 -> 0b
+603: Ins 4a @ 0b18, SR 20 -> 21
+604: Ins 4a @ 0b19, AC 0b -> 05
+605: Ins 9d @ 0b1a, Memory 0626, 0f -> 05
+606: Ins e8 @ 0b1d, X 20 -> 21
+607: Ins b1 @ 0b1e, AC 05 -> 5d
+608: Ins 29 @ 0b20, AC 5d -> 0d
+609: Ins 9d @ 0b22, Memory 0627, 03 -> 0d
+610: Ins e8 @ 0b25, X 21 -> 22
+611: Ins c8 @ 0b26, Y 10 -> 11
+612: Ins c0 @ 0b27, SR 21 -> a0
+614: Ins b1 @ 0b14, AC 0d -> 99
+615: Ins 4a @ 0b16, AC 99 -> 4c
+615: Ins 4a @ 0b16, SR a0 -> 21
+616: Ins 4a @ 0b17, AC 4c -> 26
+616: Ins 4a @ 0b17, SR 21 -> 20
+617: Ins 4a @ 0b18, AC 26 -> 13
+618: Ins 4a @ 0b19, AC 13 -> 09
+618: Ins 4a @ 0b19, SR 20 -> 21
+619: Ins 9d @ 0b1a, Memory 0628, 0f -> 09
+620: Ins e8 @ 0b1d, X 22 -> 23
+621: Ins b1 @ 0b1e, AC 09 -> 99
+621: Ins b1 @ 0b1e, SR 21 -> a1
+622: Ins 29 @ 0b20, AC 99 -> 09
+622: Ins 29 @ 0b20, SR a1 -> 21
+623: Ins 9d @ 0b22, Memory 0629, 05 -> 09
+624: Ins e8 @ 0b25, X 23 -> 24
+625: Ins c8 @ 0b26, Y 11 -> 12
+626: Ins c0 @ 0b27, SR 21 -> a0
+628: Ins b1 @ 0b14, AC 09 -> d9
+629: Ins 4a @ 0b16, AC d9 -> 6c
+629: Ins 4a @ 0b16, SR a0 -> 21
+630: Ins 4a @ 0b17, AC 6c -> 36
+630: Ins 4a @ 0b17, SR 21 -> 20
+631: Ins 4a @ 0b18, AC 36 -> 1b
+632: Ins 4a @ 0b19, AC 1b -> 0d
+632: Ins 4a @ 0b19, SR 20 -> 21
+633: Ins 9d @ 0b1a, Memory 062a, 0f -> 0d
+634: Ins e8 @ 0b1d, X 24 -> 25
+635: Ins b1 @ 0b1e, AC 0d -> d9
+635: Ins b1 @ 0b1e, SR 21 -> a1
+636: Ins 29 @ 0b20, AC d9 -> 09
+636: Ins 29 @ 0b20, SR a1 -> 21
+637: Ins 9d @ 0b22, Memory 062b, 0f -> 09
+638: Ins e8 @ 0b25, X 25 -> 26
+639: Ins c8 @ 0b26, Y 12 -> 13
+640: Ins c0 @ 0b27, SR 21 -> a0
+642: Ins b1 @ 0b14, AC 09 -> 99
+643: Ins 4a @ 0b16, AC 99 -> 4c
+643: Ins 4a @ 0b16, SR a0 -> 21
+644: Ins 4a @ 0b17, AC 4c -> 26
+644: Ins 4a @ 0b17, SR 21 -> 20
+645: Ins 4a @ 0b18, AC 26 -> 13
+646: Ins 4a @ 0b19, AC 13 -> 09
+646: Ins 4a @ 0b19, SR 20 -> 21
+647: Ins 9d @ 0b1a, Memory 062c, 0f -> 09
+648: Ins e8 @ 0b1d, X 26 -> 27
+649: Ins b1 @ 0b1e, AC 09 -> 99
+649: Ins b1 @ 0b1e, SR 21 -> a1
+650: Ins 29 @ 0b20, AC 99 -> 09
+650: Ins 29 @ 0b20, SR a1 -> 21
+651: Ins 9d @ 0b22, Memory 062d, 0f -> 09
+652: Ins e8 @ 0b25, X 27 -> 28
+653: Ins c8 @ 0b26, Y 13 -> 14
+654: Ins c0 @ 0b27, SR 21 -> a0
+656: Ins b1 @ 0b14, AC 09 -> 5d
+656: Ins b1 @ 0b14, SR a0 -> 20
+657: Ins 4a @ 0b16, AC 5d -> 2e
+657: Ins 4a @ 0b16, SR 20 -> 21
+658: Ins 4a @ 0b17, AC 2e -> 17
+658: Ins 4a @ 0b17, SR 21 -> 20
+659: Ins 4a @ 0b18, AC 17 -> 0b
+659: Ins 4a @ 0b18, SR 20 -> 21
+660: Ins 4a @ 0b19, AC 0b -> 05
+661: Ins 9d @ 0b1a, Memory 062e, 0f -> 05
+662: Ins e8 @ 0b1d, X 28 -> 29
+663: Ins b1 @ 0b1e, AC 05 -> 5d
+664: Ins 29 @ 0b20, AC 5d -> 0d
+665: Ins 9d @ 0b22, Memory 062f, 0f -> 0d
+666: Ins e8 @ 0b25, X 29 -> 2a
+667: Ins c8 @ 0b26, Y 14 -> 15
+668: Ins c0 @ 0b27, SR 21 -> a0
+670: Ins b1 @ 0b14, AC 0d -> d9
+671: Ins 4a @ 0b16, AC d9 -> 6c
+671: Ins 4a @ 0b16, SR a0 -> 21
+672: Ins 4a @ 0b17, AC 6c -> 36
+672: Ins 4a @ 0b17, SR 21 -> 20
+673: Ins 4a @ 0b18, AC 36 -> 1b
+674: Ins 4a @ 0b19, AC 1b -> 0d
+674: Ins 4a @ 0b19, SR 20 -> 21
+675: Ins 9d @ 0b1a, Memory 0630, 0f -> 0d
+676: Ins e8 @ 0b1d, X 2a -> 2b
+677: Ins b1 @ 0b1e, AC 0d -> d9
+677: Ins b1 @ 0b1e, SR 21 -> a1
+678: Ins 29 @ 0b20, AC d9 -> 09
+678: Ins 29 @ 0b20, SR a1 -> 21
+679: Ins 9d @ 0b22, Memory 0631, 0f -> 09
+680: Ins e8 @ 0b25, X 2b -> 2c
+681: Ins c8 @ 0b26, Y 15 -> 16
+682: Ins c0 @ 0b27, SR 21 -> a0
+684: Ins b1 @ 0b14, AC 09 -> 99
+685: Ins 4a @ 0b16, AC 99 -> 4c
+685: Ins 4a @ 0b16, SR a0 -> 21
+686: Ins 4a @ 0b17, AC 4c -> 26
+686: Ins 4a @ 0b17, SR 21 -> 20
+687: Ins 4a @ 0b18, AC 26 -> 13
+688: Ins 4a @ 0b19, AC 13 -> 09
+688: Ins 4a @ 0b19, SR 20 -> 21
+689: Ins 9d @ 0b1a, Memory 0632, 0f -> 09
+690: Ins e8 @ 0b1d, X 2c -> 2d
+691: Ins b1 @ 0b1e, AC 09 -> 99
+691: Ins b1 @ 0b1e, SR 21 -> a1
+692: Ins 29 @ 0b20, AC 99 -> 09
+692: Ins 29 @ 0b20, SR a1 -> 21
+693: Ins 9d @ 0b22, Memory 0633, 0f -> 09
+694: Ins e8 @ 0b25, X 2d -> 2e
+695: Ins c8 @ 0b26, Y 16 -> 17
+696: Ins c0 @ 0b27, SR 21 -> a0
+698: Ins b1 @ 0b14, AC 09 -> d9
+699: Ins 4a @ 0b16, AC d9 -> 6c
+699: Ins 4a @ 0b16, SR a0 -> 21
+700: Ins 4a @ 0b17, AC 6c -> 36
+700: Ins 4a @ 0b17, SR 21 -> 20
+701: Ins 4a @ 0b18, AC 36 -> 1b
+702: Ins 4a @ 0b19, AC 1b -> 0d
+702: Ins 4a @ 0b19, SR 20 -> 21
+703: Ins 9d @ 0b1a, Memory 0634, 0f -> 0d
+704: Ins e8 @ 0b1d, X 2e -> 2f
+705: Ins b1 @ 0b1e, AC 0d -> d9
+705: Ins b1 @ 0b1e, SR 21 -> a1
+706: Ins 29 @ 0b20, AC d9 -> 09
+706: Ins 29 @ 0b20, SR a1 -> 21
+707: Ins 9d @ 0b22, Memory 0635, 0f -> 09
+708: Ins e8 @ 0b25, X 2f -> 30
+709: Ins c8 @ 0b26, Y 17 -> 18
+710: Ins c0 @ 0b27, SR 21 -> a0
+712: Ins b1 @ 0b14, AC 09 -> 55
+712: Ins b1 @ 0b14, SR a0 -> 20
+713: Ins 4a @ 0b16, AC 55 -> 2a
+713: Ins 4a @ 0b16, SR 20 -> 21
+714: Ins 4a @ 0b17, AC 2a -> 15
+714: Ins 4a @ 0b17, SR 21 -> 20
+715: Ins 4a @ 0b18, AC 15 -> 0a
+715: Ins 4a @ 0b18, SR 20 -> 21
+716: Ins 4a @ 0b19, AC 0a -> 05
+716: Ins 4a @ 0b19, SR 21 -> 20
+717: Ins 9d @ 0b1a, Memory 0636, 0f -> 05
+718: Ins e8 @ 0b1d, X 30 -> 31
+719: Ins b1 @ 0b1e, AC 05 -> 55
+720: Ins 29 @ 0b20, AC 55 -> 05
+721: Ins 9d @ 0b22, Memory 0637, 0f -> 05
+722: Ins e8 @ 0b25, X 31 -> 32
+723: Ins c8 @ 0b26, Y 18 -> 19
+724: Ins c0 @ 0b27, SR 20 -> a0
+726: Ins b1 @ 0b14, AC 05 -> dd
+727: Ins 4a @ 0b16, AC dd -> 6e
+727: Ins 4a @ 0b16, SR a0 -> 21
+728: Ins 4a @ 0b17, AC 6e -> 37
+728: Ins 4a @ 0b17, SR 21 -> 20
+729: Ins 4a @ 0b18, AC 37 -> 1b
+729: Ins 4a @ 0b18, SR 20 -> 21
+730: Ins 4a @ 0b19, AC 1b -> 0d
+731: Ins 9d @ 0b1a, Memory 0638, 0f -> 0d
+732: Ins e8 @ 0b1d, X 32 -> 33
+733: Ins b1 @ 0b1e, AC 0d -> dd
+733: Ins b1 @ 0b1e, SR 21 -> a1
+734: Ins 29 @ 0b20, AC dd -> 0d
+734: Ins 29 @ 0b20, SR a1 -> 21
+735: Ins 9d @ 0b22, Memory 0639, 0f -> 0d
+736: Ins e8 @ 0b25, X 33 -> 34
+737: Ins c8 @ 0b26, Y 19 -> 1a
+738: Ins c0 @ 0b27, SR 21 -> a0
+740: Ins b1 @ 0b14, AC 0d -> dd
+741: Ins 4a @ 0b16, AC dd -> 6e
+741: Ins 4a @ 0b16, SR a0 -> 21
+742: Ins 4a @ 0b17, AC 6e -> 37
+742: Ins 4a @ 0b17, SR 21 -> 20
+743: Ins 4a @ 0b18, AC 37 -> 1b
+743: Ins 4a @ 0b18, SR 20 -> 21
+744: Ins 4a @ 0b19, AC 1b -> 0d
+745: Ins 9d @ 0b1a, Memory 063a, 0f -> 0d
+746: Ins e8 @ 0b1d, X 34 -> 35
+747: Ins b1 @ 0b1e, AC 0d -> dd
+747: Ins b1 @ 0b1e, SR 21 -> a1
+748: Ins 29 @ 0b20, AC dd -> 0d
+748: Ins 29 @ 0b20, SR a1 -> 21
+749: Ins 9d @ 0b22, Memory 063b, 0f -> 0d
+750: Ins e8 @ 0b25, X 35 -> 36
+751: Ins c8 @ 0b26, Y 1a -> 1b
+752: Ins c0 @ 0b27, SR 21 -> a0
+754: Ins b1 @ 0b14, AC 0d -> 55
+754: Ins b1 @ 0b14, SR a0 -> 20
+755: Ins 4a @ 0b16, AC 55 -> 2a
+755: Ins 4a @ 0b16, SR 20 -> 21
+756: Ins 4a @ 0b17, AC 2a -> 15
+756: Ins 4a @ 0b17, SR 21 -> 20
+757: Ins 4a @ 0b18, AC 15 -> 0a
+757: Ins 4a @ 0b18, SR 20 -> 21
+758: Ins 4a @ 0b19, AC 0a -> 05
+758: Ins 4a @ 0b19, SR 21 -> 20
+759: Ins 9d @ 0b1a, Memory 063c, 0f -> 05
+760: Ins e8 @ 0b1d, X 36 -> 37
+761: Ins b1 @ 0b1e, AC 05 -> 55
+762: Ins 29 @ 0b20, AC 55 -> 05
+763: Ins 9d @ 0b22, Memory 063d, 0f -> 05
+764: Ins e8 @ 0b25, X 37 -> 38
+765: Ins c8 @ 0b26, Y 1b -> 1c
+766: Ins c0 @ 0b27, SR 20 -> a0
+768: Ins b1 @ 0b14, AC 05 -> 55
+768: Ins b1 @ 0b14, SR a0 -> 20
+769: Ins 4a @ 0b16, AC 55 -> 2a
+769: Ins 4a @ 0b16, SR 20 -> 21
+770: Ins 4a @ 0b17, AC 2a -> 15
+770: Ins 4a @ 0b17, SR 21 -> 20
+771: Ins 4a @ 0b18, AC 15 -> 0a
+771: Ins 4a @ 0b18, SR 20 -> 21
+772: Ins 4a @ 0b19, AC 0a -> 05
+772: Ins 4a @ 0b19, SR 21 -> 20
+773: Ins 9d @ 0b1a, Memory 063e, 0f -> 05
+774: Ins e8 @ 0b1d, X 38 -> 39
+775: Ins b1 @ 0b1e, AC 05 -> 55
+776: Ins 29 @ 0b20, AC 55 -> 05
+777: Ins 9d @ 0b22, Memory 063f, 0f -> 05
+778: Ins e8 @ 0b25, X 39 -> 3a
+779: Ins c8 @ 0b26, Y 1c -> 1d
+780: Ins c0 @ 0b27, SR 20 -> a0
+782: Ins b1 @ 0b14, AC 05 -> 55
+782: Ins b1 @ 0b14, SR a0 -> 20
+783: Ins 4a @ 0b16, AC 55 -> 2a
+783: Ins 4a @ 0b16, SR 20 -> 21
+784: Ins 4a @ 0b17, AC 2a -> 15
+784: Ins 4a @ 0b17, SR 21 -> 20
+785: Ins 4a @ 0b18, AC 15 -> 0a
+785: Ins 4a @ 0b18, SR 20 -> 21
+786: Ins 4a @ 0b19, AC 0a -> 05
+786: Ins 4a @ 0b19, SR 21 -> 20
+787: Ins 9d @ 0b1a, Memory 0640, 0f -> 05
+788: Ins e8 @ 0b1d, X 3a -> 3b
+789: Ins b1 @ 0b1e, AC 05 -> 55
+790: Ins 29 @ 0b20, AC 55 -> 05
+791: Ins 9d @ 0b22, Memory 0641, 0f -> 05
+792: Ins e8 @ 0b25, X 3b -> 3c
+793: Ins c8 @ 0b26, Y 1d -> 1e
+794: Ins c0 @ 0b27, SR 20 -> a0
+796: Ins b1 @ 0b14, AC 05 -> 55
+796: Ins b1 @ 0b14, SR a0 -> 20
+797: Ins 4a @ 0b16, AC 55 -> 2a
+797: Ins 4a @ 0b16, SR 20 -> 21
+798: Ins 4a @ 0b17, AC 2a -> 15
+798: Ins 4a @ 0b17, SR 21 -> 20
+799: Ins 4a @ 0b18, AC 15 -> 0a
+799: Ins 4a @ 0b18, SR 20 -> 21
+800: Ins 4a @ 0b19, AC 0a -> 05
+800: Ins 4a @ 0b19, SR 21 -> 20
+801: Ins 9d @ 0b1a, Memory 0642, 0f -> 05
+802: Ins e8 @ 0b1d, X 3c -> 3d
+803: Ins b1 @ 0b1e, AC 05 -> 55
+804: Ins 29 @ 0b20, AC 55 -> 05
+805: Ins 9d @ 0b22, Memory 0643, 0f -> 05
+806: Ins e8 @ 0b25, X 3d -> 3e
+807: Ins c8 @ 0b26, Y 1e -> 1f
+808: Ins c0 @ 0b27, SR 20 -> a0
+810: Ins b1 @ 0b14, AC 05 -> 55
+810: Ins b1 @ 0b14, SR a0 -> 20
+811: Ins 4a @ 0b16, AC 55 -> 2a
+811: Ins 4a @ 0b16, SR 20 -> 21
+812: Ins 4a @ 0b17, AC 2a -> 15
+812: Ins 4a @ 0b17, SR 21 -> 20
+813: Ins 4a @ 0b18, AC 15 -> 0a
+813: Ins 4a @ 0b18, SR 20 -> 21
+814: Ins 4a @ 0b19, AC 0a -> 05
+814: Ins 4a @ 0b19, SR 21 -> 20
+815: Ins 9d @ 0b1a, Memory 0644, 0f -> 05
+816: Ins e8 @ 0b1d, X 3e -> 3f
+817: Ins b1 @ 0b1e, AC 05 -> 55
+818: Ins 29 @ 0b20, AC 55 -> 05
+819: Ins 9d @ 0b22, Memory 0645, 0f -> 05
+820: Ins e8 @ 0b25, X 3f -> 40
+821: Ins c8 @ 0b26, Y 1f -> 20
+822: Ins c0 @ 0b27, SR 20 -> 22
+825: Ins a9 @ 0aa0, AC 05 -> ff
+825: Ins a9 @ 0aa0, SR 22 -> a0
+826: Ins 8d @ 0aa2, Memory 0085, 00 -> ff
+827: Ins 8d @ 0aa5, Memory 0086, 00 -> ff
+828: Ins 8d @ 0aa8, Memory 0087, 00 -> ff
+829: Ins a9 @ 0aab, AC ff -> 46
+829: Ins a9 @ 0aab, SR a0 -> 20
+830: Ins 85 @ 0aad, Memory 0002, 35 -> 46
+831: Ins a9 @ 0aaf, AC 46 -> 06
+832: Ins 85 @ 0ab1, Memory 0003, 0d -> 06
+833: Ins a2 @ 0ab3, X 40 -> 00
+833: Ins a2 @ 0ab3, SR 20 -> 22
+834: Ins 8a @ 0ab5, AC 06 -> 00
+838: Ins a8 @ 0ab9, Y 20 -> 00
+839: Ins b1 @ 0aba, AC 00 -> 03
+839: Ins b1 @ 0aba, SR 22 -> 20
+840: Ins 85 @ 0abc, Memory 0005, 00 -> 03
+841: Ins c8 @ 0abe, Y 00 -> 01
+842: Ins b1 @ 0abf, AC 03 -> 02
+843: Ins 85 @ 0ac1, Memory 0006, 00 -> 02
+844: Ins c8 @ 0ac3, Y 01 -> 02
+845: Ins b1 @ 0ac4, AC 02 -> 03
+846: Ins 85 @ 0ac6, Memory 0007, 00 -> 03
+847: Ins c8 @ 0ac8, Y 02 -> 03
+848: Ins b1 @ 0ac9, AC 03 -> 02
+849: Ins 85 @ 0acb, Memory 0008, 00 -> 02
+850: Ins c8 @ 0acd, Y 03 -> 04
+851: Ins b1 @ 0ace, AC 02 -> 00
+851: Ins b1 @ 0ace, SR 20 -> 22
+853: Ins a5 @ 0ad2, AC 00 -> 03
+853: Ins a5 @ 0ad2, SR 22 -> 20
+854: Ins cd @ 0ad4, SR 20 -> 21
+856: Ins e8 @ 0aef, X 00 -> 01
+857: Ins e0 @ 0af0, SR 21 -> a0
+859: Ins 8a @ 0ab5, AC 03 -> 01
+859: Ins 8a @ 0ab5, SR a0 -> 20
+860: Ins 0a @ 0ab6, AC 01 -> 02
+861: Ins 0a @ 0ab7, AC 02 -> 04
+862: Ins 0a @ 0ab8, AC 04 -> 08
+863: Ins a8 @ 0ab9, Y 04 -> 08
+864: Ins b1 @ 0aba, AC 08 -> 0f
+865: Ins 85 @ 0abc, Memory 0005, 03 -> 0f
+866: Ins c8 @ 0abe, Y 08 -> 09
+867: Ins b1 @ 0abf, AC 0f -> 04
+868: Ins 85 @ 0ac1, Memory 0006, 02 -> 04
+869: Ins c8 @ 0ac3, Y 09 -> 0a
+870: Ins b1 @ 0ac4, AC 04 -> 00
+870: Ins b1 @ 0ac4, SR 20 -> 22
+871: Ins 85 @ 0ac6, Memory 0007, 03 -> 00
+872: Ins c8 @ 0ac8, Y 0a -> 0b
+872: Ins c8 @ 0ac8, SR 22 -> 20
+873: Ins b1 @ 0ac9, AC 00 -> 02
+875: Ins c8 @ 0acd, Y 0b -> 0c
+876: Ins b1 @ 0ace, AC 02 -> 01
+877: Ins 85 @ 0ad0, Memory 0009, 00 -> 01
+878: Ins a5 @ 0ad2, AC 01 -> 0f
+879: Ins cd @ 0ad4, SR 20 -> 21
+881: Ins e8 @ 0aef, X 01 -> 02
+882: Ins e0 @ 0af0, SR 21 -> a0
+884: Ins 8a @ 0ab5, AC 0f -> 02
+884: Ins 8a @ 0ab5, SR a0 -> 20
+885: Ins 0a @ 0ab6, AC 02 -> 04
+886: Ins 0a @ 0ab7, AC 04 -> 08
+887: Ins 0a @ 0ab8, AC 08 -> 10
+888: Ins a8 @ 0ab9, Y 0c -> 10
+889: Ins b1 @ 0aba, AC 10 -> 0c
+890: Ins 85 @ 0abc, Memory 0005, 0f -> 0c
+891: Ins c8 @ 0abe, Y 10 -> 11
+892: Ins b1 @ 0abf, AC 0c -> 01
+893: Ins 85 @ 0ac1, Memory 0006, 04 -> 01
+894: Ins c8 @ 0ac3, Y 11 -> 12
+895: Ins b1 @ 0ac4, AC 01 -> 09
+896: Ins 85 @ 0ac6, Memory 0007, 00 -> 09
+897: Ins c8 @ 0ac8, Y 12 -> 13
+898: Ins b1 @ 0ac9, AC 09 -> 01
+899: Ins 85 @ 0acb, Memory 0008, 02 -> 01
+900: Ins c8 @ 0acd, Y 13 -> 14
+901: Ins b1 @ 0ace, AC 01 -> 02
+902: Ins 85 @ 0ad0, Memory 0009, 01 -> 02
+903: Ins a5 @ 0ad2, AC 02 -> 0c
+904: Ins cd @ 0ad4, SR 20 -> 21
+906: Ins e8 @ 0aef, X 02 -> 03
+907: Ins e0 @ 0af0, SR 21 -> a0
+909: Ins 8a @ 0ab5, AC 0c -> 03
+909: Ins 8a @ 0ab5, SR a0 -> 20
+910: Ins 0a @ 0ab6, AC 03 -> 06
+911: Ins 0a @ 0ab7, AC 06 -> 0c
+912: Ins 0a @ 0ab8, AC 0c -> 18
+913: Ins a8 @ 0ab9, Y 14 -> 18
+914: Ins b1 @ 0aba, AC 18 -> 0c
+916: Ins c8 @ 0abe, Y 18 -> 19
+917: Ins b1 @ 0abf, AC 0c -> 03
+918: Ins 85 @ 0ac1, Memory 0006, 01 -> 03
+919: Ins c8 @ 0ac3, Y 19 -> 1a
+920: Ins b1 @ 0ac4, AC 03 -> 06
+921: Ins 85 @ 0ac6, Memory 0007, 09 -> 06
+922: Ins c8 @ 0ac8, Y 1a -> 1b
+923: Ins b1 @ 0ac9, AC 06 -> 04
+924: Ins 85 @ 0acb, Memory 0008, 01 -> 04
+925: Ins c8 @ 0acd, Y 1b -> 1c
+926: Ins b1 @ 0ace, AC 04 -> 03
+927: Ins 85 @ 0ad0, Memory 0009, 02 -> 03
+928: Ins a5 @ 0ad2, AC 03 -> 0c
+929: Ins cd @ 0ad4, SR 20 -> 21
+931: Ins e8 @ 0aef, X 03 -> 04
+932: Ins e0 @ 0af0, SR 21 -> a0
+934: Ins 8a @ 0ab5, AC 0c -> 04
+934: Ins 8a @ 0ab5, SR a0 -> 20
+935: Ins 0a @ 0ab6, AC 04 -> 08
+936: Ins 0a @ 0ab7, AC 08 -> 10
+937: Ins 0a @ 0ab8, AC 10 -> 20
+938: Ins a8 @ 0ab9, Y 1c -> 20
+939: Ins b1 @ 0aba, AC 20 -> 06
+940: Ins 85 @ 0abc, Memory 0005, 0c -> 06
+941: Ins c8 @ 0abe, Y 20 -> 21
+943: Ins 85 @ 0ac1, Memory 0006, 03 -> 06
+944: Ins c8 @ 0ac3, Y 21 -> 22
+945: Ins b1 @ 0ac4, AC 06 -> 07
+946: Ins 85 @ 0ac6, Memory 0007, 06 -> 07
+947: Ins c8 @ 0ac8, Y 22 -> 23
+948: Ins b1 @ 0ac9, AC 07 -> 01
+949: Ins 85 @ 0acb, Memory 0008, 04 -> 01
+950: Ins c8 @ 0acd, Y 23 -> 24
+951: Ins b1 @ 0ace, AC 01 -> 04
+952: Ins 85 @ 0ad0, Memory 0009, 03 -> 04
+953: Ins a5 @ 0ad2, AC 04 -> 06
+954: Ins cd @ 0ad4, SR 20 -> 21
+956: Ins e8 @ 0aef, X 04 -> 05
+957: Ins e0 @ 0af0, SR 21 -> a0
+959: Ins 8a @ 0ab5, AC 06 -> 05
+959: Ins 8a @ 0ab5, SR a0 -> 20
+960: Ins 0a @ 0ab6, AC 05 -> 0a
+961: Ins 0a @ 0ab7, AC 0a -> 14
+962: Ins 0a @ 0ab8, AC 14 -> 28
+963: Ins a8 @ 0ab9, Y 24 -> 28
+964: Ins b1 @ 0aba, AC 28 -> 08
+965: Ins 85 @ 0abc, Memory 0005, 06 -> 08
+966: Ins c8 @ 0abe, Y 28 -> 29
+967: Ins b1 @ 0abf, AC 08 -> 03
+968: Ins 85 @ 0ac1, Memory 0006, 06 -> 03
+969: Ins c8 @ 0ac3, Y 29 -> 2a
+970: Ins b1 @ 0ac4, AC 03 -> 0d
+971: Ins 85 @ 0ac6, Memory 0007, 07 -> 0d
+972: Ins c8 @ 0ac8, Y 2a -> 2b
+973: Ins b1 @ 0ac9, AC 0d -> 03
+974: Ins 85 @ 0acb, Memory 0008, 01 -> 03
+975: Ins c8 @ 0acd, Y 2b -> 2c
+976: Ins b1 @ 0ace, AC 03 -> 05
+977: Ins 85 @ 0ad0, Memory 0009, 04 -> 05
+978: Ins a5 @ 0ad2, AC 05 -> 08
+979: Ins cd @ 0ad4, SR 20 -> 21
+981: Ins e8 @ 0aef, X 05 -> 06
+982: Ins e0 @ 0af0, SR 21 -> a0
+984: Ins 8a @ 0ab5, AC 08 -> 06
+984: Ins 8a @ 0ab5, SR a0 -> 20
+985: Ins 0a @ 0ab6, AC 06 -> 0c
+986: Ins 0a @ 0ab7, AC 0c -> 18
+987: Ins 0a @ 0ab8, AC 18 -> 30
+988: Ins a8 @ 0ab9, Y 2c -> 30
+989: Ins b1 @ 0aba, AC 30 -> ff
+989: Ins b1 @ 0aba, SR 20 -> a0
+990: Ins 85 @ 0abc, Memory 0005, 08 -> ff
+991: Ins c8 @ 0abe, Y 30 -> 31
+991: Ins c8 @ 0abe, SR a0 -> 20
+992: Ins b1 @ 0abf, SR 20 -> a0
+993: Ins 85 @ 0ac1, Memory 0006, 03 -> ff
+994: Ins c8 @ 0ac3, Y 31 -> 32
+994: Ins c8 @ 0ac3, SR a0 -> 20
+995: Ins b1 @ 0ac4, SR 20 -> a0
+996: Ins 85 @ 0ac6, Memory 0007, 0d -> ff
+997: Ins c8 @ 0ac8, Y 32 -> 33
+997: Ins c8 @ 0ac8, SR a0 -> 20
+998: Ins b1 @ 0ac9, SR 20 -> a0
+999: Ins 85 @ 0acb, Memory 0008, 03 -> ff
+1000: Ins c8 @ 0acd, Y 33 -> 34
+1000: Ins c8 @ 0acd, SR a0 -> 20
+1001: Ins b1 @ 0ace, AC ff -> 06
+1002: Ins 85 @ 0ad0, Memory 0009, 05 -> 06
+1003: Ins a5 @ 0ad2, AC 06 -> ff
+1003: Ins a5 @ 0ad2, SR 20 -> a0
+1004: Ins cd @ 0ad4, SR a0 -> a1
+1006: Ins e8 @ 0aef, X 06 -> 07
+1006: Ins e8 @ 0aef, SR a1 -> 21
+1007: Ins e0 @ 0af0, SR 21 -> a0
+1009: Ins 8a @ 0ab5, AC ff -> 07
+1009: Ins 8a @ 0ab5, SR a0 -> 20
+1010: Ins 0a @ 0ab6, AC 07 -> 0e
+1011: Ins 0a @ 0ab7, AC 0e -> 1c
+1012: Ins 0a @ 0ab8, AC 1c -> 38
+1013: Ins a8 @ 0ab9, Y 34 -> 38
+1014: Ins b1 @ 0aba, AC 38 -> ff
+1014: Ins b1 @ 0aba, SR 20 -> a0
+1016: Ins c8 @ 0abe, Y 38 -> 39
+1016: Ins c8 @ 0abe, SR a0 -> 20
+1017: Ins b1 @ 0abf, SR 20 -> a0
+1019: Ins c8 @ 0ac3, Y 39 -> 3a
+1019: Ins c8 @ 0ac3, SR a0 -> 20
+1020: Ins b1 @ 0ac4, SR 20 -> a0
+1022: Ins c8 @ 0ac8, Y 3a -> 3b
+1022: Ins c8 @ 0ac8, SR a0 -> 20
+1023: Ins b1 @ 0ac9, SR 20 -> a0
+1025: Ins c8 @ 0acd, Y 3b -> 3c
+1025: Ins c8 @ 0acd, SR a0 -> 20
+1026: Ins b1 @ 0ace, AC ff -> 07
+1027: Ins 85 @ 0ad0, Memory 0009, 06 -> 07
+1028: Ins a5 @ 0ad2, AC 07 -> ff
+1028: Ins a5 @ 0ad2, SR 20 -> a0
+1029: Ins cd @ 0ad4, SR a0 -> a1
+1031: Ins e8 @ 0aef, X 07 -> 08
+1031: Ins e8 @ 0aef, SR a1 -> 21
+1032: Ins e0 @ 0af0, SR 21 -> 23
+1035: Ins 20 @ 0a15, Memory 01fc, 14 -> 17
+1036: Ins a9 @ 0b2c, AC ff -> 00
+1037: Ins 85 @ 0b2e, Memory 0002, 46 -> 00
+1038: Ins a9 @ 0b30, AC 00 -> 02
+1038: Ins a9 @ 0b30, SR 23 -> 21
+1039: Ins 85 @ 0b32, Memory 0003, 06 -> 02
+1040: Ins a2 @ 0b34, X 08 -> 00
+1040: Ins a2 @ 0b34, SR 21 -> 23
+1041: Ins a0 @ 0b36, Y 3c -> 00
+1042: Ins bd @ 0b38, AC 02 -> 05
+1042: Ins bd @ 0b38, SR 23 -> 21
+1043: Ins 91 @ 0b3b, Memory 0200, 00 -> 05
+1044: Ins c8 @ 0b3d, Y 00 -> 01
+1045: Ins 91 @ 0b3e, Memory 0201, 00 -> 05
+1046: Ins c8 @ 0b40, Y 01 -> 02
+1047: Ins 91 @ 0b41, Memory 0202, 00 -> 05
+1048: Ins c8 @ 0b43, Y 02 -> 03
+1049: Ins 91 @ 0b44, Memory 0203, 00 -> 05
+1050: Ins 98 @ 0b46, AC 05 -> 03
+1051: Ins 18 @ 0b47, SR 21 -> 20
+1052: Ins 69 @ 0b48, AC 03 -> 20
+1053: Ins a8 @ 0b4a, Y 03 -> 20
+1054: Ins bd @ 0b4b, AC 20 -> 05
+1055: Ins 91 @ 0b4e, Memory 0220, 00 -> 05
+1056: Ins c8 @ 0b50, Y 20 -> 21
+1057: Ins 91 @ 0b51, Memory 0221, 00 -> 05
+1058: Ins c8 @ 0b53, Y 21 -> 22
+1059: Ins 91 @ 0b54, Memory 0222, 00 -> 05
+1060: Ins c8 @ 0b56, Y 22 -> 23
+1061: Ins 91 @ 0b57, Memory 0223, 00 -> 05
+1062: Ins 98 @ 0b59, AC 05 -> 23
+1064: Ins 69 @ 0b5b, AC 23 -> 40
+1065: Ins a8 @ 0b5d, Y 23 -> 40
+1066: Ins bd @ 0b5e, AC 40 -> 05
+1067: Ins 91 @ 0b61, Memory 0240, 00 -> 05
+1068: Ins c8 @ 0b63, Y 40 -> 41
+1069: Ins 91 @ 0b64, Memory 0241, 00 -> 05
+1070: Ins c8 @ 0b66, Y 41 -> 42
+1071: Ins 91 @ 0b67, Memory 0242, 00 -> 05
+1072: Ins c8 @ 0b69, Y 42 -> 43
+1073: Ins 91 @ 0b6a, Memory 0243, 00 -> 05
+1074: Ins 98 @ 0b6c, AC 05 -> 43
+1076: Ins 69 @ 0b6e, AC 43 -> 60
+1077: Ins a8 @ 0b70, Y 43 -> 60
+1078: Ins bd @ 0b71, AC 60 -> 05
+1079: Ins 91 @ 0b74, Memory 0260, 00 -> 05
+1080: Ins c8 @ 0b76, Y 60 -> 61
+1081: Ins 91 @ 0b77, Memory 0261, 00 -> 05
+1082: Ins c8 @ 0b79, Y 61 -> 62
+1083: Ins 91 @ 0b7a, Memory 0262, 00 -> 05
+1084: Ins c8 @ 0b7c, Y 62 -> 63
+1085: Ins 91 @ 0b7d, Memory 0263, 00 -> 05
+1086: Ins e8 @ 0b7f, X 00 -> 01
+1088: Ins a5 @ 0b81, AC 05 -> 00
+1088: Ins a5 @ 0b81, SR 20 -> 22
+1089: Ins 69 @ 0b83, AC 00 -> 04
+1089: Ins 69 @ 0b83, SR 22 -> 20
+1090: Ins 85 @ 0b85, Memory 0002, 00 -> 04
+1091: Ins a5 @ 0b87, AC 04 -> 02
+1094: Ins 8a @ 0b8d, AC 02 -> 01
+1097: Ins e0 @ 0b9f, SR 20 -> a0
+1099: Ins a0 @ 0b36, Y 63 -> 00
+1099: Ins a0 @ 0b36, SR a0 -> 22
+1100: Ins bd @ 0b38, AC 01 -> 05
+1100: Ins bd @ 0b38, SR 22 -> 20
+1101: Ins 91 @ 0b3b, Memory 0204, 00 -> 05
+1102: Ins c8 @ 0b3d, Y 00 -> 01
+1103: Ins 91 @ 0b3e, Memory 0205, 00 -> 05
+1104: Ins c8 @ 0b40, Y 01 -> 02
+1105: Ins 91 @ 0b41, Memory 0206, 00 -> 05
+1106: Ins c8 @ 0b43, Y 02 -> 03
+1107: Ins 91 @ 0b44, Memory 0207, 00 -> 05
+1108: Ins 98 @ 0b46, AC 05 -> 03
+1110: Ins 69 @ 0b48, AC 03 -> 20
+1111: Ins a8 @ 0b4a, Y 03 -> 20
+1112: Ins bd @ 0b4b, AC 20 -> 05
+1113: Ins 91 @ 0b4e, Memory 0224, 00 -> 05
+1114: Ins c8 @ 0b50, Y 20 -> 21
+1115: Ins 91 @ 0b51, Memory 0225, 00 -> 05
+1116: Ins c8 @ 0b53, Y 21 -> 22
+1117: Ins 91 @ 0b54, Memory 0226, 00 -> 05
+1118: Ins c8 @ 0b56, Y 22 -> 23
+1119: Ins 91 @ 0b57, Memory 0227, 00 -> 05
+1120: Ins 98 @ 0b59, AC 05 -> 23
+1122: Ins 69 @ 0b5b, AC 23 -> 40
+1123: Ins a8 @ 0b5d, Y 23 -> 40
+1124: Ins bd @ 0b5e, AC 40 -> 05
+1125: Ins 91 @ 0b61, Memory 0244, 00 -> 05
+1126: Ins c8 @ 0b63, Y 40 -> 41
+1127: Ins 91 @ 0b64, Memory 0245, 00 -> 05
+1128: Ins c8 @ 0b66, Y 41 -> 42
+1129: Ins 91 @ 0b67, Memory 0246, 00 -> 05
+1130: Ins c8 @ 0b69, Y 42 -> 43
+1131: Ins 91 @ 0b6a, Memory 0247, 00 -> 05
+1132: Ins 98 @ 0b6c, AC 05 -> 43
+1134: Ins 69 @ 0b6e, AC 43 -> 60
+1135: Ins a8 @ 0b70, Y 43 -> 60
+1136: Ins bd @ 0b71, AC 60 -> 05
+1137: Ins 91 @ 0b74, Memory 0264, 00 -> 05
+1138: Ins c8 @ 0b76, Y 60 -> 61
+1139: Ins 91 @ 0b77, Memory 0265, 00 -> 05
+1140: Ins c8 @ 0b79, Y 61 -> 62
+1141: Ins 91 @ 0b7a, Memory 0266, 00 -> 05
+1142: Ins c8 @ 0b7c, Y 62 -> 63
+1143: Ins 91 @ 0b7d, Memory 0267, 00 -> 05
+1144: Ins e8 @ 0b7f, X 01 -> 02
+1146: Ins a5 @ 0b81, AC 05 -> 04
+1147: Ins 69 @ 0b83, AC 04 -> 08
+1148: Ins 85 @ 0b85, Memory 0002, 04 -> 08
+1149: Ins a5 @ 0b87, AC 08 -> 02
+1155: Ins e0 @ 0b9f, SR 20 -> a0
+1157: Ins a0 @ 0b36, Y 63 -> 00
+1157: Ins a0 @ 0b36, SR a0 -> 22
+1158: Ins bd @ 0b38, AC 02 -> 05
+1158: Ins bd @ 0b38, SR 22 -> 20
+1159: Ins 91 @ 0b3b, Memory 0208, 00 -> 05
+1160: Ins c8 @ 0b3d, Y 00 -> 01
+1161: Ins 91 @ 0b3e, Memory 0209, 00 -> 05
+1162: Ins c8 @ 0b40, Y 01 -> 02
+1163: Ins 91 @ 0b41, Memory 020a, 00 -> 05
+1164: Ins c8 @ 0b43, Y 02 -> 03
+1165: Ins 91 @ 0b44, Memory 020b, 00 -> 05
+1166: Ins 98 @ 0b46, AC 05 -> 03
+1168: Ins 69 @ 0b48, AC 03 -> 20
+1169: Ins a8 @ 0b4a, Y 03 -> 20
+1170: Ins bd @ 0b4b, AC 20 -> 05
+1171: Ins 91 @ 0b4e, Memory 0228, 00 -> 05
+1172: Ins c8 @ 0b50, Y 20 -> 21
+1173: Ins 91 @ 0b51, Memory 0229, 00 -> 05
+1174: Ins c8 @ 0b53, Y 21 -> 22
+1175: Ins 91 @ 0b54, Memory 022a, 00 -> 05
+1176: Ins c8 @ 0b56, Y 22 -> 23
+1177: Ins 91 @ 0b57, Memory 022b, 00 -> 05
+1178: Ins 98 @ 0b59, AC 05 -> 23
+1180: Ins 69 @ 0b5b, AC 23 -> 40
+1181: Ins a8 @ 0b5d, Y 23 -> 40
+1182: Ins bd @ 0b5e, AC 40 -> 05
+1183: Ins 91 @ 0b61, Memory 0248, 00 -> 05
+1184: Ins c8 @ 0b63, Y 40 -> 41
+1185: Ins 91 @ 0b64, Memory 0249, 00 -> 05
+1186: Ins c8 @ 0b66, Y 41 -> 42
+1187: Ins 91 @ 0b67, Memory 024a, 00 -> 05
+1188: Ins c8 @ 0b69, Y 42 -> 43
+1189: Ins 91 @ 0b6a, Memory 024b, 00 -> 05
+1190: Ins 98 @ 0b6c, AC 05 -> 43
+1192: Ins 69 @ 0b6e, AC 43 -> 60
+1193: Ins a8 @ 0b70, Y 43 -> 60
+1194: Ins bd @ 0b71, AC 60 -> 05
+1195: Ins 91 @ 0b74, Memory 0268, 00 -> 05
+1196: Ins c8 @ 0b76, Y 60 -> 61
+1197: Ins 91 @ 0b77, Memory 0269, 00 -> 05
+1198: Ins c8 @ 0b79, Y 61 -> 62
+1199: Ins 91 @ 0b7a, Memory 026a, 00 -> 05
+1200: Ins c8 @ 0b7c, Y 62 -> 63
+1201: Ins 91 @ 0b7d, Memory 026b, 00 -> 05
+1202: Ins e8 @ 0b7f, X 02 -> 03
+1204: Ins a5 @ 0b81, AC 05 -> 08
+1205: Ins 69 @ 0b83, AC 08 -> 0c
+1206: Ins 85 @ 0b85, Memory 0002, 08 -> 0c
+1207: Ins a5 @ 0b87, AC 0c -> 02
+1210: Ins 8a @ 0b8d, AC 02 -> 03
+1213: Ins e0 @ 0b9f, SR 20 -> a0
+1215: Ins a0 @ 0b36, Y 63 -> 00
+1215: Ins a0 @ 0b36, SR a0 -> 22
+1216: Ins bd @ 0b38, AC 03 -> 05
+1216: Ins bd @ 0b38, SR 22 -> 20
+1217: Ins 91 @ 0b3b, Memory 020c, 00 -> 05
+1218: Ins c8 @ 0b3d, Y 00 -> 01
+1219: Ins 91 @ 0b3e, Memory 020d, 00 -> 05
+1220: Ins c8 @ 0b40, Y 01 -> 02
+1221: Ins 91 @ 0b41, Memory 020e, 00 -> 05
+1222: Ins c8 @ 0b43, Y 02 -> 03
+1223: Ins 91 @ 0b44, Memory 020f, 00 -> 05
+1224: Ins 98 @ 0b46, AC 05 -> 03
+1226: Ins 69 @ 0b48, AC 03 -> 20
+1227: Ins a8 @ 0b4a, Y 03 -> 20
+1228: Ins bd @ 0b4b, AC 20 -> 05
+1229: Ins 91 @ 0b4e, Memory 022c, 00 -> 05
+1230: Ins c8 @ 0b50, Y 20 -> 21
+1231: Ins 91 @ 0b51, Memory 022d, 00 -> 05
+1232: Ins c8 @ 0b53, Y 21 -> 22
+1233: Ins 91 @ 0b54, Memory 022e, 00 -> 05
+1234: Ins c8 @ 0b56, Y 22 -> 23
+1235: Ins 91 @ 0b57, Memory 022f, 00 -> 05
+1236: Ins 98 @ 0b59, AC 05 -> 23
+1238: Ins 69 @ 0b5b, AC 23 -> 40
+1239: Ins a8 @ 0b5d, Y 23 -> 40
+1240: Ins bd @ 0b5e, AC 40 -> 05
+1241: Ins 91 @ 0b61, Memory 024c, 00 -> 05
+1242: Ins c8 @ 0b63, Y 40 -> 41
+1243: Ins 91 @ 0b64, Memory 024d, 00 -> 05
+1244: Ins c8 @ 0b66, Y 41 -> 42
+1245: Ins 91 @ 0b67, Memory 024e, 00 -> 05
+1246: Ins c8 @ 0b69, Y 42 -> 43
+1247: Ins 91 @ 0b6a, Memory 024f, 00 -> 05
+1248: Ins 98 @ 0b6c, AC 05 -> 43
+1250: Ins 69 @ 0b6e, AC 43 -> 60
+1251: Ins a8 @ 0b70, Y 43 -> 60
+1252: Ins bd @ 0b71, AC 60 -> 05
+1253: Ins 91 @ 0b74, Memory 026c, 00 -> 05
+1254: Ins c8 @ 0b76, Y 60 -> 61
+1255: Ins 91 @ 0b77, Memory 026d, 00 -> 05
+1256: Ins c8 @ 0b79, Y 61 -> 62
+1257: Ins 91 @ 0b7a, Memory 026e, 00 -> 05
+1258: Ins c8 @ 0b7c, Y 62 -> 63
+1259: Ins 91 @ 0b7d, Memory 026f, 00 -> 05
+1260: Ins e8 @ 0b7f, X 03 -> 04
+1262: Ins a5 @ 0b81, AC 05 -> 0c
+1263: Ins 69 @ 0b83, AC 0c -> 10
+1264: Ins 85 @ 0b85, Memory 0002, 0c -> 10
+1265: Ins a5 @ 0b87, AC 10 -> 02
+1268: Ins 8a @ 0b8d, AC 02 -> 04
+1271: Ins e0 @ 0b9f, SR 20 -> a0
+1273: Ins a0 @ 0b36, Y 63 -> 00
+1273: Ins a0 @ 0b36, SR a0 -> 22
+1274: Ins bd @ 0b38, AC 04 -> 05
+1274: Ins bd @ 0b38, SR 22 -> 20
+1275: Ins 91 @ 0b3b, Memory 0210, 00 -> 05
+1276: Ins c8 @ 0b3d, Y 00 -> 01
+1277: Ins 91 @ 0b3e, Memory 0211, 00 -> 05
+1278: Ins c8 @ 0b40, Y 01 -> 02
+1279: Ins 91 @ 0b41, Memory 0212, 00 -> 05
+1280: Ins c8 @ 0b43, Y 02 -> 03
+1281: Ins 91 @ 0b44, Memory 0213, 00 -> 05
+1282: Ins 98 @ 0b46, AC 05 -> 03
+1284: Ins 69 @ 0b48, AC 03 -> 20
+1285: Ins a8 @ 0b4a, Y 03 -> 20
+1286: Ins bd @ 0b4b, AC 20 -> 05
+1287: Ins 91 @ 0b4e, Memory 0230, 00 -> 05
+1288: Ins c8 @ 0b50, Y 20 -> 21
+1289: Ins 91 @ 0b51, Memory 0231, 00 -> 05
+1290: Ins c8 @ 0b53, Y 21 -> 22
+1291: Ins 91 @ 0b54, Memory 0232, 00 -> 05
+1292: Ins c8 @ 0b56, Y 22 -> 23
+1293: Ins 91 @ 0b57, Memory 0233, 00 -> 05
+1294: Ins 98 @ 0b59, AC 05 -> 23
+1296: Ins 69 @ 0b5b, AC 23 -> 40
+1297: Ins a8 @ 0b5d, Y 23 -> 40
+1298: Ins bd @ 0b5e, AC 40 -> 05
+1299: Ins 91 @ 0b61, Memory 0250, 00 -> 05
+1300: Ins c8 @ 0b63, Y 40 -> 41
+1301: Ins 91 @ 0b64, Memory 0251, 00 -> 05
+1302: Ins c8 @ 0b66, Y 41 -> 42
+1303: Ins 91 @ 0b67, Memory 0252, 00 -> 05
+1304: Ins c8 @ 0b69, Y 42 -> 43
+1305: Ins 91 @ 0b6a, Memory 0253, 00 -> 05
+1306: Ins 98 @ 0b6c, AC 05 -> 43
+1308: Ins 69 @ 0b6e, AC 43 -> 60
+1309: Ins a8 @ 0b70, Y 43 -> 60
+1310: Ins bd @ 0b71, AC 60 -> 05
+1311: Ins 91 @ 0b74, Memory 0270, 00 -> 05
+1312: Ins c8 @ 0b76, Y 60 -> 61
+1313: Ins 91 @ 0b77, Memory 0271, 00 -> 05
+1314: Ins c8 @ 0b79, Y 61 -> 62
+1315: Ins 91 @ 0b7a, Memory 0272, 00 -> 05
+1316: Ins c8 @ 0b7c, Y 62 -> 63
+1317: Ins 91 @ 0b7d, Memory 0273, 00 -> 05
+1318: Ins e8 @ 0b7f, X 04 -> 05
+1320: Ins a5 @ 0b81, AC 05 -> 10
+1321: Ins 69 @ 0b83, AC 10 -> 14
+1322: Ins 85 @ 0b85, Memory 0002, 10 -> 14
+1323: Ins a5 @ 0b87, AC 14 -> 02
+1326: Ins 8a @ 0b8d, AC 02 -> 05
+1329: Ins e0 @ 0b9f, SR 20 -> a0
+1331: Ins a0 @ 0b36, Y 63 -> 00
+1331: Ins a0 @ 0b36, SR a0 -> 22
+1332: Ins bd @ 0b38, SR 22 -> 20
+1333: Ins 91 @ 0b3b, Memory 0214, 00 -> 05
+1334: Ins c8 @ 0b3d, Y 00 -> 01
+1335: Ins 91 @ 0b3e, Memory 0215, 00 -> 05
+1336: Ins c8 @ 0b40, Y 01 -> 02
+1337: Ins 91 @ 0b41, Memory 0216, 00 -> 05
+1338: Ins c8 @ 0b43, Y 02 -> 03
+1339: Ins 91 @ 0b44, Memory 0217, 00 -> 05
+1340: Ins 98 @ 0b46, AC 05 -> 03
+1342: Ins 69 @ 0b48, AC 03 -> 20
+1343: Ins a8 @ 0b4a, Y 03 -> 20
+1344: Ins bd @ 0b4b, AC 20 -> 05
+1345: Ins 91 @ 0b4e, Memory 0234, 00 -> 05
+1346: Ins c8 @ 0b50, Y 20 -> 21
+1347: Ins 91 @ 0b51, Memory 0235, 00 -> 05
+1348: Ins c8 @ 0b53, Y 21 -> 22
+1349: Ins 91 @ 0b54, Memory 0236, 00 -> 05
+1350: Ins c8 @ 0b56, Y 22 -> 23
+1351: Ins 91 @ 0b57, Memory 0237, 00 -> 05
+1352: Ins 98 @ 0b59, AC 05 -> 23
+1354: Ins 69 @ 0b5b, AC 23 -> 40
+1355: Ins a8 @ 0b5d, Y 23 -> 40
+1356: Ins bd @ 0b5e, AC 40 -> 05
+1357: Ins 91 @ 0b61, Memory 0254, 00 -> 05
+1358: Ins c8 @ 0b63, Y 40 -> 41
+1359: Ins 91 @ 0b64, Memory 0255, 00 -> 05
+1360: Ins c8 @ 0b66, Y 41 -> 42
+1361: Ins 91 @ 0b67, Memory 0256, 00 -> 05
+1362: Ins c8 @ 0b69, Y 42 -> 43
+1363: Ins 91 @ 0b6a, Memory 0257, 00 -> 05
+1364: Ins 98 @ 0b6c, AC 05 -> 43
+1366: Ins 69 @ 0b6e, AC 43 -> 60
+1367: Ins a8 @ 0b70, Y 43 -> 60
+1368: Ins bd @ 0b71, AC 60 -> 05
+1369: Ins 91 @ 0b74, Memory 0274, 00 -> 05
+1370: Ins c8 @ 0b76, Y 60 -> 61
+1371: Ins 91 @ 0b77, Memory 0275, 00 -> 05
+1372: Ins c8 @ 0b79, Y 61 -> 62
+1373: Ins 91 @ 0b7a, Memory 0276, 00 -> 05
+1374: Ins c8 @ 0b7c, Y 62 -> 63
+1375: Ins 91 @ 0b7d, Memory 0277, 00 -> 05
+1376: Ins e8 @ 0b7f, X 05 -> 06
+1378: Ins a5 @ 0b81, AC 05 -> 14
+1379: Ins 69 @ 0b83, AC 14 -> 18
+1380: Ins 85 @ 0b85, Memory 0002, 14 -> 18
+1381: Ins a5 @ 0b87, AC 18 -> 02
+1384: Ins 8a @ 0b8d, AC 02 -> 06
+1387: Ins e0 @ 0b9f, SR 20 -> a0
+1389: Ins a0 @ 0b36, Y 63 -> 00
+1389: Ins a0 @ 0b36, SR a0 -> 22
+1390: Ins bd @ 0b38, AC 06 -> 05
+1390: Ins bd @ 0b38, SR 22 -> 20
+1391: Ins 91 @ 0b3b, Memory 0218, 00 -> 05
+1392: Ins c8 @ 0b3d, Y 00 -> 01
+1393: Ins 91 @ 0b3e, Memory 0219, 00 -> 05
+1394: Ins c8 @ 0b40, Y 01 -> 02
+1395: Ins 91 @ 0b41, Memory 021a, 00 -> 05
+1396: Ins c8 @ 0b43, Y 02 -> 03
+1397: Ins 91 @ 0b44, Memory 021b, 00 -> 05
+1398: Ins 98 @ 0b46, AC 05 -> 03
+1400: Ins 69 @ 0b48, AC 03 -> 20
+1401: Ins a8 @ 0b4a, Y 03 -> 20
+1402: Ins bd @ 0b4b, AC 20 -> 05
+1403: Ins 91 @ 0b4e, Memory 0238, 00 -> 05
+1404: Ins c8 @ 0b50, Y 20 -> 21
+1405: Ins 91 @ 0b51, Memory 0239, 00 -> 05
+1406: Ins c8 @ 0b53, Y 21 -> 22
+1407: Ins 91 @ 0b54, Memory 023a, 00 -> 05
+1408: Ins c8 @ 0b56, Y 22 -> 23
+1409: Ins 91 @ 0b57, Memory 023b, 00 -> 05
+1410: Ins 98 @ 0b59, AC 05 -> 23
+1412: Ins 69 @ 0b5b, AC 23 -> 40
+1413: Ins a8 @ 0b5d, Y 23 -> 40
+1414: Ins bd @ 0b5e, AC 40 -> 05
+1415: Ins 91 @ 0b61, Memory 0258, 00 -> 05
+1416: Ins c8 @ 0b63, Y 40 -> 41
+1417: Ins 91 @ 0b64, Memory 0259, 00 -> 05
+1418: Ins c8 @ 0b66, Y 41 -> 42
+1419: Ins 91 @ 0b67, Memory 025a, 00 -> 05
+1420: Ins c8 @ 0b69, Y 42 -> 43
+1421: Ins 91 @ 0b6a, Memory 025b, 00 -> 05
+1422: Ins 98 @ 0b6c, AC 05 -> 43
+1424: Ins 69 @ 0b6e, AC 43 -> 60
+1425: Ins a8 @ 0b70, Y 43 -> 60
+1426: Ins bd @ 0b71, AC 60 -> 05
+1427: Ins 91 @ 0b74, Memory 0278, 00 -> 05
+1428: Ins c8 @ 0b76, Y 60 -> 61
+1429: Ins 91 @ 0b77, Memory 0279, 00 -> 05
+1430: Ins c8 @ 0b79, Y 61 -> 62
+1431: Ins 91 @ 0b7a, Memory 027a, 00 -> 05
+1432: Ins c8 @ 0b7c, Y 62 -> 63
+1433: Ins 91 @ 0b7d, Memory 027b, 00 -> 05
+1434: Ins e8 @ 0b7f, X 06 -> 07
+1436: Ins a5 @ 0b81, AC 05 -> 18
+1437: Ins 69 @ 0b83, AC 18 -> 1c
+1438: Ins 85 @ 0b85, Memory 0002, 18 -> 1c
+1439: Ins a5 @ 0b87, AC 1c -> 02
+1442: Ins 8a @ 0b8d, AC 02 -> 07
+1445: Ins e0 @ 0b9f, SR 20 -> a0
+1447: Ins a0 @ 0b36, Y 63 -> 00
+1447: Ins a0 @ 0b36, SR a0 -> 22
+1448: Ins bd @ 0b38, AC 07 -> 05
+1448: Ins bd @ 0b38, SR 22 -> 20
+1449: Ins 91 @ 0b3b, Memory 021c, 00 -> 05
+1450: Ins c8 @ 0b3d, Y 00 -> 01
+1451: Ins 91 @ 0b3e, Memory 021d, 00 -> 05
+1452: Ins c8 @ 0b40, Y 01 -> 02
+1453: Ins 91 @ 0b41, Memory 021e, 00 -> 05
+1454: Ins c8 @ 0b43, Y 02 -> 03
+1455: Ins 91 @ 0b44, Memory 021f, 00 -> 05
+1456: Ins 98 @ 0b46, AC 05 -> 03
+1458: Ins 69 @ 0b48, AC 03 -> 20
+1459: Ins a8 @ 0b4a, Y 03 -> 20
+1460: Ins bd @ 0b4b, AC 20 -> 05
+1461: Ins 91 @ 0b4e, Memory 023c, 00 -> 05
+1462: Ins c8 @ 0b50, Y 20 -> 21
+1463: Ins 91 @ 0b51, Memory 023d, 00 -> 05
+1464: Ins c8 @ 0b53, Y 21 -> 22
+1465: Ins 91 @ 0b54, Memory 023e, 00 -> 05
+1466: Ins c8 @ 0b56, Y 22 -> 23
+1467: Ins 91 @ 0b57, Memory 023f, 00 -> 05
+1468: Ins 98 @ 0b59, AC 05 -> 23
+1470: Ins 69 @ 0b5b, AC 23 -> 40
+1471: Ins a8 @ 0b5d, Y 23 -> 40
+1472: Ins bd @ 0b5e, AC 40 -> 05
+1473: Ins 91 @ 0b61, Memory 025c, 00 -> 05
+1474: Ins c8 @ 0b63, Y 40 -> 41
+1475: Ins 91 @ 0b64, Memory 025d, 00 -> 05
+1476: Ins c8 @ 0b66, Y 41 -> 42
+1477: Ins 91 @ 0b67, Memory 025e, 00 -> 05
+1478: Ins c8 @ 0b69, Y 42 -> 43
+1479: Ins 91 @ 0b6a, Memory 025f, 00 -> 05
+1480: Ins 98 @ 0b6c, AC 05 -> 43
+1482: Ins 69 @ 0b6e, AC 43 -> 60
+1483: Ins a8 @ 0b70, Y 43 -> 60
+1484: Ins bd @ 0b71, AC 60 -> 05
+1485: Ins 91 @ 0b74, Memory 027c, 00 -> 05
+1486: Ins c8 @ 0b76, Y 60 -> 61
+1487: Ins 91 @ 0b77, Memory 027d, 00 -> 05
+1488: Ins c8 @ 0b79, Y 61 -> 62
+1489: Ins 91 @ 0b7a, Memory 027e, 00 -> 05
+1490: Ins c8 @ 0b7c, Y 62 -> 63
+1491: Ins 91 @ 0b7d, Memory 027f, 00 -> 05
+1492: Ins e8 @ 0b7f, X 07 -> 08
+1494: Ins a5 @ 0b81, AC 05 -> 1c
+1495: Ins 69 @ 0b83, AC 1c -> 20
+1496: Ins 85 @ 0b85, Memory 0002, 1c -> 20
+1497: Ins a5 @ 0b87, AC 20 -> 02
+1500: Ins 8a @ 0b8d, AC 02 -> 08
+1501: Ins 29 @ 0b8e, AC 08 -> 00
+1501: Ins 29 @ 0b8e, SR 20 -> 22
+1504: Ins a5 @ 0b93, AC 00 -> 20
+1504: Ins a5 @ 0b93, SR 22 -> 20
+1505: Ins 69 @ 0b95, AC 20 -> 80
+1505: Ins 69 @ 0b95, SR 20 -> e0
+1506: Ins 85 @ 0b97, Memory 0002, 20 -> 80
+1507: Ins a5 @ 0b99, AC 80 -> 02
+1507: Ins a5 @ 0b99, SR e0 -> 60
+1508: Ins 69 @ 0b9b, SR 60 -> 20
+1510: Ins e0 @ 0b9f, SR 20 -> a0
+1512: Ins a0 @ 0b36, Y 63 -> 00
+1512: Ins a0 @ 0b36, SR a0 -> 22
+1513: Ins bd @ 0b38, AC 02 -> 05
+1513: Ins bd @ 0b38, SR 22 -> 20
+1514: Ins 91 @ 0b3b, Memory 0280, 00 -> 05
+1515: Ins c8 @ 0b3d, Y 00 -> 01
+1516: Ins 91 @ 0b3e, Memory 0281, 00 -> 05
+1517: Ins c8 @ 0b40, Y 01 -> 02
+1518: Ins 91 @ 0b41, Memory 0282, 00 -> 05
+1519: Ins c8 @ 0b43, Y 02 -> 03
+1520: Ins 91 @ 0b44, Memory 0283, 00 -> 05
+1521: Ins 98 @ 0b46, AC 05 -> 03
+1523: Ins 69 @ 0b48, AC 03 -> 20
+1524: Ins a8 @ 0b4a, Y 03 -> 20
+1525: Ins bd @ 0b4b, AC 20 -> 05
+1526: Ins 91 @ 0b4e, Memory 02a0, 00 -> 05
+1527: Ins c8 @ 0b50, Y 20 -> 21
+1528: Ins 91 @ 0b51, Memory 02a1, 00 -> 05
+1529: Ins c8 @ 0b53, Y 21 -> 22
+1530: Ins 91 @ 0b54, Memory 02a2, 00 -> 05
+1531: Ins c8 @ 0b56, Y 22 -> 23
+1532: Ins 91 @ 0b57, Memory 02a3, 00 -> 05
+1533: Ins 98 @ 0b59, AC 05 -> 23
+1535: Ins 69 @ 0b5b, AC 23 -> 40
+1536: Ins a8 @ 0b5d, Y 23 -> 40
+1537: Ins bd @ 0b5e, AC 40 -> 05
+1538: Ins 91 @ 0b61, Memory 02c0, 00 -> 05
+1539: Ins c8 @ 0b63, Y 40 -> 41
+1540: Ins 91 @ 0b64, Memory 02c1, 00 -> 05
+1541: Ins c8 @ 0b66, Y 41 -> 42
+1542: Ins 91 @ 0b67, Memory 02c2, 00 -> 05
+1543: Ins c8 @ 0b69, Y 42 -> 43
+1544: Ins 91 @ 0b6a, Memory 02c3, 00 -> 05
+1545: Ins 98 @ 0b6c, AC 05 -> 43
+1547: Ins 69 @ 0b6e, AC 43 -> 60
+1548: Ins a8 @ 0b70, Y 43 -> 60
+1549: Ins bd @ 0b71, AC 60 -> 05
+1550: Ins 91 @ 0b74, Memory 02e0, 00 -> 05
+1551: Ins c8 @ 0b76, Y 60 -> 61
+1552: Ins 91 @ 0b77, Memory 02e1, 00 -> 05
+1553: Ins c8 @ 0b79, Y 61 -> 62
+1554: Ins 91 @ 0b7a, Memory 02e2, 00 -> 05
+1555: Ins c8 @ 0b7c, Y 62 -> 63
+1556: Ins 91 @ 0b7d, Memory 02e3, 00 -> 05
+1557: Ins e8 @ 0b7f, X 08 -> 09
+1559: Ins a5 @ 0b81, AC 05 -> 80
+1559: Ins a5 @ 0b81, SR 20 -> a0
+1560: Ins 69 @ 0b83, AC 80 -> 84
+1561: Ins 85 @ 0b85, Memory 0002, 80 -> 84
+1562: Ins a5 @ 0b87, AC 84 -> 02
+1562: Ins a5 @ 0b87, SR a0 -> 20
+1565: Ins 8a @ 0b8d, AC 02 -> 09
+1566: Ins 29 @ 0b8e, AC 09 -> 01
+1568: Ins e0 @ 0b9f, SR 20 -> a0
+1570: Ins a0 @ 0b36, Y 63 -> 00
+1570: Ins a0 @ 0b36, SR a0 -> 22
+1571: Ins bd @ 0b38, AC 01 -> 05
+1571: Ins bd @ 0b38, SR 22 -> 20
+1572: Ins 91 @ 0b3b, Memory 0284, 00 -> 05
+1573: Ins c8 @ 0b3d, Y 00 -> 01
+1574: Ins 91 @ 0b3e, Memory 0285, 00 -> 05
+1575: Ins c8 @ 0b40, Y 01 -> 02
+1576: Ins 91 @ 0b41, Memory 0286, 00 -> 05
+1577: Ins c8 @ 0b43, Y 02 -> 03
+1578: Ins 91 @ 0b44, Memory 0287, 00 -> 05
+1579: Ins 98 @ 0b46, AC 05 -> 03
+1581: Ins 69 @ 0b48, AC 03 -> 20
+1582: Ins a8 @ 0b4a, Y 03 -> 20
+1583: Ins bd @ 0b4b, AC 20 -> 05
+1584: Ins 91 @ 0b4e, Memory 02a4, 00 -> 05
+1585: Ins c8 @ 0b50, Y 20 -> 21
+1586: Ins 91 @ 0b51, Memory 02a5, 00 -> 05
+1587: Ins c8 @ 0b53, Y 21 -> 22
+1588: Ins 91 @ 0b54, Memory 02a6, 00 -> 05
+1589: Ins c8 @ 0b56, Y 22 -> 23
+1590: Ins 91 @ 0b57, Memory 02a7, 00 -> 05
+1591: Ins 98 @ 0b59, AC 05 -> 23
+1593: Ins 69 @ 0b5b, AC 23 -> 40
+1594: Ins a8 @ 0b5d, Y 23 -> 40
+1595: Ins bd @ 0b5e, AC 40 -> 05
+1596: Ins 91 @ 0b61, Memory 02c4, 00 -> 05
+1597: Ins c8 @ 0b63, Y 40 -> 41
+1598: Ins 91 @ 0b64, Memory 02c5, 00 -> 05
+1599: Ins c8 @ 0b66, Y 41 -> 42
+1600: Ins 91 @ 0b67, Memory 02c6, 00 -> 05
+1601: Ins c8 @ 0b69, Y 42 -> 43
+1602: Ins 91 @ 0b6a, Memory 02c7, 00 -> 05
+1603: Ins 98 @ 0b6c, AC 05 -> 43
+1605: Ins 69 @ 0b6e, AC 43 -> 60
+1606: Ins a8 @ 0b70, Y 43 -> 60
+1607: Ins bd @ 0b71, AC 60 -> 05
+1608: Ins 91 @ 0b74, Memory 02e4, 00 -> 05
+1609: Ins c8 @ 0b76, Y 60 -> 61
+1610: Ins 91 @ 0b77, Memory 02e5, 00 -> 05
+1611: Ins c8 @ 0b79, Y 61 -> 62
+1612: Ins 91 @ 0b7a, Memory 02e6, 00 -> 05
+1613: Ins c8 @ 0b7c, Y 62 -> 63
+1614: Ins 91 @ 0b7d, Memory 02e7, 00 -> 05
+1615: Ins e8 @ 0b7f, X 09 -> 0a
+1617: Ins a5 @ 0b81, AC 05 -> 84
+1617: Ins a5 @ 0b81, SR 20 -> a0
+1618: Ins 69 @ 0b83, AC 84 -> 88
+1619: Ins 85 @ 0b85, Memory 0002, 84 -> 88
+1620: Ins a5 @ 0b87, AC 88 -> 02
+1620: Ins a5 @ 0b87, SR a0 -> 20
+1623: Ins 8a @ 0b8d, AC 02 -> 0a
+1624: Ins 29 @ 0b8e, AC 0a -> 02
+1626: Ins e0 @ 0b9f, SR 20 -> a0
+1628: Ins a0 @ 0b36, Y 63 -> 00
+1628: Ins a0 @ 0b36, SR a0 -> 22
+1629: Ins bd @ 0b38, AC 02 -> 0d
+1629: Ins bd @ 0b38, SR 22 -> 20
+1630: Ins 91 @ 0b3b, Memory 0288, 00 -> 0d
+1631: Ins c8 @ 0b3d, Y 00 -> 01
+1632: Ins 91 @ 0b3e, Memory 0289, 00 -> 0d
+1633: Ins c8 @ 0b40, Y 01 -> 02
+1634: Ins 91 @ 0b41, Memory 028a, 00 -> 0d
+1635: Ins c8 @ 0b43, Y 02 -> 03
+1636: Ins 91 @ 0b44, Memory 028b, 00 -> 0d
+1637: Ins 98 @ 0b46, AC 0d -> 03
+1639: Ins 69 @ 0b48, AC 03 -> 20
+1640: Ins a8 @ 0b4a, Y 03 -> 20
+1641: Ins bd @ 0b4b, AC 20 -> 0d
+1642: Ins 91 @ 0b4e, Memory 02a8, 00 -> 0d
+1643: Ins c8 @ 0b50, Y 20 -> 21
+1644: Ins 91 @ 0b51, Memory 02a9, 00 -> 0d
+1645: Ins c8 @ 0b53, Y 21 -> 22
+1646: Ins 91 @ 0b54, Memory 02aa, 00 -> 0d
+1647: Ins c8 @ 0b56, Y 22 -> 23
+1648: Ins 91 @ 0b57, Memory 02ab, 00 -> 0d
+1649: Ins 98 @ 0b59, AC 0d -> 23
+1651: Ins 69 @ 0b5b, AC 23 -> 40
+1652: Ins a8 @ 0b5d, Y 23 -> 40
+1653: Ins bd @ 0b5e, AC 40 -> 0d
+1654: Ins 91 @ 0b61, Memory 02c8, 00 -> 0d
+1655: Ins c8 @ 0b63, Y 40 -> 41
+1656: Ins 91 @ 0b64, Memory 02c9, 00 -> 0d
+1657: Ins c8 @ 0b66, Y 41 -> 42
+1658: Ins 91 @ 0b67, Memory 02ca, 00 -> 0d
+1659: Ins c8 @ 0b69, Y 42 -> 43
+1660: Ins 91 @ 0b6a, Memory 02cb, 00 -> 0d
+1661: Ins 98 @ 0b6c, AC 0d -> 43
+1663: Ins 69 @ 0b6e, AC 43 -> 60
+1664: Ins a8 @ 0b70, Y 43 -> 60
+1665: Ins bd @ 0b71, AC 60 -> 0d
+1666: Ins 91 @ 0b74, Memory 02e8, 00 -> 0d
+1667: Ins c8 @ 0b76, Y 60 -> 61
+1668: Ins 91 @ 0b77, Memory 02e9, 00 -> 0d
+1669: Ins c8 @ 0b79, Y 61 -> 62
+1670: Ins 91 @ 0b7a, Memory 02ea, 00 -> 0d
+1671: Ins c8 @ 0b7c, Y 62 -> 63
+1672: Ins 91 @ 0b7d, Memory 02eb, 00 -> 0d
+1673: Ins e8 @ 0b7f, X 0a -> 0b
+1675: Ins a5 @ 0b81, AC 0d -> 88
+1675: Ins a5 @ 0b81, SR 20 -> a0
+1676: Ins 69 @ 0b83, AC 88 -> 8c
+1677: Ins 85 @ 0b85, Memory 0002, 88 -> 8c
+1678: Ins a5 @ 0b87, AC 8c -> 02
+1678: Ins a5 @ 0b87, SR a0 -> 20
+1681: Ins 8a @ 0b8d, AC 02 -> 0b
+1682: Ins 29 @ 0b8e, AC 0b -> 03
+1684: Ins e0 @ 0b9f, SR 20 -> a0
+1686: Ins a0 @ 0b36, Y 63 -> 00
+1686: Ins a0 @ 0b36, SR a0 -> 22
+1687: Ins bd @ 0b38, AC 03 -> 0d
+1687: Ins bd @ 0b38, SR 22 -> 20
+1688: Ins 91 @ 0b3b, Memory 028c, 00 -> 0d
+1689: Ins c8 @ 0b3d, Y 00 -> 01
+1690: Ins 91 @ 0b3e, Memory 028d, 00 -> 0d
+1691: Ins c8 @ 0b40, Y 01 -> 02
+1692: Ins 91 @ 0b41, Memory 028e, 00 -> 0d
+1693: Ins c8 @ 0b43, Y 02 -> 03
+1694: Ins 91 @ 0b44, Memory 028f, 00 -> 0d
+1695: Ins 98 @ 0b46, AC 0d -> 03
+1697: Ins 69 @ 0b48, AC 03 -> 20
+1698: Ins a8 @ 0b4a, Y 03 -> 20
+1699: Ins bd @ 0b4b, AC 20 -> 0d
+1700: Ins 91 @ 0b4e, Memory 02ac, 00 -> 0d
+1701: Ins c8 @ 0b50, Y 20 -> 21
+1702: Ins 91 @ 0b51, Memory 02ad, 00 -> 0d
+1703: Ins c8 @ 0b53, Y 21 -> 22
+1704: Ins 91 @ 0b54, Memory 02ae, 00 -> 0d
+1705: Ins c8 @ 0b56, Y 22 -> 23
+1706: Ins 91 @ 0b57, Memory 02af, 00 -> 0d
+1707: Ins 98 @ 0b59, AC 0d -> 23
+1709: Ins 69 @ 0b5b, AC 23 -> 40
+1710: Ins a8 @ 0b5d, Y 23 -> 40
+1711: Ins bd @ 0b5e, AC 40 -> 0d
+1712: Ins 91 @ 0b61, Memory 02cc, 00 -> 0d
+1713: Ins c8 @ 0b63, Y 40 -> 41
+1714: Ins 91 @ 0b64, Memory 02cd, 00 -> 0d
+1715: Ins c8 @ 0b66, Y 41 -> 42
+1716: Ins 91 @ 0b67, Memory 02ce, 00 -> 0d
+1717: Ins c8 @ 0b69, Y 42 -> 43
+1718: Ins 91 @ 0b6a, Memory 02cf, 00 -> 0d
+1719: Ins 98 @ 0b6c, AC 0d -> 43
+1721: Ins 69 @ 0b6e, AC 43 -> 60
+1722: Ins a8 @ 0b70, Y 43 -> 60
+1723: Ins bd @ 0b71, AC 60 -> 0d
+1724: Ins 91 @ 0b74, Memory 02ec, 00 -> 0d
+1725: Ins c8 @ 0b76, Y 60 -> 61
+1726: Ins 91 @ 0b77, Memory 02ed, 00 -> 0d
+1727: Ins c8 @ 0b79, Y 61 -> 62
+1728: Ins 91 @ 0b7a, Memory 02ee, 00 -> 0d
+1729: Ins c8 @ 0b7c, Y 62 -> 63
+1730: Ins 91 @ 0b7d, Memory 02ef, 00 -> 0d
+1731: Ins e8 @ 0b7f, X 0b -> 0c
+1733: Ins a5 @ 0b81, AC 0d -> 8c
+1733: Ins a5 @ 0b81, SR 20 -> a0
+1734: Ins 69 @ 0b83, AC 8c -> 90
+1735: Ins 85 @ 0b85, Memory 0002, 8c -> 90
+1736: Ins a5 @ 0b87, AC 90 -> 02
+1736: Ins a5 @ 0b87, SR a0 -> 20
+1739: Ins 8a @ 0b8d, AC 02 -> 0c
+1740: Ins 29 @ 0b8e, AC 0c -> 04
+1742: Ins e0 @ 0b9f, SR 20 -> a0
+1744: Ins a0 @ 0b36, Y 63 -> 00
+1744: Ins a0 @ 0b36, SR a0 -> 22
+1745: Ins bd @ 0b38, AC 04 -> 0d
+1745: Ins bd @ 0b38, SR 22 -> 20
+1746: Ins 91 @ 0b3b, Memory 0290, 00 -> 0d
+1747: Ins c8 @ 0b3d, Y 00 -> 01
+1748: Ins 91 @ 0b3e, Memory 0291, 00 -> 0d
+1749: Ins c8 @ 0b40, Y 01 -> 02
+1750: Ins 91 @ 0b41, Memory 0292, 00 -> 0d
+1751: Ins c8 @ 0b43, Y 02 -> 03
+1752: Ins 91 @ 0b44, Memory 0293, 00 -> 0d
+1753: Ins 98 @ 0b46, AC 0d -> 03
+1755: Ins 69 @ 0b48, AC 03 -> 20
+1756: Ins a8 @ 0b4a, Y 03 -> 20
+1757: Ins bd @ 0b4b, AC 20 -> 0d
+1758: Ins 91 @ 0b4e, Memory 02b0, 00 -> 0d
+1759: Ins c8 @ 0b50, Y 20 -> 21
+1760: Ins 91 @ 0b51, Memory 02b1, 00 -> 0d
+1761: Ins c8 @ 0b53, Y 21 -> 22
+1762: Ins 91 @ 0b54, Memory 02b2, 00 -> 0d
+1763: Ins c8 @ 0b56, Y 22 -> 23
+1764: Ins 91 @ 0b57, Memory 02b3, 00 -> 0d
+1765: Ins 98 @ 0b59, AC 0d -> 23
+1767: Ins 69 @ 0b5b, AC 23 -> 40
+1768: Ins a8 @ 0b5d, Y 23 -> 40
+1769: Ins bd @ 0b5e, AC 40 -> 0d
+1770: Ins 91 @ 0b61, Memory 02d0, 00 -> 0d
+1771: Ins c8 @ 0b63, Y 40 -> 41
+1772: Ins 91 @ 0b64, Memory 02d1, 00 -> 0d
+1773: Ins c8 @ 0b66, Y 41 -> 42
+1774: Ins 91 @ 0b67, Memory 02d2, 00 -> 0d
+1775: Ins c8 @ 0b69, Y 42 -> 43
+1776: Ins 91 @ 0b6a, Memory 02d3, 00 -> 0d
+1777: Ins 98 @ 0b6c, AC 0d -> 43
+1779: Ins 69 @ 0b6e, AC 43 -> 60
+1780: Ins a8 @ 0b70, Y 43 -> 60
+1781: Ins bd @ 0b71, AC 60 -> 0d
+1782: Ins 91 @ 0b74, Memory 02f0, 00 -> 0d
+1783: Ins c8 @ 0b76, Y 60 -> 61
+1784: Ins 91 @ 0b77, Memory 02f1, 00 -> 0d
+1785: Ins c8 @ 0b79, Y 61 -> 62
+1786: Ins 91 @ 0b7a, Memory 02f2, 00 -> 0d
+1787: Ins c8 @ 0b7c, Y 62 -> 63
+1788: Ins 91 @ 0b7d, Memory 02f3, 00 -> 0d
+1789: Ins e8 @ 0b7f, X 0c -> 0d
+1791: Ins a5 @ 0b81, AC 0d -> 90
+1791: Ins a5 @ 0b81, SR 20 -> a0
+1792: Ins 69 @ 0b83, AC 90 -> 94
+1793: Ins 85 @ 0b85, Memory 0002, 90 -> 94
+1794: Ins a5 @ 0b87, AC 94 -> 02
+1794: Ins a5 @ 0b87, SR a0 -> 20
+1797: Ins 8a @ 0b8d, AC 02 -> 0d
+1798: Ins 29 @ 0b8e, AC 0d -> 05
+1800: Ins e0 @ 0b9f, SR 20 -> a0
+1802: Ins a0 @ 0b36, Y 63 -> 00
+1802: Ins a0 @ 0b36, SR a0 -> 22
+1803: Ins bd @ 0b38, AC 05 -> 0d
+1803: Ins bd @ 0b38, SR 22 -> 20
+1804: Ins 91 @ 0b3b, Memory 0294, 00 -> 0d
+1805: Ins c8 @ 0b3d, Y 00 -> 01
+1806: Ins 91 @ 0b3e, Memory 0295, 00 -> 0d
+1807: Ins c8 @ 0b40, Y 01 -> 02
+1808: Ins 91 @ 0b41, Memory 0296, 00 -> 0d
+1809: Ins c8 @ 0b43, Y 02 -> 03
+1810: Ins 91 @ 0b44, Memory 0297, 00 -> 0d
+1811: Ins 98 @ 0b46, AC 0d -> 03
+1813: Ins 69 @ 0b48, AC 03 -> 20
+1814: Ins a8 @ 0b4a, Y 03 -> 20
+1815: Ins bd @ 0b4b, AC 20 -> 0d
+1816: Ins 91 @ 0b4e, Memory 02b4, 00 -> 0d
+1817: Ins c8 @ 0b50, Y 20 -> 21
+1818: Ins 91 @ 0b51, Memory 02b5, 00 -> 0d
+1819: Ins c8 @ 0b53, Y 21 -> 22
+1820: Ins 91 @ 0b54, Memory 02b6, 00 -> 0d
+1821: Ins c8 @ 0b56, Y 22 -> 23
+1822: Ins 91 @ 0b57, Memory 02b7, 00 -> 0d
+1823: Ins 98 @ 0b59, AC 0d -> 23
+1825: Ins 69 @ 0b5b, AC 23 -> 40
+1826: Ins a8 @ 0b5d, Y 23 -> 40
+1827: Ins bd @ 0b5e, AC 40 -> 0d
+1828: Ins 91 @ 0b61, Memory 02d4, 00 -> 0d
+1829: Ins c8 @ 0b63, Y 40 -> 41
+1830: Ins 91 @ 0b64, Memory 02d5, 00 -> 0d
+1831: Ins c8 @ 0b66, Y 41 -> 42
+1832: Ins 91 @ 0b67, Memory 02d6, 00 -> 0d
+1833: Ins c8 @ 0b69, Y 42 -> 43
+1834: Ins 91 @ 0b6a, Memory 02d7, 00 -> 0d
+1835: Ins 98 @ 0b6c, AC 0d -> 43
+1837: Ins 69 @ 0b6e, AC 43 -> 60
+1838: Ins a8 @ 0b70, Y 43 -> 60
+1839: Ins bd @ 0b71, AC 60 -> 0d
+1840: Ins 91 @ 0b74, Memory 02f4, 00 -> 0d
+1841: Ins c8 @ 0b76, Y 60 -> 61
+1842: Ins 91 @ 0b77, Memory 02f5, 00 -> 0d
+1843: Ins c8 @ 0b79, Y 61 -> 62
+1844: Ins 91 @ 0b7a, Memory 02f6, 00 -> 0d
+1845: Ins c8 @ 0b7c, Y 62 -> 63
+1846: Ins 91 @ 0b7d, Memory 02f7, 00 -> 0d
+1847: Ins e8 @ 0b7f, X 0d -> 0e
+1849: Ins a5 @ 0b81, AC 0d -> 94
+1849: Ins a5 @ 0b81, SR 20 -> a0
+1850: Ins 69 @ 0b83, AC 94 -> 98
+1851: Ins 85 @ 0b85, Memory 0002, 94 -> 98
+1852: Ins a5 @ 0b87, AC 98 -> 02
+1852: Ins a5 @ 0b87, SR a0 -> 20
+1855: Ins 8a @ 0b8d, AC 02 -> 0e
+1856: Ins 29 @ 0b8e, AC 0e -> 06
+1858: Ins e0 @ 0b9f, SR 20 -> a0
+1860: Ins a0 @ 0b36, Y 63 -> 00
+1860: Ins a0 @ 0b36, SR a0 -> 22
+1861: Ins bd @ 0b38, AC 06 -> 05
+1861: Ins bd @ 0b38, SR 22 -> 20
+1862: Ins 91 @ 0b3b, Memory 0298, 00 -> 05
+1863: Ins c8 @ 0b3d, Y 00 -> 01
+1864: Ins 91 @ 0b3e, Memory 0299, 00 -> 05
+1865: Ins c8 @ 0b40, Y 01 -> 02
+1866: Ins 91 @ 0b41, Memory 029a, 00 -> 05
+1867: Ins c8 @ 0b43, Y 02 -> 03
+1868: Ins 91 @ 0b44, Memory 029b, 00 -> 05
+1869: Ins 98 @ 0b46, AC 05 -> 03
+1871: Ins 69 @ 0b48, AC 03 -> 20
+1872: Ins a8 @ 0b4a, Y 03 -> 20
+1873: Ins bd @ 0b4b, AC 20 -> 05
+1874: Ins 91 @ 0b4e, Memory 02b8, 00 -> 05
+1875: Ins c8 @ 0b50, Y 20 -> 21
+1876: Ins 91 @ 0b51, Memory 02b9, 00 -> 05
+1877: Ins c8 @ 0b53, Y 21 -> 22
+1878: Ins 91 @ 0b54, Memory 02ba, 00 -> 05
+1879: Ins c8 @ 0b56, Y 22 -> 23
+1880: Ins 91 @ 0b57, Memory 02bb, 00 -> 05
+1881: Ins 98 @ 0b59, AC 05 -> 23
+1883: Ins 69 @ 0b5b, AC 23 -> 40
+1884: Ins a8 @ 0b5d, Y 23 -> 40
+1885: Ins bd @ 0b5e, AC 40 -> 05
+1886: Ins 91 @ 0b61, Memory 02d8, 00 -> 05
+1887: Ins c8 @ 0b63, Y 40 -> 41
+1888: Ins 91 @ 0b64, Memory 02d9, 00 -> 05
+1889: Ins c8 @ 0b66, Y 41 -> 42
+1890: Ins 91 @ 0b67, Memory 02da, 00 -> 05
+1891: Ins c8 @ 0b69, Y 42 -> 43
+1892: Ins 91 @ 0b6a, Memory 02db, 00 -> 05
+1893: Ins 98 @ 0b6c, AC 05 -> 43
+1895: Ins 69 @ 0b6e, AC 43 -> 60
+1896: Ins a8 @ 0b70, Y 43 -> 60
+1897: Ins bd @ 0b71, AC 60 -> 05
+1898: Ins 91 @ 0b74, Memory 02f8, 00 -> 05
+1899: Ins c8 @ 0b76, Y 60 -> 61
+1900: Ins 91 @ 0b77, Memory 02f9, 00 -> 05
+1901: Ins c8 @ 0b79, Y 61 -> 62
+1902: Ins 91 @ 0b7a, Memory 02fa, 00 -> 05
+1903: Ins c8 @ 0b7c, Y 62 -> 63
+1904: Ins 91 @ 0b7d, Memory 02fb, 00 -> 05
+1905: Ins e8 @ 0b7f, X 0e -> 0f
+1907: Ins a5 @ 0b81, AC 05 -> 98
+1907: Ins a5 @ 0b81, SR 20 -> a0
+1908: Ins 69 @ 0b83, AC 98 -> 9c
+1909: Ins 85 @ 0b85, Memory 0002, 98 -> 9c
+1910: Ins a5 @ 0b87, AC 9c -> 02
+1910: Ins a5 @ 0b87, SR a0 -> 20
+1913: Ins 8a @ 0b8d, AC 02 -> 0f
+1914: Ins 29 @ 0b8e, AC 0f -> 07
+1916: Ins e0 @ 0b9f, SR 20 -> a0
+1918: Ins a0 @ 0b36, Y 63 -> 00
+1918: Ins a0 @ 0b36, SR a0 -> 22
+1919: Ins bd @ 0b38, AC 07 -> 05
+1919: Ins bd @ 0b38, SR 22 -> 20
+1920: Ins 91 @ 0b3b, Memory 029c, 00 -> 05
+1921: Ins c8 @ 0b3d, Y 00 -> 01
+1922: Ins 91 @ 0b3e, Memory 029d, 00 -> 05
+1923: Ins c8 @ 0b40, Y 01 -> 02
+1924: Ins 91 @ 0b41, Memory 029e, 00 -> 05
+1925: Ins c8 @ 0b43, Y 02 -> 03
+1926: Ins 91 @ 0b44, Memory 029f, 00 -> 05
+1927: Ins 98 @ 0b46, AC 05 -> 03
+1929: Ins 69 @ 0b48, AC 03 -> 20
+1930: Ins a8 @ 0b4a, Y 03 -> 20
+1931: Ins bd @ 0b4b, AC 20 -> 05
+1932: Ins 91 @ 0b4e, Memory 02bc, 00 -> 05
+1933: Ins c8 @ 0b50, Y 20 -> 21
+1934: Ins 91 @ 0b51, Memory 02bd, 00 -> 05
+1935: Ins c8 @ 0b53, Y 21 -> 22
+1936: Ins 91 @ 0b54, Memory 02be, 00 -> 05
+1937: Ins c8 @ 0b56, Y 22 -> 23
+1938: Ins 91 @ 0b57, Memory 02bf, 00 -> 05
+1939: Ins 98 @ 0b59, AC 05 -> 23
+1941: Ins 69 @ 0b5b, AC 23 -> 40
+1942: Ins a8 @ 0b5d, Y 23 -> 40
+1943: Ins bd @ 0b5e, AC 40 -> 05
+1944: Ins 91 @ 0b61, Memory 02dc, 00 -> 05
+1945: Ins c8 @ 0b63, Y 40 -> 41
+1946: Ins 91 @ 0b64, Memory 02dd, 00 -> 05
+1947: Ins c8 @ 0b66, Y 41 -> 42
+1948: Ins 91 @ 0b67, Memory 02de, 00 -> 05
+1949: Ins c8 @ 0b69, Y 42 -> 43
+1950: Ins 91 @ 0b6a, Memory 02df, 00 -> 05
+1951: Ins 98 @ 0b6c, AC 05 -> 43
+1953: Ins 69 @ 0b6e, AC 43 -> 60
+1954: Ins a8 @ 0b70, Y 43 -> 60
+1955: Ins bd @ 0b71, AC 60 -> 05
+1956: Ins 91 @ 0b74, Memory 02fc, 00 -> 05
+1957: Ins c8 @ 0b76, Y 60 -> 61
+1958: Ins 91 @ 0b77, Memory 02fd, 00 -> 05
+1959: Ins c8 @ 0b79, Y 61 -> 62
+1960: Ins 91 @ 0b7a, Memory 02fe, 00 -> 05
+1961: Ins c8 @ 0b7c, Y 62 -> 63
+1962: Ins 91 @ 0b7d, Memory 02ff, 00 -> 05
+1963: Ins e8 @ 0b7f, X 0f -> 10
+1965: Ins a5 @ 0b81, AC 05 -> 9c
+1965: Ins a5 @ 0b81, SR 20 -> a0
+1966: Ins 69 @ 0b83, AC 9c -> a0
+1967: Ins 85 @ 0b85, Memory 0002, 9c -> a0
+1968: Ins a5 @ 0b87, AC a0 -> 02
+1968: Ins a5 @ 0b87, SR a0 -> 20
+1971: Ins 8a @ 0b8d, AC 02 -> 10
+1972: Ins 29 @ 0b8e, AC 10 -> 00
+1972: Ins 29 @ 0b8e, SR 20 -> 22
+1975: Ins a5 @ 0b93, AC 00 -> a0
+1975: Ins a5 @ 0b93, SR 22 -> a0
+1976: Ins 69 @ 0b95, AC a0 -> 00
+1976: Ins 69 @ 0b95, SR a0 -> 23
+1977: Ins 85 @ 0b97, Memory 0002, a0 -> 00
+1978: Ins a5 @ 0b99, AC 00 -> 02
+1978: Ins a5 @ 0b99, SR 23 -> 21
+1979: Ins 69 @ 0b9b, AC 02 -> 03
+1979: Ins 69 @ 0b9b, SR 21 -> 20
+1980: Ins 85 @ 0b9d, Memory 0003, 02 -> 03
+1981: Ins e0 @ 0b9f, SR 20 -> a0
+1983: Ins a0 @ 0b36, Y 63 -> 00
+1983: Ins a0 @ 0b36, SR a0 -> 22
+1984: Ins bd @ 0b38, AC 03 -> 05
+1984: Ins bd @ 0b38, SR 22 -> 20
+1985: Ins 91 @ 0b3b, Memory 0300, 00 -> 05
+1986: Ins c8 @ 0b3d, Y 00 -> 01
+1987: Ins 91 @ 0b3e, Memory 0301, 00 -> 05
+1988: Ins c8 @ 0b40, Y 01 -> 02
+1989: Ins 91 @ 0b41, Memory 0302, 00 -> 05
+1990: Ins c8 @ 0b43, Y 02 -> 03
+1991: Ins 91 @ 0b44, Memory 0303, 00 -> 05
+1992: Ins 98 @ 0b46, AC 05 -> 03
+1994: Ins 69 @ 0b48, AC 03 -> 20
+1995: Ins a8 @ 0b4a, Y 03 -> 20
+1996: Ins bd @ 0b4b, AC 20 -> 05
+1997: Ins 91 @ 0b4e, Memory 0320, 00 -> 05
+1998: Ins c8 @ 0b50, Y 20 -> 21
+1999: Ins 91 @ 0b51, Memory 0321, 00 -> 05
+2000: Ins c8 @ 0b53, Y 21 -> 22
+2001: Ins 91 @ 0b54, Memory 0322, 00 -> 05
+2002: Ins c8 @ 0b56, Y 22 -> 23
+2003: Ins 91 @ 0b57, Memory 0323, 00 -> 05
+2004: Ins 98 @ 0b59, AC 05 -> 23
+2006: Ins 69 @ 0b5b, AC 23 -> 40
+2007: Ins a8 @ 0b5d, Y 23 -> 40
+2008: Ins bd @ 0b5e, AC 40 -> 05
+2009: Ins 91 @ 0b61, Memory 0340, 00 -> 05
+2010: Ins c8 @ 0b63, Y 40 -> 41
+2011: Ins 91 @ 0b64, Memory 0341, 00 -> 05
+2012: Ins c8 @ 0b66, Y 41 -> 42
+2013: Ins 91 @ 0b67, Memory 0342, 00 -> 05
+2014: Ins c8 @ 0b69, Y 42 -> 43
+2015: Ins 91 @ 0b6a, Memory 0343, 00 -> 05
+2016: Ins 98 @ 0b6c, AC 05 -> 43
+2018: Ins 69 @ 0b6e, AC 43 -> 60
+2019: Ins a8 @ 0b70, Y 43 -> 60
+2020: Ins bd @ 0b71, AC 60 -> 05
+2021: Ins 91 @ 0b74, Memory 0360, 00 -> 05
+2022: Ins c8 @ 0b76, Y 60 -> 61
+2023: Ins 91 @ 0b77, Memory 0361, 00 -> 05
+2024: Ins c8 @ 0b79, Y 61 -> 62
+2025: Ins 91 @ 0b7a, Memory 0362, 00 -> 05
+2026: Ins c8 @ 0b7c, Y 62 -> 63
+2027: Ins 91 @ 0b7d, Memory 0363, 00 -> 05
+2028: Ins e8 @ 0b7f, X 10 -> 11
+2030: Ins a5 @ 0b81, AC 05 -> 00
+2030: Ins a5 @ 0b81, SR 20 -> 22
+2031: Ins 69 @ 0b83, AC 00 -> 04
+2031: Ins 69 @ 0b83, SR 22 -> 20
+2032: Ins 85 @ 0b85, Memory 0002, 00 -> 04
+2033: Ins a5 @ 0b87, AC 04 -> 03
+2036: Ins 8a @ 0b8d, AC 03 -> 11
+2037: Ins 29 @ 0b8e, AC 11 -> 01
+2039: Ins e0 @ 0b9f, SR 20 -> a0
+2041: Ins a0 @ 0b36, Y 63 -> 00
+2041: Ins a0 @ 0b36, SR a0 -> 22
+2042: Ins bd @ 0b38, AC 01 -> 0d
+2042: Ins bd @ 0b38, SR 22 -> 20
+2043: Ins 91 @ 0b3b, Memory 0304, 00 -> 0d
+2044: Ins c8 @ 0b3d, Y 00 -> 01
+2045: Ins 91 @ 0b3e, Memory 0305, 00 -> 0d
+2046: Ins c8 @ 0b40, Y 01 -> 02
+2047: Ins 91 @ 0b41, Memory 0306, 00 -> 0d
+2048: Ins c8 @ 0b43, Y 02 -> 03
+2049: Ins 91 @ 0b44, Memory 0307, 00 -> 0d
+2050: Ins 98 @ 0b46, AC 0d -> 03
+2052: Ins 69 @ 0b48, AC 03 -> 20
+2053: Ins a8 @ 0b4a, Y 03 -> 20
+2054: Ins bd @ 0b4b, AC 20 -> 0d
+2055: Ins 91 @ 0b4e, Memory 0324, 00 -> 0d
+2056: Ins c8 @ 0b50, Y 20 -> 21
+2057: Ins 91 @ 0b51, Memory 0325, 00 -> 0d
+2058: Ins c8 @ 0b53, Y 21 -> 22
+2059: Ins 91 @ 0b54, Memory 0326, 00 -> 0d
+2060: Ins c8 @ 0b56, Y 22 -> 23
+2061: Ins 91 @ 0b57, Memory 0327, 00 -> 0d
+2062: Ins 98 @ 0b59, AC 0d -> 23
+2064: Ins 69 @ 0b5b, AC 23 -> 40
+2065: Ins a8 @ 0b5d, Y 23 -> 40
+2066: Ins bd @ 0b5e, AC 40 -> 0d
+2067: Ins 91 @ 0b61, Memory 0344, 00 -> 0d
+2068: Ins c8 @ 0b63, Y 40 -> 41
+2069: Ins 91 @ 0b64, Memory 0345, 00 -> 0d
+2070: Ins c8 @ 0b66, Y 41 -> 42
+2071: Ins 91 @ 0b67, Memory 0346, 00 -> 0d
+2072: Ins c8 @ 0b69, Y 42 -> 43
+2073: Ins 91 @ 0b6a, Memory 0347, 00 -> 0d
+2074: Ins 98 @ 0b6c, AC 0d -> 43
+2076: Ins 69 @ 0b6e, AC 43 -> 60
+2077: Ins a8 @ 0b70, Y 43 -> 60
+2078: Ins bd @ 0b71, AC 60 -> 0d
+2079: Ins 91 @ 0b74, Memory 0364, 00 -> 0d
+2080: Ins c8 @ 0b76, Y 60 -> 61
+2081: Ins 91 @ 0b77, Memory 0365, 00 -> 0d
+2082: Ins c8 @ 0b79, Y 61 -> 62
+2083: Ins 91 @ 0b7a, Memory 0366, 00 -> 0d
+2084: Ins c8 @ 0b7c, Y 62 -> 63
+2085: Ins 91 @ 0b7d, Memory 0367, 00 -> 0d
+2086: Ins e8 @ 0b7f, X 11 -> 12
+2088: Ins a5 @ 0b81, AC 0d -> 04
+2089: Ins 69 @ 0b83, AC 04 -> 08
+2090: Ins 85 @ 0b85, Memory 0002, 04 -> 08
+2091: Ins a5 @ 0b87, AC 08 -> 03
+2094: Ins 8a @ 0b8d, AC 03 -> 12
+2095: Ins 29 @ 0b8e, AC 12 -> 02
+2097: Ins e0 @ 0b9f, SR 20 -> a0
+2099: Ins a0 @ 0b36, Y 63 -> 00
+2099: Ins a0 @ 0b36, SR a0 -> 22
+2100: Ins bd @ 0b38, AC 02 -> 0d
+2100: Ins bd @ 0b38, SR 22 -> 20
+2101: Ins 91 @ 0b3b, Memory 0308, 00 -> 0d
+2102: Ins c8 @ 0b3d, Y 00 -> 01
+2103: Ins 91 @ 0b3e, Memory 0309, 00 -> 0d
+2104: Ins c8 @ 0b40, Y 01 -> 02
+2105: Ins 91 @ 0b41, Memory 030a, 00 -> 0d
+2106: Ins c8 @ 0b43, Y 02 -> 03
+2107: Ins 91 @ 0b44, Memory 030b, 00 -> 0d
+2108: Ins 98 @ 0b46, AC 0d -> 03
+2110: Ins 69 @ 0b48, AC 03 -> 20
+2111: Ins a8 @ 0b4a, Y 03 -> 20
+2112: Ins bd @ 0b4b, AC 20 -> 0d
+2113: Ins 91 @ 0b4e, Memory 0328, 00 -> 0d
+2114: Ins c8 @ 0b50, Y 20 -> 21
+2115: Ins 91 @ 0b51, Memory 0329, 00 -> 0d
+2116: Ins c8 @ 0b53, Y 21 -> 22
+2117: Ins 91 @ 0b54, Memory 032a, 00 -> 0d
+2118: Ins c8 @ 0b56, Y 22 -> 23
+2119: Ins 91 @ 0b57, Memory 032b, 00 -> 0d
+2120: Ins 98 @ 0b59, AC 0d -> 23
+2122: Ins 69 @ 0b5b, AC 23 -> 40
+2123: Ins a8 @ 0b5d, Y 23 -> 40
+2124: Ins bd @ 0b5e, AC 40 -> 0d
+2125: Ins 91 @ 0b61, Memory 0348, 00 -> 0d
+2126: Ins c8 @ 0b63, Y 40 -> 41
+2127: Ins 91 @ 0b64, Memory 0349, 00 -> 0d
+2128: Ins c8 @ 0b66, Y 41 -> 42
+2129: Ins 91 @ 0b67, Memory 034a, 00 -> 0d
+2130: Ins c8 @ 0b69, Y 42 -> 43
+2131: Ins 91 @ 0b6a, Memory 034b, 00 -> 0d
+2132: Ins 98 @ 0b6c, AC 0d -> 43
+2134: Ins 69 @ 0b6e, AC 43 -> 60
+2135: Ins a8 @ 0b70, Y 43 -> 60
+2136: Ins bd @ 0b71, AC 60 -> 0d
+2137: Ins 91 @ 0b74, Memory 0368, 00 -> 0d
+2138: Ins c8 @ 0b76, Y 60 -> 61
+2139: Ins 91 @ 0b77, Memory 0369, 00 -> 0d
+2140: Ins c8 @ 0b79, Y 61 -> 62
+2141: Ins 91 @ 0b7a, Memory 036a, 00 -> 0d
+2142: Ins c8 @ 0b7c, Y 62 -> 63
+2143: Ins 91 @ 0b7d, Memory 036b, 00 -> 0d
+2144: Ins e8 @ 0b7f, X 12 -> 13
+2146: Ins a5 @ 0b81, AC 0d -> 08
+2147: Ins 69 @ 0b83, AC 08 -> 0c
+2148: Ins 85 @ 0b85, Memory 0002, 08 -> 0c
+2149: Ins a5 @ 0b87, AC 0c -> 03
+2152: Ins 8a @ 0b8d, AC 03 -> 13
+2153: Ins 29 @ 0b8e, AC 13 -> 03
+2155: Ins e0 @ 0b9f, SR 20 -> a0
+2157: Ins a0 @ 0b36, Y 63 -> 00
+2157: Ins a0 @ 0b36, SR a0 -> 22
+2158: Ins bd @ 0b38, AC 03 -> 09
+2158: Ins bd @ 0b38, SR 22 -> 20
+2159: Ins 91 @ 0b3b, Memory 030c, 00 -> 09
+2160: Ins c8 @ 0b3d, Y 00 -> 01
+2161: Ins 91 @ 0b3e, Memory 030d, 00 -> 09
+2162: Ins c8 @ 0b40, Y 01 -> 02
+2163: Ins 91 @ 0b41, Memory 030e, 00 -> 09
+2164: Ins c8 @ 0b43, Y 02 -> 03
+2165: Ins 91 @ 0b44, Memory 030f, 00 -> 09
+2166: Ins 98 @ 0b46, AC 09 -> 03
+2168: Ins 69 @ 0b48, AC 03 -> 20
+2169: Ins a8 @ 0b4a, Y 03 -> 20
+2170: Ins bd @ 0b4b, AC 20 -> 09
+2171: Ins 91 @ 0b4e, Memory 032c, 00 -> 09
+2172: Ins c8 @ 0b50, Y 20 -> 21
+2173: Ins 91 @ 0b51, Memory 032d, 00 -> 09
+2174: Ins c8 @ 0b53, Y 21 -> 22
+2175: Ins 91 @ 0b54, Memory 032e, 00 -> 09
+2176: Ins c8 @ 0b56, Y 22 -> 23
+2177: Ins 91 @ 0b57, Memory 032f, 00 -> 09
+2178: Ins 98 @ 0b59, AC 09 -> 23
+2180: Ins 69 @ 0b5b, AC 23 -> 40
+2181: Ins a8 @ 0b5d, Y 23 -> 40
+2182: Ins bd @ 0b5e, AC 40 -> 09
+2183: Ins 91 @ 0b61, Memory 034c, 00 -> 09
+2184: Ins c8 @ 0b63, Y 40 -> 41
+2185: Ins 91 @ 0b64, Memory 034d, 00 -> 09
+2186: Ins c8 @ 0b66, Y 41 -> 42
+2187: Ins 91 @ 0b67, Memory 034e, 00 -> 09
+2188: Ins c8 @ 0b69, Y 42 -> 43
+2189: Ins 91 @ 0b6a, Memory 034f, 00 -> 09
+2190: Ins 98 @ 0b6c, AC 09 -> 43
+2192: Ins 69 @ 0b6e, AC 43 -> 60
+2193: Ins a8 @ 0b70, Y 43 -> 60
+2194: Ins bd @ 0b71, AC 60 -> 09
+2195: Ins 91 @ 0b74, Memory 036c, 00 -> 09
+2196: Ins c8 @ 0b76, Y 60 -> 61
+2197: Ins 91 @ 0b77, Memory 036d, 00 -> 09
+2198: Ins c8 @ 0b79, Y 61 -> 62
+2199: Ins 91 @ 0b7a, Memory 036e, 00 -> 09
+2200: Ins c8 @ 0b7c, Y 62 -> 63
+2201: Ins 91 @ 0b7d, Memory 036f, 00 -> 09
+2202: Ins e8 @ 0b7f, X 13 -> 14
+2204: Ins a5 @ 0b81, AC 09 -> 0c
+2205: Ins 69 @ 0b83, AC 0c -> 10
+2206: Ins 85 @ 0b85, Memory 0002, 0c -> 10
+2207: Ins a5 @ 0b87, AC 10 -> 03
+2210: Ins 8a @ 0b8d, AC 03 -> 14
+2211: Ins 29 @ 0b8e, AC 14 -> 04
+2213: Ins e0 @ 0b9f, SR 20 -> a0
+2215: Ins a0 @ 0b36, Y 63 -> 00
+2215: Ins a0 @ 0b36, SR a0 -> 22
+2216: Ins bd @ 0b38, AC 04 -> 09
+2216: Ins bd @ 0b38, SR 22 -> 20
+2217: Ins 91 @ 0b3b, Memory 0310, 00 -> 09
+2218: Ins c8 @ 0b3d, Y 00 -> 01
+2219: Ins 91 @ 0b3e, Memory 0311, 00 -> 09
+2220: Ins c8 @ 0b40, Y 01 -> 02
+2221: Ins 91 @ 0b41, Memory 0312, 00 -> 09
+2222: Ins c8 @ 0b43, Y 02 -> 03
+2223: Ins 91 @ 0b44, Memory 0313, 00 -> 09
+2224: Ins 98 @ 0b46, AC 09 -> 03
+2226: Ins 69 @ 0b48, AC 03 -> 20
+2227: Ins a8 @ 0b4a, Y 03 -> 20
+2228: Ins bd @ 0b4b, AC 20 -> 09
+2229: Ins 91 @ 0b4e, Memory 0330, 00 -> 09
+2230: Ins c8 @ 0b50, Y 20 -> 21
+2231: Ins 91 @ 0b51, Memory 0331, 00 -> 09
+2232: Ins c8 @ 0b53, Y 21 -> 22
+2233: Ins 91 @ 0b54, Memory 0332, 00 -> 09
+2234: Ins c8 @ 0b56, Y 22 -> 23
+2235: Ins 91 @ 0b57, Memory 0333, 00 -> 09
+2236: Ins 98 @ 0b59, AC 09 -> 23
+2238: Ins 69 @ 0b5b, AC 23 -> 40
+2239: Ins a8 @ 0b5d, Y 23 -> 40
+2240: Ins bd @ 0b5e, AC 40 -> 09
+2241: Ins 91 @ 0b61, Memory 0350, 00 -> 09
+2242: Ins c8 @ 0b63, Y 40 -> 41
+2243: Ins 91 @ 0b64, Memory 0351, 00 -> 09
+2244: Ins c8 @ 0b66, Y 41 -> 42
+2245: Ins 91 @ 0b67, Memory 0352, 00 -> 09
+2246: Ins c8 @ 0b69, Y 42 -> 43
+2247: Ins 91 @ 0b6a, Memory 0353, 00 -> 09
+2248: Ins 98 @ 0b6c, AC 09 -> 43
+2250: Ins 69 @ 0b6e, AC 43 -> 60
+2251: Ins a8 @ 0b70, Y 43 -> 60
+2252: Ins bd @ 0b71, AC 60 -> 09
+2253: Ins 91 @ 0b74, Memory 0370, 00 -> 09
+2254: Ins c8 @ 0b76, Y 60 -> 61
+2255: Ins 91 @ 0b77, Memory 0371, 00 -> 09
+2256: Ins c8 @ 0b79, Y 61 -> 62
+2257: Ins 91 @ 0b7a, Memory 0372, 00 -> 09
+2258: Ins c8 @ 0b7c, Y 62 -> 63
+2259: Ins 91 @ 0b7d, Memory 0373, 00 -> 09
+2260: Ins e8 @ 0b7f, X 14 -> 15
+2262: Ins a5 @ 0b81, AC 09 -> 10
+2263: Ins 69 @ 0b83, AC 10 -> 14
+2264: Ins 85 @ 0b85, Memory 0002, 10 -> 14
+2265: Ins a5 @ 0b87, AC 14 -> 03
+2268: Ins 8a @ 0b8d, AC 03 -> 15
+2269: Ins 29 @ 0b8e, AC 15 -> 05
+2271: Ins e0 @ 0b9f, SR 20 -> a0
+2273: Ins a0 @ 0b36, Y 63 -> 00
+2273: Ins a0 @ 0b36, SR a0 -> 22
+2274: Ins bd @ 0b38, AC 05 -> 09
+2274: Ins bd @ 0b38, SR 22 -> 20
+2275: Ins 91 @ 0b3b, Memory 0314, 00 -> 09
+2276: Ins c8 @ 0b3d, Y 00 -> 01
+2277: Ins 91 @ 0b3e, Memory 0315, 00 -> 09
+2278: Ins c8 @ 0b40, Y 01 -> 02
+2279: Ins 91 @ 0b41, Memory 0316, 00 -> 09
+2280: Ins c8 @ 0b43, Y 02 -> 03
+2281: Ins 91 @ 0b44, Memory 0317, 00 -> 09
+2282: Ins 98 @ 0b46, AC 09 -> 03
+2284: Ins 69 @ 0b48, AC 03 -> 20
+2285: Ins a8 @ 0b4a, Y 03 -> 20
+2286: Ins bd @ 0b4b, AC 20 -> 09
+2287: Ins 91 @ 0b4e, Memory 0334, 00 -> 09
+2288: Ins c8 @ 0b50, Y 20 -> 21
+2289: Ins 91 @ 0b51, Memory 0335, 00 -> 09
+2290: Ins c8 @ 0b53, Y 21 -> 22
+2291: Ins 91 @ 0b54, Memory 0336, 00 -> 09
+2292: Ins c8 @ 0b56, Y 22 -> 23
+2293: Ins 91 @ 0b57, Memory 0337, 00 -> 09
+2294: Ins 98 @ 0b59, AC 09 -> 23
+2296: Ins 69 @ 0b5b, AC 23 -> 40
+2297: Ins a8 @ 0b5d, Y 23 -> 40
+2298: Ins bd @ 0b5e, AC 40 -> 09
+2299: Ins 91 @ 0b61, Memory 0354, 00 -> 09
+2300: Ins c8 @ 0b63, Y 40 -> 41
+2301: Ins 91 @ 0b64, Memory 0355, 00 -> 09
+2302: Ins c8 @ 0b66, Y 41 -> 42
+2303: Ins 91 @ 0b67, Memory 0356, 00 -> 09
+2304: Ins c8 @ 0b69, Y 42 -> 43
+2305: Ins 91 @ 0b6a, Memory 0357, 00 -> 09
+2306: Ins 98 @ 0b6c, AC 09 -> 43
+2308: Ins 69 @ 0b6e, AC 43 -> 60
+2309: Ins a8 @ 0b70, Y 43 -> 60
+2310: Ins bd @ 0b71, AC 60 -> 09
+2311: Ins 91 @ 0b74, Memory 0374, 00 -> 09
+2312: Ins c8 @ 0b76, Y 60 -> 61
+2313: Ins 91 @ 0b77, Memory 0375, 00 -> 09
+2314: Ins c8 @ 0b79, Y 61 -> 62
+2315: Ins 91 @ 0b7a, Memory 0376, 00 -> 09
+2316: Ins c8 @ 0b7c, Y 62 -> 63
+2317: Ins 91 @ 0b7d, Memory 0377, 00 -> 09
+2318: Ins e8 @ 0b7f, X 15 -> 16
+2320: Ins a5 @ 0b81, AC 09 -> 14
+2321: Ins 69 @ 0b83, AC 14 -> 18
+2322: Ins 85 @ 0b85, Memory 0002, 14 -> 18
+2323: Ins a5 @ 0b87, AC 18 -> 03
+2326: Ins 8a @ 0b8d, AC 03 -> 16
+2327: Ins 29 @ 0b8e, AC 16 -> 06
+2329: Ins e0 @ 0b9f, SR 20 -> a0
+2331: Ins a0 @ 0b36, Y 63 -> 00
+2331: Ins a0 @ 0b36, SR a0 -> 22
+2332: Ins bd @ 0b38, AC 06 -> 0d
+2332: Ins bd @ 0b38, SR 22 -> 20
+2333: Ins 91 @ 0b3b, Memory 0318, 00 -> 0d
+2334: Ins c8 @ 0b3d, Y 00 -> 01
+2335: Ins 91 @ 0b3e, Memory 0319, 00 -> 0d
+2336: Ins c8 @ 0b40, Y 01 -> 02
+2337: Ins 91 @ 0b41, Memory 031a, 00 -> 0d
+2338: Ins c8 @ 0b43, Y 02 -> 03
+2339: Ins 91 @ 0b44, Memory 031b, 00 -> 0d
+2340: Ins 98 @ 0b46, AC 0d -> 03
+2342: Ins 69 @ 0b48, AC 03 -> 20
+2343: Ins a8 @ 0b4a, Y 03 -> 20
+2344: Ins bd @ 0b4b, AC 20 -> 0d
+2345: Ins 91 @ 0b4e, Memory 0338, 00 -> 0d
+2346: Ins c8 @ 0b50, Y 20 -> 21
+2347: Ins 91 @ 0b51, Memory 0339, 00 -> 0d
+2348: Ins c8 @ 0b53, Y 21 -> 22
+2349: Ins 91 @ 0b54, Memory 033a, 00 -> 0d
+2350: Ins c8 @ 0b56, Y 22 -> 23
+2351: Ins 91 @ 0b57, Memory 033b, 00 -> 0d
+2352: Ins 98 @ 0b59, AC 0d -> 23
+2354: Ins 69 @ 0b5b, AC 23 -> 40
+2355: Ins a8 @ 0b5d, Y 23 -> 40
+2356: Ins bd @ 0b5e, AC 40 -> 0d
+2357: Ins 91 @ 0b61, Memory 0358, 00 -> 0d
+2358: Ins c8 @ 0b63, Y 40 -> 41
+2359: Ins 91 @ 0b64, Memory 0359, 00 -> 0d
+2360: Ins c8 @ 0b66, Y 41 -> 42
+2361: Ins 91 @ 0b67, Memory 035a, 00 -> 0d
+2362: Ins c8 @ 0b69, Y 42 -> 43
+2363: Ins 91 @ 0b6a, Memory 035b, 00 -> 0d
+2364: Ins 98 @ 0b6c, AC 0d -> 43
+2366: Ins 69 @ 0b6e, AC 43 -> 60
+2367: Ins a8 @ 0b70, Y 43 -> 60
+2368: Ins bd @ 0b71, AC 60 -> 0d
+2369: Ins 91 @ 0b74, Memory 0378, 00 -> 0d
+2370: Ins c8 @ 0b76, Y 60 -> 61
+2371: Ins 91 @ 0b77, Memory 0379, 00 -> 0d
+2372: Ins c8 @ 0b79, Y 61 -> 62
+2373: Ins 91 @ 0b7a, Memory 037a, 00 -> 0d
+2374: Ins c8 @ 0b7c, Y 62 -> 63
+2375: Ins 91 @ 0b7d, Memory 037b, 00 -> 0d
+2376: Ins e8 @ 0b7f, X 16 -> 17
+2378: Ins a5 @ 0b81, AC 0d -> 18
+2379: Ins 69 @ 0b83, AC 18 -> 1c
+2380: Ins 85 @ 0b85, Memory 0002, 18 -> 1c
+2381: Ins a5 @ 0b87, AC 1c -> 03
+2384: Ins 8a @ 0b8d, AC 03 -> 17
+2385: Ins 29 @ 0b8e, AC 17 -> 07
+2387: Ins e0 @ 0b9f, SR 20 -> a0
+2389: Ins a0 @ 0b36, Y 63 -> 00
+2389: Ins a0 @ 0b36, SR a0 -> 22
+2390: Ins bd @ 0b38, AC 07 -> 0d
+2390: Ins bd @ 0b38, SR 22 -> 20
+2391: Ins 91 @ 0b3b, Memory 031c, 00 -> 0d
+2392: Ins c8 @ 0b3d, Y 00 -> 01
+2393: Ins 91 @ 0b3e, Memory 031d, 00 -> 0d
+2394: Ins c8 @ 0b40, Y 01 -> 02
+2395: Ins 91 @ 0b41, Memory 031e, 00 -> 0d
+2396: Ins c8 @ 0b43, Y 02 -> 03
+2397: Ins 91 @ 0b44, Memory 031f, 00 -> 0d
+2398: Ins 98 @ 0b46, AC 0d -> 03
+2400: Ins 69 @ 0b48, AC 03 -> 20
+2401: Ins a8 @ 0b4a, Y 03 -> 20
+2402: Ins bd @ 0b4b, AC 20 -> 0d
+2403: Ins 91 @ 0b4e, Memory 033c, 00 -> 0d
+2404: Ins c8 @ 0b50, Y 20 -> 21
+2405: Ins 91 @ 0b51, Memory 033d, 00 -> 0d
+2406: Ins c8 @ 0b53, Y 21 -> 22
+2407: Ins 91 @ 0b54, Memory 033e, 00 -> 0d
+2408: Ins c8 @ 0b56, Y 22 -> 23
+2409: Ins 91 @ 0b57, Memory 033f, 00 -> 0d
+2410: Ins 98 @ 0b59, AC 0d -> 23
+2412: Ins 69 @ 0b5b, AC 23 -> 40
+2413: Ins a8 @ 0b5d, Y 23 -> 40
+2414: Ins bd @ 0b5e, AC 40 -> 0d
+2415: Ins 91 @ 0b61, Memory 035c, 00 -> 0d
+2416: Ins c8 @ 0b63, Y 40 -> 41
+2417: Ins 91 @ 0b64, Memory 035d, 00 -> 0d
+2418: Ins c8 @ 0b66, Y 41 -> 42
+2419: Ins 91 @ 0b67, Memory 035e, 00 -> 0d
+2420: Ins c8 @ 0b69, Y 42 -> 43
+2421: Ins 91 @ 0b6a, Memory 035f, 00 -> 0d
+2422: Ins 98 @ 0b6c, AC 0d -> 43
+2424: Ins 69 @ 0b6e, AC 43 -> 60
+2425: Ins a8 @ 0b70, Y 43 -> 60
+2426: Ins bd @ 0b71, AC 60 -> 0d
+2427: Ins 91 @ 0b74, Memory 037c, 00 -> 0d
+2428: Ins c8 @ 0b76, Y 60 -> 61
+2429: Ins 91 @ 0b77, Memory 037d, 00 -> 0d
+2430: Ins c8 @ 0b79, Y 61 -> 62
+2431: Ins 91 @ 0b7a, Memory 037e, 00 -> 0d
+2432: Ins c8 @ 0b7c, Y 62 -> 63
+2433: Ins 91 @ 0b7d, Memory 037f, 00 -> 0d
+2434: Ins e8 @ 0b7f, X 17 -> 18
+2436: Ins a5 @ 0b81, AC 0d -> 1c
+2437: Ins 69 @ 0b83, AC 1c -> 20
+2438: Ins 85 @ 0b85, Memory 0002, 1c -> 20
+2439: Ins a5 @ 0b87, AC 20 -> 03
+2442: Ins 8a @ 0b8d, AC 03 -> 18
+2443: Ins 29 @ 0b8e, AC 18 -> 00
+2443: Ins 29 @ 0b8e, SR 20 -> 22
+2446: Ins a5 @ 0b93, AC 00 -> 20
+2446: Ins a5 @ 0b93, SR 22 -> 20
+2447: Ins 69 @ 0b95, AC 20 -> 80
+2447: Ins 69 @ 0b95, SR 20 -> e0
+2448: Ins 85 @ 0b97, Memory 0002, 20 -> 80
+2449: Ins a5 @ 0b99, AC 80 -> 03
+2449: Ins a5 @ 0b99, SR e0 -> 60
+2450: Ins 69 @ 0b9b, SR 60 -> 20
+2452: Ins e0 @ 0b9f, SR 20 -> a0
+2454: Ins a0 @ 0b36, Y 63 -> 00
+2454: Ins a0 @ 0b36, SR a0 -> 22
+2455: Ins bd @ 0b38, AC 03 -> 05
+2455: Ins bd @ 0b38, SR 22 -> 20
+2456: Ins 91 @ 0b3b, Memory 0380, 00 -> 05
+2457: Ins c8 @ 0b3d, Y 00 -> 01
+2458: Ins 91 @ 0b3e, Memory 0381, 00 -> 05
+2459: Ins c8 @ 0b40, Y 01 -> 02
+2460: Ins 91 @ 0b41, Memory 0382, 00 -> 05
+2461: Ins c8 @ 0b43, Y 02 -> 03
+2462: Ins 91 @ 0b44, Memory 0383, 00 -> 05
+2463: Ins 98 @ 0b46, AC 05 -> 03
+2465: Ins 69 @ 0b48, AC 03 -> 20
+2466: Ins a8 @ 0b4a, Y 03 -> 20
+2467: Ins bd @ 0b4b, AC 20 -> 05
+2468: Ins 91 @ 0b4e, Memory 03a0, 00 -> 05
+2469: Ins c8 @ 0b50, Y 20 -> 21
+2470: Ins 91 @ 0b51, Memory 03a1, 00 -> 05
+2471: Ins c8 @ 0b53, Y 21 -> 22
+2472: Ins 91 @ 0b54, Memory 03a2, 00 -> 05
+2473: Ins c8 @ 0b56, Y 22 -> 23
+2474: Ins 91 @ 0b57, Memory 03a3, 00 -> 05
+2475: Ins 98 @ 0b59, AC 05 -> 23
+2477: Ins 69 @ 0b5b, AC 23 -> 40
+2478: Ins a8 @ 0b5d, Y 23 -> 40
+2479: Ins bd @ 0b5e, AC 40 -> 05
+2480: Ins 91 @ 0b61, Memory 03c0, 00 -> 05
+2481: Ins c8 @ 0b63, Y 40 -> 41
+2482: Ins 91 @ 0b64, Memory 03c1, 00 -> 05
+2483: Ins c8 @ 0b66, Y 41 -> 42
+2484: Ins 91 @ 0b67, Memory 03c2, 00 -> 05
+2485: Ins c8 @ 0b69, Y 42 -> 43
+2486: Ins 91 @ 0b6a, Memory 03c3, 00 -> 05
+2487: Ins 98 @ 0b6c, AC 05 -> 43
+2489: Ins 69 @ 0b6e, AC 43 -> 60
+2490: Ins a8 @ 0b70, Y 43 -> 60
+2491: Ins bd @ 0b71, AC 60 -> 05
+2492: Ins 91 @ 0b74, Memory 03e0, 00 -> 05
+2493: Ins c8 @ 0b76, Y 60 -> 61
+2494: Ins 91 @ 0b77, Memory 03e1, 00 -> 05
+2495: Ins c8 @ 0b79, Y 61 -> 62
+2496: Ins 91 @ 0b7a, Memory 03e2, 00 -> 05
+2497: Ins c8 @ 0b7c, Y 62 -> 63
+2498: Ins 91 @ 0b7d, Memory 03e3, 00 -> 05
+2499: Ins e8 @ 0b7f, X 18 -> 19
+2501: Ins a5 @ 0b81, AC 05 -> 80
+2501: Ins a5 @ 0b81, SR 20 -> a0
+2502: Ins 69 @ 0b83, AC 80 -> 84
+2503: Ins 85 @ 0b85, Memory 0002, 80 -> 84
+2504: Ins a5 @ 0b87, AC 84 -> 03
+2504: Ins a5 @ 0b87, SR a0 -> 20
+2507: Ins 8a @ 0b8d, AC 03 -> 19
+2508: Ins 29 @ 0b8e, AC 19 -> 01
+2510: Ins e0 @ 0b9f, SR 20 -> a0
+2512: Ins a0 @ 0b36, Y 63 -> 00
+2512: Ins a0 @ 0b36, SR a0 -> 22
+2513: Ins bd @ 0b38, AC 01 -> 0d
+2513: Ins bd @ 0b38, SR 22 -> 20
+2514: Ins 91 @ 0b3b, Memory 0384, 00 -> 0d
+2515: Ins c8 @ 0b3d, Y 00 -> 01
+2516: Ins 91 @ 0b3e, Memory 0385, 00 -> 0d
+2517: Ins c8 @ 0b40, Y 01 -> 02
+2518: Ins 91 @ 0b41, Memory 0386, 00 -> 0d
+2519: Ins c8 @ 0b43, Y 02 -> 03
+2520: Ins 91 @ 0b44, Memory 0387, 00 -> 0d
+2521: Ins 98 @ 0b46, AC 0d -> 03
+2523: Ins 69 @ 0b48, AC 03 -> 20
+2524: Ins a8 @ 0b4a, Y 03 -> 20
+2525: Ins bd @ 0b4b, AC 20 -> 0d
+2526: Ins 91 @ 0b4e, Memory 03a4, 00 -> 0d
+2527: Ins c8 @ 0b50, Y 20 -> 21
+2528: Ins 91 @ 0b51, Memory 03a5, 00 -> 0d
+2529: Ins c8 @ 0b53, Y 21 -> 22
+2530: Ins 91 @ 0b54, Memory 03a6, 00 -> 0d
+2531: Ins c8 @ 0b56, Y 22 -> 23
+2532: Ins 91 @ 0b57, Memory 03a7, 00 -> 0d
+2533: Ins 98 @ 0b59, AC 0d -> 23
+2535: Ins 69 @ 0b5b, AC 23 -> 40
+2536: Ins a8 @ 0b5d, Y 23 -> 40
+2537: Ins bd @ 0b5e, AC 40 -> 0d
+2538: Ins 91 @ 0b61, Memory 03c4, 00 -> 0d
+2539: Ins c8 @ 0b63, Y 40 -> 41
+2540: Ins 91 @ 0b64, Memory 03c5, 00 -> 0d
+2541: Ins c8 @ 0b66, Y 41 -> 42
+2542: Ins 91 @ 0b67, Memory 03c6, 00 -> 0d
+2543: Ins c8 @ 0b69, Y 42 -> 43
+2544: Ins 91 @ 0b6a, Memory 03c7, 00 -> 0d
+2545: Ins 98 @ 0b6c, AC 0d -> 43
+2547: Ins 69 @ 0b6e, AC 43 -> 60
+2548: Ins a8 @ 0b70, Y 43 -> 60
+2549: Ins bd @ 0b71, AC 60 -> 0d
+2550: Ins 91 @ 0b74, Memory 03e4, 00 -> 0d
+2551: Ins c8 @ 0b76, Y 60 -> 61
+2552: Ins 91 @ 0b77, Memory 03e5, 00 -> 0d
+2553: Ins c8 @ 0b79, Y 61 -> 62
+2554: Ins 91 @ 0b7a, Memory 03e6, 00 -> 0d
+2555: Ins c8 @ 0b7c, Y 62 -> 63
+2556: Ins 91 @ 0b7d, Memory 03e7, 00 -> 0d
+2557: Ins e8 @ 0b7f, X 19 -> 1a
+2559: Ins a5 @ 0b81, AC 0d -> 84
+2559: Ins a5 @ 0b81, SR 20 -> a0
+2560: Ins 69 @ 0b83, AC 84 -> 88
+2561: Ins 85 @ 0b85, Memory 0002, 84 -> 88
+2562: Ins a5 @ 0b87, AC 88 -> 03
+2562: Ins a5 @ 0b87, SR a0 -> 20
+2565: Ins 8a @ 0b8d, AC 03 -> 1a
+2566: Ins 29 @ 0b8e, AC 1a -> 02
+2568: Ins e0 @ 0b9f, SR 20 -> a0
+2570: Ins a0 @ 0b36, Y 63 -> 00
+2570: Ins a0 @ 0b36, SR a0 -> 22
+2571: Ins bd @ 0b38, AC 02 -> 09
+2571: Ins bd @ 0b38, SR 22 -> 20
+2572: Ins 91 @ 0b3b, Memory 0388, 00 -> 09
+2573: Ins c8 @ 0b3d, Y 00 -> 01
+2574: Ins 91 @ 0b3e, Memory 0389, 00 -> 09
+2575: Ins c8 @ 0b40, Y 01 -> 02
+2576: Ins 91 @ 0b41, Memory 038a, 00 -> 09
+2577: Ins c8 @ 0b43, Y 02 -> 03
+2578: Ins 91 @ 0b44, Memory 038b, 00 -> 09
+2579: Ins 98 @ 0b46, AC 09 -> 03
+2581: Ins 69 @ 0b48, AC 03 -> 20
+2582: Ins a8 @ 0b4a, Y 03 -> 20
+2583: Ins bd @ 0b4b, AC 20 -> 09
+2584: Ins 91 @ 0b4e, Memory 03a8, 00 -> 09
+2585: Ins c8 @ 0b50, Y 20 -> 21
+2586: Ins 91 @ 0b51, Memory 03a9, 00 -> 09
+2587: Ins c8 @ 0b53, Y 21 -> 22
+2588: Ins 91 @ 0b54, Memory 03aa, 00 -> 09
+2589: Ins c8 @ 0b56, Y 22 -> 23
+2590: Ins 91 @ 0b57, Memory 03ab, 00 -> 09
+2591: Ins 98 @ 0b59, AC 09 -> 23
+2593: Ins 69 @ 0b5b, AC 23 -> 40
+2594: Ins a8 @ 0b5d, Y 23 -> 40
+2595: Ins bd @ 0b5e, AC 40 -> 09
+2596: Ins 91 @ 0b61, Memory 03c8, 00 -> 09
+2597: Ins c8 @ 0b63, Y 40 -> 41
+2598: Ins 91 @ 0b64, Memory 03c9, 00 -> 09
+2599: Ins c8 @ 0b66, Y 41 -> 42
+2600: Ins 91 @ 0b67, Memory 03ca, 00 -> 09
+2601: Ins c8 @ 0b69, Y 42 -> 43
+2602: Ins 91 @ 0b6a, Memory 03cb, 00 -> 09
+2603: Ins 98 @ 0b6c, AC 09 -> 43
+2605: Ins 69 @ 0b6e, AC 43 -> 60
+2606: Ins a8 @ 0b70, Y 43 -> 60
+2607: Ins bd @ 0b71, AC 60 -> 09
+2608: Ins 91 @ 0b74, Memory 03e8, 00 -> 09
+2609: Ins c8 @ 0b76, Y 60 -> 61
+2610: Ins 91 @ 0b77, Memory 03e9, 00 -> 09
+2611: Ins c8 @ 0b79, Y 61 -> 62
+2612: Ins 91 @ 0b7a, Memory 03ea, 00 -> 09
+2613: Ins c8 @ 0b7c, Y 62 -> 63
+2614: Ins 91 @ 0b7d, Memory 03eb, 00 -> 09
+2615: Ins e8 @ 0b7f, X 1a -> 1b
+2617: Ins a5 @ 0b81, AC 09 -> 88
+2617: Ins a5 @ 0b81, SR 20 -> a0
+2618: Ins 69 @ 0b83, AC 88 -> 8c
+2619: Ins 85 @ 0b85, Memory 0002, 88 -> 8c
+2620: Ins a5 @ 0b87, AC 8c -> 03
+2620: Ins a5 @ 0b87, SR a0 -> 20
+2623: Ins 8a @ 0b8d, AC 03 -> 1b
+2624: Ins 29 @ 0b8e, AC 1b -> 03
+2626: Ins e0 @ 0b9f, SR 20 -> a0
+2628: Ins a0 @ 0b36, Y 63 -> 00
+2628: Ins a0 @ 0b36, SR a0 -> 22
+2629: Ins bd @ 0b38, AC 03 -> 09
+2629: Ins bd @ 0b38, SR 22 -> 20
+2630: Ins 91 @ 0b3b, Memory 038c, 00 -> 09
+2631: Ins c8 @ 0b3d, Y 00 -> 01
+2632: Ins 91 @ 0b3e, Memory 038d, 00 -> 09
+2633: Ins c8 @ 0b40, Y 01 -> 02
+2634: Ins 91 @ 0b41, Memory 038e, 00 -> 09
+2635: Ins c8 @ 0b43, Y 02 -> 03
+2636: Ins 91 @ 0b44, Memory 038f, 00 -> 09
+2637: Ins 98 @ 0b46, AC 09 -> 03
+2639: Ins 69 @ 0b48, AC 03 -> 20
+2640: Ins a8 @ 0b4a, Y 03 -> 20
+2641: Ins bd @ 0b4b, AC 20 -> 09
+2642: Ins 91 @ 0b4e, Memory 03ac, 00 -> 09
+2643: Ins c8 @ 0b50, Y 20 -> 21
+2644: Ins 91 @ 0b51, Memory 03ad, 00 -> 09
+2645: Ins c8 @ 0b53, Y 21 -> 22
+2646: Ins 91 @ 0b54, Memory 03ae, 00 -> 09
+2647: Ins c8 @ 0b56, Y 22 -> 23
+2648: Ins 91 @ 0b57, Memory 03af, 00 -> 09
+2649: Ins 98 @ 0b59, AC 09 -> 23
+2651: Ins 69 @ 0b5b, AC 23 -> 40
+2652: Ins a8 @ 0b5d, Y 23 -> 40
+2653: Ins bd @ 0b5e, AC 40 -> 09
+2654: Ins 91 @ 0b61, Memory 03cc, 00 -> 09
+2655: Ins c8 @ 0b63, Y 40 -> 41
+2656: Ins 91 @ 0b64, Memory 03cd, 00 -> 09
+2657: Ins c8 @ 0b66, Y 41 -> 42
+2658: Ins 91 @ 0b67, Memory 03ce, 00 -> 09
+2659: Ins c8 @ 0b69, Y 42 -> 43
+2660: Ins 91 @ 0b6a, Memory 03cf, 00 -> 09
+2661: Ins 98 @ 0b6c, AC 09 -> 43
+2663: Ins 69 @ 0b6e, AC 43 -> 60
+2664: Ins a8 @ 0b70, Y 43 -> 60
+2665: Ins bd @ 0b71, AC 60 -> 09
+2666: Ins 91 @ 0b74, Memory 03ec, 00 -> 09
+2667: Ins c8 @ 0b76, Y 60 -> 61
+2668: Ins 91 @ 0b77, Memory 03ed, 00 -> 09
+2669: Ins c8 @ 0b79, Y 61 -> 62
+2670: Ins 91 @ 0b7a, Memory 03ee, 00 -> 09
+2671: Ins c8 @ 0b7c, Y 62 -> 63
+2672: Ins 91 @ 0b7d, Memory 03ef, 00 -> 09
+2673: Ins e8 @ 0b7f, X 1b -> 1c
+2675: Ins a5 @ 0b81, AC 09 -> 8c
+2675: Ins a5 @ 0b81, SR 20 -> a0
+2676: Ins 69 @ 0b83, AC 8c -> 90
+2677: Ins 85 @ 0b85, Memory 0002, 8c -> 90
+2678: Ins a5 @ 0b87, AC 90 -> 03
+2678: Ins a5 @ 0b87, SR a0 -> 20
+2681: Ins 8a @ 0b8d, AC 03 -> 1c
+2682: Ins 29 @ 0b8e, AC 1c -> 04
+2684: Ins e0 @ 0b9f, SR 20 -> a0
+2686: Ins a0 @ 0b36, Y 63 -> 00
+2686: Ins a0 @ 0b36, SR a0 -> 22
+2687: Ins bd @ 0b38, AC 04 -> 09
+2687: Ins bd @ 0b38, SR 22 -> 20
+2688: Ins 91 @ 0b3b, Memory 0390, 00 -> 09
+2689: Ins c8 @ 0b3d, Y 00 -> 01
+2690: Ins 91 @ 0b3e, Memory 0391, 00 -> 09
+2691: Ins c8 @ 0b40, Y 01 -> 02
+2692: Ins 91 @ 0b41, Memory 0392, 00 -> 09
+2693: Ins c8 @ 0b43, Y 02 -> 03
+2694: Ins 91 @ 0b44, Memory 0393, 00 -> 09
+2695: Ins 98 @ 0b46, AC 09 -> 03
+2697: Ins 69 @ 0b48, AC 03 -> 20
+2698: Ins a8 @ 0b4a, Y 03 -> 20
+2699: Ins bd @ 0b4b, AC 20 -> 09
+2700: Ins 91 @ 0b4e, Memory 03b0, 00 -> 09
+2701: Ins c8 @ 0b50, Y 20 -> 21
+2702: Ins 91 @ 0b51, Memory 03b1, 00 -> 09
+2703: Ins c8 @ 0b53, Y 21 -> 22
+2704: Ins 91 @ 0b54, Memory 03b2, 00 -> 09
+2705: Ins c8 @ 0b56, Y 22 -> 23
+2706: Ins 91 @ 0b57, Memory 03b3, 00 -> 09
+2707: Ins 98 @ 0b59, AC 09 -> 23
+2709: Ins 69 @ 0b5b, AC 23 -> 40
+2710: Ins a8 @ 0b5d, Y 23 -> 40
+2711: Ins bd @ 0b5e, AC 40 -> 09
+2712: Ins 91 @ 0b61, Memory 03d0, 00 -> 09
+2713: Ins c8 @ 0b63, Y 40 -> 41
+2714: Ins 91 @ 0b64, Memory 03d1, 00 -> 09
+2715: Ins c8 @ 0b66, Y 41 -> 42
+2716: Ins 91 @ 0b67, Memory 03d2, 00 -> 09
+2717: Ins c8 @ 0b69, Y 42 -> 43
+2718: Ins 91 @ 0b6a, Memory 03d3, 00 -> 09
+2719: Ins 98 @ 0b6c, AC 09 -> 43
+2721: Ins 69 @ 0b6e, AC 43 -> 60
+2722: Ins a8 @ 0b70, Y 43 -> 60
+2723: Ins bd @ 0b71, AC 60 -> 09
+2724: Ins 91 @ 0b74, Memory 03f0, 00 -> 09
+2725: Ins c8 @ 0b76, Y 60 -> 61
+2726: Ins 91 @ 0b77, Memory 03f1, 00 -> 09
+2727: Ins c8 @ 0b79, Y 61 -> 62
+2728: Ins 91 @ 0b7a, Memory 03f2, 00 -> 09
+2729: Ins c8 @ 0b7c, Y 62 -> 63
+2730: Ins 91 @ 0b7d, Memory 03f3, 00 -> 09
+2731: Ins e8 @ 0b7f, X 1c -> 1d
+2733: Ins a5 @ 0b81, AC 09 -> 90
+2733: Ins a5 @ 0b81, SR 20 -> a0
+2734: Ins 69 @ 0b83, AC 90 -> 94
+2735: Ins 85 @ 0b85, Memory 0002, 90 -> 94
+2736: Ins a5 @ 0b87, AC 94 -> 03
+2736: Ins a5 @ 0b87, SR a0 -> 20
+2739: Ins 8a @ 0b8d, AC 03 -> 1d
+2740: Ins 29 @ 0b8e, AC 1d -> 05
+2742: Ins e0 @ 0b9f, SR 20 -> a0
+2744: Ins a0 @ 0b36, Y 63 -> 00
+2744: Ins a0 @ 0b36, SR a0 -> 22
+2745: Ins bd @ 0b38, AC 05 -> 09
+2745: Ins bd @ 0b38, SR 22 -> 20
+2746: Ins 91 @ 0b3b, Memory 0394, 00 -> 09
+2747: Ins c8 @ 0b3d, Y 00 -> 01
+2748: Ins 91 @ 0b3e, Memory 0395, 00 -> 09
+2749: Ins c8 @ 0b40, Y 01 -> 02
+2750: Ins 91 @ 0b41, Memory 0396, 00 -> 09
+2751: Ins c8 @ 0b43, Y 02 -> 03
+2752: Ins 91 @ 0b44, Memory 0397, 00 -> 09
+2753: Ins 98 @ 0b46, AC 09 -> 03
+2755: Ins 69 @ 0b48, AC 03 -> 20
+2756: Ins a8 @ 0b4a, Y 03 -> 20
+2757: Ins bd @ 0b4b, AC 20 -> 09
+2758: Ins 91 @ 0b4e, Memory 03b4, 00 -> 09
+2759: Ins c8 @ 0b50, Y 20 -> 21
+2760: Ins 91 @ 0b51, Memory 03b5, 00 -> 09
+2761: Ins c8 @ 0b53, Y 21 -> 22
+2762: Ins 91 @ 0b54, Memory 03b6, 00 -> 09
+2763: Ins c8 @ 0b56, Y 22 -> 23
+2764: Ins 91 @ 0b57, Memory 03b7, 00 -> 09
+2765: Ins 98 @ 0b59, AC 09 -> 23
+2767: Ins 69 @ 0b5b, AC 23 -> 40
+2768: Ins a8 @ 0b5d, Y 23 -> 40
+2769: Ins bd @ 0b5e, AC 40 -> 09
+2770: Ins 91 @ 0b61, Memory 03d4, 00 -> 09
+2771: Ins c8 @ 0b63, Y 40 -> 41
+2772: Ins 91 @ 0b64, Memory 03d5, 00 -> 09
+2773: Ins c8 @ 0b66, Y 41 -> 42
+2774: Ins 91 @ 0b67, Memory 03d6, 00 -> 09
+2775: Ins c8 @ 0b69, Y 42 -> 43
+2776: Ins 91 @ 0b6a, Memory 03d7, 00 -> 09
+2777: Ins 98 @ 0b6c, AC 09 -> 43
+2779: Ins 69 @ 0b6e, AC 43 -> 60
+2780: Ins a8 @ 0b70, Y 43 -> 60
+2781: Ins bd @ 0b71, AC 60 -> 09
+2782: Ins 91 @ 0b74, Memory 03f4, 00 -> 09
+2783: Ins c8 @ 0b76, Y 60 -> 61
+2784: Ins 91 @ 0b77, Memory 03f5, 00 -> 09
+2785: Ins c8 @ 0b79, Y 61 -> 62
+2786: Ins 91 @ 0b7a, Memory 03f6, 00 -> 09
+2787: Ins c8 @ 0b7c, Y 62 -> 63
+2788: Ins 91 @ 0b7d, Memory 03f7, 00 -> 09
+2789: Ins e8 @ 0b7f, X 1d -> 1e
+2791: Ins a5 @ 0b81, AC 09 -> 94
+2791: Ins a5 @ 0b81, SR 20 -> a0
+2792: Ins 69 @ 0b83, AC 94 -> 98
+2793: Ins 85 @ 0b85, Memory 0002, 94 -> 98
+2794: Ins a5 @ 0b87, AC 98 -> 03
+2794: Ins a5 @ 0b87, SR a0 -> 20
+2797: Ins 8a @ 0b8d, AC 03 -> 1e
+2798: Ins 29 @ 0b8e, AC 1e -> 06
+2800: Ins e0 @ 0b9f, SR 20 -> a0
+2802: Ins a0 @ 0b36, Y 63 -> 00
+2802: Ins a0 @ 0b36, SR a0 -> 22
+2803: Ins bd @ 0b38, AC 06 -> 09
+2803: Ins bd @ 0b38, SR 22 -> 20
+2804: Ins 91 @ 0b3b, Memory 0398, 00 -> 09
+2805: Ins c8 @ 0b3d, Y 00 -> 01
+2806: Ins 91 @ 0b3e, Memory 0399, 00 -> 09
+2807: Ins c8 @ 0b40, Y 01 -> 02
+2808: Ins 91 @ 0b41, Memory 039a, 00 -> 09
+2809: Ins c8 @ 0b43, Y 02 -> 03
+2810: Ins 91 @ 0b44, Memory 039b, 00 -> 09
+2811: Ins 98 @ 0b46, AC 09 -> 03
+2813: Ins 69 @ 0b48, AC 03 -> 20
+2814: Ins a8 @ 0b4a, Y 03 -> 20
+2815: Ins bd @ 0b4b, AC 20 -> 09
+2816: Ins 91 @ 0b4e, Memory 03b8, 00 -> 09
+2817: Ins c8 @ 0b50, Y 20 -> 21
+2818: Ins 91 @ 0b51, Memory 03b9, 00 -> 09
+2819: Ins c8 @ 0b53, Y 21 -> 22
+2820: Ins 91 @ 0b54, Memory 03ba, 00 -> 09
+2821: Ins c8 @ 0b56, Y 22 -> 23
+2822: Ins 91 @ 0b57, Memory 03bb, 00 -> 09
+2823: Ins 98 @ 0b59, AC 09 -> 23
+2825: Ins 69 @ 0b5b, AC 23 -> 40
+2826: Ins a8 @ 0b5d, Y 23 -> 40
+2827: Ins bd @ 0b5e, AC 40 -> 09
+2828: Ins 91 @ 0b61, Memory 03d8, 00 -> 09
+2829: Ins c8 @ 0b63, Y 40 -> 41
+2830: Ins 91 @ 0b64, Memory 03d9, 00 -> 09
+2831: Ins c8 @ 0b66, Y 41 -> 42
+2832: Ins 91 @ 0b67, Memory 03da, 00 -> 09
+2833: Ins c8 @ 0b69, Y 42 -> 43
+2834: Ins 91 @ 0b6a, Memory 03db, 00 -> 09
+2835: Ins 98 @ 0b6c, AC 09 -> 43
+2837: Ins 69 @ 0b6e, AC 43 -> 60
+2838: Ins a8 @ 0b70, Y 43 -> 60
+2839: Ins bd @ 0b71, AC 60 -> 09
+2840: Ins 91 @ 0b74, Memory 03f8, 00 -> 09
+2841: Ins c8 @ 0b76, Y 60 -> 61
+2842: Ins 91 @ 0b77, Memory 03f9, 00 -> 09
+2843: Ins c8 @ 0b79, Y 61 -> 62
+2844: Ins 91 @ 0b7a, Memory 03fa, 00 -> 09
+2845: Ins c8 @ 0b7c, Y 62 -> 63
+2846: Ins 91 @ 0b7d, Memory 03fb, 00 -> 09
+2847: Ins e8 @ 0b7f, X 1e -> 1f
+2849: Ins a5 @ 0b81, AC 09 -> 98
+2849: Ins a5 @ 0b81, SR 20 -> a0
+2850: Ins 69 @ 0b83, AC 98 -> 9c
+2851: Ins 85 @ 0b85, Memory 0002, 98 -> 9c
+2852: Ins a5 @ 0b87, AC 9c -> 03
+2852: Ins a5 @ 0b87, SR a0 -> 20
+2855: Ins 8a @ 0b8d, AC 03 -> 1f
+2856: Ins 29 @ 0b8e, AC 1f -> 07
+2858: Ins e0 @ 0b9f, SR 20 -> a0
+2860: Ins a0 @ 0b36, Y 63 -> 00
+2860: Ins a0 @ 0b36, SR a0 -> 22
+2861: Ins bd @ 0b38, AC 07 -> 09
+2861: Ins bd @ 0b38, SR 22 -> 20
+2862: Ins 91 @ 0b3b, Memory 039c, 00 -> 09
+2863: Ins c8 @ 0b3d, Y 00 -> 01
+2864: Ins 91 @ 0b3e, Memory 039d, 00 -> 09
+2865: Ins c8 @ 0b40, Y 01 -> 02
+2866: Ins 91 @ 0b41, Memory 039e, 00 -> 09
+2867: Ins c8 @ 0b43, Y 02 -> 03
+2868: Ins 91 @ 0b44, Memory 039f, 00 -> 09
+2869: Ins 98 @ 0b46, AC 09 -> 03
+2871: Ins 69 @ 0b48, AC 03 -> 20
+2872: Ins a8 @ 0b4a, Y 03 -> 20
+2873: Ins bd @ 0b4b, AC 20 -> 09
+2874: Ins 91 @ 0b4e, Memory 03bc, 00 -> 09
+2875: Ins c8 @ 0b50, Y 20 -> 21
+2876: Ins 91 @ 0b51, Memory 03bd, 00 -> 09
+2877: Ins c8 @ 0b53, Y 21 -> 22
+2878: Ins 91 @ 0b54, Memory 03be, 00 -> 09
+2879: Ins c8 @ 0b56, Y 22 -> 23
+2880: Ins 91 @ 0b57, Memory 03bf, 00 -> 09
+2881: Ins 98 @ 0b59, AC 09 -> 23
+2883: Ins 69 @ 0b5b, AC 23 -> 40
+2884: Ins a8 @ 0b5d, Y 23 -> 40
+2885: Ins bd @ 0b5e, AC 40 -> 09
+2886: Ins 91 @ 0b61, Memory 03dc, 00 -> 09
+2887: Ins c8 @ 0b63, Y 40 -> 41
+2888: Ins 91 @ 0b64, Memory 03dd, 00 -> 09
+2889: Ins c8 @ 0b66, Y 41 -> 42
+2890: Ins 91 @ 0b67, Memory 03de, 00 -> 09
+2891: Ins c8 @ 0b69, Y 42 -> 43
+2892: Ins 91 @ 0b6a, Memory 03df, 00 -> 09
+2893: Ins 98 @ 0b6c, AC 09 -> 43
+2895: Ins 69 @ 0b6e, AC 43 -> 60
+2896: Ins a8 @ 0b70, Y 43 -> 60
+2897: Ins bd @ 0b71, AC 60 -> 09
+2898: Ins 91 @ 0b74, Memory 03fc, 00 -> 09
+2899: Ins c8 @ 0b76, Y 60 -> 61
+2900: Ins 91 @ 0b77, Memory 03fd, 00 -> 09
+2901: Ins c8 @ 0b79, Y 61 -> 62
+2902: Ins 91 @ 0b7a, Memory 03fe, 00 -> 09
+2903: Ins c8 @ 0b7c, Y 62 -> 63
+2904: Ins 91 @ 0b7d, Memory 03ff, 00 -> 09
+2905: Ins e8 @ 0b7f, X 1f -> 20
+2907: Ins a5 @ 0b81, AC 09 -> 9c
+2907: Ins a5 @ 0b81, SR 20 -> a0
+2908: Ins 69 @ 0b83, AC 9c -> a0
+2909: Ins 85 @ 0b85, Memory 0002, 9c -> a0
+2910: Ins a5 @ 0b87, AC a0 -> 03
+2910: Ins a5 @ 0b87, SR a0 -> 20
+2913: Ins 8a @ 0b8d, AC 03 -> 20
+2914: Ins 29 @ 0b8e, AC 20 -> 00
+2914: Ins 29 @ 0b8e, SR 20 -> 22
+2917: Ins a5 @ 0b93, AC 00 -> a0
+2917: Ins a5 @ 0b93, SR 22 -> a0
+2918: Ins 69 @ 0b95, AC a0 -> 00
+2918: Ins 69 @ 0b95, SR a0 -> 23
+2919: Ins 85 @ 0b97, Memory 0002, a0 -> 00
+2920: Ins a5 @ 0b99, AC 00 -> 03
+2920: Ins a5 @ 0b99, SR 23 -> 21
+2921: Ins 69 @ 0b9b, AC 03 -> 04
+2921: Ins 69 @ 0b9b, SR 21 -> 20
+2922: Ins 85 @ 0b9d, Memory 0003, 03 -> 04
+2923: Ins e0 @ 0b9f, SR 20 -> a0
+2925: Ins a0 @ 0b36, Y 63 -> 00
+2925: Ins a0 @ 0b36, SR a0 -> 22
+2926: Ins bd @ 0b38, AC 04 -> 05
+2926: Ins bd @ 0b38, SR 22 -> 20
+2927: Ins 91 @ 0b3b, Memory 0400, 00 -> 05
+2928: Ins c8 @ 0b3d, Y 00 -> 01
+2929: Ins 91 @ 0b3e, Memory 0401, 00 -> 05
+2930: Ins c8 @ 0b40, Y 01 -> 02
+2931: Ins 91 @ 0b41, Memory 0402, 00 -> 05
+2932: Ins c8 @ 0b43, Y 02 -> 03
+2933: Ins 91 @ 0b44, Memory 0403, 00 -> 05
+2934: Ins 98 @ 0b46, AC 05 -> 03
+2936: Ins 69 @ 0b48, AC 03 -> 20
+2937: Ins a8 @ 0b4a, Y 03 -> 20
+2938: Ins bd @ 0b4b, AC 20 -> 05
+2939: Ins 91 @ 0b4e, Memory 0420, 00 -> 05
+2940: Ins c8 @ 0b50, Y 20 -> 21
+2941: Ins 91 @ 0b51, Memory 0421, 00 -> 05
+2942: Ins c8 @ 0b53, Y 21 -> 22
+2943: Ins 91 @ 0b54, Memory 0422, 00 -> 05
+2944: Ins c8 @ 0b56, Y 22 -> 23
+2945: Ins 91 @ 0b57, Memory 0423, 00 -> 05
+2946: Ins 98 @ 0b59, AC 05 -> 23
+2948: Ins 69 @ 0b5b, AC 23 -> 40
+2949: Ins a8 @ 0b5d, Y 23 -> 40
+2950: Ins bd @ 0b5e, AC 40 -> 05
+2951: Ins 91 @ 0b61, Memory 0440, 00 -> 05
+2952: Ins c8 @ 0b63, Y 40 -> 41
+2953: Ins 91 @ 0b64, Memory 0441, 00 -> 05
+2954: Ins c8 @ 0b66, Y 41 -> 42
+2955: Ins 91 @ 0b67, Memory 0442, 00 -> 05
+2956: Ins c8 @ 0b69, Y 42 -> 43
+2957: Ins 91 @ 0b6a, Memory 0443, 00 -> 05
+2958: Ins 98 @ 0b6c, AC 05 -> 43
+2960: Ins 69 @ 0b6e, AC 43 -> 60
+2961: Ins a8 @ 0b70, Y 43 -> 60
+2962: Ins bd @ 0b71, AC 60 -> 05
+2963: Ins 91 @ 0b74, Memory 0460, 00 -> 05
+2964: Ins c8 @ 0b76, Y 60 -> 61
+2965: Ins 91 @ 0b77, Memory 0461, 00 -> 05
+2966: Ins c8 @ 0b79, Y 61 -> 62
+2967: Ins 91 @ 0b7a, Memory 0462, 00 -> 05
+2968: Ins c8 @ 0b7c, Y 62 -> 63
+2969: Ins 91 @ 0b7d, Memory 0463, 00 -> 05
+2970: Ins e8 @ 0b7f, X 20 -> 21
+2972: Ins a5 @ 0b81, AC 05 -> 00
+2972: Ins a5 @ 0b81, SR 20 -> 22
+2973: Ins 69 @ 0b83, AC 00 -> 04
+2973: Ins 69 @ 0b83, SR 22 -> 20
+2974: Ins 85 @ 0b85, Memory 0002, 00 -> 04
+2978: Ins 8a @ 0b8d, AC 04 -> 21
+2979: Ins 29 @ 0b8e, AC 21 -> 01
+2981: Ins e0 @ 0b9f, SR 20 -> a0
+2983: Ins a0 @ 0b36, Y 63 -> 00
+2983: Ins a0 @ 0b36, SR a0 -> 22
+2984: Ins bd @ 0b38, AC 01 -> 0d
+2984: Ins bd @ 0b38, SR 22 -> 20
+2985: Ins 91 @ 0b3b, Memory 0404, 00 -> 0d
+2986: Ins c8 @ 0b3d, Y 00 -> 01
+2987: Ins 91 @ 0b3e, Memory 0405, 00 -> 0d
+2988: Ins c8 @ 0b40, Y 01 -> 02
+2989: Ins 91 @ 0b41, Memory 0406, 00 -> 0d
+2990: Ins c8 @ 0b43, Y 02 -> 03
+2991: Ins 91 @ 0b44, Memory 0407, 00 -> 0d
+2992: Ins 98 @ 0b46, AC 0d -> 03
+2994: Ins 69 @ 0b48, AC 03 -> 20
+2995: Ins a8 @ 0b4a, Y 03 -> 20
+2996: Ins bd @ 0b4b, AC 20 -> 0d
+2997: Ins 91 @ 0b4e, Memory 0424, 00 -> 0d
+2998: Ins c8 @ 0b50, Y 20 -> 21
+2999: Ins 91 @ 0b51, Memory 0425, 00 -> 0d
+3000: Ins c8 @ 0b53, Y 21 -> 22
+3001: Ins 91 @ 0b54, Memory 0426, 00 -> 0d
+3002: Ins c8 @ 0b56, Y 22 -> 23
+3003: Ins 91 @ 0b57, Memory 0427, 00 -> 0d
+3004: Ins 98 @ 0b59, AC 0d -> 23
+3006: Ins 69 @ 0b5b, AC 23 -> 40
+3007: Ins a8 @ 0b5d, Y 23 -> 40
+3008: Ins bd @ 0b5e, AC 40 -> 0d
+3009: Ins 91 @ 0b61, Memory 0444, 00 -> 0d
+3010: Ins c8 @ 0b63, Y 40 -> 41
+3011: Ins 91 @ 0b64, Memory 0445, 00 -> 0d
+3012: Ins c8 @ 0b66, Y 41 -> 42
+3013: Ins 91 @ 0b67, Memory 0446, 00 -> 0d
+3014: Ins c8 @ 0b69, Y 42 -> 43
+3015: Ins 91 @ 0b6a, Memory 0447, 00 -> 0d
+3016: Ins 98 @ 0b6c, AC 0d -> 43
+3018: Ins 69 @ 0b6e, AC 43 -> 60
+3019: Ins a8 @ 0b70, Y 43 -> 60
+3020: Ins bd @ 0b71, AC 60 -> 0d
+3021: Ins 91 @ 0b74, Memory 0464, 00 -> 0d
+3022: Ins c8 @ 0b76, Y 60 -> 61
+3023: Ins 91 @ 0b77, Memory 0465, 00 -> 0d
+3024: Ins c8 @ 0b79, Y 61 -> 62
+3025: Ins 91 @ 0b7a, Memory 0466, 00 -> 0d
+3026: Ins c8 @ 0b7c, Y 62 -> 63
+3027: Ins 91 @ 0b7d, Memory 0467, 00 -> 0d
+3028: Ins e8 @ 0b7f, X 21 -> 22
+3030: Ins a5 @ 0b81, AC 0d -> 04
+3031: Ins 69 @ 0b83, AC 04 -> 08
+3032: Ins 85 @ 0b85, Memory 0002, 04 -> 08
+3033: Ins a5 @ 0b87, AC 08 -> 04
+3036: Ins 8a @ 0b8d, AC 04 -> 22
+3037: Ins 29 @ 0b8e, AC 22 -> 02
+3039: Ins e0 @ 0b9f, SR 20 -> a0
+3041: Ins a0 @ 0b36, Y 63 -> 00
+3041: Ins a0 @ 0b36, SR a0 -> 22
+3042: Ins bd @ 0b38, AC 02 -> 09
+3042: Ins bd @ 0b38, SR 22 -> 20
+3043: Ins 91 @ 0b3b, Memory 0408, 00 -> 09
+3044: Ins c8 @ 0b3d, Y 00 -> 01
+3045: Ins 91 @ 0b3e, Memory 0409, 00 -> 09
+3046: Ins c8 @ 0b40, Y 01 -> 02
+3047: Ins 91 @ 0b41, Memory 040a, 00 -> 09
+3048: Ins c8 @ 0b43, Y 02 -> 03
+3049: Ins 91 @ 0b44, Memory 040b, 00 -> 09
+3050: Ins 98 @ 0b46, AC 09 -> 03
+3052: Ins 69 @ 0b48, AC 03 -> 20
+3053: Ins a8 @ 0b4a, Y 03 -> 20
+3054: Ins bd @ 0b4b, AC 20 -> 09
+3055: Ins 91 @ 0b4e, Memory 0428, 00 -> 09
+3056: Ins c8 @ 0b50, Y 20 -> 21
+3057: Ins 91 @ 0b51, Memory 0429, 00 -> 09
+3058: Ins c8 @ 0b53, Y 21 -> 22
+3059: Ins 91 @ 0b54, Memory 042a, 00 -> 09
+3060: Ins c8 @ 0b56, Y 22 -> 23
+3061: Ins 91 @ 0b57, Memory 042b, 00 -> 09
+3062: Ins 98 @ 0b59, AC 09 -> 23
+3064: Ins 69 @ 0b5b, AC 23 -> 40
+3065: Ins a8 @ 0b5d, Y 23 -> 40
+3066: Ins bd @ 0b5e, AC 40 -> 09
+3067: Ins 91 @ 0b61, Memory 0448, 00 -> 09
+3068: Ins c8 @ 0b63, Y 40 -> 41
+3069: Ins 91 @ 0b64, Memory 0449, 00 -> 09
+3070: Ins c8 @ 0b66, Y 41 -> 42
+3071: Ins 91 @ 0b67, Memory 044a, 00 -> 09
+3072: Ins c8 @ 0b69, Y 42 -> 43
+3073: Ins 91 @ 0b6a, Memory 044b, 00 -> 09
+3074: Ins 98 @ 0b6c, AC 09 -> 43
+3076: Ins 69 @ 0b6e, AC 43 -> 60
+3077: Ins a8 @ 0b70, Y 43 -> 60
+3078: Ins bd @ 0b71, AC 60 -> 09
+3079: Ins 91 @ 0b74, Memory 0468, 00 -> 09
+3080: Ins c8 @ 0b76, Y 60 -> 61
+3081: Ins 91 @ 0b77, Memory 0469, 00 -> 09
+3082: Ins c8 @ 0b79, Y 61 -> 62
+3083: Ins 91 @ 0b7a, Memory 046a, 00 -> 09
+3084: Ins c8 @ 0b7c, Y 62 -> 63
+3085: Ins 91 @ 0b7d, Memory 046b, 00 -> 09
+3086: Ins e8 @ 0b7f, X 22 -> 23
+3088: Ins a5 @ 0b81, AC 09 -> 08
+3089: Ins 69 @ 0b83, AC 08 -> 0c
+3090: Ins 85 @ 0b85, Memory 0002, 08 -> 0c
+3091: Ins a5 @ 0b87, AC 0c -> 04
+3094: Ins 8a @ 0b8d, AC 04 -> 23
+3095: Ins 29 @ 0b8e, AC 23 -> 03
+3097: Ins e0 @ 0b9f, SR 20 -> a0
+3099: Ins a0 @ 0b36, Y 63 -> 00
+3099: Ins a0 @ 0b36, SR a0 -> 22
+3100: Ins bd @ 0b38, AC 03 -> 09
+3100: Ins bd @ 0b38, SR 22 -> 20
+3101: Ins 91 @ 0b3b, Memory 040c, 00 -> 09
+3102: Ins c8 @ 0b3d, Y 00 -> 01
+3103: Ins 91 @ 0b3e, Memory 040d, 00 -> 09
+3104: Ins c8 @ 0b40, Y 01 -> 02
+3105: Ins 91 @ 0b41, Memory 040e, 00 -> 09
+3106: Ins c8 @ 0b43, Y 02 -> 03
+3107: Ins 91 @ 0b44, Memory 040f, 00 -> 09
+3108: Ins 98 @ 0b46, AC 09 -> 03
+3110: Ins 69 @ 0b48, AC 03 -> 20
+3111: Ins a8 @ 0b4a, Y 03 -> 20
+3112: Ins bd @ 0b4b, AC 20 -> 09
+3113: Ins 91 @ 0b4e, Memory 042c, 00 -> 09
+3114: Ins c8 @ 0b50, Y 20 -> 21
+3115: Ins 91 @ 0b51, Memory 042d, 00 -> 09
+3116: Ins c8 @ 0b53, Y 21 -> 22
+3117: Ins 91 @ 0b54, Memory 042e, 00 -> 09
+3118: Ins c8 @ 0b56, Y 22 -> 23
+3119: Ins 91 @ 0b57, Memory 042f, 00 -> 09
+3120: Ins 98 @ 0b59, AC 09 -> 23
+3122: Ins 69 @ 0b5b, AC 23 -> 40
+3123: Ins a8 @ 0b5d, Y 23 -> 40
+3124: Ins bd @ 0b5e, AC 40 -> 09
+3125: Ins 91 @ 0b61, Memory 044c, 00 -> 09
+3126: Ins c8 @ 0b63, Y 40 -> 41
+3127: Ins 91 @ 0b64, Memory 044d, 00 -> 09
+3128: Ins c8 @ 0b66, Y 41 -> 42
+3129: Ins 91 @ 0b67, Memory 044e, 00 -> 09
+3130: Ins c8 @ 0b69, Y 42 -> 43
+3131: Ins 91 @ 0b6a, Memory 044f, 00 -> 09
+3132: Ins 98 @ 0b6c, AC 09 -> 43
+3134: Ins 69 @ 0b6e, AC 43 -> 60
+3135: Ins a8 @ 0b70, Y 43 -> 60
+3136: Ins bd @ 0b71, AC 60 -> 09
+3137: Ins 91 @ 0b74, Memory 046c, 00 -> 09
+3138: Ins c8 @ 0b76, Y 60 -> 61
+3139: Ins 91 @ 0b77, Memory 046d, 00 -> 09
+3140: Ins c8 @ 0b79, Y 61 -> 62
+3141: Ins 91 @ 0b7a, Memory 046e, 00 -> 09
+3142: Ins c8 @ 0b7c, Y 62 -> 63
+3143: Ins 91 @ 0b7d, Memory 046f, 00 -> 09
+3144: Ins e8 @ 0b7f, X 23 -> 24
+3146: Ins a5 @ 0b81, AC 09 -> 0c
+3147: Ins 69 @ 0b83, AC 0c -> 10
+3148: Ins 85 @ 0b85, Memory 0002, 0c -> 10
+3149: Ins a5 @ 0b87, AC 10 -> 04
+3152: Ins 8a @ 0b8d, AC 04 -> 24
+3153: Ins 29 @ 0b8e, AC 24 -> 04
+3155: Ins e0 @ 0b9f, SR 20 -> a0
+3157: Ins a0 @ 0b36, Y 63 -> 00
+3157: Ins a0 @ 0b36, SR a0 -> 22
+3158: Ins bd @ 0b38, AC 04 -> 0d
+3158: Ins bd @ 0b38, SR 22 -> 20
+3159: Ins 91 @ 0b3b, Memory 0410, 00 -> 0d
+3160: Ins c8 @ 0b3d, Y 00 -> 01
+3161: Ins 91 @ 0b3e, Memory 0411, 00 -> 0d
+3162: Ins c8 @ 0b40, Y 01 -> 02
+3163: Ins 91 @ 0b41, Memory 0412, 00 -> 0d
+3164: Ins c8 @ 0b43, Y 02 -> 03
+3165: Ins 91 @ 0b44, Memory 0413, 00 -> 0d
+3166: Ins 98 @ 0b46, AC 0d -> 03
+3168: Ins 69 @ 0b48, AC 03 -> 20
+3169: Ins a8 @ 0b4a, Y 03 -> 20
+3170: Ins bd @ 0b4b, AC 20 -> 0d
+3171: Ins 91 @ 0b4e, Memory 0430, 00 -> 0d
+3172: Ins c8 @ 0b50, Y 20 -> 21
+3173: Ins 91 @ 0b51, Memory 0431, 00 -> 0d
+3174: Ins c8 @ 0b53, Y 21 -> 22
+3175: Ins 91 @ 0b54, Memory 0432, 00 -> 0d
+3176: Ins c8 @ 0b56, Y 22 -> 23
+3177: Ins 91 @ 0b57, Memory 0433, 00 -> 0d
+3178: Ins 98 @ 0b59, AC 0d -> 23
+3180: Ins 69 @ 0b5b, AC 23 -> 40
+3181: Ins a8 @ 0b5d, Y 23 -> 40
+3182: Ins bd @ 0b5e, AC 40 -> 0d
+3183: Ins 91 @ 0b61, Memory 0450, 00 -> 0d
+3184: Ins c8 @ 0b63, Y 40 -> 41
+3185: Ins 91 @ 0b64, Memory 0451, 00 -> 0d
+3186: Ins c8 @ 0b66, Y 41 -> 42
+3187: Ins 91 @ 0b67, Memory 0452, 00 -> 0d
+3188: Ins c8 @ 0b69, Y 42 -> 43
+3189: Ins 91 @ 0b6a, Memory 0453, 00 -> 0d
+3190: Ins 98 @ 0b6c, AC 0d -> 43
+3192: Ins 69 @ 0b6e, AC 43 -> 60
+3193: Ins a8 @ 0b70, Y 43 -> 60
+3194: Ins bd @ 0b71, AC 60 -> 0d
+3195: Ins 91 @ 0b74, Memory 0470, 00 -> 0d
+3196: Ins c8 @ 0b76, Y 60 -> 61
+3197: Ins 91 @ 0b77, Memory 0471, 00 -> 0d
+3198: Ins c8 @ 0b79, Y 61 -> 62
+3199: Ins 91 @ 0b7a, Memory 0472, 00 -> 0d
+3200: Ins c8 @ 0b7c, Y 62 -> 63
+3201: Ins 91 @ 0b7d, Memory 0473, 00 -> 0d
+3202: Ins e8 @ 0b7f, X 24 -> 25
+3204: Ins a5 @ 0b81, AC 0d -> 10
+3205: Ins 69 @ 0b83, AC 10 -> 14
+3206: Ins 85 @ 0b85, Memory 0002, 10 -> 14
+3207: Ins a5 @ 0b87, AC 14 -> 04
+3210: Ins 8a @ 0b8d, AC 04 -> 25
+3211: Ins 29 @ 0b8e, AC 25 -> 05
+3213: Ins e0 @ 0b9f, SR 20 -> a0
+3215: Ins a0 @ 0b36, Y 63 -> 00
+3215: Ins a0 @ 0b36, SR a0 -> 22
+3216: Ins bd @ 0b38, AC 05 -> 09
+3216: Ins bd @ 0b38, SR 22 -> 20
+3217: Ins 91 @ 0b3b, Memory 0414, 00 -> 09
+3218: Ins c8 @ 0b3d, Y 00 -> 01
+3219: Ins 91 @ 0b3e, Memory 0415, 00 -> 09
+3220: Ins c8 @ 0b40, Y 01 -> 02
+3221: Ins 91 @ 0b41, Memory 0416, 00 -> 09
+3222: Ins c8 @ 0b43, Y 02 -> 03
+3223: Ins 91 @ 0b44, Memory 0417, 00 -> 09
+3224: Ins 98 @ 0b46, AC 09 -> 03
+3226: Ins 69 @ 0b48, AC 03 -> 20
+3227: Ins a8 @ 0b4a, Y 03 -> 20
+3228: Ins bd @ 0b4b, AC 20 -> 09
+3229: Ins 91 @ 0b4e, Memory 0434, 00 -> 09
+3230: Ins c8 @ 0b50, Y 20 -> 21
+3231: Ins 91 @ 0b51, Memory 0435, 00 -> 09
+3232: Ins c8 @ 0b53, Y 21 -> 22
+3233: Ins 91 @ 0b54, Memory 0436, 00 -> 09
+3234: Ins c8 @ 0b56, Y 22 -> 23
+3235: Ins 91 @ 0b57, Memory 0437, 00 -> 09
+3236: Ins 98 @ 0b59, AC 09 -> 23
+3238: Ins 69 @ 0b5b, AC 23 -> 40
+3239: Ins a8 @ 0b5d, Y 23 -> 40
+3240: Ins bd @ 0b5e, AC 40 -> 09
+3241: Ins 91 @ 0b61, Memory 0454, 00 -> 09
+3242: Ins c8 @ 0b63, Y 40 -> 41
+3243: Ins 91 @ 0b64, Memory 0455, 00 -> 09
+3244: Ins c8 @ 0b66, Y 41 -> 42
+3245: Ins 91 @ 0b67, Memory 0456, 00 -> 09
+3246: Ins c8 @ 0b69, Y 42 -> 43
+3247: Ins 91 @ 0b6a, Memory 0457, 00 -> 09
+3248: Ins 98 @ 0b6c, AC 09 -> 43
+3250: Ins 69 @ 0b6e, AC 43 -> 60
+3251: Ins a8 @ 0b70, Y 43 -> 60
+3252: Ins bd @ 0b71, AC 60 -> 09
+3253: Ins 91 @ 0b74, Memory 0474, 00 -> 09
+3254: Ins c8 @ 0b76, Y 60 -> 61
+3255: Ins 91 @ 0b77, Memory 0475, 00 -> 09
+3256: Ins c8 @ 0b79, Y 61 -> 62
+3257: Ins 91 @ 0b7a, Memory 0476, 00 -> 09
+3258: Ins c8 @ 0b7c, Y 62 -> 63
+3259: Ins 91 @ 0b7d, Memory 0477, 00 -> 09
+3260: Ins e8 @ 0b7f, X 25 -> 26
+3262: Ins a5 @ 0b81, AC 09 -> 14
+3263: Ins 69 @ 0b83, AC 14 -> 18
+3264: Ins 85 @ 0b85, Memory 0002, 14 -> 18
+3265: Ins a5 @ 0b87, AC 18 -> 04
+3268: Ins 8a @ 0b8d, AC 04 -> 26
+3269: Ins 29 @ 0b8e, AC 26 -> 06
+3271: Ins e0 @ 0b9f, SR 20 -> a0
+3273: Ins a0 @ 0b36, Y 63 -> 00
+3273: Ins a0 @ 0b36, SR a0 -> 22
+3274: Ins bd @ 0b38, AC 06 -> 09
+3274: Ins bd @ 0b38, SR 22 -> 20
+3275: Ins 91 @ 0b3b, Memory 0418, 00 -> 09
+3276: Ins c8 @ 0b3d, Y 00 -> 01
+3277: Ins 91 @ 0b3e, Memory 0419, 00 -> 09
+3278: Ins c8 @ 0b40, Y 01 -> 02
+3279: Ins 91 @ 0b41, Memory 041a, 00 -> 09
+3280: Ins c8 @ 0b43, Y 02 -> 03
+3281: Ins 91 @ 0b44, Memory 041b, 00 -> 09
+3282: Ins 98 @ 0b46, AC 09 -> 03
+3284: Ins 69 @ 0b48, AC 03 -> 20
+3285: Ins a8 @ 0b4a, Y 03 -> 20
+3286: Ins bd @ 0b4b, AC 20 -> 09
+3287: Ins 91 @ 0b4e, Memory 0438, 00 -> 09
+3288: Ins c8 @ 0b50, Y 20 -> 21
+3289: Ins 91 @ 0b51, Memory 0439, 00 -> 09
+3290: Ins c8 @ 0b53, Y 21 -> 22
+3291: Ins 91 @ 0b54, Memory 043a, 00 -> 09
+3292: Ins c8 @ 0b56, Y 22 -> 23
+3293: Ins 91 @ 0b57, Memory 043b, 00 -> 09
+3294: Ins 98 @ 0b59, AC 09 -> 23
+3296: Ins 69 @ 0b5b, AC 23 -> 40
+3297: Ins a8 @ 0b5d, Y 23 -> 40
+3298: Ins bd @ 0b5e, AC 40 -> 09
+3299: Ins 91 @ 0b61, Memory 0458, 00 -> 09
+3300: Ins c8 @ 0b63, Y 40 -> 41
+3301: Ins 91 @ 0b64, Memory 0459, 00 -> 09
+3302: Ins c8 @ 0b66, Y 41 -> 42
+3303: Ins 91 @ 0b67, Memory 045a, 00 -> 09
+3304: Ins c8 @ 0b69, Y 42 -> 43
+3305: Ins 91 @ 0b6a, Memory 045b, 00 -> 09
+3306: Ins 98 @ 0b6c, AC 09 -> 43
+3308: Ins 69 @ 0b6e, AC 43 -> 60
+3309: Ins a8 @ 0b70, Y 43 -> 60
+3310: Ins bd @ 0b71, AC 60 -> 09
+3311: Ins 91 @ 0b74, Memory 0478, 00 -> 09
+3312: Ins c8 @ 0b76, Y 60 -> 61
+3313: Ins 91 @ 0b77, Memory 0479, 00 -> 09
+3314: Ins c8 @ 0b79, Y 61 -> 62
+3315: Ins 91 @ 0b7a, Memory 047a, 00 -> 09
+3316: Ins c8 @ 0b7c, Y 62 -> 63
+3317: Ins 91 @ 0b7d, Memory 047b, 00 -> 09
+3318: Ins e8 @ 0b7f, X 26 -> 27
+3320: Ins a5 @ 0b81, AC 09 -> 18
+3321: Ins 69 @ 0b83, AC 18 -> 1c
+3322: Ins 85 @ 0b85, Memory 0002, 18 -> 1c
+3323: Ins a5 @ 0b87, AC 1c -> 04
+3326: Ins 8a @ 0b8d, AC 04 -> 27
+3327: Ins 29 @ 0b8e, AC 27 -> 07
+3329: Ins e0 @ 0b9f, SR 20 -> a0
+3331: Ins a0 @ 0b36, Y 63 -> 00
+3331: Ins a0 @ 0b36, SR a0 -> 22
+3332: Ins bd @ 0b38, AC 07 -> 09
+3332: Ins bd @ 0b38, SR 22 -> 20
+3333: Ins 91 @ 0b3b, Memory 041c, 00 -> 09
+3334: Ins c8 @ 0b3d, Y 00 -> 01
+3335: Ins 91 @ 0b3e, Memory 041d, 00 -> 09
+3336: Ins c8 @ 0b40, Y 01 -> 02
+3337: Ins 91 @ 0b41, Memory 041e, 00 -> 09
+3338: Ins c8 @ 0b43, Y 02 -> 03
+3339: Ins 91 @ 0b44, Memory 041f, 00 -> 09
+3340: Ins 98 @ 0b46, AC 09 -> 03
+3342: Ins 69 @ 0b48, AC 03 -> 20
+3343: Ins a8 @ 0b4a, Y 03 -> 20
+3344: Ins bd @ 0b4b, AC 20 -> 09
+3345: Ins 91 @ 0b4e, Memory 043c, 00 -> 09
+3346: Ins c8 @ 0b50, Y 20 -> 21
+3347: Ins 91 @ 0b51, Memory 043d, 00 -> 09
+3348: Ins c8 @ 0b53, Y 21 -> 22
+3349: Ins 91 @ 0b54, Memory 043e, 00 -> 09
+3350: Ins c8 @ 0b56, Y 22 -> 23
+3351: Ins 91 @ 0b57, Memory 043f, 00 -> 09
+3352: Ins 98 @ 0b59, AC 09 -> 23
+3354: Ins 69 @ 0b5b, AC 23 -> 40
+3355: Ins a8 @ 0b5d, Y 23 -> 40
+3356: Ins bd @ 0b5e, AC 40 -> 09
+3357: Ins 91 @ 0b61, Memory 045c, 00 -> 09
+3358: Ins c8 @ 0b63, Y 40 -> 41
+3359: Ins 91 @ 0b64, Memory 045d, 00 -> 09
+3360: Ins c8 @ 0b66, Y 41 -> 42
+3361: Ins 91 @ 0b67, Memory 045e, 00 -> 09
+3362: Ins c8 @ 0b69, Y 42 -> 43
+3363: Ins 91 @ 0b6a, Memory 045f, 00 -> 09
+3364: Ins 98 @ 0b6c, AC 09 -> 43
+3366: Ins 69 @ 0b6e, AC 43 -> 60
+3367: Ins a8 @ 0b70, Y 43 -> 60
+3368: Ins bd @ 0b71, AC 60 -> 09
+3369: Ins 91 @ 0b74, Memory 047c, 00 -> 09
+3370: Ins c8 @ 0b76, Y 60 -> 61
+3371: Ins 91 @ 0b77, Memory 047d, 00 -> 09
+3372: Ins c8 @ 0b79, Y 61 -> 62
+3373: Ins 91 @ 0b7a, Memory 047e, 00 -> 09
+3374: Ins c8 @ 0b7c, Y 62 -> 63
+3375: Ins 91 @ 0b7d, Memory 047f, 00 -> 09
+3376: Ins e8 @ 0b7f, X 27 -> 28
+3378: Ins a5 @ 0b81, AC 09 -> 1c
+3379: Ins 69 @ 0b83, AC 1c -> 20
+3380: Ins 85 @ 0b85, Memory 0002, 1c -> 20
+3381: Ins a5 @ 0b87, AC 20 -> 04
+3384: Ins 8a @ 0b8d, AC 04 -> 28
+3385: Ins 29 @ 0b8e, AC 28 -> 00
+3385: Ins 29 @ 0b8e, SR 20 -> 22
+3388: Ins a5 @ 0b93, AC 00 -> 20
+3388: Ins a5 @ 0b93, SR 22 -> 20
+3389: Ins 69 @ 0b95, AC 20 -> 80
+3389: Ins 69 @ 0b95, SR 20 -> e0
+3390: Ins 85 @ 0b97, Memory 0002, 20 -> 80
+3391: Ins a5 @ 0b99, AC 80 -> 04
+3391: Ins a5 @ 0b99, SR e0 -> 60
+3392: Ins 69 @ 0b9b, SR 60 -> 20
+3394: Ins e0 @ 0b9f, SR 20 -> a0
+3396: Ins a0 @ 0b36, Y 63 -> 00
+3396: Ins a0 @ 0b36, SR a0 -> 22
+3397: Ins bd @ 0b38, AC 04 -> 05
+3397: Ins bd @ 0b38, SR 22 -> 20
+3398: Ins 91 @ 0b3b, Memory 0480, 00 -> 05
+3399: Ins c8 @ 0b3d, Y 00 -> 01
+3400: Ins 91 @ 0b3e, Memory 0481, 00 -> 05
+3401: Ins c8 @ 0b40, Y 01 -> 02
+3402: Ins 91 @ 0b41, Memory 0482, 00 -> 05
+3403: Ins c8 @ 0b43, Y 02 -> 03
+3404: Ins 91 @ 0b44, Memory 0483, 00 -> 05
+3405: Ins 98 @ 0b46, AC 05 -> 03
+3407: Ins 69 @ 0b48, AC 03 -> 20
+3408: Ins a8 @ 0b4a, Y 03 -> 20
+3409: Ins bd @ 0b4b, AC 20 -> 05
+3410: Ins 91 @ 0b4e, Memory 04a0, 00 -> 05
+3411: Ins c8 @ 0b50, Y 20 -> 21
+3412: Ins 91 @ 0b51, Memory 04a1, 00 -> 05
+3413: Ins c8 @ 0b53, Y 21 -> 22
+3414: Ins 91 @ 0b54, Memory 04a2, 00 -> 05
+3415: Ins c8 @ 0b56, Y 22 -> 23
+3416: Ins 91 @ 0b57, Memory 04a3, 00 -> 05
+3417: Ins 98 @ 0b59, AC 05 -> 23
+3419: Ins 69 @ 0b5b, AC 23 -> 40
+3420: Ins a8 @ 0b5d, Y 23 -> 40
+3421: Ins bd @ 0b5e, AC 40 -> 05
+3422: Ins 91 @ 0b61, Memory 04c0, 00 -> 05
+3423: Ins c8 @ 0b63, Y 40 -> 41
+3424: Ins 91 @ 0b64, Memory 04c1, 00 -> 05
+3425: Ins c8 @ 0b66, Y 41 -> 42
+3426: Ins 91 @ 0b67, Memory 04c2, 00 -> 05
+3427: Ins c8 @ 0b69, Y 42 -> 43
+3428: Ins 91 @ 0b6a, Memory 04c3, 00 -> 05
+3429: Ins 98 @ 0b6c, AC 05 -> 43
+3431: Ins 69 @ 0b6e, AC 43 -> 60
+3432: Ins a8 @ 0b70, Y 43 -> 60
+3433: Ins bd @ 0b71, AC 60 -> 05
+3434: Ins 91 @ 0b74, Memory 04e0, 00 -> 05
+3435: Ins c8 @ 0b76, Y 60 -> 61
+3436: Ins 91 @ 0b77, Memory 04e1, 00 -> 05
+3437: Ins c8 @ 0b79, Y 61 -> 62
+3438: Ins 91 @ 0b7a, Memory 04e2, 00 -> 05
+3439: Ins c8 @ 0b7c, Y 62 -> 63
+3440: Ins 91 @ 0b7d, Memory 04e3, 00 -> 05
+3441: Ins e8 @ 0b7f, X 28 -> 29
+3443: Ins a5 @ 0b81, AC 05 -> 80
+3443: Ins a5 @ 0b81, SR 20 -> a0
+3444: Ins 69 @ 0b83, AC 80 -> 84
+3445: Ins 85 @ 0b85, Memory 0002, 80 -> 84
+3446: Ins a5 @ 0b87, AC 84 -> 04
+3446: Ins a5 @ 0b87, SR a0 -> 20
+3449: Ins 8a @ 0b8d, AC 04 -> 29
+3450: Ins 29 @ 0b8e, AC 29 -> 01
+3452: Ins e0 @ 0b9f, SR 20 -> a0
+3454: Ins a0 @ 0b36, Y 63 -> 00
+3454: Ins a0 @ 0b36, SR a0 -> 22
+3455: Ins bd @ 0b38, AC 01 -> 0d
+3455: Ins bd @ 0b38, SR 22 -> 20
+3456: Ins 91 @ 0b3b, Memory 0484, 00 -> 0d
+3457: Ins c8 @ 0b3d, Y 00 -> 01
+3458: Ins 91 @ 0b3e, Memory 0485, 00 -> 0d
+3459: Ins c8 @ 0b40, Y 01 -> 02
+3460: Ins 91 @ 0b41, Memory 0486, 00 -> 0d
+3461: Ins c8 @ 0b43, Y 02 -> 03
+3462: Ins 91 @ 0b44, Memory 0487, 00 -> 0d
+3463: Ins 98 @ 0b46, AC 0d -> 03
+3465: Ins 69 @ 0b48, AC 03 -> 20
+3466: Ins a8 @ 0b4a, Y 03 -> 20
+3467: Ins bd @ 0b4b, AC 20 -> 0d
+3468: Ins 91 @ 0b4e, Memory 04a4, 00 -> 0d
+3469: Ins c8 @ 0b50, Y 20 -> 21
+3470: Ins 91 @ 0b51, Memory 04a5, 00 -> 0d
+3471: Ins c8 @ 0b53, Y 21 -> 22
+3472: Ins 91 @ 0b54, Memory 04a6, 00 -> 0d
+3473: Ins c8 @ 0b56, Y 22 -> 23
+3474: Ins 91 @ 0b57, Memory 04a7, 00 -> 0d
+3475: Ins 98 @ 0b59, AC 0d -> 23
+3477: Ins 69 @ 0b5b, AC 23 -> 40
+3478: Ins a8 @ 0b5d, Y 23 -> 40
+3479: Ins bd @ 0b5e, AC 40 -> 0d
+3480: Ins 91 @ 0b61, Memory 04c4, 00 -> 0d
+3481: Ins c8 @ 0b63, Y 40 -> 41
+3482: Ins 91 @ 0b64, Memory 04c5, 00 -> 0d
+3483: Ins c8 @ 0b66, Y 41 -> 42
+3484: Ins 91 @ 0b67, Memory 04c6, 00 -> 0d
+3485: Ins c8 @ 0b69, Y 42 -> 43
+3486: Ins 91 @ 0b6a, Memory 04c7, 00 -> 0d
+3487: Ins 98 @ 0b6c, AC 0d -> 43
+3489: Ins 69 @ 0b6e, AC 43 -> 60
+3490: Ins a8 @ 0b70, Y 43 -> 60
+3491: Ins bd @ 0b71, AC 60 -> 0d
+3492: Ins 91 @ 0b74, Memory 04e4, 00 -> 0d
+3493: Ins c8 @ 0b76, Y 60 -> 61
+3494: Ins 91 @ 0b77, Memory 04e5, 00 -> 0d
+3495: Ins c8 @ 0b79, Y 61 -> 62
+3496: Ins 91 @ 0b7a, Memory 04e6, 00 -> 0d
+3497: Ins c8 @ 0b7c, Y 62 -> 63
+3498: Ins 91 @ 0b7d, Memory 04e7, 00 -> 0d
+3499: Ins e8 @ 0b7f, X 29 -> 2a
+3501: Ins a5 @ 0b81, AC 0d -> 84
+3501: Ins a5 @ 0b81, SR 20 -> a0
+3502: Ins 69 @ 0b83, AC 84 -> 88
+3503: Ins 85 @ 0b85, Memory 0002, 84 -> 88
+3504: Ins a5 @ 0b87, AC 88 -> 04
+3504: Ins a5 @ 0b87, SR a0 -> 20
+3507: Ins 8a @ 0b8d, AC 04 -> 2a
+3508: Ins 29 @ 0b8e, AC 2a -> 02
+3510: Ins e0 @ 0b9f, SR 20 -> a0
+3512: Ins a0 @ 0b36, Y 63 -> 00
+3512: Ins a0 @ 0b36, SR a0 -> 22
+3513: Ins bd @ 0b38, AC 02 -> 0d
+3513: Ins bd @ 0b38, SR 22 -> 20
+3514: Ins 91 @ 0b3b, Memory 0488, 00 -> 0d
+3515: Ins c8 @ 0b3d, Y 00 -> 01
+3516: Ins 91 @ 0b3e, Memory 0489, 00 -> 0d
+3517: Ins c8 @ 0b40, Y 01 -> 02
+3518: Ins 91 @ 0b41, Memory 048a, 00 -> 0d
+3519: Ins c8 @ 0b43, Y 02 -> 03
+3520: Ins 91 @ 0b44, Memory 048b, 00 -> 0d
+3521: Ins 98 @ 0b46, AC 0d -> 03
+3523: Ins 69 @ 0b48, AC 03 -> 20
+3524: Ins a8 @ 0b4a, Y 03 -> 20
+3525: Ins bd @ 0b4b, AC 20 -> 0d
+3526: Ins 91 @ 0b4e, Memory 04a8, 00 -> 0d
+3527: Ins c8 @ 0b50, Y 20 -> 21
+3528: Ins 91 @ 0b51, Memory 04a9, 00 -> 0d
+3529: Ins c8 @ 0b53, Y 21 -> 22
+3530: Ins 91 @ 0b54, Memory 04aa, 00 -> 0d
+3531: Ins c8 @ 0b56, Y 22 -> 23
+3532: Ins 91 @ 0b57, Memory 04ab, 00 -> 0d
+3533: Ins 98 @ 0b59, AC 0d -> 23
+3535: Ins 69 @ 0b5b, AC 23 -> 40
+3536: Ins a8 @ 0b5d, Y 23 -> 40
+3537: Ins bd @ 0b5e, AC 40 -> 0d
+3538: Ins 91 @ 0b61, Memory 04c8, 00 -> 0d
+3539: Ins c8 @ 0b63, Y 40 -> 41
+3540: Ins 91 @ 0b64, Memory 04c9, 00 -> 0d
+3541: Ins c8 @ 0b66, Y 41 -> 42
+3542: Ins 91 @ 0b67, Memory 04ca, 00 -> 0d
+3543: Ins c8 @ 0b69, Y 42 -> 43
+3544: Ins 91 @ 0b6a, Memory 04cb, 00 -> 0d
+3545: Ins 98 @ 0b6c, AC 0d -> 43
+3547: Ins 69 @ 0b6e, AC 43 -> 60
+3548: Ins a8 @ 0b70, Y 43 -> 60
+3549: Ins bd @ 0b71, AC 60 -> 0d
+3550: Ins 91 @ 0b74, Memory 04e8, 00 -> 0d
+3551: Ins c8 @ 0b76, Y 60 -> 61
+3552: Ins 91 @ 0b77, Memory 04e9, 00 -> 0d
+3553: Ins c8 @ 0b79, Y 61 -> 62
+3554: Ins 91 @ 0b7a, Memory 04ea, 00 -> 0d
+3555: Ins c8 @ 0b7c, Y 62 -> 63
+3556: Ins 91 @ 0b7d, Memory 04eb, 00 -> 0d
+3557: Ins e8 @ 0b7f, X 2a -> 2b
+3559: Ins a5 @ 0b81, AC 0d -> 88
+3559: Ins a5 @ 0b81, SR 20 -> a0
+3560: Ins 69 @ 0b83, AC 88 -> 8c
+3561: Ins 85 @ 0b85, Memory 0002, 88 -> 8c
+3562: Ins a5 @ 0b87, AC 8c -> 04
+3562: Ins a5 @ 0b87, SR a0 -> 20
+3565: Ins 8a @ 0b8d, AC 04 -> 2b
+3566: Ins 29 @ 0b8e, AC 2b -> 03
+3568: Ins e0 @ 0b9f, SR 20 -> a0
+3570: Ins a0 @ 0b36, Y 63 -> 00
+3570: Ins a0 @ 0b36, SR a0 -> 22
+3571: Ins bd @ 0b38, AC 03 -> 09
+3571: Ins bd @ 0b38, SR 22 -> 20
+3572: Ins 91 @ 0b3b, Memory 048c, 00 -> 09
+3573: Ins c8 @ 0b3d, Y 00 -> 01
+3574: Ins 91 @ 0b3e, Memory 048d, 00 -> 09
+3575: Ins c8 @ 0b40, Y 01 -> 02
+3576: Ins 91 @ 0b41, Memory 048e, 00 -> 09
+3577: Ins c8 @ 0b43, Y 02 -> 03
+3578: Ins 91 @ 0b44, Memory 048f, 00 -> 09
+3579: Ins 98 @ 0b46, AC 09 -> 03
+3581: Ins 69 @ 0b48, AC 03 -> 20
+3582: Ins a8 @ 0b4a, Y 03 -> 20
+3583: Ins bd @ 0b4b, AC 20 -> 09
+3584: Ins 91 @ 0b4e, Memory 04ac, 00 -> 09
+3585: Ins c8 @ 0b50, Y 20 -> 21
+3586: Ins 91 @ 0b51, Memory 04ad, 00 -> 09
+3587: Ins c8 @ 0b53, Y 21 -> 22
+3588: Ins 91 @ 0b54, Memory 04ae, 00 -> 09
+3589: Ins c8 @ 0b56, Y 22 -> 23
+3590: Ins 91 @ 0b57, Memory 04af, 00 -> 09
+3591: Ins 98 @ 0b59, AC 09 -> 23
+3593: Ins 69 @ 0b5b, AC 23 -> 40
+3594: Ins a8 @ 0b5d, Y 23 -> 40
+3595: Ins bd @ 0b5e, AC 40 -> 09
+3596: Ins 91 @ 0b61, Memory 04cc, 00 -> 09
+3597: Ins c8 @ 0b63, Y 40 -> 41
+3598: Ins 91 @ 0b64, Memory 04cd, 00 -> 09
+3599: Ins c8 @ 0b66, Y 41 -> 42
+3600: Ins 91 @ 0b67, Memory 04ce, 00 -> 09
+3601: Ins c8 @ 0b69, Y 42 -> 43
+3602: Ins 91 @ 0b6a, Memory 04cf, 00 -> 09
+3603: Ins 98 @ 0b6c, AC 09 -> 43
+3605: Ins 69 @ 0b6e, AC 43 -> 60
+3606: Ins a8 @ 0b70, Y 43 -> 60
+3607: Ins bd @ 0b71, AC 60 -> 09
+3608: Ins 91 @ 0b74, Memory 04ec, 00 -> 09
+3609: Ins c8 @ 0b76, Y 60 -> 61
+3610: Ins 91 @ 0b77, Memory 04ed, 00 -> 09
+3611: Ins c8 @ 0b79, Y 61 -> 62
+3612: Ins 91 @ 0b7a, Memory 04ee, 00 -> 09
+3613: Ins c8 @ 0b7c, Y 62 -> 63
+3614: Ins 91 @ 0b7d, Memory 04ef, 00 -> 09
+3615: Ins e8 @ 0b7f, X 2b -> 2c
+3617: Ins a5 @ 0b81, AC 09 -> 8c
+3617: Ins a5 @ 0b81, SR 20 -> a0
+3618: Ins 69 @ 0b83, AC 8c -> 90
+3619: Ins 85 @ 0b85, Memory 0002, 8c -> 90
+3620: Ins a5 @ 0b87, AC 90 -> 04
+3620: Ins a5 @ 0b87, SR a0 -> 20
+3623: Ins 8a @ 0b8d, AC 04 -> 2c
+3624: Ins 29 @ 0b8e, AC 2c -> 04
+3626: Ins e0 @ 0b9f, SR 20 -> a0
+3628: Ins a0 @ 0b36, Y 63 -> 00
+3628: Ins a0 @ 0b36, SR a0 -> 22
+3629: Ins bd @ 0b38, AC 04 -> 09
+3629: Ins bd @ 0b38, SR 22 -> 20
+3630: Ins 91 @ 0b3b, Memory 0490, 00 -> 09
+3631: Ins c8 @ 0b3d, Y 00 -> 01
+3632: Ins 91 @ 0b3e, Memory 0491, 00 -> 09
+3633: Ins c8 @ 0b40, Y 01 -> 02
+3634: Ins 91 @ 0b41, Memory 0492, 00 -> 09
+3635: Ins c8 @ 0b43, Y 02 -> 03
+3636: Ins 91 @ 0b44, Memory 0493, 00 -> 09
+3637: Ins 98 @ 0b46, AC 09 -> 03
+3639: Ins 69 @ 0b48, AC 03 -> 20
+3640: Ins a8 @ 0b4a, Y 03 -> 20
+3641: Ins bd @ 0b4b, AC 20 -> 09
+3642: Ins 91 @ 0b4e, Memory 04b0, 00 -> 09
+3643: Ins c8 @ 0b50, Y 20 -> 21
+3644: Ins 91 @ 0b51, Memory 04b1, 00 -> 09
+3645: Ins c8 @ 0b53, Y 21 -> 22
+3646: Ins 91 @ 0b54, Memory 04b2, 00 -> 09
+3647: Ins c8 @ 0b56, Y 22 -> 23
+3648: Ins 91 @ 0b57, Memory 04b3, 00 -> 09
+3649: Ins 98 @ 0b59, AC 09 -> 23
+3651: Ins 69 @ 0b5b, AC 23 -> 40
+3652: Ins a8 @ 0b5d, Y 23 -> 40
+3653: Ins bd @ 0b5e, AC 40 -> 09
+3654: Ins 91 @ 0b61, Memory 04d0, 00 -> 09
+3655: Ins c8 @ 0b63, Y 40 -> 41
+3656: Ins 91 @ 0b64, Memory 04d1, 00 -> 09
+3657: Ins c8 @ 0b66, Y 41 -> 42
+3658: Ins 91 @ 0b67, Memory 04d2, 00 -> 09
+3659: Ins c8 @ 0b69, Y 42 -> 43
+3660: Ins 91 @ 0b6a, Memory 04d3, 00 -> 09
+3661: Ins 98 @ 0b6c, AC 09 -> 43
+3663: Ins 69 @ 0b6e, AC 43 -> 60
+3664: Ins a8 @ 0b70, Y 43 -> 60
+3665: Ins bd @ 0b71, AC 60 -> 09
+3666: Ins 91 @ 0b74, Memory 04f0, 00 -> 09
+3667: Ins c8 @ 0b76, Y 60 -> 61
+3668: Ins 91 @ 0b77, Memory 04f1, 00 -> 09
+3669: Ins c8 @ 0b79, Y 61 -> 62
+3670: Ins 91 @ 0b7a, Memory 04f2, 00 -> 09
+3671: Ins c8 @ 0b7c, Y 62 -> 63
+3672: Ins 91 @ 0b7d, Memory 04f3, 00 -> 09
+3673: Ins e8 @ 0b7f, X 2c -> 2d
+3675: Ins a5 @ 0b81, AC 09 -> 90
+3675: Ins a5 @ 0b81, SR 20 -> a0
+3676: Ins 69 @ 0b83, AC 90 -> 94
+3677: Ins 85 @ 0b85, Memory 0002, 90 -> 94
+3678: Ins a5 @ 0b87, AC 94 -> 04
+3678: Ins a5 @ 0b87, SR a0 -> 20
+3681: Ins 8a @ 0b8d, AC 04 -> 2d
+3682: Ins 29 @ 0b8e, AC 2d -> 05
+3684: Ins e0 @ 0b9f, SR 20 -> a0
+3686: Ins a0 @ 0b36, Y 63 -> 00
+3686: Ins a0 @ 0b36, SR a0 -> 22
+3687: Ins bd @ 0b38, AC 05 -> 09
+3687: Ins bd @ 0b38, SR 22 -> 20
+3688: Ins 91 @ 0b3b, Memory 0494, 00 -> 09
+3689: Ins c8 @ 0b3d, Y 00 -> 01
+3690: Ins 91 @ 0b3e, Memory 0495, 00 -> 09
+3691: Ins c8 @ 0b40, Y 01 -> 02
+3692: Ins 91 @ 0b41, Memory 0496, 00 -> 09
+3693: Ins c8 @ 0b43, Y 02 -> 03
+3694: Ins 91 @ 0b44, Memory 0497, 00 -> 09
+3695: Ins 98 @ 0b46, AC 09 -> 03
+3697: Ins 69 @ 0b48, AC 03 -> 20
+3698: Ins a8 @ 0b4a, Y 03 -> 20
+3699: Ins bd @ 0b4b, AC 20 -> 09
+3700: Ins 91 @ 0b4e, Memory 04b4, 00 -> 09
+3701: Ins c8 @ 0b50, Y 20 -> 21
+3702: Ins 91 @ 0b51, Memory 04b5, 00 -> 09
+3703: Ins c8 @ 0b53, Y 21 -> 22
+3704: Ins 91 @ 0b54, Memory 04b6, 00 -> 09
+3705: Ins c8 @ 0b56, Y 22 -> 23
+3706: Ins 91 @ 0b57, Memory 04b7, 00 -> 09
+3707: Ins 98 @ 0b59, AC 09 -> 23
+3709: Ins 69 @ 0b5b, AC 23 -> 40
+3710: Ins a8 @ 0b5d, Y 23 -> 40
+3711: Ins bd @ 0b5e, AC 40 -> 09
+3712: Ins 91 @ 0b61, Memory 04d4, 00 -> 09
+3713: Ins c8 @ 0b63, Y 40 -> 41
+3714: Ins 91 @ 0b64, Memory 04d5, 00 -> 09
+3715: Ins c8 @ 0b66, Y 41 -> 42
+3716: Ins 91 @ 0b67, Memory 04d6, 00 -> 09
+3717: Ins c8 @ 0b69, Y 42 -> 43
+3718: Ins 91 @ 0b6a, Memory 04d7, 00 -> 09
+3719: Ins 98 @ 0b6c, AC 09 -> 43
+3721: Ins 69 @ 0b6e, AC 43 -> 60
+3722: Ins a8 @ 0b70, Y 43 -> 60
+3723: Ins bd @ 0b71, AC 60 -> 09
+3724: Ins 91 @ 0b74, Memory 04f4, 00 -> 09
+3725: Ins c8 @ 0b76, Y 60 -> 61
+3726: Ins 91 @ 0b77, Memory 04f5, 00 -> 09
+3727: Ins c8 @ 0b79, Y 61 -> 62
+3728: Ins 91 @ 0b7a, Memory 04f6, 00 -> 09
+3729: Ins c8 @ 0b7c, Y 62 -> 63
+3730: Ins 91 @ 0b7d, Memory 04f7, 00 -> 09
+3731: Ins e8 @ 0b7f, X 2d -> 2e
+3733: Ins a5 @ 0b81, AC 09 -> 94
+3733: Ins a5 @ 0b81, SR 20 -> a0
+3734: Ins 69 @ 0b83, AC 94 -> 98
+3735: Ins 85 @ 0b85, Memory 0002, 94 -> 98
+3736: Ins a5 @ 0b87, AC 98 -> 04
+3736: Ins a5 @ 0b87, SR a0 -> 20
+3739: Ins 8a @ 0b8d, AC 04 -> 2e
+3740: Ins 29 @ 0b8e, AC 2e -> 06
+3742: Ins e0 @ 0b9f, SR 20 -> a0
+3744: Ins a0 @ 0b36, Y 63 -> 00
+3744: Ins a0 @ 0b36, SR a0 -> 22
+3745: Ins bd @ 0b38, AC 06 -> 0d
+3745: Ins bd @ 0b38, SR 22 -> 20
+3746: Ins 91 @ 0b3b, Memory 0498, 00 -> 0d
+3747: Ins c8 @ 0b3d, Y 00 -> 01
+3748: Ins 91 @ 0b3e, Memory 0499, 00 -> 0d
+3749: Ins c8 @ 0b40, Y 01 -> 02
+3750: Ins 91 @ 0b41, Memory 049a, 00 -> 0d
+3751: Ins c8 @ 0b43, Y 02 -> 03
+3752: Ins 91 @ 0b44, Memory 049b, 00 -> 0d
+3753: Ins 98 @ 0b46, AC 0d -> 03
+3755: Ins 69 @ 0b48, AC 03 -> 20
+3756: Ins a8 @ 0b4a, Y 03 -> 20
+3757: Ins bd @ 0b4b, AC 20 -> 0d
+3758: Ins 91 @ 0b4e, Memory 04b8, 00 -> 0d
+3759: Ins c8 @ 0b50, Y 20 -> 21
+3760: Ins 91 @ 0b51, Memory 04b9, 00 -> 0d
+3761: Ins c8 @ 0b53, Y 21 -> 22
+3762: Ins 91 @ 0b54, Memory 04ba, 00 -> 0d
+3763: Ins c8 @ 0b56, Y 22 -> 23
+3764: Ins 91 @ 0b57, Memory 04bb, 00 -> 0d
+3765: Ins 98 @ 0b59, AC 0d -> 23
+3767: Ins 69 @ 0b5b, AC 23 -> 40
+3768: Ins a8 @ 0b5d, Y 23 -> 40
+3769: Ins bd @ 0b5e, AC 40 -> 0d
+3770: Ins 91 @ 0b61, Memory 04d8, 00 -> 0d
+3771: Ins c8 @ 0b63, Y 40 -> 41
+3772: Ins 91 @ 0b64, Memory 04d9, 00 -> 0d
+3773: Ins c8 @ 0b66, Y 41 -> 42
+3774: Ins 91 @ 0b67, Memory 04da, 00 -> 0d
+3775: Ins c8 @ 0b69, Y 42 -> 43
+3776: Ins 91 @ 0b6a, Memory 04db, 00 -> 0d
+3777: Ins 98 @ 0b6c, AC 0d -> 43
+3779: Ins 69 @ 0b6e, AC 43 -> 60
+3780: Ins a8 @ 0b70, Y 43 -> 60
+3781: Ins bd @ 0b71, AC 60 -> 0d
+3782: Ins 91 @ 0b74, Memory 04f8, 00 -> 0d
+3783: Ins c8 @ 0b76, Y 60 -> 61
+3784: Ins 91 @ 0b77, Memory 04f9, 00 -> 0d
+3785: Ins c8 @ 0b79, Y 61 -> 62
+3786: Ins 91 @ 0b7a, Memory 04fa, 00 -> 0d
+3787: Ins c8 @ 0b7c, Y 62 -> 63
+3788: Ins 91 @ 0b7d, Memory 04fb, 00 -> 0d
+3789: Ins e8 @ 0b7f, X 2e -> 2f
+3791: Ins a5 @ 0b81, AC 0d -> 98
+3791: Ins a5 @ 0b81, SR 20 -> a0
+3792: Ins 69 @ 0b83, AC 98 -> 9c
+3793: Ins 85 @ 0b85, Memory 0002, 98 -> 9c
+3794: Ins a5 @ 0b87, AC 9c -> 04
+3794: Ins a5 @ 0b87, SR a0 -> 20
+3797: Ins 8a @ 0b8d, AC 04 -> 2f
+3798: Ins 29 @ 0b8e, AC 2f -> 07
+3800: Ins e0 @ 0b9f, SR 20 -> a0
+3802: Ins a0 @ 0b36, Y 63 -> 00
+3802: Ins a0 @ 0b36, SR a0 -> 22
+3803: Ins bd @ 0b38, AC 07 -> 09
+3803: Ins bd @ 0b38, SR 22 -> 20
+3804: Ins 91 @ 0b3b, Memory 049c, 00 -> 09
+3805: Ins c8 @ 0b3d, Y 00 -> 01
+3806: Ins 91 @ 0b3e, Memory 049d, 00 -> 09
+3807: Ins c8 @ 0b40, Y 01 -> 02
+3808: Ins 91 @ 0b41, Memory 049e, 00 -> 09
+3809: Ins c8 @ 0b43, Y 02 -> 03
+3810: Ins 91 @ 0b44, Memory 049f, 00 -> 09
+3811: Ins 98 @ 0b46, AC 09 -> 03
+3813: Ins 69 @ 0b48, AC 03 -> 20
+3814: Ins a8 @ 0b4a, Y 03 -> 20
+3815: Ins bd @ 0b4b, AC 20 -> 09
+3816: Ins 91 @ 0b4e, Memory 04bc, 00 -> 09
+3817: Ins c8 @ 0b50, Y 20 -> 21
+3818: Ins 91 @ 0b51, Memory 04bd, 00 -> 09
+3819: Ins c8 @ 0b53, Y 21 -> 22
+3820: Ins 91 @ 0b54, Memory 04be, 00 -> 09
+3821: Ins c8 @ 0b56, Y 22 -> 23
+3822: Ins 91 @ 0b57, Memory 04bf, 00 -> 09
+3823: Ins 98 @ 0b59, AC 09 -> 23
+3825: Ins 69 @ 0b5b, AC 23 -> 40
+3826: Ins a8 @ 0b5d, Y 23 -> 40
+3827: Ins bd @ 0b5e, AC 40 -> 09
+3828: Ins 91 @ 0b61, Memory 04dc, 00 -> 09
+3829: Ins c8 @ 0b63, Y 40 -> 41
+3830: Ins 91 @ 0b64, Memory 04dd, 00 -> 09
+3831: Ins c8 @ 0b66, Y 41 -> 42
+3832: Ins 91 @ 0b67, Memory 04de, 00 -> 09
+3833: Ins c8 @ 0b69, Y 42 -> 43
+3834: Ins 91 @ 0b6a, Memory 04df, 00 -> 09
+3835: Ins 98 @ 0b6c, AC 09 -> 43
+3837: Ins 69 @ 0b6e, AC 43 -> 60
+3838: Ins a8 @ 0b70, Y 43 -> 60
+3839: Ins bd @ 0b71, AC 60 -> 09
+3840: Ins 91 @ 0b74, Memory 04fc, 00 -> 09
+3841: Ins c8 @ 0b76, Y 60 -> 61
+3842: Ins 91 @ 0b77, Memory 04fd, 00 -> 09
+3843: Ins c8 @ 0b79, Y 61 -> 62
+3844: Ins 91 @ 0b7a, Memory 04fe, 00 -> 09
+3845: Ins c8 @ 0b7c, Y 62 -> 63
+3846: Ins 91 @ 0b7d, Memory 04ff, 00 -> 09
+3847: Ins e8 @ 0b7f, X 2f -> 30
+3849: Ins a5 @ 0b81, AC 09 -> 9c
+3849: Ins a5 @ 0b81, SR 20 -> a0
+3850: Ins 69 @ 0b83, AC 9c -> a0
+3851: Ins 85 @ 0b85, Memory 0002, 9c -> a0
+3852: Ins a5 @ 0b87, AC a0 -> 04
+3852: Ins a5 @ 0b87, SR a0 -> 20
+3855: Ins 8a @ 0b8d, AC 04 -> 30
+3856: Ins 29 @ 0b8e, AC 30 -> 00
+3856: Ins 29 @ 0b8e, SR 20 -> 22
+3859: Ins a5 @ 0b93, AC 00 -> a0
+3859: Ins a5 @ 0b93, SR 22 -> a0
+3860: Ins 69 @ 0b95, AC a0 -> 00
+3860: Ins 69 @ 0b95, SR a0 -> 23
+3861: Ins 85 @ 0b97, Memory 0002, a0 -> 00
+3862: Ins a5 @ 0b99, AC 00 -> 04
+3862: Ins a5 @ 0b99, SR 23 -> 21
+3863: Ins 69 @ 0b9b, AC 04 -> 05
+3863: Ins 69 @ 0b9b, SR 21 -> 20
+3864: Ins 85 @ 0b9d, Memory 0003, 04 -> 05
+3865: Ins e0 @ 0b9f, SR 20 -> a0
+3867: Ins a0 @ 0b36, Y 63 -> 00
+3867: Ins a0 @ 0b36, SR a0 -> 22
+3868: Ins bd @ 0b38, SR 22 -> 20
+3869: Ins 91 @ 0b3b, Memory 0500, 00 -> 05
+3870: Ins c8 @ 0b3d, Y 00 -> 01
+3871: Ins 91 @ 0b3e, Memory 0501, 00 -> 05
+3872: Ins c8 @ 0b40, Y 01 -> 02
+3873: Ins 91 @ 0b41, Memory 0502, 00 -> 05
+3874: Ins c8 @ 0b43, Y 02 -> 03
+3875: Ins 91 @ 0b44, Memory 0503, 00 -> 05
+3876: Ins 98 @ 0b46, AC 05 -> 03
+3878: Ins 69 @ 0b48, AC 03 -> 20
+3879: Ins a8 @ 0b4a, Y 03 -> 20
+3880: Ins bd @ 0b4b, AC 20 -> 05
+3881: Ins 91 @ 0b4e, Memory 0520, 00 -> 05
+3882: Ins c8 @ 0b50, Y 20 -> 21
+3883: Ins 91 @ 0b51, Memory 0521, 00 -> 05
+3884: Ins c8 @ 0b53, Y 21 -> 22
+3885: Ins 91 @ 0b54, Memory 0522, 00 -> 05
+3886: Ins c8 @ 0b56, Y 22 -> 23
+3887: Ins 91 @ 0b57, Memory 0523, 00 -> 05
+3888: Ins 98 @ 0b59, AC 05 -> 23
+3890: Ins 69 @ 0b5b, AC 23 -> 40
+3891: Ins a8 @ 0b5d, Y 23 -> 40
+3892: Ins bd @ 0b5e, AC 40 -> 05
+3893: Ins 91 @ 0b61, Memory 0540, 00 -> 05
+3894: Ins c8 @ 0b63, Y 40 -> 41
+3895: Ins 91 @ 0b64, Memory 0541, 00 -> 05
+3896: Ins c8 @ 0b66, Y 41 -> 42
+3897: Ins 91 @ 0b67, Memory 0542, 00 -> 05
+3898: Ins c8 @ 0b69, Y 42 -> 43
+3899: Ins 91 @ 0b6a, Memory 0543, 00 -> 05
+3900: Ins 98 @ 0b6c, AC 05 -> 43
+3902: Ins 69 @ 0b6e, AC 43 -> 60
+3903: Ins a8 @ 0b70, Y 43 -> 60
+3904: Ins bd @ 0b71, AC 60 -> 05
+3905: Ins 91 @ 0b74, Memory 0560, 00 -> 05
+3906: Ins c8 @ 0b76, Y 60 -> 61
+3907: Ins 91 @ 0b77, Memory 0561, 00 -> 05
+3908: Ins c8 @ 0b79, Y 61 -> 62
+3909: Ins 91 @ 0b7a, Memory 0562, 00 -> 05
+3910: Ins c8 @ 0b7c, Y 62 -> 63
+3911: Ins 91 @ 0b7d, Memory 0563, 00 -> 05
+3912: Ins e8 @ 0b7f, X 30 -> 31
+3914: Ins a5 @ 0b81, AC 05 -> 00
+3914: Ins a5 @ 0b81, SR 20 -> 22
+3915: Ins 69 @ 0b83, AC 00 -> 04
+3915: Ins 69 @ 0b83, SR 22 -> 20
+3916: Ins 85 @ 0b85, Memory 0002, 00 -> 04
+3917: Ins a5 @ 0b87, AC 04 -> 05
+3920: Ins 8a @ 0b8d, AC 05 -> 31
+3921: Ins 29 @ 0b8e, AC 31 -> 01
+3923: Ins e0 @ 0b9f, SR 20 -> a0
+3925: Ins a0 @ 0b36, Y 63 -> 00
+3925: Ins a0 @ 0b36, SR a0 -> 22
+3926: Ins bd @ 0b38, AC 01 -> 05
+3926: Ins bd @ 0b38, SR 22 -> 20
+3927: Ins 91 @ 0b3b, Memory 0504, 00 -> 05
+3928: Ins c8 @ 0b3d, Y 00 -> 01
+3929: Ins 91 @ 0b3e, Memory 0505, 00 -> 05
+3930: Ins c8 @ 0b40, Y 01 -> 02
+3931: Ins 91 @ 0b41, Memory 0506, 00 -> 05
+3932: Ins c8 @ 0b43, Y 02 -> 03
+3933: Ins 91 @ 0b44, Memory 0507, 00 -> 05
+3934: Ins 98 @ 0b46, AC 05 -> 03
+3936: Ins 69 @ 0b48, AC 03 -> 20
+3937: Ins a8 @ 0b4a, Y 03 -> 20
+3938: Ins bd @ 0b4b, AC 20 -> 05
+3939: Ins 91 @ 0b4e, Memory 0524, 00 -> 05
+3940: Ins c8 @ 0b50, Y 20 -> 21
+3941: Ins 91 @ 0b51, Memory 0525, 00 -> 05
+3942: Ins c8 @ 0b53, Y 21 -> 22
+3943: Ins 91 @ 0b54, Memory 0526, 00 -> 05
+3944: Ins c8 @ 0b56, Y 22 -> 23
+3945: Ins 91 @ 0b57, Memory 0527, 00 -> 05
+3946: Ins 98 @ 0b59, AC 05 -> 23
+3948: Ins 69 @ 0b5b, AC 23 -> 40
+3949: Ins a8 @ 0b5d, Y 23 -> 40
+3950: Ins bd @ 0b5e, AC 40 -> 05
+3951: Ins 91 @ 0b61, Memory 0544, 00 -> 05
+3952: Ins c8 @ 0b63, Y 40 -> 41
+3953: Ins 91 @ 0b64, Memory 0545, 00 -> 05
+3954: Ins c8 @ 0b66, Y 41 -> 42
+3955: Ins 91 @ 0b67, Memory 0546, 00 -> 05
+3956: Ins c8 @ 0b69, Y 42 -> 43
+3957: Ins 91 @ 0b6a, Memory 0547, 00 -> 05
+3958: Ins 98 @ 0b6c, AC 05 -> 43
+3960: Ins 69 @ 0b6e, AC 43 -> 60
+3961: Ins a8 @ 0b70, Y 43 -> 60
+3962: Ins bd @ 0b71, AC 60 -> 05
+3963: Ins 91 @ 0b74, Memory 0564, 00 -> 05
+3964: Ins c8 @ 0b76, Y 60 -> 61
+3965: Ins 91 @ 0b77, Memory 0565, 00 -> 05
+3966: Ins c8 @ 0b79, Y 61 -> 62
+3967: Ins 91 @ 0b7a, Memory 0566, 00 -> 05
+3968: Ins c8 @ 0b7c, Y 62 -> 63
+3969: Ins 91 @ 0b7d, Memory 0567, 00 -> 05
+3970: Ins e8 @ 0b7f, X 31 -> 32
+3972: Ins a5 @ 0b81, AC 05 -> 04
+3973: Ins 69 @ 0b83, AC 04 -> 08
+3974: Ins 85 @ 0b85, Memory 0002, 04 -> 08
+3975: Ins a5 @ 0b87, AC 08 -> 05
+3978: Ins 8a @ 0b8d, AC 05 -> 32
+3979: Ins 29 @ 0b8e, AC 32 -> 02
+3981: Ins e0 @ 0b9f, SR 20 -> a0
+3983: Ins a0 @ 0b36, Y 63 -> 00
+3983: Ins a0 @ 0b36, SR a0 -> 22
+3984: Ins bd @ 0b38, AC 02 -> 0d
+3984: Ins bd @ 0b38, SR 22 -> 20
+3985: Ins 91 @ 0b3b, Memory 0508, 00 -> 0d
+3986: Ins c8 @ 0b3d, Y 00 -> 01
+3987: Ins 91 @ 0b3e, Memory 0509, 00 -> 0d
+3988: Ins c8 @ 0b40, Y 01 -> 02
+3989: Ins 91 @ 0b41, Memory 050a, 00 -> 0d
+3990: Ins c8 @ 0b43, Y 02 -> 03
+3991: Ins 91 @ 0b44, Memory 050b, 00 -> 0d
+3992: Ins 98 @ 0b46, AC 0d -> 03
+3994: Ins 69 @ 0b48, AC 03 -> 20
+3995: Ins a8 @ 0b4a, Y 03 -> 20
+3996: Ins bd @ 0b4b, AC 20 -> 0d
+3997: Ins 91 @ 0b4e, Memory 0528, 00 -> 0d
+3998: Ins c8 @ 0b50, Y 20 -> 21
+3999: Ins 91 @ 0b51, Memory 0529, 00 -> 0d
+4000: Ins c8 @ 0b53, Y 21 -> 22
+4001: Ins 91 @ 0b54, Memory 052a, 00 -> 0d
+4002: Ins c8 @ 0b56, Y 22 -> 23
+4003: Ins 91 @ 0b57, Memory 052b, 00 -> 0d
+4004: Ins 98 @ 0b59, AC 0d -> 23
+4006: Ins 69 @ 0b5b, AC 23 -> 40
+4007: Ins a8 @ 0b5d, Y 23 -> 40
+4008: Ins bd @ 0b5e, AC 40 -> 0d
+4009: Ins 91 @ 0b61, Memory 0548, 00 -> 0d
+4010: Ins c8 @ 0b63, Y 40 -> 41
+4011: Ins 91 @ 0b64, Memory 0549, 00 -> 0d
+4012: Ins c8 @ 0b66, Y 41 -> 42
+4013: Ins 91 @ 0b67, Memory 054a, 00 -> 0d
+4014: Ins c8 @ 0b69, Y 42 -> 43
+4015: Ins 91 @ 0b6a, Memory 054b, 00 -> 0d
+4016: Ins 98 @ 0b6c, AC 0d -> 43
+4018: Ins 69 @ 0b6e, AC 43 -> 60
+4019: Ins a8 @ 0b70, Y 43 -> 60
+4020: Ins bd @ 0b71, AC 60 -> 0d
+4021: Ins 91 @ 0b74, Memory 0568, 00 -> 0d
+4022: Ins c8 @ 0b76, Y 60 -> 61
+4023: Ins 91 @ 0b77, Memory 0569, 00 -> 0d
+4024: Ins c8 @ 0b79, Y 61 -> 62
+4025: Ins 91 @ 0b7a, Memory 056a, 00 -> 0d
+4026: Ins c8 @ 0b7c, Y 62 -> 63
+4027: Ins 91 @ 0b7d, Memory 056b, 00 -> 0d
+4028: Ins e8 @ 0b7f, X 32 -> 33
+4030: Ins a5 @ 0b81, AC 0d -> 08
+4031: Ins 69 @ 0b83, AC 08 -> 0c
+4032: Ins 85 @ 0b85, Memory 0002, 08 -> 0c
+4033: Ins a5 @ 0b87, AC 0c -> 05
+4036: Ins 8a @ 0b8d, AC 05 -> 33
+4037: Ins 29 @ 0b8e, AC 33 -> 03
+4039: Ins e0 @ 0b9f, SR 20 -> a0
+4041: Ins a0 @ 0b36, Y 63 -> 00
+4041: Ins a0 @ 0b36, SR a0 -> 22
+4042: Ins bd @ 0b38, AC 03 -> 0d
+4042: Ins bd @ 0b38, SR 22 -> 20
+4043: Ins 91 @ 0b3b, Memory 050c, 00 -> 0d
+4044: Ins c8 @ 0b3d, Y 00 -> 01
+4045: Ins 91 @ 0b3e, Memory 050d, 00 -> 0d
+4046: Ins c8 @ 0b40, Y 01 -> 02
+4047: Ins 91 @ 0b41, Memory 050e, 00 -> 0d
+4048: Ins c8 @ 0b43, Y 02 -> 03
+4049: Ins 91 @ 0b44, Memory 050f, 00 -> 0d
+4050: Ins 98 @ 0b46, AC 0d -> 03
+4052: Ins 69 @ 0b48, AC 03 -> 20
+4053: Ins a8 @ 0b4a, Y 03 -> 20
+4054: Ins bd @ 0b4b, AC 20 -> 0d
+4055: Ins 91 @ 0b4e, Memory 052c, 00 -> 0d
+4056: Ins c8 @ 0b50, Y 20 -> 21
+4057: Ins 91 @ 0b51, Memory 052d, 00 -> 0d
+4058: Ins c8 @ 0b53, Y 21 -> 22
+4059: Ins 91 @ 0b54, Memory 052e, 00 -> 0d
+4060: Ins c8 @ 0b56, Y 22 -> 23
+4061: Ins 91 @ 0b57, Memory 052f, 00 -> 0d
+4062: Ins 98 @ 0b59, AC 0d -> 23
+4064: Ins 69 @ 0b5b, AC 23 -> 40
+4065: Ins a8 @ 0b5d, Y 23 -> 40
+4066: Ins bd @ 0b5e, AC 40 -> 0d
+4067: Ins 91 @ 0b61, Memory 054c, 00 -> 0d
+4068: Ins c8 @ 0b63, Y 40 -> 41
+4069: Ins 91 @ 0b64, Memory 054d, 00 -> 0d
+4070: Ins c8 @ 0b66, Y 41 -> 42
+4071: Ins 91 @ 0b67, Memory 054e, 00 -> 0d
+4072: Ins c8 @ 0b69, Y 42 -> 43
+4073: Ins 91 @ 0b6a, Memory 054f, 00 -> 0d
+4074: Ins 98 @ 0b6c, AC 0d -> 43
+4076: Ins 69 @ 0b6e, AC 43 -> 60
+4077: Ins a8 @ 0b70, Y 43 -> 60
+4078: Ins bd @ 0b71, AC 60 -> 0d
+4079: Ins 91 @ 0b74, Memory 056c, 00 -> 0d
+4080: Ins c8 @ 0b76, Y 60 -> 61
+4081: Ins 91 @ 0b77, Memory 056d, 00 -> 0d
+4082: Ins c8 @ 0b79, Y 61 -> 62
+4083: Ins 91 @ 0b7a, Memory 056e, 00 -> 0d
+4084: Ins c8 @ 0b7c, Y 62 -> 63
+4085: Ins 91 @ 0b7d, Memory 056f, 00 -> 0d
+4086: Ins e8 @ 0b7f, X 33 -> 34
+4088: Ins a5 @ 0b81, AC 0d -> 0c
+4089: Ins 69 @ 0b83, AC 0c -> 10
+4090: Ins 85 @ 0b85, Memory 0002, 0c -> 10
+4091: Ins a5 @ 0b87, AC 10 -> 05
+4094: Ins 8a @ 0b8d, AC 05 -> 34
+4095: Ins 29 @ 0b8e, AC 34 -> 04
+4097: Ins e0 @ 0b9f, SR 20 -> a0
+4099: Ins a0 @ 0b36, Y 63 -> 00
+4099: Ins a0 @ 0b36, SR a0 -> 22
+4100: Ins bd @ 0b38, AC 04 -> 0d
+4100: Ins bd @ 0b38, SR 22 -> 20
+4101: Ins 91 @ 0b3b, Memory 0510, 00 -> 0d
+4102: Ins c8 @ 0b3d, Y 00 -> 01
+4103: Ins 91 @ 0b3e, Memory 0511, 00 -> 0d
+4104: Ins c8 @ 0b40, Y 01 -> 02
+4105: Ins 91 @ 0b41, Memory 0512, 00 -> 0d
+4106: Ins c8 @ 0b43, Y 02 -> 03
+4107: Ins 91 @ 0b44, Memory 0513, 00 -> 0d
+4108: Ins 98 @ 0b46, AC 0d -> 03
+4110: Ins 69 @ 0b48, AC 03 -> 20
+4111: Ins a8 @ 0b4a, Y 03 -> 20
+4112: Ins bd @ 0b4b, AC 20 -> 0d
+4113: Ins 91 @ 0b4e, Memory 0530, 00 -> 0d
+4114: Ins c8 @ 0b50, Y 20 -> 21
+4115: Ins 91 @ 0b51, Memory 0531, 00 -> 0d
+4116: Ins c8 @ 0b53, Y 21 -> 22
+4117: Ins 91 @ 0b54, Memory 0532, 00 -> 0d
+4118: Ins c8 @ 0b56, Y 22 -> 23
+4119: Ins 91 @ 0b57, Memory 0533, 00 -> 0d
+4120: Ins 98 @ 0b59, AC 0d -> 23
+4122: Ins 69 @ 0b5b, AC 23 -> 40
+4123: Ins a8 @ 0b5d, Y 23 -> 40
+4124: Ins bd @ 0b5e, AC 40 -> 0d
+4125: Ins 91 @ 0b61, Memory 0550, 00 -> 0d
+4126: Ins c8 @ 0b63, Y 40 -> 41
+4127: Ins 91 @ 0b64, Memory 0551, 00 -> 0d
+4128: Ins c8 @ 0b66, Y 41 -> 42
+4129: Ins 91 @ 0b67, Memory 0552, 00 -> 0d
+4130: Ins c8 @ 0b69, Y 42 -> 43
+4131: Ins 91 @ 0b6a, Memory 0553, 00 -> 0d
+4132: Ins 98 @ 0b6c, AC 0d -> 43
+4134: Ins 69 @ 0b6e, AC 43 -> 60
+4135: Ins a8 @ 0b70, Y 43 -> 60
+4136: Ins bd @ 0b71, AC 60 -> 0d
+4137: Ins 91 @ 0b74, Memory 0570, 00 -> 0d
+4138: Ins c8 @ 0b76, Y 60 -> 61
+4139: Ins 91 @ 0b77, Memory 0571, 00 -> 0d
+4140: Ins c8 @ 0b79, Y 61 -> 62
+4141: Ins 91 @ 0b7a, Memory 0572, 00 -> 0d
+4142: Ins c8 @ 0b7c, Y 62 -> 63
+4143: Ins 91 @ 0b7d, Memory 0573, 00 -> 0d
+4144: Ins e8 @ 0b7f, X 34 -> 35
+4146: Ins a5 @ 0b81, AC 0d -> 10
+4147: Ins 69 @ 0b83, AC 10 -> 14
+4148: Ins 85 @ 0b85, Memory 0002, 10 -> 14
+4149: Ins a5 @ 0b87, AC 14 -> 05
+4152: Ins 8a @ 0b8d, AC 05 -> 35
+4153: Ins 29 @ 0b8e, AC 35 -> 05
+4155: Ins e0 @ 0b9f, SR 20 -> a0
+4157: Ins a0 @ 0b36, Y 63 -> 00
+4157: Ins a0 @ 0b36, SR a0 -> 22
+4158: Ins bd @ 0b38, AC 05 -> 0d
+4158: Ins bd @ 0b38, SR 22 -> 20
+4159: Ins 91 @ 0b3b, Memory 0514, 00 -> 0d
+4160: Ins c8 @ 0b3d, Y 00 -> 01
+4161: Ins 91 @ 0b3e, Memory 0515, 00 -> 0d
+4162: Ins c8 @ 0b40, Y 01 -> 02
+4163: Ins 91 @ 0b41, Memory 0516, 00 -> 0d
+4164: Ins c8 @ 0b43, Y 02 -> 03
+4165: Ins 91 @ 0b44, Memory 0517, 00 -> 0d
+4166: Ins 98 @ 0b46, AC 0d -> 03
+4168: Ins 69 @ 0b48, AC 03 -> 20
+4169: Ins a8 @ 0b4a, Y 03 -> 20
+4170: Ins bd @ 0b4b, AC 20 -> 0d
+4171: Ins 91 @ 0b4e, Memory 0534, 00 -> 0d
+4172: Ins c8 @ 0b50, Y 20 -> 21
+4173: Ins 91 @ 0b51, Memory 0535, 00 -> 0d
+4174: Ins c8 @ 0b53, Y 21 -> 22
+4175: Ins 91 @ 0b54, Memory 0536, 00 -> 0d
+4176: Ins c8 @ 0b56, Y 22 -> 23
+4177: Ins 91 @ 0b57, Memory 0537, 00 -> 0d
+4178: Ins 98 @ 0b59, AC 0d -> 23
+4180: Ins 69 @ 0b5b, AC 23 -> 40
+4181: Ins a8 @ 0b5d, Y 23 -> 40
+4182: Ins bd @ 0b5e, AC 40 -> 0d
+4183: Ins 91 @ 0b61, Memory 0554, 00 -> 0d
+4184: Ins c8 @ 0b63, Y 40 -> 41
+4185: Ins 91 @ 0b64, Memory 0555, 00 -> 0d
+4186: Ins c8 @ 0b66, Y 41 -> 42
+4187: Ins 91 @ 0b67, Memory 0556, 00 -> 0d
+4188: Ins c8 @ 0b69, Y 42 -> 43
+4189: Ins 91 @ 0b6a, Memory 0557, 00 -> 0d
+4190: Ins 98 @ 0b6c, AC 0d -> 43
+4192: Ins 69 @ 0b6e, AC 43 -> 60
+4193: Ins a8 @ 0b70, Y 43 -> 60
+4194: Ins bd @ 0b71, AC 60 -> 0d
+4195: Ins 91 @ 0b74, Memory 0574, 00 -> 0d
+4196: Ins c8 @ 0b76, Y 60 -> 61
+4197: Ins 91 @ 0b77, Memory 0575, 00 -> 0d
+4198: Ins c8 @ 0b79, Y 61 -> 62
+4199: Ins 91 @ 0b7a, Memory 0576, 00 -> 0d
+4200: Ins c8 @ 0b7c, Y 62 -> 63
+4201: Ins 91 @ 0b7d, Memory 0577, 00 -> 0d
+4202: Ins e8 @ 0b7f, X 35 -> 36
+4204: Ins a5 @ 0b81, AC 0d -> 14
+4205: Ins 69 @ 0b83, AC 14 -> 18
+4206: Ins 85 @ 0b85, Memory 0002, 14 -> 18
+4207: Ins a5 @ 0b87, AC 18 -> 05
+4210: Ins 8a @ 0b8d, AC 05 -> 36
+4211: Ins 29 @ 0b8e, AC 36 -> 06
+4213: Ins e0 @ 0b9f, SR 20 -> a0
+4215: Ins a0 @ 0b36, Y 63 -> 00
+4215: Ins a0 @ 0b36, SR a0 -> 22
+4216: Ins bd @ 0b38, AC 06 -> 05
+4216: Ins bd @ 0b38, SR 22 -> 20
+4217: Ins 91 @ 0b3b, Memory 0518, 00 -> 05
+4218: Ins c8 @ 0b3d, Y 00 -> 01
+4219: Ins 91 @ 0b3e, Memory 0519, 00 -> 05
+4220: Ins c8 @ 0b40, Y 01 -> 02
+4221: Ins 91 @ 0b41, Memory 051a, 00 -> 05
+4222: Ins c8 @ 0b43, Y 02 -> 03
+4223: Ins 91 @ 0b44, Memory 051b, 00 -> 05
+4224: Ins 98 @ 0b46, AC 05 -> 03
+4226: Ins 69 @ 0b48, AC 03 -> 20
+4227: Ins a8 @ 0b4a, Y 03 -> 20
+4228: Ins bd @ 0b4b, AC 20 -> 05
+4229: Ins 91 @ 0b4e, Memory 0538, 00 -> 05
+4230: Ins c8 @ 0b50, Y 20 -> 21
+4231: Ins 91 @ 0b51, Memory 0539, 00 -> 05
+4232: Ins c8 @ 0b53, Y 21 -> 22
+4233: Ins 91 @ 0b54, Memory 053a, 00 -> 05
+4234: Ins c8 @ 0b56, Y 22 -> 23
+4235: Ins 91 @ 0b57, Memory 053b, 00 -> 05
+4236: Ins 98 @ 0b59, AC 05 -> 23
+4238: Ins 69 @ 0b5b, AC 23 -> 40
+4239: Ins a8 @ 0b5d, Y 23 -> 40
+4240: Ins bd @ 0b5e, AC 40 -> 05
+4241: Ins 91 @ 0b61, Memory 0558, 00 -> 05
+4242: Ins c8 @ 0b63, Y 40 -> 41
+4243: Ins 91 @ 0b64, Memory 0559, 00 -> 05
+4244: Ins c8 @ 0b66, Y 41 -> 42
+4245: Ins 91 @ 0b67, Memory 055a, 00 -> 05
+4246: Ins c8 @ 0b69, Y 42 -> 43
+4247: Ins 91 @ 0b6a, Memory 055b, 00 -> 05
+4248: Ins 98 @ 0b6c, AC 05 -> 43
+4250: Ins 69 @ 0b6e, AC 43 -> 60
+4251: Ins a8 @ 0b70, Y 43 -> 60
+4252: Ins bd @ 0b71, AC 60 -> 05
+4253: Ins 91 @ 0b74, Memory 0578, 00 -> 05
+4254: Ins c8 @ 0b76, Y 60 -> 61
+4255: Ins 91 @ 0b77, Memory 0579, 00 -> 05
+4256: Ins c8 @ 0b79, Y 61 -> 62
+4257: Ins 91 @ 0b7a, Memory 057a, 00 -> 05
+4258: Ins c8 @ 0b7c, Y 62 -> 63
+4259: Ins 91 @ 0b7d, Memory 057b, 00 -> 05
+4260: Ins e8 @ 0b7f, X 36 -> 37
+4262: Ins a5 @ 0b81, AC 05 -> 18
+4263: Ins 69 @ 0b83, AC 18 -> 1c
+4264: Ins 85 @ 0b85, Memory 0002, 18 -> 1c
+4265: Ins a5 @ 0b87, AC 1c -> 05
+4268: Ins 8a @ 0b8d, AC 05 -> 37
+4269: Ins 29 @ 0b8e, AC 37 -> 07
+4271: Ins e0 @ 0b9f, SR 20 -> a0
+4273: Ins a0 @ 0b36, Y 63 -> 00
+4273: Ins a0 @ 0b36, SR a0 -> 22
+4274: Ins bd @ 0b38, AC 07 -> 05
+4274: Ins bd @ 0b38, SR 22 -> 20
+4275: Ins 91 @ 0b3b, Memory 051c, 00 -> 05
+4276: Ins c8 @ 0b3d, Y 00 -> 01
+4277: Ins 91 @ 0b3e, Memory 051d, 00 -> 05
+4278: Ins c8 @ 0b40, Y 01 -> 02
+4279: Ins 91 @ 0b41, Memory 051e, 00 -> 05
+4280: Ins c8 @ 0b43, Y 02 -> 03
+4281: Ins 91 @ 0b44, Memory 051f, 00 -> 05
+4282: Ins 98 @ 0b46, AC 05 -> 03
+4284: Ins 69 @ 0b48, AC 03 -> 20
+4285: Ins a8 @ 0b4a, Y 03 -> 20
+4286: Ins bd @ 0b4b, AC 20 -> 05
+4287: Ins 91 @ 0b4e, Memory 053c, 00 -> 05
+4288: Ins c8 @ 0b50, Y 20 -> 21
+4289: Ins 91 @ 0b51, Memory 053d, 00 -> 05
+4290: Ins c8 @ 0b53, Y 21 -> 22
+4291: Ins 91 @ 0b54, Memory 053e, 00 -> 05
+4292: Ins c8 @ 0b56, Y 22 -> 23
+4293: Ins 91 @ 0b57, Memory 053f, 00 -> 05
+4294: Ins 98 @ 0b59, AC 05 -> 23
+4296: Ins 69 @ 0b5b, AC 23 -> 40
+4297: Ins a8 @ 0b5d, Y 23 -> 40
+4298: Ins bd @ 0b5e, AC 40 -> 05
+4299: Ins 91 @ 0b61, Memory 055c, 00 -> 05
+4300: Ins c8 @ 0b63, Y 40 -> 41
+4301: Ins 91 @ 0b64, Memory 055d, 00 -> 05
+4302: Ins c8 @ 0b66, Y 41 -> 42
+4303: Ins 91 @ 0b67, Memory 055e, 00 -> 05
+4304: Ins c8 @ 0b69, Y 42 -> 43
+4305: Ins 91 @ 0b6a, Memory 055f, 00 -> 05
+4306: Ins 98 @ 0b6c, AC 05 -> 43
+4308: Ins 69 @ 0b6e, AC 43 -> 60
+4309: Ins a8 @ 0b70, Y 43 -> 60
+4310: Ins bd @ 0b71, AC 60 -> 05
+4311: Ins 91 @ 0b74, Memory 057c, 00 -> 05
+4312: Ins c8 @ 0b76, Y 60 -> 61
+4313: Ins 91 @ 0b77, Memory 057d, 00 -> 05
+4314: Ins c8 @ 0b79, Y 61 -> 62
+4315: Ins 91 @ 0b7a, Memory 057e, 00 -> 05
+4316: Ins c8 @ 0b7c, Y 62 -> 63
+4317: Ins 91 @ 0b7d, Memory 057f, 00 -> 05
+4318: Ins e8 @ 0b7f, X 37 -> 38
+4320: Ins a5 @ 0b81, AC 05 -> 1c
+4321: Ins 69 @ 0b83, AC 1c -> 20
+4322: Ins 85 @ 0b85, Memory 0002, 1c -> 20
+4323: Ins a5 @ 0b87, AC 20 -> 05
+4326: Ins 8a @ 0b8d, AC 05 -> 38
+4327: Ins 29 @ 0b8e, AC 38 -> 00
+4327: Ins 29 @ 0b8e, SR 20 -> 22
+4330: Ins a5 @ 0b93, AC 00 -> 20
+4330: Ins a5 @ 0b93, SR 22 -> 20
+4331: Ins 69 @ 0b95, AC 20 -> 80
+4331: Ins 69 @ 0b95, SR 20 -> e0
+4332: Ins 85 @ 0b97, Memory 0002, 20 -> 80
+4333: Ins a5 @ 0b99, AC 80 -> 05
+4333: Ins a5 @ 0b99, SR e0 -> 60
+4334: Ins 69 @ 0b9b, SR 60 -> 20
+4336: Ins e0 @ 0b9f, SR 20 -> a0
+4338: Ins a0 @ 0b36, Y 63 -> 00
+4338: Ins a0 @ 0b36, SR a0 -> 22
+4339: Ins bd @ 0b38, SR 22 -> 20
+4340: Ins 91 @ 0b3b, Memory 0580, 00 -> 05
+4341: Ins c8 @ 0b3d, Y 00 -> 01
+4342: Ins 91 @ 0b3e, Memory 0581, 00 -> 05
+4343: Ins c8 @ 0b40, Y 01 -> 02
+4344: Ins 91 @ 0b41, Memory 0582, 00 -> 05
+4345: Ins c8 @ 0b43, Y 02 -> 03
+4346: Ins 91 @ 0b44, Memory 0583, 00 -> 05
+4347: Ins 98 @ 0b46, AC 05 -> 03
+4349: Ins 69 @ 0b48, AC 03 -> 20
+4350: Ins a8 @ 0b4a, Y 03 -> 20
+4351: Ins bd @ 0b4b, AC 20 -> 05
+4352: Ins 91 @ 0b4e, Memory 05a0, 00 -> 05
+4353: Ins c8 @ 0b50, Y 20 -> 21
+4354: Ins 91 @ 0b51, Memory 05a1, 00 -> 05
+4355: Ins c8 @ 0b53, Y 21 -> 22
+4356: Ins 91 @ 0b54, Memory 05a2, 00 -> 05
+4357: Ins c8 @ 0b56, Y 22 -> 23
+4358: Ins 91 @ 0b57, Memory 05a3, 00 -> 05
+4359: Ins 98 @ 0b59, AC 05 -> 23
+4361: Ins 69 @ 0b5b, AC 23 -> 40
+4362: Ins a8 @ 0b5d, Y 23 -> 40
+4363: Ins bd @ 0b5e, AC 40 -> 05
+4364: Ins 91 @ 0b61, Memory 05c0, 00 -> 05
+4365: Ins c8 @ 0b63, Y 40 -> 41
+4366: Ins 91 @ 0b64, Memory 05c1, 00 -> 05
+4367: Ins c8 @ 0b66, Y 41 -> 42
+4368: Ins 91 @ 0b67, Memory 05c2, 00 -> 05
+4369: Ins c8 @ 0b69, Y 42 -> 43
+4370: Ins 91 @ 0b6a, Memory 05c3, 00 -> 05
+4371: Ins 98 @ 0b6c, AC 05 -> 43
+4373: Ins 69 @ 0b6e, AC 43 -> 60
+4374: Ins a8 @ 0b70, Y 43 -> 60
+4375: Ins bd @ 0b71, AC 60 -> 05
+4376: Ins 91 @ 0b74, Memory 05e0, 00 -> 05
+4377: Ins c8 @ 0b76, Y 60 -> 61
+4378: Ins 91 @ 0b77, Memory 05e1, 00 -> 05
+4379: Ins c8 @ 0b79, Y 61 -> 62
+4380: Ins 91 @ 0b7a, Memory 05e2, 00 -> 05
+4381: Ins c8 @ 0b7c, Y 62 -> 63
+4382: Ins 91 @ 0b7d, Memory 05e3, 00 -> 05
+4383: Ins e8 @ 0b7f, X 38 -> 39
+4385: Ins a5 @ 0b81, AC 05 -> 80
+4385: Ins a5 @ 0b81, SR 20 -> a0
+4386: Ins 69 @ 0b83, AC 80 -> 84
+4387: Ins 85 @ 0b85, Memory 0002, 80 -> 84
+4388: Ins a5 @ 0b87, AC 84 -> 05
+4388: Ins a5 @ 0b87, SR a0 -> 20
+4391: Ins 8a @ 0b8d, AC 05 -> 39
+4392: Ins 29 @ 0b8e, AC 39 -> 01
+4394: Ins e0 @ 0b9f, SR 20 -> a0
+4396: Ins a0 @ 0b36, Y 63 -> 00
+4396: Ins a0 @ 0b36, SR a0 -> 22
+4397: Ins bd @ 0b38, AC 01 -> 05
+4397: Ins bd @ 0b38, SR 22 -> 20
+4398: Ins 91 @ 0b3b, Memory 0584, 00 -> 05
+4399: Ins c8 @ 0b3d, Y 00 -> 01
+4400: Ins 91 @ 0b3e, Memory 0585, 00 -> 05
+4401: Ins c8 @ 0b40, Y 01 -> 02
+4402: Ins 91 @ 0b41, Memory 0586, 00 -> 05
+4403: Ins c8 @ 0b43, Y 02 -> 03
+4404: Ins 91 @ 0b44, Memory 0587, 00 -> 05
+4405: Ins 98 @ 0b46, AC 05 -> 03
+4407: Ins 69 @ 0b48, AC 03 -> 20
+4408: Ins a8 @ 0b4a, Y 03 -> 20
+4409: Ins bd @ 0b4b, AC 20 -> 05
+4410: Ins 91 @ 0b4e, Memory 05a4, 00 -> 05
+4411: Ins c8 @ 0b50, Y 20 -> 21
+4412: Ins 91 @ 0b51, Memory 05a5, 00 -> 05
+4413: Ins c8 @ 0b53, Y 21 -> 22
+4414: Ins 91 @ 0b54, Memory 05a6, 00 -> 05
+4415: Ins c8 @ 0b56, Y 22 -> 23
+4416: Ins 91 @ 0b57, Memory 05a7, 00 -> 05
+4417: Ins 98 @ 0b59, AC 05 -> 23
+4419: Ins 69 @ 0b5b, AC 23 -> 40
+4420: Ins a8 @ 0b5d, Y 23 -> 40
+4421: Ins bd @ 0b5e, AC 40 -> 05
+4422: Ins 91 @ 0b61, Memory 05c4, 00 -> 05
+4423: Ins c8 @ 0b63, Y 40 -> 41
+4424: Ins 91 @ 0b64, Memory 05c5, 00 -> 05
+4425: Ins c8 @ 0b66, Y 41 -> 42
+4426: Ins 91 @ 0b67, Memory 05c6, 00 -> 05
+4427: Ins c8 @ 0b69, Y 42 -> 43
+4428: Ins 91 @ 0b6a, Memory 05c7, 00 -> 05
+4429: Ins 98 @ 0b6c, AC 05 -> 43
+4431: Ins 69 @ 0b6e, AC 43 -> 60
+4432: Ins a8 @ 0b70, Y 43 -> 60
+4433: Ins bd @ 0b71, AC 60 -> 05
+4434: Ins 91 @ 0b74, Memory 05e4, 00 -> 05
+4435: Ins c8 @ 0b76, Y 60 -> 61
+4436: Ins 91 @ 0b77, Memory 05e5, 00 -> 05
+4437: Ins c8 @ 0b79, Y 61 -> 62
+4438: Ins 91 @ 0b7a, Memory 05e6, 00 -> 05
+4439: Ins c8 @ 0b7c, Y 62 -> 63
+4440: Ins 91 @ 0b7d, Memory 05e7, 00 -> 05
+4441: Ins e8 @ 0b7f, X 39 -> 3a
+4443: Ins a5 @ 0b81, AC 05 -> 84
+4443: Ins a5 @ 0b81, SR 20 -> a0
+4444: Ins 69 @ 0b83, AC 84 -> 88
+4445: Ins 85 @ 0b85, Memory 0002, 84 -> 88
+4446: Ins a5 @ 0b87, AC 88 -> 05
+4446: Ins a5 @ 0b87, SR a0 -> 20
+4449: Ins 8a @ 0b8d, AC 05 -> 3a
+4450: Ins 29 @ 0b8e, AC 3a -> 02
+4452: Ins e0 @ 0b9f, SR 20 -> a0
+4454: Ins a0 @ 0b36, Y 63 -> 00
+4454: Ins a0 @ 0b36, SR a0 -> 22
+4455: Ins bd @ 0b38, AC 02 -> 05
+4455: Ins bd @ 0b38, SR 22 -> 20
+4456: Ins 91 @ 0b3b, Memory 0588, 00 -> 05
+4457: Ins c8 @ 0b3d, Y 00 -> 01
+4458: Ins 91 @ 0b3e, Memory 0589, 00 -> 05
+4459: Ins c8 @ 0b40, Y 01 -> 02
+4460: Ins 91 @ 0b41, Memory 058a, 00 -> 05
+4461: Ins c8 @ 0b43, Y 02 -> 03
+4462: Ins 91 @ 0b44, Memory 058b, 00 -> 05
+4463: Ins 98 @ 0b46, AC 05 -> 03
+4465: Ins 69 @ 0b48, AC 03 -> 20
+4466: Ins a8 @ 0b4a, Y 03 -> 20
+4467: Ins bd @ 0b4b, AC 20 -> 05
+4468: Ins 91 @ 0b4e, Memory 05a8, 00 -> 05
+4469: Ins c8 @ 0b50, Y 20 -> 21
+4470: Ins 91 @ 0b51, Memory 05a9, 00 -> 05
+4471: Ins c8 @ 0b53, Y 21 -> 22
+4472: Ins 91 @ 0b54, Memory 05aa, 00 -> 05
+4473: Ins c8 @ 0b56, Y 22 -> 23
+4474: Ins 91 @ 0b57, Memory 05ab, 00 -> 05
+4475: Ins 98 @ 0b59, AC 05 -> 23
+4477: Ins 69 @ 0b5b, AC 23 -> 40
+4478: Ins a8 @ 0b5d, Y 23 -> 40
+4479: Ins bd @ 0b5e, AC 40 -> 05
+4480: Ins 91 @ 0b61, Memory 05c8, 00 -> 05
+4481: Ins c8 @ 0b63, Y 40 -> 41
+4482: Ins 91 @ 0b64, Memory 05c9, 00 -> 05
+4483: Ins c8 @ 0b66, Y 41 -> 42
+4484: Ins 91 @ 0b67, Memory 05ca, 00 -> 05
+4485: Ins c8 @ 0b69, Y 42 -> 43
+4486: Ins 91 @ 0b6a, Memory 05cb, 00 -> 05
+4487: Ins 98 @ 0b6c, AC 05 -> 43
+4489: Ins 69 @ 0b6e, AC 43 -> 60
+4490: Ins a8 @ 0b70, Y 43 -> 60
+4491: Ins bd @ 0b71, AC 60 -> 05
+4492: Ins 91 @ 0b74, Memory 05e8, 00 -> 05
+4493: Ins c8 @ 0b76, Y 60 -> 61
+4494: Ins 91 @ 0b77, Memory 05e9, 00 -> 05
+4495: Ins c8 @ 0b79, Y 61 -> 62
+4496: Ins 91 @ 0b7a, Memory 05ea, 00 -> 05
+4497: Ins c8 @ 0b7c, Y 62 -> 63
+4498: Ins 91 @ 0b7d, Memory 05eb, 00 -> 05
+4499: Ins e8 @ 0b7f, X 3a -> 3b
+4501: Ins a5 @ 0b81, AC 05 -> 88
+4501: Ins a5 @ 0b81, SR 20 -> a0
+4502: Ins 69 @ 0b83, AC 88 -> 8c
+4503: Ins 85 @ 0b85, Memory 0002, 88 -> 8c
+4504: Ins a5 @ 0b87, AC 8c -> 05
+4504: Ins a5 @ 0b87, SR a0 -> 20
+4507: Ins 8a @ 0b8d, AC 05 -> 3b
+4508: Ins 29 @ 0b8e, AC 3b -> 03
+4510: Ins e0 @ 0b9f, SR 20 -> a0
+4512: Ins a0 @ 0b36, Y 63 -> 00
+4512: Ins a0 @ 0b36, SR a0 -> 22
+4513: Ins bd @ 0b38, AC 03 -> 05
+4513: Ins bd @ 0b38, SR 22 -> 20
+4514: Ins 91 @ 0b3b, Memory 058c, 00 -> 05
+4515: Ins c8 @ 0b3d, Y 00 -> 01
+4516: Ins 91 @ 0b3e, Memory 058d, 00 -> 05
+4517: Ins c8 @ 0b40, Y 01 -> 02
+4518: Ins 91 @ 0b41, Memory 058e, 00 -> 05
+4519: Ins c8 @ 0b43, Y 02 -> 03
+4520: Ins 91 @ 0b44, Memory 058f, 00 -> 05
+4521: Ins 98 @ 0b46, AC 05 -> 03
+4523: Ins 69 @ 0b48, AC 03 -> 20
+4524: Ins a8 @ 0b4a, Y 03 -> 20
+4525: Ins bd @ 0b4b, AC 20 -> 05
+4526: Ins 91 @ 0b4e, Memory 05ac, 00 -> 05
+4527: Ins c8 @ 0b50, Y 20 -> 21
+4528: Ins 91 @ 0b51, Memory 05ad, 00 -> 05
+4529: Ins c8 @ 0b53, Y 21 -> 22
+4530: Ins 91 @ 0b54, Memory 05ae, 00 -> 05
+4531: Ins c8 @ 0b56, Y 22 -> 23
+4532: Ins 91 @ 0b57, Memory 05af, 00 -> 05
+4533: Ins 98 @ 0b59, AC 05 -> 23
+4535: Ins 69 @ 0b5b, AC 23 -> 40
+4536: Ins a8 @ 0b5d, Y 23 -> 40
+4537: Ins bd @ 0b5e, AC 40 -> 05
+4538: Ins 91 @ 0b61, Memory 05cc, 00 -> 05
+4539: Ins c8 @ 0b63, Y 40 -> 41
+4540: Ins 91 @ 0b64, Memory 05cd, 00 -> 05
+4541: Ins c8 @ 0b66, Y 41 -> 42
+4542: Ins 91 @ 0b67, Memory 05ce, 00 -> 05
+4543: Ins c8 @ 0b69, Y 42 -> 43
+4544: Ins 91 @ 0b6a, Memory 05cf, 00 -> 05
+4545: Ins 98 @ 0b6c, AC 05 -> 43
+4547: Ins 69 @ 0b6e, AC 43 -> 60
+4548: Ins a8 @ 0b70, Y 43 -> 60
+4549: Ins bd @ 0b71, AC 60 -> 05
+4550: Ins 91 @ 0b74, Memory 05ec, 00 -> 05
+4551: Ins c8 @ 0b76, Y 60 -> 61
+4552: Ins 91 @ 0b77, Memory 05ed, 00 -> 05
+4553: Ins c8 @ 0b79, Y 61 -> 62
+4554: Ins 91 @ 0b7a, Memory 05ee, 00 -> 05
+4555: Ins c8 @ 0b7c, Y 62 -> 63
+4556: Ins 91 @ 0b7d, Memory 05ef, 00 -> 05
+4557: Ins e8 @ 0b7f, X 3b -> 3c
+4559: Ins a5 @ 0b81, AC 05 -> 8c
+4559: Ins a5 @ 0b81, SR 20 -> a0
+4560: Ins 69 @ 0b83, AC 8c -> 90
+4561: Ins 85 @ 0b85, Memory 0002, 8c -> 90
+4562: Ins a5 @ 0b87, AC 90 -> 05
+4562: Ins a5 @ 0b87, SR a0 -> 20
+4565: Ins 8a @ 0b8d, AC 05 -> 3c
+4566: Ins 29 @ 0b8e, AC 3c -> 04
+4568: Ins e0 @ 0b9f, SR 20 -> a0
+4570: Ins a0 @ 0b36, Y 63 -> 00
+4570: Ins a0 @ 0b36, SR a0 -> 22
+4571: Ins bd @ 0b38, AC 04 -> 05
+4571: Ins bd @ 0b38, SR 22 -> 20
+4572: Ins 91 @ 0b3b, Memory 0590, 00 -> 05
+4573: Ins c8 @ 0b3d, Y 00 -> 01
+4574: Ins 91 @ 0b3e, Memory 0591, 00 -> 05
+4575: Ins c8 @ 0b40, Y 01 -> 02
+4576: Ins 91 @ 0b41, Memory 0592, 00 -> 05
+4577: Ins c8 @ 0b43, Y 02 -> 03
+4578: Ins 91 @ 0b44, Memory 0593, 00 -> 05
+4579: Ins 98 @ 0b46, AC 05 -> 03
+4581: Ins 69 @ 0b48, AC 03 -> 20
+4582: Ins a8 @ 0b4a, Y 03 -> 20
+4583: Ins bd @ 0b4b, AC 20 -> 05
+4584: Ins 91 @ 0b4e, Memory 05b0, 00 -> 05
+4585: Ins c8 @ 0b50, Y 20 -> 21
+4586: Ins 91 @ 0b51, Memory 05b1, 00 -> 05
+4587: Ins c8 @ 0b53, Y 21 -> 22
+4588: Ins 91 @ 0b54, Memory 05b2, 00 -> 05
+4589: Ins c8 @ 0b56, Y 22 -> 23
+4590: Ins 91 @ 0b57, Memory 05b3, 00 -> 05
+4591: Ins 98 @ 0b59, AC 05 -> 23
+4593: Ins 69 @ 0b5b, AC 23 -> 40
+4594: Ins a8 @ 0b5d, Y 23 -> 40
+4595: Ins bd @ 0b5e, AC 40 -> 05
+4596: Ins 91 @ 0b61, Memory 05d0, 00 -> 05
+4597: Ins c8 @ 0b63, Y 40 -> 41
+4598: Ins 91 @ 0b64, Memory 05d1, 00 -> 05
+4599: Ins c8 @ 0b66, Y 41 -> 42
+4600: Ins 91 @ 0b67, Memory 05d2, 00 -> 05
+4601: Ins c8 @ 0b69, Y 42 -> 43
+4602: Ins 91 @ 0b6a, Memory 05d3, 00 -> 05
+4603: Ins 98 @ 0b6c, AC 05 -> 43
+4605: Ins 69 @ 0b6e, AC 43 -> 60
+4606: Ins a8 @ 0b70, Y 43 -> 60
+4607: Ins bd @ 0b71, AC 60 -> 05
+4608: Ins 91 @ 0b74, Memory 05f0, 00 -> 05
+4609: Ins c8 @ 0b76, Y 60 -> 61
+4610: Ins 91 @ 0b77, Memory 05f1, 00 -> 05
+4611: Ins c8 @ 0b79, Y 61 -> 62
+4612: Ins 91 @ 0b7a, Memory 05f2, 00 -> 05
+4613: Ins c8 @ 0b7c, Y 62 -> 63
+4614: Ins 91 @ 0b7d, Memory 05f3, 00 -> 05
+4615: Ins e8 @ 0b7f, X 3c -> 3d
+4617: Ins a5 @ 0b81, AC 05 -> 90
+4617: Ins a5 @ 0b81, SR 20 -> a0
+4618: Ins 69 @ 0b83, AC 90 -> 94
+4619: Ins 85 @ 0b85, Memory 0002, 90 -> 94
+4620: Ins a5 @ 0b87, AC 94 -> 05
+4620: Ins a5 @ 0b87, SR a0 -> 20
+4623: Ins 8a @ 0b8d, AC 05 -> 3d
+4624: Ins 29 @ 0b8e, AC 3d -> 05
+4626: Ins e0 @ 0b9f, SR 20 -> a0
+4628: Ins a0 @ 0b36, Y 63 -> 00
+4628: Ins a0 @ 0b36, SR a0 -> 22
+4629: Ins bd @ 0b38, SR 22 -> 20
+4630: Ins 91 @ 0b3b, Memory 0594, 00 -> 05
+4631: Ins c8 @ 0b3d, Y 00 -> 01
+4632: Ins 91 @ 0b3e, Memory 0595, 00 -> 05
+4633: Ins c8 @ 0b40, Y 01 -> 02
+4634: Ins 91 @ 0b41, Memory 0596, 00 -> 05
+4635: Ins c8 @ 0b43, Y 02 -> 03
+4636: Ins 91 @ 0b44, Memory 0597, 00 -> 05
+4637: Ins 98 @ 0b46, AC 05 -> 03
+4639: Ins 69 @ 0b48, AC 03 -> 20
+4640: Ins a8 @ 0b4a, Y 03 -> 20
+4641: Ins bd @ 0b4b, AC 20 -> 05
+4642: Ins 91 @ 0b4e, Memory 05b4, 00 -> 05
+4643: Ins c8 @ 0b50, Y 20 -> 21
+4644: Ins 91 @ 0b51, Memory 05b5, 00 -> 05
+4645: Ins c8 @ 0b53, Y 21 -> 22
+4646: Ins 91 @ 0b54, Memory 05b6, 00 -> 05
+4647: Ins c8 @ 0b56, Y 22 -> 23
+4648: Ins 91 @ 0b57, Memory 05b7, 00 -> 05
+4649: Ins 98 @ 0b59, AC 05 -> 23
+4651: Ins 69 @ 0b5b, AC 23 -> 40
+4652: Ins a8 @ 0b5d, Y 23 -> 40
+4653: Ins bd @ 0b5e, AC 40 -> 05
+4654: Ins 91 @ 0b61, Memory 05d4, 00 -> 05
+4655: Ins c8 @ 0b63, Y 40 -> 41
+4656: Ins 91 @ 0b64, Memory 05d5, 00 -> 05
+4657: Ins c8 @ 0b66, Y 41 -> 42
+4658: Ins 91 @ 0b67, Memory 05d6, 00 -> 05
+4659: Ins c8 @ 0b69, Y 42 -> 43
+4660: Ins 91 @ 0b6a, Memory 05d7, 00 -> 05
+4661: Ins 98 @ 0b6c, AC 05 -> 43
+4663: Ins 69 @ 0b6e, AC 43 -> 60
+4664: Ins a8 @ 0b70, Y 43 -> 60
+4665: Ins bd @ 0b71, AC 60 -> 05
+4666: Ins 91 @ 0b74, Memory 05f4, 00 -> 05
+4667: Ins c8 @ 0b76, Y 60 -> 61
+4668: Ins 91 @ 0b77, Memory 05f5, 00 -> 05
+4669: Ins c8 @ 0b79, Y 61 -> 62
+4670: Ins 91 @ 0b7a, Memory 05f6, 00 -> 05
+4671: Ins c8 @ 0b7c, Y 62 -> 63
+4672: Ins 91 @ 0b7d, Memory 05f7, 00 -> 05
+4673: Ins e8 @ 0b7f, X 3d -> 3e
+4675: Ins a5 @ 0b81, AC 05 -> 94
+4675: Ins a5 @ 0b81, SR 20 -> a0
+4676: Ins 69 @ 0b83, AC 94 -> 98
+4677: Ins 85 @ 0b85, Memory 0002, 94 -> 98
+4678: Ins a5 @ 0b87, AC 98 -> 05
+4678: Ins a5 @ 0b87, SR a0 -> 20
+4681: Ins 8a @ 0b8d, AC 05 -> 3e
+4682: Ins 29 @ 0b8e, AC 3e -> 06
+4684: Ins e0 @ 0b9f, SR 20 -> a0
+4686: Ins a0 @ 0b36, Y 63 -> 00
+4686: Ins a0 @ 0b36, SR a0 -> 22
+4687: Ins bd @ 0b38, AC 06 -> 05
+4687: Ins bd @ 0b38, SR 22 -> 20
+4688: Ins 91 @ 0b3b, Memory 0598, 00 -> 05
+4689: Ins c8 @ 0b3d, Y 00 -> 01
+4690: Ins 91 @ 0b3e, Memory 0599, 00 -> 05
+4691: Ins c8 @ 0b40, Y 01 -> 02
+4692: Ins 91 @ 0b41, Memory 059a, 00 -> 05
+4693: Ins c8 @ 0b43, Y 02 -> 03
+4694: Ins 91 @ 0b44, Memory 059b, 00 -> 05
+4695: Ins 98 @ 0b46, AC 05 -> 03
+4697: Ins 69 @ 0b48, AC 03 -> 20
+4698: Ins a8 @ 0b4a, Y 03 -> 20
+4699: Ins bd @ 0b4b, AC 20 -> 05
+4700: Ins 91 @ 0b4e, Memory 05b8, 00 -> 05
+4701: Ins c8 @ 0b50, Y 20 -> 21
+4702: Ins 91 @ 0b51, Memory 05b9, 00 -> 05
+4703: Ins c8 @ 0b53, Y 21 -> 22
+4704: Ins 91 @ 0b54, Memory 05ba, 00 -> 05
+4705: Ins c8 @ 0b56, Y 22 -> 23
+4706: Ins 91 @ 0b57, Memory 05bb, 00 -> 05
+4707: Ins 98 @ 0b59, AC 05 -> 23
+4709: Ins 69 @ 0b5b, AC 23 -> 40
+4710: Ins a8 @ 0b5d, Y 23 -> 40
+4711: Ins bd @ 0b5e, AC 40 -> 05
+4712: Ins 91 @ 0b61, Memory 05d8, 00 -> 05
+4713: Ins c8 @ 0b63, Y 40 -> 41
+4714: Ins 91 @ 0b64, Memory 05d9, 00 -> 05
+4715: Ins c8 @ 0b66, Y 41 -> 42
+4716: Ins 91 @ 0b67, Memory 05da, 00 -> 05
+4717: Ins c8 @ 0b69, Y 42 -> 43
+4718: Ins 91 @ 0b6a, Memory 05db, 00 -> 05
+4719: Ins 98 @ 0b6c, AC 05 -> 43
+4721: Ins 69 @ 0b6e, AC 43 -> 60
+4722: Ins a8 @ 0b70, Y 43 -> 60
+4723: Ins bd @ 0b71, AC 60 -> 05
+4724: Ins 91 @ 0b74, Memory 05f8, 00 -> 05
+4725: Ins c8 @ 0b76, Y 60 -> 61
+4726: Ins 91 @ 0b77, Memory 05f9, 00 -> 05
+4727: Ins c8 @ 0b79, Y 61 -> 62
+4728: Ins 91 @ 0b7a, Memory 05fa, 00 -> 05
+4729: Ins c8 @ 0b7c, Y 62 -> 63
+4730: Ins 91 @ 0b7d, Memory 05fb, 00 -> 05
+4731: Ins e8 @ 0b7f, X 3e -> 3f
+4733: Ins a5 @ 0b81, AC 05 -> 98
+4733: Ins a5 @ 0b81, SR 20 -> a0
+4734: Ins 69 @ 0b83, AC 98 -> 9c
+4735: Ins 85 @ 0b85, Memory 0002, 98 -> 9c
+4736: Ins a5 @ 0b87, AC 9c -> 05
+4736: Ins a5 @ 0b87, SR a0 -> 20
+4739: Ins 8a @ 0b8d, AC 05 -> 3f
+4740: Ins 29 @ 0b8e, AC 3f -> 07
+4742: Ins e0 @ 0b9f, SR 20 -> a0
+4744: Ins a0 @ 0b36, Y 63 -> 00
+4744: Ins a0 @ 0b36, SR a0 -> 22
+4745: Ins bd @ 0b38, AC 07 -> 05
+4745: Ins bd @ 0b38, SR 22 -> 20
+4746: Ins 91 @ 0b3b, Memory 059c, 00 -> 05
+4747: Ins c8 @ 0b3d, Y 00 -> 01
+4748: Ins 91 @ 0b3e, Memory 059d, 00 -> 05
+4749: Ins c8 @ 0b40, Y 01 -> 02
+4750: Ins 91 @ 0b41, Memory 059e, 00 -> 05
+4751: Ins c8 @ 0b43, Y 02 -> 03
+4752: Ins 91 @ 0b44, Memory 059f, 00 -> 05
+4753: Ins 98 @ 0b46, AC 05 -> 03
+4755: Ins 69 @ 0b48, AC 03 -> 20
+4756: Ins a8 @ 0b4a, Y 03 -> 20
+4757: Ins bd @ 0b4b, AC 20 -> 05
+4758: Ins 91 @ 0b4e, Memory 05bc, 00 -> 05
+4759: Ins c8 @ 0b50, Y 20 -> 21
+4760: Ins 91 @ 0b51, Memory 05bd, 00 -> 05
+4761: Ins c8 @ 0b53, Y 21 -> 22
+4762: Ins 91 @ 0b54, Memory 05be, 00 -> 05
+4763: Ins c8 @ 0b56, Y 22 -> 23
+4764: Ins 91 @ 0b57, Memory 05bf, 00 -> 05
+4765: Ins 98 @ 0b59, AC 05 -> 23
+4767: Ins 69 @ 0b5b, AC 23 -> 40
+4768: Ins a8 @ 0b5d, Y 23 -> 40
+4769: Ins bd @ 0b5e, AC 40 -> 05
+4770: Ins 91 @ 0b61, Memory 05dc, 00 -> 05
+4771: Ins c8 @ 0b63, Y 40 -> 41
+4772: Ins 91 @ 0b64, Memory 05dd, 00 -> 05
+4773: Ins c8 @ 0b66, Y 41 -> 42
+4774: Ins 91 @ 0b67, Memory 05de, 00 -> 05
+4775: Ins c8 @ 0b69, Y 42 -> 43
+4776: Ins 91 @ 0b6a, Memory 05df, 00 -> 05
+4777: Ins 98 @ 0b6c, AC 05 -> 43
+4779: Ins 69 @ 0b6e, AC 43 -> 60
+4780: Ins a8 @ 0b70, Y 43 -> 60
+4781: Ins bd @ 0b71, AC 60 -> 05
+4782: Ins 91 @ 0b74, Memory 05fc, 00 -> 05
+4783: Ins c8 @ 0b76, Y 60 -> 61
+4784: Ins 91 @ 0b77, Memory 05fd, 00 -> 05
+4785: Ins c8 @ 0b79, Y 61 -> 62
+4786: Ins 91 @ 0b7a, Memory 05fe, 00 -> 05
+4787: Ins c8 @ 0b7c, Y 62 -> 63
+4788: Ins 91 @ 0b7d, Memory 05ff, 00 -> 05
+4789: Ins e8 @ 0b7f, X 3f -> 40
+4791: Ins a5 @ 0b81, AC 05 -> 9c
+4791: Ins a5 @ 0b81, SR 20 -> a0
+4792: Ins 69 @ 0b83, AC 9c -> a0
+4793: Ins 85 @ 0b85, Memory 0002, 9c -> a0
+4794: Ins a5 @ 0b87, AC a0 -> 05
+4794: Ins a5 @ 0b87, SR a0 -> 20
+4797: Ins 8a @ 0b8d, AC 05 -> 40
+4798: Ins 29 @ 0b8e, AC 40 -> 00
+4798: Ins 29 @ 0b8e, SR 20 -> 22
+4801: Ins a5 @ 0b93, AC 00 -> a0
+4801: Ins a5 @ 0b93, SR 22 -> a0
+4802: Ins 69 @ 0b95, AC a0 -> 00
+4802: Ins 69 @ 0b95, SR a0 -> 23
+4803: Ins 85 @ 0b97, Memory 0002, a0 -> 00
+4804: Ins a5 @ 0b99, AC 00 -> 05
+4804: Ins a5 @ 0b99, SR 23 -> 21
+4805: Ins 69 @ 0b9b, AC 05 -> 06
+4805: Ins 69 @ 0b9b, SR 21 -> 20
+4806: Ins 85 @ 0b9d, Memory 0003, 05 -> 06
+4807: Ins e0 @ 0b9f, SR 20 -> 23
+4809: Ins ad @ 0ba3, AC 06 -> ff
+4809: Ins ad @ 0ba3, SR 23 -> a1
+4813: Ins 20 @ 06d3, Memory 01fe, d2 -> d5
+4814: Ins ad @ 09ff, AC ff -> 00
+4814: Ins ad @ 09ff, SR a1 -> 23
+4815: Ins ae @ 0a02, X 40 -> 04
+4815: Ins ae @ 0a02, SR 23 -> 21
+4816: Ins ac @ 0a05, Y 63 -> 04
+4817: Ins 20 @ 0a08, Memory 01fc, 17 -> 0a
+4818: Ins 85 @ 0a19, Memory 0006, ff -> 00
+4819: Ins 98 @ 0a1b, AC 00 -> 04
+4820: Ins 0a @ 0a1c, AC 04 -> 08
+4820: Ins 0a @ 0a1c, SR 21 -> 20
+4821: Ins 0a @ 0a1d, AC 08 -> 10
+4822: Ins a8 @ 0a1e, Y 04 -> 10
+4823: Ins 0a @ 0a1f, AC 10 -> 20
+4824: Ins 0a @ 0a20, AC 20 -> 40
+4825: Ins 0a @ 0a21, AC 40 -> 80
+4825: Ins 0a @ 0a21, SR 20 -> a0
+4826: Ins 0a @ 0a22, AC 80 -> 100
+4826: Ins 0a @ 0a22, SR a0 -> 21
+4827: Ins 0a @ 0a23, AC 100 -> 200
+4827: Ins 0a @ 0a23, SR 21 -> 20
+4829: Ins 98 @ 0a26, AC 200 -> 10
+4830: Ins 4a @ 0a27, AC 10 -> 08
+4831: Ins 4a @ 0a28, AC 08 -> 04
+4832: Ins 4a @ 0a29, AC 04 -> 02
+4834: Ins 69 @ 0a2b, AC 02 -> 04
+4835: Ins 85 @ 0a2d, Memory 0003, 06 -> 04
+4837: Ins 0a @ 0a30, AC 04 -> 08
+4838: Ins 0a @ 0a31, AC 08 -> 10
+4840: Ins 85 @ 0a34, Memory 0002, 00 -> 10
+4841: Ins a9 @ 0a36, AC 10 -> f5
+4841: Ins a9 @ 0a36, SR 20 -> a0
+4842: Ins 85 @ 0a38, Memory 0004, 00 -> f5
+4843: Ins a9 @ 0a3a, AC f5 -> 16
+4843: Ins a9 @ 0a3a, SR a0 -> 20
+4844: Ins 85 @ 0a3c, Memory 0005, ff -> 16
+4845: Ins a5 @ 0a3e, AC 16 -> 00
+4845: Ins a5 @ 0a3e, SR 20 -> 22
+4850: Ins 65 @ 0a44, AC 00 -> f5
+4850: Ins 65 @ 0a44, SR 22 -> a0
+4852: Ins a5 @ 0a48, AC f5 -> 16
+4852: Ins a5 @ 0a48, SR a0 -> 20
+4855: Ins a0 @ 0a4e, Y 10 -> 00
+4855: Ins a0 @ 0a4e, SR 20 -> 22
+4856: Ins a2 @ 0a50, X 04 -> 00
+4857: Ins b1 @ 0a52, AC 16 -> 01
+4857: Ins b1 @ 0a52, SR 22 -> 20
+4858: Ins 4a @ 0a54, AC 01 -> 00
+4858: Ins 4a @ 0a54, SR 20 -> 23
+4859: Ins 4a @ 0a55, SR 23 -> 22
+4863: Ins e6 @ 0a5c, Memory 0002, 10 -> 11
+4863: Ins e6 @ 0a5c, SR 22 -> 20
+4864: Ins b1 @ 0a5e, AC 00 -> 01
+4867: Ins 81 @ 0a64, Memory 0411, 0d -> 01
+4868: Ins e6 @ 0a66, Memory 0002, 11 -> 12
+4869: Ins c8 @ 0a68, Y 00 -> 01
+4873: Ins c0 @ 0a7b, SR 20 -> a0
+4875: Ins b1 @ 0a52, AC 01 -> cc
+4876: Ins 4a @ 0a54, AC cc -> 66
+4876: Ins 4a @ 0a54, SR a0 -> 20
+4877: Ins 4a @ 0a55, AC 66 -> 33
+4878: Ins 4a @ 0a56, AC 33 -> 19
+4878: Ins 4a @ 0a56, SR 20 -> 21
+4879: Ins 4a @ 0a57, AC 19 -> 0c
+4881: Ins 81 @ 0a5a, Memory 0412, 0d -> 0c
+4882: Ins e6 @ 0a5c, Memory 0002, 12 -> 13
+4883: Ins b1 @ 0a5e, AC 0c -> cc
+4883: Ins b1 @ 0a5e, SR 21 -> a1
+4884: Ins 29 @ 0a60, AC cc -> 0c
+4884: Ins 29 @ 0a60, SR a1 -> 21
+4886: Ins 81 @ 0a64, Memory 0413, 0d -> 0c
+4887: Ins e6 @ 0a66, Memory 0002, 13 -> 14
+4888: Ins c8 @ 0a68, Y 01 -> 02
+4889: Ins 98 @ 0a69, AC 0c -> 02
+4890: Ins 29 @ 0a6a, AC 02 -> 00
+4890: Ins 29 @ 0a6a, SR 21 -> 23
+4892: Ins 18 @ 0a6e, SR 23 -> 22
+4893: Ins a5 @ 0a6f, AC 00 -> 14
+4893: Ins a5 @ 0a6f, SR 22 -> 20
+4894: Ins 69 @ 0a71, AC 14 -> 30
+4895: Ins 85 @ 0a73, Memory 0002, 14 -> 30
+4896: Ins a5 @ 0a75, AC 30 -> 04
+4899: Ins c0 @ 0a7b, SR 20 -> a0
+4901: Ins b1 @ 0a52, AC 04 -> 11
+4901: Ins b1 @ 0a52, SR a0 -> 20
+4902: Ins 4a @ 0a54, AC 11 -> 08
+4902: Ins 4a @ 0a54, SR 20 -> 21
+4903: Ins 4a @ 0a55, AC 08 -> 04
+4903: Ins 4a @ 0a55, SR 21 -> 20
+4904: Ins 4a @ 0a56, AC 04 -> 02
+4905: Ins 4a @ 0a57, AC 02 -> 01
+4907: Ins 81 @ 0a5a, Memory 0430, 0d -> 01
+4908: Ins e6 @ 0a5c, Memory 0002, 30 -> 31
+4909: Ins b1 @ 0a5e, AC 01 -> 11
+4910: Ins 29 @ 0a60, AC 11 -> 01
+4912: Ins 81 @ 0a64, Memory 0431, 0d -> 01
+4913: Ins e6 @ 0a66, Memory 0002, 31 -> 32
+4914: Ins c8 @ 0a68, Y 02 -> 03
+4915: Ins 98 @ 0a69, AC 01 -> 03
+4916: Ins 29 @ 0a6a, AC 03 -> 01
+4918: Ins c0 @ 0a7b, SR 20 -> a0
+4920: Ins b1 @ 0a52, AC 01 -> cc
+4921: Ins 4a @ 0a54, AC cc -> 66
+4921: Ins 4a @ 0a54, SR a0 -> 20
+4922: Ins 4a @ 0a55, AC 66 -> 33
+4923: Ins 4a @ 0a56, AC 33 -> 19
+4923: Ins 4a @ 0a56, SR 20 -> 21
+4924: Ins 4a @ 0a57, AC 19 -> 0c
+4926: Ins 81 @ 0a5a, Memory 0432, 0d -> 0c
+4927: Ins e6 @ 0a5c, Memory 0002, 32 -> 33
+4928: Ins b1 @ 0a5e, AC 0c -> cc
+4928: Ins b1 @ 0a5e, SR 21 -> a1
+4929: Ins 29 @ 0a60, AC cc -> 0c
+4929: Ins 29 @ 0a60, SR a1 -> 21
+4931: Ins 81 @ 0a64, Memory 0433, 0d -> 0c
+4932: Ins e6 @ 0a66, Memory 0002, 33 -> 34
+4933: Ins c8 @ 0a68, Y 03 -> 04
+4934: Ins 98 @ 0a69, AC 0c -> 04
+4935: Ins 29 @ 0a6a, AC 04 -> 00
+4935: Ins 29 @ 0a6a, SR 21 -> 23
+4937: Ins 18 @ 0a6e, SR 23 -> 22
+4938: Ins a5 @ 0a6f, AC 00 -> 34
+4938: Ins a5 @ 0a6f, SR 22 -> 20
+4939: Ins 69 @ 0a71, AC 34 -> 50
+4940: Ins 85 @ 0a73, Memory 0002, 34 -> 50
+4941: Ins a5 @ 0a75, AC 50 -> 04
+4944: Ins c0 @ 0a7b, SR 20 -> a0
+4946: Ins b1 @ 0a52, AC 04 -> 01
+4946: Ins b1 @ 0a52, SR a0 -> 20
+4947: Ins 4a @ 0a54, AC 01 -> 00
+4947: Ins 4a @ 0a54, SR 20 -> 23
+4948: Ins 4a @ 0a55, SR 23 -> 22
+4952: Ins e6 @ 0a5c, Memory 0002, 50 -> 51
+4952: Ins e6 @ 0a5c, SR 22 -> 20
+4953: Ins b1 @ 0a5e, AC 00 -> 01
+4956: Ins 81 @ 0a64, Memory 0451, 0d -> 01
+4957: Ins e6 @ 0a66, Memory 0002, 51 -> 52
+4958: Ins c8 @ 0a68, Y 04 -> 05
+4959: Ins 98 @ 0a69, AC 01 -> 05
+4960: Ins 29 @ 0a6a, AC 05 -> 01
+4962: Ins c0 @ 0a7b, SR 20 -> a0
+4964: Ins b1 @ 0a52, AC 01 -> cc
+4965: Ins 4a @ 0a54, AC cc -> 66
+4965: Ins 4a @ 0a54, SR a0 -> 20
+4966: Ins 4a @ 0a55, AC 66 -> 33
+4967: Ins 4a @ 0a56, AC 33 -> 19
+4967: Ins 4a @ 0a56, SR 20 -> 21
+4968: Ins 4a @ 0a57, AC 19 -> 0c
+4970: Ins 81 @ 0a5a, Memory 0452, 0d -> 0c
+4971: Ins e6 @ 0a5c, Memory 0002, 52 -> 53
+4972: Ins b1 @ 0a5e, AC 0c -> cc
+4972: Ins b1 @ 0a5e, SR 21 -> a1
+4973: Ins 29 @ 0a60, AC cc -> 0c
+4973: Ins 29 @ 0a60, SR a1 -> 21
+4975: Ins 81 @ 0a64, Memory 0453, 0d -> 0c
+4976: Ins e6 @ 0a66, Memory 0002, 53 -> 54
+4977: Ins c8 @ 0a68, Y 05 -> 06
+4978: Ins 98 @ 0a69, AC 0c -> 06
+4979: Ins 29 @ 0a6a, AC 06 -> 00
+4979: Ins 29 @ 0a6a, SR 21 -> 23
+4981: Ins 18 @ 0a6e, SR 23 -> 22
+4982: Ins a5 @ 0a6f, AC 00 -> 54
+4982: Ins a5 @ 0a6f, SR 22 -> 20
+4983: Ins 69 @ 0a71, AC 54 -> 70
+4984: Ins 85 @ 0a73, Memory 0002, 54 -> 70
+4985: Ins a5 @ 0a75, AC 70 -> 04
+4988: Ins c0 @ 0a7b, SR 20 -> a0
+4990: Ins b1 @ 0a52, AC 04 -> 01
+4990: Ins b1 @ 0a52, SR a0 -> 20
+4991: Ins 4a @ 0a54, AC 01 -> 00
+4991: Ins 4a @ 0a54, SR 20 -> 23
+4992: Ins 4a @ 0a55, SR 23 -> 22
+4996: Ins e6 @ 0a5c, Memory 0002, 70 -> 71
+4996: Ins e6 @ 0a5c, SR 22 -> 20
+4997: Ins b1 @ 0a5e, AC 00 -> 01
+5000: Ins 81 @ 0a64, Memory 0471, 0d -> 01
+5001: Ins e6 @ 0a66, Memory 0002, 71 -> 72
+5002: Ins c8 @ 0a68, Y 06 -> 07
+5003: Ins 98 @ 0a69, AC 01 -> 07
+5004: Ins 29 @ 0a6a, AC 07 -> 01
+5006: Ins c0 @ 0a7b, SR 20 -> a0
+5008: Ins b1 @ 0a52, AC 01 -> 10
+5008: Ins b1 @ 0a52, SR a0 -> 20
+5009: Ins 4a @ 0a54, AC 10 -> 08
+5010: Ins 4a @ 0a55, AC 08 -> 04
+5011: Ins 4a @ 0a56, AC 04 -> 02
+5012: Ins 4a @ 0a57, AC 02 -> 01
+5014: Ins 81 @ 0a5a, Memory 0472, 0d -> 01
+5015: Ins e6 @ 0a5c, Memory 0002, 72 -> 73
+5016: Ins b1 @ 0a5e, AC 01 -> 10
+5017: Ins 29 @ 0a60, AC 10 -> 00
+5017: Ins 29 @ 0a60, SR 20 -> 22
+5019: Ins e6 @ 0a66, Memory 0002, 73 -> 74
+5019: Ins e6 @ 0a66, SR 22 -> 20
+5020: Ins c8 @ 0a68, Y 07 -> 08
+5021: Ins 98 @ 0a69, AC 00 -> 08
+5022: Ins 29 @ 0a6a, AC 08 -> 00
+5022: Ins 29 @ 0a6a, SR 20 -> 22
+5025: Ins a5 @ 0a6f, AC 00 -> 74
+5025: Ins a5 @ 0a6f, SR 22 -> 20
+5026: Ins 69 @ 0a71, AC 74 -> 90
+5026: Ins 69 @ 0a71, SR 20 -> e0
+5027: Ins 85 @ 0a73, Memory 0002, 74 -> 90
+5028: Ins a5 @ 0a75, AC 90 -> 04
+5028: Ins a5 @ 0a75, SR e0 -> 60
+5029: Ins 69 @ 0a77, SR 60 -> 20
+5031: Ins c0 @ 0a7b, SR 20 -> 22
+5035: Ins ad @ 06d6, AC 04 -> 00
+5040: Ins 0d @ 06dd, AC 00 -> 04
+5040: Ins 0d @ 06dd, SR 22 -> 20
+5041: Ins aa @ 06e0, X 00 -> 04
+5042: Ins ad @ 06e1, AC 04 -> 00
+5042: Ins ad @ 06e1, SR 20 -> 22
+5047: Ins 0d @ 06e8, AC 00 -> 04
+5047: Ins 0d @ 06e8, SR 22 -> 20
+5048: Ins a8 @ 06eb, Y 08 -> 04
+5051: Ins a2 @ 06f1, X 04 -> 00
+5051: Ins a2 @ 06f1, SR 20 -> 22
+5052: Ins 8e @ 06f3, Memory 00ff, 04 -> 00
+5053: Ins c9 @ 06f6, SR 22 -> a0
+5070: Ins ad @ 06ec, AC 04 -> 00
+5070: Ins ad @ 06ec, SR a0 -> 22

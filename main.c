@@ -2,6 +2,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <sys/time.h>
 #include <unistd.h>
 
@@ -28,7 +29,11 @@
 #define DEBUG_COREDUMP_START 0x0100
 #define DEBUG_COREDUMP_END 0x01FF
 #define DEBUG_STEP 0
+#define DEBUG_BREAKPOINT 0
+#define DEBUG_BREAKPOINT_ADDR 0x0B0C
 #define DEBUG_LOG 1
+#define DEBUG_DIFFLOG 1
+#define DEBUG_DIFFLOG_FILE "difflog_mine.txt"
 #define HALT_ON_INVALID 1
 
 // Config colors
@@ -74,8 +79,15 @@ void coredump(struct sim_state s) {
 			printf("%02x ", s.mem[j]);
 		puts("");
 	}
-	printf("PC:%04x, AC:%02x, X:%02x, Y:%02x, SP:%02x\n",
-		*s.pc, *s.ac, *s.x, *s.y, *s.sp);
+	printf("PC:%04x, AC:%02x, X:%02x, Y:%02x, SP:%02x, SR:%02x\n",
+		*s.pc, *s.ac, *s.x, *s.y, *s.sp, *s.sr);
+}
+
+// Prints a difflog line for registers
+void print_difflog(FILE *fp, unsigned long long ins_count, uint8_t *mem,
+		uint16_t pc, char* name, uint8_t old, uint8_t new) {
+	fprintf(fp, "%llu: Ins %02x @ %04x, %s %02x -> %02x\n", ins_count, mem[pc],
+		pc, name, old, new);
 }
 
 // Datatype converters 
@@ -86,7 +98,7 @@ uint16_t i8to16(uint8_t h, uint8_t l) { return (uint16_t)h << 8 | l; }
 uint8_t bit_set(uint8_t a, int n, int x) {
 	return (a & ~(1UL << n)) | (x << n);
 }
-int bit_get(uint8_t a, int n) { return a >> n & 1; }
+int bit_get(uint16_t a, int n) { return a >> n & 1; }
 
 // Instruction helpers
 uint8_t sr_nz(uint8_t *sr, uint8_t a) { // TODO: Make functional(?)
@@ -96,6 +108,7 @@ uint8_t sr_nz(uint8_t *sr, uint8_t a) { // TODO: Make functional(?)
 }
 void push(uint8_t *mem, uint8_t *sp, uint8_t a) {
 	mem[(*sp)-- + 0x0100] = a;
+	//*sp = *sp - 1;
 }
 uint8_t pop(uint8_t *mem, uint8_t *sp) { return mem[++(*sp) + 0x0100]; }
 void cmp(struct sim_state s, uint8_t a, uint8_t g) {
@@ -120,7 +133,7 @@ void cmp(struct sim_state s, uint8_t a, uint8_t g) {
 	void (*set)(uint8_t, struct sim_state), struct sim_state s)
 INS_DEF(JMP) { *s.pc = (*get)(s); *s.no_pc_inc = true; }
 INS_DEF(ADC) {
-	uint16_t t = *s.ac + (*get)(s) + bit_get(*s.sr, 0);
+	uint16_t t = (uint16_t)(*s.ac) + (*get)(s) + bit_get(*s.sr, 0);
 	*s.sr = bit_set(*s.sr, 0, bit_get(t, 8)); // Carry
 	bool v = !(bit_get(*s.ac, 7) ^ bit_get((*get)(s), 7)) && // Same sign? 
 		bit_get(*s.ac, 7) ^ bit_get(t, 7); // Different sign for result?
@@ -132,11 +145,12 @@ INS_DEF(ASL) {
 	*s.sr = bit_set(*s.sr, 0, bit_get((*get)(s), 7));
 	(*set)(sr_nz(s.sr, (*get)(s) << 1), s);
 }
-INS_DEF(BRK) { *s.halt = true; }
+INS_DEF(BCS) { if (bit_get(*s.sr, 0)) { *s.pc = (*get)(s); } }
 INS_DEF(BEQ) { if (bit_get(*s.sr, 1)) { *s.pc = (*get)(s); } }
 INS_DEF(BMI) { if (bit_get(*s.sr, 7)) { *s.pc = (*get)(s); } }
 INS_DEF(BNE) { if (!bit_get(*s.sr, 1)) { *s.pc = (*get)(s); } }
 INS_DEF(BPL) { if (!bit_get(*s.sr, 7)) { *s.pc = (*get)(s); } }
+INS_DEF(BRK) { *s.halt = true; }
 INS_DEF(CLC) { *s.sr = bit_set(*s.sr, 0, 0); }
 INS_DEF(CMP) { cmp(s, *s.ac, (*get)(s)); }
 INS_DEF(CPX) { cmp(s, *s.x, (*get)(s)); }
@@ -148,7 +162,7 @@ INS_DEF(INC) { (*set)(sr_nz(s.sr, (*get)(s) + 1), s); }
 INS_DEF(INX) { *s.x = sr_nz(s.sr, *s.x + 1); }
 INS_DEF(INY) { *s.y = sr_nz(s.sr, *s.y + 1); }
 INS_DEF(JSR) {
-	uint16_t ret_addr = *s.pc + 3; // Differs from real 6502
+	uint16_t ret_addr = *s.pc + 2;
 	push(s.mem, s.sp, ret_addr >> 8); // Push ret_h
 	push(s.mem, s.sp, ret_addr & 0xff); // Push ret_l
 	*s.pc = i8to16(s.mem[*s.pc + 2], s.mem[*s.pc + 1]);
@@ -167,7 +181,7 @@ INS_DEF(PLA) { *s.ac = pop(s.mem, s.sp); }
 INS_DEF(RTS) {
 	uint8_t ret_l = pop(s.mem, s.sp);
 	uint8_t ret_h = pop(s.mem, s.sp);
-	*s.pc = i8to16(ret_h, ret_l);
+	*s.pc = i8to16(ret_h, ret_l) + 1; // Emulate real 6502 RTS
 	*s.no_pc_inc = true;
 } 
 INS_DEF(SBC) {
@@ -207,6 +221,11 @@ ADDR_DEF(abs_x, 3,
 		+ *s.x + bit_get(*s.sr, 0)];,
 	s.mem[i8to16(s.mem[*s.pc + 2], s.mem[*s.pc + 1])
 		+ *s.x + bit_get(*s.sr, 0)] = a;);
+ADDR_DEF(abs_y, 3,
+	return s.mem[i8to16(s.mem[*s.pc + 2], s.mem[*s.pc + 1])
+		+ *s.y + bit_get(*s.sr, 0)];,
+	s.mem[i8to16(s.mem[*s.pc + 2], s.mem[*s.pc + 1])
+		+ *s.y + bit_get(*s.sr, 0)] = a;);
 ADDR_DEF(imm, 2, return s.mem[*s.pc + 1];, );
 ADDR_DEF(x_ind, 2,
 	uint8_t zp_x = s.mem[*s.pc + 1] + *s.x;
@@ -241,6 +260,7 @@ void construct_opcodes_table(struct opcode *o) {
 	o[0x30] = (struct opcode){ ins_BPL, &addr_rel };
 	o[0x60] = (struct opcode){ ins_RTS, &addr_impl };
 	o[0xA0] = (struct opcode){ ins_LDY, &addr_imm };
+	o[0xB0] = (struct opcode){ ins_BCS, &addr_rel };
 	o[0xC0] = (struct opcode){ ins_CPY, &addr_imm };
 	o[0xD0] = (struct opcode){ ins_BNE, &addr_rel };
 	o[0xE0] = (struct opcode){ ins_CPX, &addr_imm };
@@ -258,10 +278,11 @@ void construct_opcodes_table(struct opcode *o) {
 	o[0x65] = (struct opcode){ ins_ADC, &addr_zpg };
 	o[0x85] = (struct opcode){ ins_STA, &addr_zpg };
 	o[0x95] = (struct opcode){ ins_STA, &addr_zpg_x };
-	o[0xA5] = (struct opcode){ ins_LDA, &addr_abs };
+	o[0xA5] = (struct opcode){ ins_LDA, &addr_zpg };
 	o[0xB5] = (struct opcode){ ins_LDA, &addr_zpg_x };
 	o[0xF5] = (struct opcode){ ins_SBC, &addr_zpg_x };
 	// -6
+	o[0x06] = (struct opcode){ ins_ASL, &addr_zpg };
 	o[0x86] = (struct opcode){ ins_STX, &addr_zpg };
 	o[0xA6] = (struct opcode){ ins_LDX, &addr_zpg };
 	o[0xC6] = (struct opcode){ ins_DEC, &addr_zpg };
@@ -280,7 +301,7 @@ void construct_opcodes_table(struct opcode *o) {
 	o[0x69] = (struct opcode){ ins_ADC, &addr_imm };
 	o[0xA9] = (struct opcode){ ins_LDA, &addr_imm };
 	o[0xC9] = (struct opcode){ ins_CMP, &addr_imm };
-	o[0xCD] = (struct opcode){ ins_CMP, &addr_abs };
+	o[0xB9] = (struct opcode){ ins_LDA, &addr_abs_y };
 	// -A
 	o[0x0A] = (struct opcode){ ins_ASL, &addr_ac };
 	o[0x4A] = (struct opcode){ ins_LSR, &addr_ac };
@@ -297,9 +318,11 @@ void construct_opcodes_table(struct opcode *o) {
 	o[0x9D] = (struct opcode){ ins_STA, &addr_abs_x };
 	o[0xAD] = (struct opcode){ ins_LDA, &addr_abs };
 	o[0xBD] = (struct opcode){ ins_LDA, &addr_abs_x };
+	o[0xCD] = (struct opcode){ ins_CMP, &addr_abs };
 	// -E
 	o[0x8E] = (struct opcode){ ins_STX, &addr_abs };
 	o[0xAE] = (struct opcode){ ins_LDX, &addr_abs };
+	o[0xBE] = (struct opcode){ ins_LDX, &addr_abs_y };
 }
 
 int main(int argc, char** argv) {
@@ -380,7 +403,7 @@ int main(int argc, char** argv) {
 	uint8_t reg_x = 0;
 	uint8_t reg_y = 0;
 	uint8_t reg_sr = 0;
-	uint8_t reg_sp = 0;
+	uint8_t reg_sp = 0xFF;
 	bool halt = false; // Is the sim halted? (Pauses the sim if true)
 	bool no_pc_inc = false; // Hack to let opcodes tell sim not to inc pc once
 	struct sim_state sim_state = { .pc = &reg_pc, .ac = &reg_ac, .x = &reg_x,
@@ -390,7 +413,7 @@ int main(int argc, char** argv) {
 	// Init opcodes
 	struct opcode opcodes[0x100] = {0};
 	construct_opcodes_table(opcodes);
-
+ 
 	// Load binary into memory
 	{
 		FILE* fp;
@@ -401,6 +424,23 @@ int main(int argc, char** argv) {
 		}
 		fread(mem + PC_START, TOTAL_MEM - PC_START, 1, fp);
 		fclose(fp);
+	}
+
+	// Init debug difflog
+	uint8_t *difflog_prev_mem;
+	uint8_t difflog_prev_ac = 0;
+	uint8_t difflog_prev_x = 0;
+	uint8_t difflog_prev_y = 0;
+	uint8_t difflog_prev_sr = 0;
+	uint8_t difflog_prev_sp = 0xFF;
+	FILE *difflog_fp;
+	if (DEBUG_DIFFLOG) {
+		if (!(difflog_fp = fopen(DEBUG_DIFFLOG_FILE, "w"))) {
+			puts("Cannot write to difflog.");
+			return -1;
+		}
+		difflog_prev_mem = malloc(TOTAL_MEM);
+		memcpy(difflog_prev_mem, mem, TOTAL_MEM);
 	}
 
 	// =====
@@ -427,6 +467,9 @@ int main(int argc, char** argv) {
 	unsigned long long prev_limit_time = get_clock_ns();
 	unsigned long long limit_interval_ns =
 		(1 / ((float)LIMIT_KHZ * 1000)) * 1000000000;
+	
+	// Init stepping
+	bool on_breakpoint = false;
 
 	// =====
 	// START MAIN LOOP
@@ -502,6 +545,9 @@ int main(int argc, char** argv) {
 				puts("");
 			}
 
+			// Save PC for debugging purposes
+			uint16_t backup_pc = reg_pc;
+
 			// Execute!
 			if (decoded.instruction)
 				decoded.instruction(decoded.addr_mode->get,
@@ -511,11 +557,62 @@ int main(int argc, char** argv) {
 				if (HALT_ON_INVALID) halt = true;
 			}
 
-			// Log halt
-			if (DEBUG_LOG && halt) {
-				coredump(sim_state);
-				puts("Halted.");
+			// Debug difflog; compare RAM, print diffs
+			if (DEBUG_DIFFLOG) {
+				for (int i = 0; i < TOTAL_MEM; i++) {
+					if (i == 0xFE) continue; // Skip random
+					if (mem[i] == difflog_prev_mem[i]) continue;
+					fprintf(difflog_fp,
+						"%llu: Ins %02x @ %04x, Memory %04x, %02x -> %02x\n",
+						ins_count, mem[backup_pc], backup_pc, i,
+						difflog_prev_mem[i], mem[i]);
+					difflog_prev_mem[i] = mem[i];
+				}
+
+				if (difflog_prev_ac != reg_ac)
+					print_difflog(difflog_fp, ins_count, mem, backup_pc, "AC",
+						difflog_prev_ac, reg_ac);
+				if (difflog_prev_x != reg_x)
+					print_difflog(difflog_fp, ins_count, mem, backup_pc, "X",
+						difflog_prev_x, reg_x);
+				if (difflog_prev_y != reg_y)
+					print_difflog(difflog_fp, ins_count, mem, backup_pc, "Y",
+						difflog_prev_y, reg_y);
+				if (difflog_prev_sr != reg_sr)
+					print_difflog(difflog_fp, ins_count, mem, backup_pc, "SR",
+						difflog_prev_sr | 0x20, reg_sr | 0x20);
+						// Workaround for 6502asm setting SR ignore bit
+				/*if (difflog_prev_sp != reg_sp)
+					print_difflog(difflog_fp, ins_count, mem, backup_pc, "SP",
+						difflog_prev_sp, reg_sp);*/
+
+				difflog_prev_ac = reg_ac;
+				difflog_prev_x = reg_x;
+				difflog_prev_y = reg_y;
+				difflog_prev_sr = reg_sr;
+				difflog_prev_sp = reg_sp;
 			}
+
+			// Break if on breakpoint
+			if (DEBUG_BREAKPOINT && backup_pc == DEBUG_BREAKPOINT_ADDR) {
+				printf("Breaking at %04x\n", backup_pc);
+				on_breakpoint = true;
+			}
+
+			// Let user step through instructions, or coredump
+			if (DEBUG_STEP || (DEBUG_BREAKPOINT && on_breakpoint)) {
+				while (true) {
+					char cmd = getchar();
+					if (cmd == '\n') break;
+					if (cmd == 'c') coredump(sim_state);
+					if (cmd == 'o') on_breakpoint = false;
+					if (cmd != '\n') getchar(); // Consume upcoming \n
+				}
+			}
+
+			// Log halt
+			if (DEBUG_LOG && halt)
+				puts("Halted.");
 
 			// Increment PC unless instruction said not to, then reset for next
 			if (!no_pc_inc) reg_pc += length;
@@ -524,22 +621,16 @@ int main(int argc, char** argv) {
 			// Random $FE
 			mem[0xFE] = rand();
 
+			// Suppress random if difflog (decided by coin flip)
+			if (DEBUG_DIFFLOG) mem[0xFE] = 7;
+
 			// Count instruction for average speed
 			ins_count++;
 		}
 
-		// Let user step through instructions, or coredump
-		if (DEBUG_STEP) {
-			while (true) {
-				char cmd = getchar();
-				if (cmd == '\n') break;
-				if (cmd == 'c') coredump(sim_state);
-				if (cmd != '\n') getchar(); // Consume upcoming \n
-			}
-		}
-
 		// Calculate average speed and print when either halted or quitting
 		if (!avg_speed_done && (halt || !running)) {
+			coredump(sim_state);
 			avg_speed_done = true;
 			unsigned long long diff = get_clock_ns() - start_time;
 			double diff_s = (double)diff / 1000000000;
@@ -596,6 +687,12 @@ int main(int argc, char** argv) {
 	// =====
 	// END MAIN LOOP
 	// =====
+
+	// Close debug difflog
+	if (DEBUG_DIFFLOG) {
+		fclose(difflog_fp);
+		free(difflog_prev_mem);
+	}
 
 	return 0;
 }
