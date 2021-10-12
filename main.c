@@ -23,16 +23,17 @@
 #define PIXEL_SIZE 10
 #define FRAME_INTERVAL 16666666
 #define LIMIT_ENABLE 1
-#define LIMIT_KHZ 10
+#define LIMIT_KHZ 100
 #define START_DELAY 500000000
 #define DEBUG_COREDUMP 1
 #define DEBUG_COREDUMP_START 0x0100
 #define DEBUG_COREDUMP_END 0x01FF
 #define DEBUG_STEP 0
 #define DEBUG_BREAKPOINT 0
-#define DEBUG_BREAKPOINT_ADDR 0x0B0C
+#define DEBUG_BREAKPOINT_MODE 1 // 0 = addr, 1 = ins_count
+#define DEBUG_BREAKPOINT_VALUE 822
 #define DEBUG_LOG 1
-#define DEBUG_DIFFLOG 1
+#define DEBUG_DIFFLOG 0
 #define DEBUG_DIFFLOG_FILE "difflog_mine.txt"
 #define HALT_ON_INVALID 1
 
@@ -111,17 +112,20 @@ void push(uint8_t *mem, uint8_t *sp, uint8_t a) {
 	//*sp = *sp - 1;
 }
 uint8_t pop(uint8_t *mem, uint8_t *sp) { return mem[++(*sp) + 0x0100]; }
-void cmp(struct sim_state s, uint8_t a, uint8_t g) {
-	if (a < g) {
+void cmp(struct sim_state s, uint8_t reg, uint8_t get) {
+	uint8_t t = reg - get;
+	if (reg < get) {
+		*s.sr = bit_set(*s.sr, 7, bit_get(t, 7));
 		*s.sr = bit_set(*s.sr, 1, 0);
 		*s.sr = bit_set(*s.sr, 0, 0);
 	}
-	else if (a == g) {
+	else if (reg == get) {
 		*s.sr = bit_set(*s.sr, 7, 0);
 		*s.sr = bit_set(*s.sr, 1, 1);
-		*s.sr = bit_set(*s.sr, 0, 1);
+		*s.sr = bit_set(*s.sr, 0, 1); // NOTE: 6502asm differs here...?
 	}
-	else if (a > g) {
+	else if (reg > get) {
+		*s.sr = bit_set(*s.sr, 7, bit_get(t, 7));
 		*s.sr = bit_set(*s.sr, 1, 0);
 		*s.sr = bit_set(*s.sr, 0, 1);
 	}
@@ -133,7 +137,7 @@ void cmp(struct sim_state s, uint8_t a, uint8_t g) {
 	void (*set)(uint8_t, struct sim_state), struct sim_state s)
 INS_DEF(JMP) { *s.pc = (*get)(s); *s.no_pc_inc = true; }
 INS_DEF(ADC) {
-	uint16_t t = (uint16_t)(*s.ac) + (*get)(s) + bit_get(*s.sr, 0);
+	uint16_t t = *s.ac + (*get)(s) + bit_get(*s.sr, 0);
 	*s.sr = bit_set(*s.sr, 0, bit_get(t, 8)); // Carry
 	bool v = !(bit_get(*s.ac, 7) ^ bit_get((*get)(s), 7)) && // Same sign? 
 		bit_get(*s.ac, 7) ^ bit_get(t, 7); // Different sign for result?
@@ -145,6 +149,7 @@ INS_DEF(ASL) {
 	*s.sr = bit_set(*s.sr, 0, bit_get((*get)(s), 7));
 	(*set)(sr_nz(s.sr, (*get)(s) << 1), s);
 }
+INS_DEF(BCC) { if (!bit_get(*s.sr, 0)) { *s.pc = (*get)(s); } }
 INS_DEF(BCS) { if (bit_get(*s.sr, 0)) { *s.pc = (*get)(s); } }
 INS_DEF(BEQ) { if (bit_get(*s.sr, 1)) { *s.pc = (*get)(s); } }
 INS_DEF(BMI) { if (bit_get(*s.sr, 7)) { *s.pc = (*get)(s); } }
@@ -158,6 +163,7 @@ INS_DEF(CPY) { cmp(s, *s.y, (*get)(s)); }
 INS_DEF(DEC) { (*set)(sr_nz(s.sr, (*get)(s) - 1), s); }
 INS_DEF(DEX) { *s.x = sr_nz(s.sr, *s.x - 1); }
 INS_DEF(DEY) { *s.y = sr_nz(s.sr, *s.y - 1); }
+INS_DEF(EOR) { *s.ac = sr_nz(s.sr, (*get)(s) ^ *s.ac); }
 INS_DEF(INC) { (*set)(sr_nz(s.sr, (*get)(s) + 1), s); }
 INS_DEF(INX) { *s.x = sr_nz(s.sr, *s.x + 1); }
 INS_DEF(INY) { *s.y = sr_nz(s.sr, *s.y + 1); }
@@ -175,9 +181,20 @@ INS_DEF(LSR) {
 	*s.sr = bit_set(*s.sr, 0, bit_get((*get)(s), 0));
 	(*set)(sr_nz(s.sr, (*get)(s) >> 1), s);
 }
+INS_DEF(NOP) { /* :D */ }
 INS_DEF(ORA) { *s.ac = sr_nz(s.sr, (*get)(s) | *s.ac); }
 INS_DEF(PHA) { push(s.mem, s.sp, *s.ac); }
 INS_DEF(PLA) { *s.ac = pop(s.mem, s.sp); }
+INS_DEF(ROL) {
+	int old_c = bit_get(*s.sr, 0);
+	*s.sr = bit_set(*s.sr, 0, bit_get((*get)(s), 7));
+	(*set)(sr_nz(s.sr, (*get)(s) << 1 | old_c), s);
+}
+INS_DEF(ROR) {
+	int old_c = bit_get(*s.sr, 0);
+	*s.sr = bit_set(*s.sr, 0, bit_get((*get)(s), 0));
+	(*set)(sr_nz(s.sr, (*get)(s) >> 1 | old_c << 7), s);
+}
 INS_DEF(RTS) {
 	uint8_t ret_l = pop(s.mem, s.sp);
 	uint8_t ret_h = pop(s.mem, s.sp);
@@ -218,14 +235,14 @@ ADDR_DEF(abs, 3, return s.mem[i8to16(s.mem[*s.pc + 2], s.mem[*s.pc + 1])];,
 ADDR_DEF(abs_dir, 3, return i8to16(s.mem[*s.pc + 2], s.mem[*s.pc + 1]);, );
 ADDR_DEF(abs_x, 3,
 	return s.mem[i8to16(s.mem[*s.pc + 2], s.mem[*s.pc + 1])
-		+ *s.x + bit_get(*s.sr, 0)];,
+		+ *s.x/* + bit_get(*s.sr, 0)*/];,
 	s.mem[i8to16(s.mem[*s.pc + 2], s.mem[*s.pc + 1])
-		+ *s.x + bit_get(*s.sr, 0)] = a;);
+		+ *s.x/* + bit_get(*s.sr, 0)*/] = a;);
 ADDR_DEF(abs_y, 3,
 	return s.mem[i8to16(s.mem[*s.pc + 2], s.mem[*s.pc + 1])
-		+ *s.y + bit_get(*s.sr, 0)];,
+		+ *s.y/* + bit_get(*s.sr, 0)*/];,
 	s.mem[i8to16(s.mem[*s.pc + 2], s.mem[*s.pc + 1])
-		+ *s.y + bit_get(*s.sr, 0)] = a;);
+		+ *s.y/* + bit_get(*s.sr, 0)*/] = a;);
 ADDR_DEF(imm, 2, return s.mem[*s.pc + 1];, );
 ADDR_DEF(x_ind, 2,
 	uint8_t zp_x = s.mem[*s.pc + 1] + *s.x;
@@ -234,9 +251,11 @@ ADDR_DEF(x_ind, 2,
 	s.mem[i8to16(s.mem[zp_x + 1], s.mem[zp_x])] = a;);
 ADDR_DEF(ind_y, 2,
 	uint8_t zp = s.mem[*s.pc + 1];
-	return s.mem[i8to16(s.mem[zp + 1], s.mem[zp]) + *s.y + bit_get(*s.sr, 0)];,
+	return s.mem[i8to16(s.mem[zp + 1], s.mem[zp]) +
+	*s.y/* + bit_get(*s.sr, 0)*/];,
 	uint8_t zp = s.mem[*s.pc + 1];
-	s.mem[i8to16(s.mem[zp + 1], s.mem[zp]) + *s.y + bit_get(*s.sr, 0)] = a;);
+	s.mem[i8to16(s.mem[zp + 1], s.mem[zp]) +
+	*s.y/* + bit_get(*s.sr, 0)*/] = a;);
 ADDR_DEF(impl, 1, return 0;, );
 ADDR_DEF(rel, 2, return *s.pc + (int8_t)s.mem[*s.pc + 1];, );
 ADDR_DEF(zpg, 2,
@@ -257,8 +276,9 @@ void construct_opcodes_table(struct opcode *o) {
 	o[0x00] = (struct opcode){ ins_BRK, &addr_impl };
 	o[0x10] = (struct opcode){ ins_BPL, &addr_rel };
 	o[0x20] = (struct opcode){ ins_JSR, &addr_abs_dir };
-	o[0x30] = (struct opcode){ ins_BPL, &addr_rel };
+	o[0x30] = (struct opcode){ ins_BMI, &addr_rel };
 	o[0x60] = (struct opcode){ ins_RTS, &addr_impl };
+	o[0x90] = (struct opcode){ ins_BCC, &addr_rel };
 	o[0xA0] = (struct opcode){ ins_LDY, &addr_imm };
 	o[0xB0] = (struct opcode){ ins_BCS, &addr_rel };
 	o[0xC0] = (struct opcode){ ins_CPY, &addr_imm };
@@ -269,10 +289,13 @@ void construct_opcodes_table(struct opcode *o) {
 	o[0x81] = (struct opcode){ ins_STA, &addr_x_ind };
 	o[0x91] = (struct opcode){ ins_STA, &addr_ind_y };
 	o[0xB1] = (struct opcode){ ins_LDA, &addr_ind_y };
+	o[0xA1] = (struct opcode){ ins_LDX, &addr_x_ind };
+	o[0xD1] = (struct opcode){ ins_CMP, &addr_ind_y };
 	// -2
 	o[0xA2] = (struct opcode){ ins_LDX, &addr_imm };
 	// -4
 	o[0x84] = (struct opcode){ ins_STY, &addr_zpg };
+	o[0xA4] = (struct opcode){ ins_LDY, &addr_zpg };
 	// -5
 	o[0x05] = (struct opcode){ ins_ORA, &addr_zpg };
 	o[0x65] = (struct opcode){ ins_ADC, &addr_zpg };
@@ -280,9 +303,12 @@ void construct_opcodes_table(struct opcode *o) {
 	o[0x95] = (struct opcode){ ins_STA, &addr_zpg_x };
 	o[0xA5] = (struct opcode){ ins_LDA, &addr_zpg };
 	o[0xB5] = (struct opcode){ ins_LDA, &addr_zpg_x };
+	o[0xC5] = (struct opcode){ ins_CMP, &addr_zpg };
+	o[0xE5] = (struct opcode){ ins_SBC, &addr_zpg };
 	o[0xF5] = (struct opcode){ ins_SBC, &addr_zpg_x };
 	// -6
 	o[0x06] = (struct opcode){ ins_ASL, &addr_zpg };
+	o[0x66] = (struct opcode){ ins_ROR, &addr_zpg };
 	o[0x86] = (struct opcode){ ins_STX, &addr_zpg };
 	o[0xA6] = (struct opcode){ ins_LDX, &addr_zpg };
 	o[0xC6] = (struct opcode){ ins_DEC, &addr_zpg };
@@ -298,16 +324,19 @@ void construct_opcodes_table(struct opcode *o) {
 	o[0xE8] = (struct opcode){ ins_INX, &addr_impl };
 	// -9
 	o[0x29] = (struct opcode){ ins_AND, &addr_imm };
+	o[0x49] = (struct opcode){ ins_EOR, &addr_imm };
 	o[0x69] = (struct opcode){ ins_ADC, &addr_imm };
 	o[0xA9] = (struct opcode){ ins_LDA, &addr_imm };
 	o[0xC9] = (struct opcode){ ins_CMP, &addr_imm };
 	o[0xB9] = (struct opcode){ ins_LDA, &addr_abs_y };
 	// -A
 	o[0x0A] = (struct opcode){ ins_ASL, &addr_ac };
+	o[0x2A] = (struct opcode){ ins_ROL, &addr_ac };
 	o[0x4A] = (struct opcode){ ins_LSR, &addr_ac };
 	o[0x8A] = (struct opcode){ ins_TXA, &addr_impl };
 	o[0xAA] = (struct opcode){ ins_TAX, &addr_impl };
 	o[0xCA] = (struct opcode){ ins_DEX, &addr_impl };
+	o[0xEA] = (struct opcode){ ins_NOP, &addr_impl };
 	// -C
 	o[0x4C] = (struct opcode){ ins_JMP, &addr_abs_dir };
 	o[0x8C] = (struct opcode){ ins_STY, &addr_abs };
@@ -323,6 +352,9 @@ void construct_opcodes_table(struct opcode *o) {
 	o[0x8E] = (struct opcode){ ins_STX, &addr_abs };
 	o[0xAE] = (struct opcode){ ins_LDX, &addr_abs };
 	o[0xBE] = (struct opcode){ ins_LDX, &addr_abs_y };
+	o[0xCE] = (struct opcode){ ins_DEC, &addr_abs };
+	o[0xEE] = (struct opcode){ ins_INC, &addr_abs };
+	o[0xFE] = (struct opcode){ ins_INC, &addr_abs_x };
 }
 
 int main(int argc, char** argv) {
@@ -539,7 +571,7 @@ int main(int argc, char** argv) {
 
 			// Log instruction
 			if (DEBUG_LOG) {
-				printf("Stepping %04x: ", reg_pc);
+				printf("%llu: Stepping %04x: ", ins_count, reg_pc);
 				for (int i = 0; i < length; i++)
 					printf("%02x ", mem[reg_pc + i]);
 				puts("");
@@ -594,8 +626,12 @@ int main(int argc, char** argv) {
 			}
 
 			// Break if on breakpoint
-			if (DEBUG_BREAKPOINT && backup_pc == DEBUG_BREAKPOINT_ADDR) {
-				printf("Breaking at %04x\n", backup_pc);
+			if (DEBUG_BREAKPOINT && (DEBUG_BREAKPOINT_MODE ? ins_count :
+					backup_pc) == DEBUG_BREAKPOINT_VALUE) {
+				if (DEBUG_BREAKPOINT_MODE)
+					printf("Breaking at %llu\n", ins_count);
+				else
+					printf("Breaking at %04x\n", backup_pc);
 				on_breakpoint = true;
 			}
 
