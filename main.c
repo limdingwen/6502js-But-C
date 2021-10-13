@@ -23,7 +23,7 @@
 #define PIXEL_SIZE 10
 #define FRAME_INTERVAL 16666666
 #define LIMIT_ENABLE 1
-#define LIMIT_KHZ 100
+#define LIMIT_KHZ 50
 #define START_DELAY 500000000
 #define DEBUG_COREDUMP 1
 #define DEBUG_COREDUMP_START 0x0100
@@ -184,7 +184,7 @@ INS_DEF(LSR) {
 INS_DEF(NOP) { /* :D */ }
 INS_DEF(ORA) { *s.ac = sr_nz(s.sr, (*get)(s) | *s.ac); }
 INS_DEF(PHA) { push(s.mem, s.sp, *s.ac); }
-INS_DEF(PLA) { *s.ac = pop(s.mem, s.sp); }
+INS_DEF(PLA) { *s.ac = sr_nz(s.sr, pop(s.mem, s.sp)); }
 INS_DEF(ROL) {
 	int old_c = bit_get(*s.sr, 0);
 	*s.sr = bit_set(*s.sr, 0, bit_get((*get)(s), 7));
@@ -212,6 +212,7 @@ INS_DEF(SBC) {
 	*s.sr = bit_set(*s.sr, 6, v); // Overflow
 	*s.ac = sr_nz(s.sr, t);
 }
+INS_DEF(SEC) { *s.sr = bit_set(*s.sr, 0, 1); }
 INS_DEF(STA) { (*set)(*s.ac, s); }
 INS_DEF(STX) { (*set)(*s.x, s); }
 INS_DEF(STY) { (*set)(*s.y, s); }
@@ -286,6 +287,7 @@ void construct_opcodes_table(struct opcode *o) {
 	o[0xE0] = (struct opcode){ ins_CPX, &addr_imm };
 	o[0xF0] = (struct opcode){ ins_BEQ, &addr_rel };
 	// -1
+	o[0x71] = (struct opcode){ ins_ADC, &addr_ind_y };
 	o[0x81] = (struct opcode){ ins_STA, &addr_x_ind };
 	o[0x91] = (struct opcode){ ins_STA, &addr_ind_y };
 	o[0xB1] = (struct opcode){ ins_LDA, &addr_ind_y };
@@ -298,6 +300,7 @@ void construct_opcodes_table(struct opcode *o) {
 	o[0xA4] = (struct opcode){ ins_LDY, &addr_zpg };
 	// -5
 	o[0x05] = (struct opcode){ ins_ORA, &addr_zpg };
+	o[0x45] = (struct opcode){ ins_EOR, &addr_zpg };
 	o[0x65] = (struct opcode){ ins_ADC, &addr_zpg };
 	o[0x85] = (struct opcode){ ins_STA, &addr_zpg };
 	o[0x95] = (struct opcode){ ins_STA, &addr_zpg_x };
@@ -315,6 +318,7 @@ void construct_opcodes_table(struct opcode *o) {
 	o[0xE6] = (struct opcode){ ins_INC, &addr_zpg };
 	// -8
 	o[0x18] = (struct opcode){ ins_CLC, &addr_impl };
+	o[0x38] = (struct opcode){ ins_SEC, &addr_impl };
 	o[0x48] = (struct opcode){ ins_PHA, &addr_impl };
 	o[0x68] = (struct opcode){ ins_PLA, &addr_impl };
 	o[0x88] = (struct opcode){ ins_DEY, &addr_impl };
@@ -329,6 +333,7 @@ void construct_opcodes_table(struct opcode *o) {
 	o[0xA9] = (struct opcode){ ins_LDA, &addr_imm };
 	o[0xC9] = (struct opcode){ ins_CMP, &addr_imm };
 	o[0xB9] = (struct opcode){ ins_LDA, &addr_abs_y };
+	o[0xE9] = (struct opcode){ ins_SBC, &addr_imm };
 	// -A
 	o[0x0A] = (struct opcode){ ins_ASL, &addr_ac };
 	o[0x2A] = (struct opcode){ ins_ROL, &addr_ac };
