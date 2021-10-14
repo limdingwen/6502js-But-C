@@ -22,7 +22,7 @@
 #define SCREEN_HEIGHT 0x0020
 #define PIXEL_SIZE 10
 #define FRAME_INTERVAL 16666666
-#define LIMIT_ENABLE 1
+#define LIMIT_ENABLE 0
 #define LIMIT_KHZ 50
 #define START_DELAY 500000000
 #define DEBUG_COREDUMP 1
@@ -32,7 +32,7 @@
 #define DEBUG_BREAKPOINT 0
 #define DEBUG_BREAKPOINT_MODE 1 // 0 = addr, 1 = ins_count
 #define DEBUG_BREAKPOINT_VALUE 822
-#define DEBUG_LOG 1
+#define DEBUG_LOG 0
 #define DEBUG_DIFFLOG 0
 #define DEBUG_DIFFLOG_FILE "difflog_mine.txt"
 #define HALT_ON_INVALID 1
@@ -514,47 +514,6 @@ int main(int argc, char** argv) {
 	
 	while (running) {
 		// =====
-		// HANDLE EVENTS
-		// =====
-
-		xcb_generic_event_t *event = xcb_poll_for_event(connection);
-		if (event) {
-			printf("Event %d\n", event->response_type);
-			switch (event->response_type & ~0x80) {
-				// Detect exiting
-				case XCB_CLIENT_MESSAGE:
-					if (((xcb_client_message_event_t*)event)->data.data32[0]
-						== del_win_rep->atom) {
-						puts("Exiting...");
-						running = false;
-					}
-					break;
-
-				// Detect redraw required
-				case XCB_EXPOSE: full_redraw = true; break;
-
-				case XCB_KEY_PRESS: {
-					// Hack just to try and get Adventure working
-					uint8_t keycode =((xcb_key_press_event_t*)event)->detail;
-					uint8_t ascii;
-					switch (keycode) {
-						case 21: ascii = 'w'; break;
-						case 8: ascii = 'a'; break;
-						case 9: ascii = 's'; break;
-						case 10: ascii = 'd'; break;
-					}
-					mem[0xFF] = ascii;
-					//printf("Key pressed: %d\n", ascii);
-					break;
-				}
-				
-				// Ignore all other events
-				default: break;
-			}
-			free(event);
-		}
-
-		// =====
 		// UPDATE
 		// =====
 
@@ -669,18 +628,6 @@ int main(int argc, char** argv) {
 			ins_count++;
 		}
 
-		// Calculate average speed and print when either halted or quitting
-		if (!avg_speed_done && (halt || !running)) {
-			coredump(sim_state);
-			avg_speed_done = true;
-			unsigned long long diff = get_clock_ns() - start_time;
-			double diff_s = (double)diff / 1000000000;
-			double avg_speed = (double)ins_count / diff_s;
-			printf("Processed %llu instructions in %f seconds.\n"
-				"Average speed: %f Mhz.\n", ins_count, diff_s,
-				avg_speed / 1000000);
-		}
-
 		// =====
 		// RENDER
 		// =====
@@ -710,6 +657,47 @@ int main(int argc, char** argv) {
 					colors[color], 1, pix_rect);
 			}
 			if (dirty) xcb_flush(connection);
+
+			// =====
+			// HANDLE EVENTS
+			// =====
+
+			xcb_generic_event_t *event = xcb_poll_for_event(connection);
+			if (event) {
+				printf("Event %d\n", event->response_type);
+				switch (event->response_type & ~0x80) {
+					// Detect exiting
+					case XCB_CLIENT_MESSAGE:
+						if (((xcb_client_message_event_t*)event)->data.data32[0]
+							== del_win_rep->atom) {
+							puts("Exiting...");
+							running = false;
+						}
+						break;
+
+					// Detect redraw required
+					case XCB_EXPOSE: full_redraw = true; break;
+
+					case XCB_KEY_PRESS: {
+						// Hack just to try and get Adventure working
+						uint8_t keycode =((xcb_key_press_event_t*)event)->detail;
+						uint8_t ascii;
+						switch (keycode) {
+							case 21: ascii = 'w'; break;
+							case 8: ascii = 'a'; break;
+							case 9: ascii = 's'; break;
+							case 10: ascii = 'd'; break;
+						}
+						mem[0xFF] = ascii;
+						//printf("Key pressed: %d\n", ascii);
+						break;
+					}
+					
+					// Ignore all other events
+					default: break;
+				}
+				free(event);
+			}
 		}
 		full_redraw = false;
 
@@ -723,6 +711,18 @@ int main(int argc, char** argv) {
 		long limit_time_diff_us = limit_time_diff_ns / 1000;
 		if (LIMIT_ENABLE && limit_time_diff_us > 0) usleep(limit_time_diff_us);
 		prev_limit_time = get_clock_ns();
+
+		// Calculate average speed and print when either halted or quitting
+		if (!avg_speed_done && (halt || !running)) {
+			coredump(sim_state);
+			avg_speed_done = true;
+			unsigned long long diff = get_clock_ns() - start_time;
+			double diff_s = (double)diff / 1000000000;
+			double avg_speed = (double)ins_count / diff_s;
+			printf("Processed %llu instructions in %f seconds.\n"
+				"Average speed: %f Mhz.\n", ins_count, diff_s,
+				avg_speed / 1000000);
+		}
 	}
 
 	// =====
