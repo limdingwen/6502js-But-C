@@ -1,3 +1,4 @@
+#include <xcb/xcb.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -21,7 +22,7 @@
 #define SCREEN_HEIGHT 0x0020
 #define PIXEL_SIZE 10
 #define FRAME_INTERVAL 16666666
-#define LIMIT_ENABLE 1
+#define LIMIT_ENABLE 0
 #define LIMIT_KHZ 50
 #define START_DELAY 500000000
 #define DEBUG_COREDUMP 1
@@ -39,7 +40,7 @@
 // Config colors
 // Must change rendering " & 0xf" code if changing color count!
 #define COLOR_COUNT 16
-const float colors[] = {
+const float colors_rgb[] = {
 	0.00, 0.00, 0.00,
 	1.00, 1.00, 1.00,
 	1.00, 0.00, 0.00,
@@ -57,12 +58,6 @@ const float colors[] = {
 	0.50, 0.50, 1.00,
 	0.75, 0.75, 0.75
 };
-
-// Extern OS functions
-extern void os_create_window(const char*, int, int);
-extern void os_poll_event();
-extern void os_draw_rect(int, int, int, int, const float*, int);
-extern void os_present();
 
 // Get nanoseconds
 unsigned long long get_clock_ns() {
@@ -381,10 +376,57 @@ int main(int argc, char** argv) {
 	// INIT X
 	// =====
 	
-	os_create_window("6502", 
-		SCREEN_WIDTH * PIXEL_SIZE, SCREEN_HEIGHT * PIXEL_SIZE);
+	// Connect to X
+	xcb_connection_t *connection;
+	xcb_screen_t *screen;
+	connection = xcb_connect(NULL, NULL);
+	screen = xcb_setup_roots_iterator(xcb_get_setup(connection)).data;
+
+	// Create and show window
+	xcb_window_t window = xcb_generate_id(connection);
+	{
+		uint32_t masks = XCB_CW_BACK_PIXEL | XCB_CW_EVENT_MASK;
+		uint32_t values[] = {
+			screen->black_pixel,
+			XCB_EVENT_MASK_EXPOSURE | XCB_EVENT_MASK_KEY_PRESS
+		};
+		xcb_create_window(connection, XCB_COPY_FROM_PARENT, window,
+			screen->root, 0, 0, SCREEN_WIDTH * PIXEL_SIZE,
+			SCREEN_HEIGHT * PIXEL_SIZE, 10, XCB_WINDOW_CLASS_INPUT_OUTPUT,
+			screen->root_visual, masks, values);
+	}
+	xcb_map_window(connection, window);
+	xcb_flush(connection);
+	
+	// Register for "delete window" event from window manager
+	xcb_intern_atom_reply_t *protocol_rep = xcb_intern_atom_reply(
+		connection, xcb_intern_atom(connection, 1, 12, "WM_PROTOCOLS"), 0);
+	xcb_intern_atom_reply_t *del_win_rep = xcb_intern_atom_reply(
+		connection, xcb_intern_atom(connection, 0, 16, "WM_DELETE_WINDOW"), 0);
+	xcb_change_property(connection, XCB_PROP_MODE_REPLACE, window,
+		(*protocol_rep).atom, 4, 32, 1, &(*del_win_rep).atom);
 
 	// Create all 16 colors
+	xcb_gcontext_t colors[COLOR_COUNT];
+	for (int i = 0; i < COLOR_COUNT; i++) {
+		// Get color from list
+		float r = colors_rgb[i * 3 + 0];
+		float g = colors_rgb[i * 3 + 1];
+		float b = colors_rgb[i * 3 + 2];
+
+		// Get color from colormap
+		xcb_alloc_color_reply_t *rep = xcb_alloc_color_reply(connection,
+			xcb_alloc_color(connection, screen->default_colormap,
+				ftoi16(r), ftoi16(g), ftoi16(b)),
+			NULL);
+
+		// Create context from color
+		xcb_gcontext_t gc = xcb_generate_id(connection);
+		uint32_t value[] = { rep->pixel };
+		xcb_create_gc(connection, gc, window, XCB_GC_FOREGROUND, value);
+		colors[i] = gc;
+		free(rep);
+	}
 
 	// =====
 	// INIT SIM
@@ -414,7 +456,7 @@ int main(int argc, char** argv) {
 		FILE* fp;
 		fp = fopen(argv[1], "rb");
 		if (!fp) {
-			fputs("Cannot read input binary file.", stderr);
+			puts("Cannot read input binary file.");
 			return -1;
 		}
 		fread(mem + PC_START, TOTAL_MEM - PC_START, 1, fp);
@@ -431,7 +473,7 @@ int main(int argc, char** argv) {
 	FILE *difflog_fp;
 	if (DEBUG_DIFFLOG) {
 		if (!(difflog_fp = fopen(DEBUG_DIFFLOG_FILE, "w"))) {
-			fputs("Cannot write to difflog.", stderr);
+			puts("Cannot write to difflog.");
 			return -1;
 		}
 		difflog_prev_mem = malloc(TOTAL_MEM);
@@ -608,17 +650,54 @@ int main(int argc, char** argv) {
 				int color = new_pix & 0xf; // 0x0 to 0xf colors only
 
 				// Render
-				os_draw_rect(x * PIXEL_SIZE, y * PIXEL_SIZE, PIXEL_SIZE,
-					PIXEL_SIZE, colors, color);
+				xcb_rectangle_t pix_rect[] = 
+					{{x * PIXEL_SIZE, y * PIXEL_SIZE,
+					PIXEL_SIZE, PIXEL_SIZE}};
+				xcb_poly_fill_rectangle(connection, window,
+					colors[color], 1, pix_rect);
 			}
-			if (dirty) os_present();
+			if (dirty) xcb_flush(connection);
 
 			// =====
 			// HANDLE EVENTS
 			// =====
-			// TODO: Exiting, keypress
 
-			os_poll_event();
+			xcb_generic_event_t *event = xcb_poll_for_event(connection);
+			if (event) {
+				printf("Event %d\n", event->response_type);
+				switch (event->response_type & ~0x80) {
+					// Detect exiting
+					case XCB_CLIENT_MESSAGE:
+						if (((xcb_client_message_event_t*)event)->data.data32[0]
+							== del_win_rep->atom) {
+							puts("Exiting...");
+							running = false;
+						}
+						break;
+
+					// Detect redraw required
+					case XCB_EXPOSE: full_redraw = true; break;
+
+					case XCB_KEY_PRESS: {
+						// Hack just to try and get Adventure working
+						uint8_t keycode =((xcb_key_press_event_t*)event)->detail;
+						uint8_t ascii;
+						switch (keycode) {
+							case 21: ascii = 'w'; break;
+							case 8: ascii = 'a'; break;
+							case 9: ascii = 's'; break;
+							case 10: ascii = 'd'; break;
+						}
+						mem[0xFF] = ascii;
+						//printf("Key pressed: %d\n", ascii);
+						break;
+					}
+					
+					// Ignore all other events
+					default: break;
+				}
+				free(event);
+			}
 		}
 		full_redraw = false;
 
@@ -634,7 +713,6 @@ int main(int argc, char** argv) {
 		prev_limit_time = get_clock_ns();
 
 		// Calculate average speed and print when either halted or quitting
-		// TODO: Take over SIGINT for this
 		if (!avg_speed_done && (halt || !running)) {
 			coredump(sim_state);
 			avg_speed_done = true;
