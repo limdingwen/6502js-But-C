@@ -1,3 +1,5 @@
+#include "os.h"
+
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -58,14 +60,8 @@ const float colors[] = {
 	0.75, 0.75, 0.75
 };
 
-// Extern OS functions
-extern void os_create_window(const char*, int, int);
-extern void os_poll_event();
-extern void os_draw_rect(int, int, int, int, const float*, int);
-extern void os_present();
-
 // Get nanoseconds
-unsigned long long get_clock_ns() {
+unsigned long long get_clock_ns(void) {
 	struct timespec ts;
 	if (clock_gettime (CLOCK_MONOTONIC, &ts) == 0)
 		return (unsigned long long)(ts.tv_sec * 1000000000 + ts.tv_nsec);
@@ -368,23 +364,31 @@ void construct_opcodes_table(struct opcode *o) {
 }
 
 int main(int argc, char** argv) {
-	// Seed random
-	srand(time(NULL));
-
-	// Handle command line
-	if (argc != 2) {
-		puts("Usage: 6502 file.bin");
-		return 0;
-	}
-
 	// =====
-	// INIT X
+	// INIT
 	// =====
 	
+	// Seed random
+	srand((unsigned int)time(NULL));
+
+	// Create window
 	os_create_window("6502", 
 		SCREEN_WIDTH * PIXEL_SIZE, SCREEN_HEIGHT * PIXEL_SIZE);
-
-	// Create all 16 colors
+	
+	// Handle command line, if no arg, ask with OS file dialog
+	char fileNameBuf[256];
+	if (argc < 2) {
+		// If no arg and true: fileNameBuf is set, continue
+		// If no arg and false, halt with instructions
+		if (!os_choose_bin(fileNameBuf)) {
+			puts("Usage: 6502 file.bin");
+			return 0;
+		}
+	}
+	// If have arg, fileNameBuf is just argv[1]
+	else {
+		strcpy(fileNameBuf, argv[1]);
+	}
 
 	// =====
 	// INIT SIM
@@ -412,9 +416,9 @@ int main(int argc, char** argv) {
 	// Load binary into memory
 	{
 		FILE* fp;
-		fp = fopen(argv[1], "rb");
+		fp = fopen(fileNameBuf, "rb");
 		if (!fp) {
-			fputs("Cannot read input binary file.", stderr);
+			perror("Cannot read input binary file");
 			return -1;
 		}
 		fread(mem + PC_START, TOTAL_MEM - PC_START, 1, fp);
@@ -431,7 +435,7 @@ int main(int argc, char** argv) {
 	FILE *difflog_fp;
 	if (DEBUG_DIFFLOG) {
 		if (!(difflog_fp = fopen(DEBUG_DIFFLOG_FILE, "w"))) {
-			fputs("Cannot write to difflog.", stderr);
+			perror("Cannot write to difflog");
 			return -1;
 		}
 		difflog_prev_mem = malloc(TOTAL_MEM);
@@ -439,7 +443,7 @@ int main(int argc, char** argv) {
 	}
 
 	// =====
-	// INIT MISC
+	// INIT LOOP 
 	// =====
 
 	// Init main loop
@@ -616,9 +620,18 @@ int main(int argc, char** argv) {
 			// =====
 			// HANDLE EVENTS
 			// =====
-			// TODO: Exiting, keypress
 
-			os_poll_event();
+			struct event e;
+			while (os_poll_event(&e)) {
+				switch (e.type) {
+					case ET_KEYPRESS:
+						mem[0xFF] = e.kp_key;
+						break;
+					default: break;
+				}
+			}
+
+			if (os_should_exit()) running = false;
 		}
 		full_redraw = false;
 
@@ -634,7 +647,6 @@ int main(int argc, char** argv) {
 		prev_limit_time = get_clock_ns();
 
 		// Calculate average speed and print when either halted or quitting
-		// TODO: Take over SIGINT for this
 		if (!avg_speed_done && (halt || !running)) {
 			coredump(sim_state);
 			avg_speed_done = true;
