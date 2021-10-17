@@ -63,7 +63,12 @@ void os_create_window(const char* name, int width, int height) {
 		[NSApplication sharedApplication];
 		mainAppDelegate = [MainAppDelegate new];
 		[NSApp setDelegate:mainAppDelegate];
+		#pragma clang diagnostic push
+		#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+		// Suppressed due to this being simplest for loading MainMenu
+		// TODO: Stop depending on MainMenu to stop dependence on XCode?
 		[NSBundle loadNibNamed:@"MainMenu" owner:[NSApp delegate]];
+		#pragma clang diagnostic pop
 		[NSApp activateIgnoringOtherApps:YES];
 		[NSApp finishLaunching];
 

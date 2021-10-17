@@ -103,7 +103,7 @@ uint8_t bit_set(uint8_t a, int n, int x) {
 int bit_get(uint16_t a, int n) { return a >> n & 1; }
 
 // Instruction helpers
-uint8_t sr_nz(uint8_t *sr, uint8_t a) { // TODO: Make functional(?)
+uint8_t sr_nz(uint8_t *sr, uint8_t a) {
 	*sr = bit_set(*sr, 1, a == 0); // Zero
 	*sr = bit_set(*sr, 7, bit_get(a, 7)); // Negative
 	return a;
@@ -568,7 +568,7 @@ int main(int argc, char** argv) {
 					if (cmd == '\n') break;
 					if (cmd == 'c') coredump(sim_state);
 					if (cmd == 'o') on_breakpoint = false;
-					if (cmd != '\n') getchar(); // Consume upcoming \n
+					getchar(); // Consume upcoming \n
 				}
 			}
 
@@ -643,7 +643,8 @@ int main(int argc, char** argv) {
 		long limit_time_diff_ns =
 			limit_interval_ns - (new_limit_time - prev_limit_time);
 		long limit_time_diff_us = limit_time_diff_ns / 1000;
-		if (LIMIT_ENABLE && limit_time_diff_us > 0) usleep(limit_time_diff_us);
+		if (LIMIT_ENABLE && limit_time_diff_us > 0) usleep(
+			(unsigned int)limit_time_diff_us);
 		prev_limit_time = get_clock_ns();
 
 		// Calculate average speed and print when either halted or quitting
