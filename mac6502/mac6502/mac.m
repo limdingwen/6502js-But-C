@@ -66,14 +66,16 @@ void os_create_window(const char* name, int width, int height) {
 		#pragma clang diagnostic push
 		#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 		// Suppressed due to this being simplest for loading MainMenu
-		// TODO: Stop depending on MainMenu to stop dependence on XCode?
+		// TODO: Stop depending on MainMenu NIB to stop dependence on XCode?
+		// NOTE: XCode is just needed for 2 things, the MainMenu NIB and
+		// the bundling into a .app. Everything else can be done w/o XCode.
 		[NSBundle loadNibNamed:@"MainMenu" owner:[NSApp delegate]];
 		#pragma clang diagnostic pop
 		[NSApp activateIgnoringOtherApps:YES];
 		[NSApp finishLaunching];
 
 		// Allows our app to be an "app" without a bundle
-		//[NSApp setActivationPolicy:NSApplicationActivationPolicyRegular];
+		[NSApp setActivationPolicy:NSApplicationActivationPolicyRegular];
 
 		// Create window
 		NSWindow *window = [[NSWindow alloc]
@@ -110,6 +112,10 @@ void os_create_window(const char* name, int width, int height) {
 		CGContextSetRGBFillColor(bufferContext, 0, 0, 0, 1);
 		CGContextFillRect(bufferContext, CGRectMake(0, 0, width, height));
 	}
+}
+
+void os_create_colormap(const float *colors, int length) {
+	// Stub, not used
 }
 
 bool os_choose_bin(char* path) {
@@ -168,4 +174,8 @@ void os_draw_rect(int x, int y, int w, int h, const float* colors, int c) {
 
 void os_present() {
 	[mainView setNeedsDisplay:YES];
+}
+
+void os_close() {
+	// Nothing for us!
 }

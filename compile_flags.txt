@@ -1,0 +1,2 @@
+-Wall
+-I/opt/homebrew/include

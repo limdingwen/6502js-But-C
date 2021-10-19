@@ -23,7 +23,8 @@
 #define SCREEN_HEIGHT 0x0020
 #define PIXEL_SIZE 10
 #define FRAME_INTERVAL 16666666
-#define LIMIT_ENABLE 1
+#define LIMIT_ENABLE 0
+// TODO: Make accurate
 #define LIMIT_KHZ 50
 #define START_DELAY 500000000
 #define DEBUG_COREDUMP 1
@@ -93,7 +94,6 @@ void print_difflog(FILE *fp, unsigned long long ins_count, uint8_t *mem,
 }
 
 // Datatype converters 
-uint16_t ftoi16(float f) { return (uint16_t) (f * 65535); }
 uint16_t i8to16(uint8_t h, uint8_t l) { return (uint16_t)h << 8 | l; }
 
 // Bit operations
@@ -374,7 +374,8 @@ int main(int argc, char** argv) {
 	// Create window
 	os_create_window("6502", 
 		SCREEN_WIDTH * PIXEL_SIZE, SCREEN_HEIGHT * PIXEL_SIZE);
-	
+	os_create_colormap(colors, COLOR_COUNT);
+
 	// Handle command line, if no arg, ask with OS file dialog
 	char fileNameBuf[256];
 	if (argc < 2) {
@@ -627,6 +628,9 @@ int main(int argc, char** argv) {
 					case ET_KEYPRESS:
 						mem[0xFF] = e.kp_key;
 						break;
+					case ET_EXPOSE:
+						full_redraw = true;
+						break;
 					default: break;
 				}
 			}
@@ -669,6 +673,9 @@ int main(int argc, char** argv) {
 		fclose(difflog_fp);
 		free(difflog_prev_mem);
 	}
+
+	// Close OS layer
+	os_close();
 
 	return 0;
 }
