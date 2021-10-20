@@ -1446,7 +1446,7 @@ var backupPC = regPC;
   
   // Difflog
 	for (var i = 0; i < memory.length; i++) {
-		if (i == 0xFE) continue;
+		//if (i == 0xFE) continue;
 		if (memory[i] == difflog_prev_mem[i]) continue;
 		difflog_buffer +=
 			difflog_count + ": Ins " + memory[backupPC].toString(16).padStart(2, "0")

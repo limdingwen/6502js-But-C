@@ -33,7 +33,7 @@
 #define DEBUG_BREAKPOINT 0 // Goes into stepping mode when breakpoint reached
 #define DEBUG_BREAKPOINT_MODE 1 // 0 = addr, 1 = ins_count
 #define DEBUG_BREAKPOINT_VALUE 822
-#define DEBUG_LOG 0 // Logs all instructions processed
+#define DEBUG_LOG 1 // Logs all instructions processed
 #define DEBUG_DIFFLOG 0 // Generates memory and reg changes, to compare & debug
 #define DEBUG_DIFFLOG_FILE "difflog_mine.txt"
 #define HALT_ON_INVALID 1
@@ -155,6 +155,7 @@ INS_DEF(BEQ) { if (bit_get(*s.sr, 1)) { *s.pc = (*get)(s); } }
 INS_DEF(BMI) { if (bit_get(*s.sr, 7)) { *s.pc = (*get)(s); } }
 INS_DEF(BNE) { if (!bit_get(*s.sr, 1)) { *s.pc = (*get)(s); } }
 INS_DEF(BPL) { if (!bit_get(*s.sr, 7)) { *s.pc = (*get)(s); } }
+INS_DEF(BVC) { if (!bit_get(*s.sr, 6)) { *s.pc = (*get)(s); } }
 INS_DEF(BRK) { *s.halt = true; }
 INS_DEF(CLC) { *s.sr = bit_set(*s.sr, 0, 0); }
 INS_DEF(CMP) { cmp(s, *s.ac, (*get)(s)); }
@@ -278,6 +279,7 @@ void construct_opcodes_table(struct opcode *o) {
 	o[0x10] = (struct opcode){ ins_BPL, &addr_rel };
 	o[0x20] = (struct opcode){ ins_JSR, &addr_abs_dir };
 	o[0x30] = (struct opcode){ ins_BMI, &addr_rel };
+	o[0x50] = (struct opcode){ ins_BVC, &addr_rel };
 	o[0x60] = (struct opcode){ ins_RTS, &addr_impl };
 	o[0x90] = (struct opcode){ ins_BCC, &addr_rel };
 	o[0xA0] = (struct opcode){ ins_LDY, &addr_imm };
@@ -287,19 +289,24 @@ void construct_opcodes_table(struct opcode *o) {
 	o[0xE0] = (struct opcode){ ins_CPX, &addr_imm };
 	o[0xF0] = (struct opcode){ ins_BEQ, &addr_rel };
 	// -1
+	o[0x01] = (struct opcode){ ins_ORA, &addr_x_ind };
+	o[0x11] = (struct opcode){ ins_ORA, &addr_ind_y };
+	o[0x41] = (struct opcode){ ins_EOR, &addr_x_ind };
 	o[0x71] = (struct opcode){ ins_ADC, &addr_ind_y };
 	o[0x81] = (struct opcode){ ins_STA, &addr_x_ind };
 	o[0x91] = (struct opcode){ ins_STA, &addr_ind_y };
 	o[0xB1] = (struct opcode){ ins_LDA, &addr_ind_y };
-	o[0xA1] = (struct opcode){ ins_LDX, &addr_x_ind };
+	o[0xA1] = (struct opcode){ ins_LDA, &addr_x_ind };
 	o[0xD1] = (struct opcode){ ins_CMP, &addr_ind_y };
 	// -2
 	o[0xA2] = (struct opcode){ ins_LDX, &addr_imm };
 	// -4
 	o[0x84] = (struct opcode){ ins_STY, &addr_zpg };
 	o[0xA4] = (struct opcode){ ins_LDY, &addr_zpg };
+	o[0xE4] = (struct opcode){ ins_CPX, &addr_zpg };
 	// -5
 	o[0x05] = (struct opcode){ ins_ORA, &addr_zpg };
+	o[0x25] = (struct opcode){ ins_AND, &addr_zpg };
 	o[0x45] = (struct opcode){ ins_EOR, &addr_zpg };
 	o[0x65] = (struct opcode){ ins_ADC, &addr_zpg };
 	o[0x85] = (struct opcode){ ins_STA, &addr_zpg };
@@ -330,6 +337,7 @@ void construct_opcodes_table(struct opcode *o) {
 	o[0x29] = (struct opcode){ ins_AND, &addr_imm };
 	o[0x49] = (struct opcode){ ins_EOR, &addr_imm };
 	o[0x69] = (struct opcode){ ins_ADC, &addr_imm };
+	o[0x99] = (struct opcode){ ins_STA, &addr_abs_y };
 	o[0xA9] = (struct opcode){ ins_LDA, &addr_imm };
 	o[0xC9] = (struct opcode){ ins_CMP, &addr_imm };
 	o[0xB9] = (struct opcode){ ins_LDA, &addr_abs_y };
@@ -338,6 +346,7 @@ void construct_opcodes_table(struct opcode *o) {
 	o[0x0A] = (struct opcode){ ins_ASL, &addr_ac };
 	o[0x2A] = (struct opcode){ ins_ROL, &addr_ac };
 	o[0x4A] = (struct opcode){ ins_LSR, &addr_ac };
+	o[0x6A] = (struct opcode){ ins_ROR, &addr_ac };
 	o[0x8A] = (struct opcode){ ins_TXA, &addr_impl };
 	o[0xAA] = (struct opcode){ ins_TAX, &addr_impl };
 	o[0xCA] = (struct opcode){ ins_DEX, &addr_impl };
@@ -346,8 +355,10 @@ void construct_opcodes_table(struct opcode *o) {
 	o[0x4C] = (struct opcode){ ins_JMP, &addr_abs_dir };
 	o[0x8C] = (struct opcode){ ins_STY, &addr_abs };
 	o[0xAC] = (struct opcode){ ins_LDY, &addr_abs };
+	o[0xBC] = (struct opcode){ ins_LDY, &addr_abs_x };
 	// -D
 	o[0x0D] = (struct opcode){ ins_ORA, &addr_abs };
+	o[0x7D] = (struct opcode){ ins_ADC, &addr_abs_x };
 	o[0x8D] = (struct opcode){ ins_STA, &addr_abs };
 	o[0x9D] = (struct opcode){ ins_STA, &addr_abs_x };
 	o[0xAD] = (struct opcode){ ins_LDA, &addr_abs };
@@ -485,10 +496,18 @@ int main(int argc, char** argv) {
 			start_time = get_clock_ns(); // Start counting average speed
 		}
 
+		// Limit cycles per IO/frame, if enabled and we've done enough this I/O
+		bool limited = LIMIT_ENABLE && cycles_this_frame >= cycles_per_frame;
+
 		// Step sim
-		if (started && !halt && cycles_this_frame < cycles_per_frame) {
-			// Count cycles per I/O frame, will stop cycles beyond limit
+		if (started && !halt && !limited) {
+			// Count cycles per I/O frame
 			cycles_this_frame++;
+
+			// Random $FE
+			if (!DEBUG_DIFFLOG) mem[0xFE] = rand();
+			// Suppress random if difflog (decided by coin flip)
+			else mem[0xFE] = 7;
 
 			// Fetch and decode opcode
 			uint8_t op = mem[reg_pc];
@@ -522,7 +541,7 @@ int main(int argc, char** argv) {
 			if (DEBUG_DIFFLOG) {
 				// Print differing memory addresses
 				for (int i = 0; i < TOTAL_MEM; i++) {
-					if (i == 0xFE) continue; // Skip random
+					//if (i == 0xFE) continue; // Skip random
 					if (mem[i] == difflog_prev_mem[i]) continue;
 					fprintf(difflog_fp,
 						"%llu: Ins %02x @ %04x, Memory %04x, %02x -> %02x\n",
@@ -586,11 +605,6 @@ int main(int argc, char** argv) {
 			if (!no_pc_inc) reg_pc += length;
 			no_pc_inc = false; // Reset for next instruction
 
-			// Random $FE
-			if (!DEBUG_DIFFLOG) mem[0xFE] = rand();
-			// Suppress random if difflog (decided by coin flip)
-			else mem[0xFE] = 7;
-
 			// Count instruction for average speed
 			ins_count++;
 		}
@@ -652,7 +666,8 @@ int main(int argc, char** argv) {
 		// =====
 
 		// Let the OS multitask, then come back to us ASAP
-		usleep(0);
+		// (Not sure if needed...)
+		//usleep(0);
 
 		// =====
 		// HALT/QUIT

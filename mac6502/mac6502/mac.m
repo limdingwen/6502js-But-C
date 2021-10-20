@@ -141,25 +141,25 @@ bool os_should_exit() {
 }
 
 bool os_poll_event(struct event *ev) {
-	@autoreleasepool {
-		NSEvent *e;
-		if ((e = [NSApp nextEventMatchingMask:NSEventMaskAny
-				untilDate:nil inMode:NSDefaultRunLoopMode dequeue:YES])) {
-			switch (e.type) {
-				case NSEventTypeKeyDown:
-					ev->type = ET_KEYPRESS;
-					ev->kp_key = [[e characters] characterAtIndex:0];
-					break;
-				default:
-					ev->type = ET_IGNORE;
-					break;
-			}
-			[NSApp sendEvent:e];
-			[NSApp updateWindows]; // ?? What does this do?
-			return true;
+	// For some reason, an autoreleasepool here will cause a SEGFAULT if
+	// we haven't started stepping cycles yet.
+	NSEvent *e;
+	if ((e = [NSApp nextEventMatchingMask:NSEventMaskAny
+			untilDate:nil inMode:NSDefaultRunLoopMode dequeue:YES])) {
+		switch (e.type) {
+			case NSEventTypeKeyDown:
+				ev->type = ET_KEYPRESS;
+				ev->kp_key = [[e characters] characterAtIndex:0];
+				break;
+			default:
+				ev->type = ET_IGNORE;
+				break;
 		}
-		return false;
+		[NSApp sendEvent:e];
+		[NSApp updateWindows]; // ?? What does this do?
+		return true;
 	}
+	return false;
 }
 
 // Coordinate system: 0,0 is top left. Quartz is bottom left.
