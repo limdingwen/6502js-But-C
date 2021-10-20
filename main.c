@@ -21,21 +21,20 @@
 #define SCREEN_LENGTH 0x0400
 #define SCREEN_WIDTH 0x0020
 #define SCREEN_HEIGHT 0x0020
-#define PIXEL_SIZE 10
-#define FRAME_INTERVAL 16666666
-#define LIMIT_ENABLE 0
-// TODO: Make accurate
-#define LIMIT_KHZ 50
-#define START_DELAY 500000000
-#define DEBUG_COREDUMP 1
+#define PIXEL_SIZE 10 // How big is a fake pixel?
+#define FRAME_INTERVAL 16666666 // In ns
+#define LIMIT_ENABLE 1
+#define LIMIT_KHZ 30
+#define START_DELAY 500000000 // In ns
+#define DEBUG_COREDUMP 1 // Coredumps on exit, also enables for step coredump
 #define DEBUG_COREDUMP_START 0x0100
 #define DEBUG_COREDUMP_END 0x01FF
-#define DEBUG_STEP 0
-#define DEBUG_BREAKPOINT 0
+#define DEBUG_STEP 0 // Allows user to step per cycle
+#define DEBUG_BREAKPOINT 0 // Goes into stepping mode when breakpoint reached
 #define DEBUG_BREAKPOINT_MODE 1 // 0 = addr, 1 = ins_count
 #define DEBUG_BREAKPOINT_VALUE 822
-#define DEBUG_LOG 0
-#define DEBUG_DIFFLOG 0
+#define DEBUG_LOG 0 // Logs all instructions processed
+#define DEBUG_DIFFLOG 0 // Generates memory and reg changes, to compare & debug
 #define DEBUG_DIFFLOG_FILE "difflog_mine.txt"
 #define HALT_ON_INVALID 1
 
@@ -464,9 +463,9 @@ int main(int argc, char** argv) {
 	bool avg_speed_done = false;
 
 	// Init speed limiting
-	unsigned long long prev_limit_time = get_clock_ns();
-	unsigned long long limit_interval_ns =
-		(1 / ((float)LIMIT_KHZ * 1000)) * 1000000000;
+	unsigned long cycles_this_frame = 0;
+	unsigned long cycles_per_frame = (LIMIT_KHZ * 1000) * // khz -> hz
+		((float)FRAME_INTERVAL / 1000 / 1000 / 1000); // ns -> s
 	
 	// Init stepping
 	bool on_breakpoint = false;
@@ -481,13 +480,16 @@ int main(int argc, char** argv) {
 		// =====
 
 		// Delayed start
-		if (get_clock_ns() - init_time > START_DELAY && !started) {
+		if (!started && get_clock_ns() - init_time > START_DELAY) {
 			started = true;
 			start_time = get_clock_ns(); // Start counting average speed
 		}
 
 		// Step sim
-		if (started && !halt) {
+		if (started && !halt && cycles_this_frame < cycles_per_frame) {
+			// Count cycles per I/O frame, will stop cycles beyond limit
+			cycles_this_frame++;
+
 			// Fetch and decode opcode
 			uint8_t op = mem[reg_pc];
 			struct opcode decoded = opcodes[op];
@@ -518,6 +520,7 @@ int main(int argc, char** argv) {
 
 			// Debug difflog; compare RAM, print diffs
 			if (DEBUG_DIFFLOG) {
+				// Print differing memory addresses
 				for (int i = 0; i < TOTAL_MEM; i++) {
 					if (i == 0xFE) continue; // Skip random
 					if (mem[i] == difflog_prev_mem[i]) continue;
@@ -528,6 +531,7 @@ int main(int argc, char** argv) {
 					difflog_prev_mem[i] = mem[i];
 				}
 
+				// Print differing registers
 				if (difflog_prev_ac != reg_ac)
 					print_difflog(difflog_fp, ins_count, mem, backup_pc, "AC",
 						difflog_prev_ac, reg_ac);
@@ -545,6 +549,7 @@ int main(int argc, char** argv) {
 					print_difflog(difflog_fp, ins_count, mem, backup_pc, "SP",
 						difflog_prev_sp, reg_sp);*/
 
+				// Update old registers for next diff
 				difflog_prev_ac = reg_ac;
 				difflog_prev_x = reg_x;
 				difflog_prev_y = reg_y;
@@ -577,35 +582,38 @@ int main(int argc, char** argv) {
 			if (DEBUG_LOG && halt)
 				puts("Halted.");
 
-			// Increment PC unless instruction said not to, then reset for next
+			// Increment PC unless instruction said not to
 			if (!no_pc_inc) reg_pc += length;
-			no_pc_inc = false;
+			no_pc_inc = false; // Reset for next instruction
 
 			// Random $FE
-			mem[0xFE] = rand();
-
+			if (!DEBUG_DIFFLOG) mem[0xFE] = rand();
 			// Suppress random if difflog (decided by coin flip)
-			if (DEBUG_DIFFLOG) mem[0xFE] = 7;
+			else mem[0xFE] = 7;
 
 			// Count instruction for average speed
 			ins_count++;
 		}
 
-		// =====
-		// RENDER
-		// =====
-
-		// Re-render every X nanoseconds, or if redraw is required
+		// Run I/O every X nanoseconds, or if redraw is required
 		unsigned long long new_frame_time = get_clock_ns();
 		if (new_frame_time - prev_frame_time > FRAME_INTERVAL || full_redraw) {
 			prev_frame_time = new_frame_time;
+
+			// Reset cycles limiter for next I/O frame
+			cycles_this_frame = 0;
+
+			// =====
+			// RENDER
+			// =====
+			
 			bool dirty = false;
 			for (int i = 0; i < SCREEN_LENGTH; i++) {
 				// Render only if dirty, or if redraw is required
 				uint8_t new_pix = mem[SCREEN_START + i];
 				if (old_screen[i] == new_pix && !full_redraw) continue;
-				dirty = true;
-				old_screen[i] = new_pix;
+				dirty = true; // So we know to present later
+				old_screen[i] = new_pix; // Update old screen buffer
 
 				// Get pixel details
 				int x = i % SCREEN_WIDTH;
@@ -617,6 +625,7 @@ int main(int argc, char** argv) {
 					PIXEL_SIZE, colors, color);
 			}
 			if (dirty) os_present();
+			full_redraw = false;
 
 			// =====
 			// HANDLE EVENTS
@@ -626,10 +635,10 @@ int main(int argc, char** argv) {
 			while (os_poll_event(&e)) {
 				switch (e.type) {
 					case ET_KEYPRESS:
-						mem[0xFF] = e.kp_key;
+						mem[0xFF] = e.kp_key; // Put ASCII into memory
 						break;
 					case ET_EXPOSE:
-						full_redraw = true;
+						full_redraw = true; // Next update will be an I/O frame
 						break;
 					default: break;
 				}
@@ -637,22 +646,20 @@ int main(int argc, char** argv) {
 
 			if (os_should_exit()) running = false;
 		}
-		full_redraw = false;
 
 		// =====
-		// LIMIT
+		// YIELD
 		// =====
-		
-		unsigned long long new_limit_time = get_clock_ns();
-		long limit_time_diff_ns =
-			limit_interval_ns - (new_limit_time - prev_limit_time);
-		long limit_time_diff_us = limit_time_diff_ns / 1000;
-		if (LIMIT_ENABLE && limit_time_diff_us > 0) usleep(
-			(unsigned int)limit_time_diff_us);
-		prev_limit_time = get_clock_ns();
+
+		// Let the OS multitask, then come back to us ASAP
+		usleep(0);
+
+		// =====
+		// HALT/QUIT
+		// =====
 
 		// Calculate average speed and print when either halted or quitting
-		if (!avg_speed_done && (halt || !running)) {
+		if ((halt || !running) && !avg_speed_done) {
 			coredump(sim_state);
 			avg_speed_done = true;
 			unsigned long long diff = get_clock_ns() - start_time;

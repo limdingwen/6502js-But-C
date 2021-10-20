@@ -1,5 +1,8 @@
+# Binaries
 6502
 6502.dSYM
 Debug
-*.swp
 dist
+
+# Vim temporary files
+*.swp
