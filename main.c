@@ -15,6 +15,7 @@
 
 // Config
 #define TOTAL_MEM 65536
+#define LOAD_START 0x0600
 #define PC_START 0x0600
 #define STACK_TOP 0x01FF
 #define SCREEN_START 0x0200
@@ -23,17 +24,17 @@
 #define SCREEN_HEIGHT 0x0020
 #define PIXEL_SIZE 10 // How big is a fake pixel?
 #define FRAME_INTERVAL 16666666 // In ns
-#define LIMIT_ENABLE 1
-#define LIMIT_KHZ 30
+#define DEFAULT_LIMIT_ENABLE 1
+#define DEFAULT_LIMIT_KHZ 30
 #define START_DELAY 500000000 // In ns
-#define DEBUG_COREDUMP 1 // Coredumps on exit, also enables for step coredump
+#define DEBUG_COREDUMP 0 // Coredumps on exit, also enables for step coredump
 #define DEBUG_COREDUMP_START 0x0100
 #define DEBUG_COREDUMP_END 0x01FF
 #define DEBUG_STEP 0 // Allows user to step per cycle
 #define DEBUG_BREAKPOINT 0 // Goes into stepping mode when breakpoint reached
-#define DEBUG_BREAKPOINT_MODE 1 // 0 = addr, 1 = ins_count
+#define DEBUG_BREAKPOINT_MODE 2 // 0 = addr, 1 = ins_count, 2 = trapped
 #define DEBUG_BREAKPOINT_VALUE 822
-#define DEBUG_LOG 1 // Logs all instructions processed
+#define DEBUG_LOG 0 // Logs all instructions processed
 #define DEBUG_DIFFLOG 0 // Generates memory and reg changes, to compare & debug
 #define DEBUG_DIFFLOG_FILE "difflog_mine.txt"
 #define HALT_ON_INVALID 1
@@ -96,10 +97,10 @@ void print_difflog(FILE *fp, unsigned long long ins_count, uint8_t *mem,
 uint16_t i8to16(uint8_t h, uint8_t l) { return (uint16_t)h << 8 | l; }
 
 // Bit operations
-uint8_t bit_set(uint8_t a, int n, int x) {
-	return (a & ~(1UL << n)) | (x << n);
+uint8_t bit_set(uint8_t operand, int bit_pos, int bit_value) {
+	return (operand & ~(1UL << bit_pos)) | (bit_value << bit_pos);
 }
-int bit_get(uint16_t a, int n) { return a >> n & 1; }
+int bit_get(uint16_t operand, int bit_pos) { return operand >> bit_pos & 1; }
 
 // Instruction helpers
 uint8_t sr_nz(uint8_t *sr, uint8_t a) {
@@ -107,8 +108,8 @@ uint8_t sr_nz(uint8_t *sr, uint8_t a) {
 	*sr = bit_set(*sr, 7, bit_get(a, 7)); // Negative
 	return a;
 }
-void push(uint8_t *mem, uint8_t *sp, uint8_t a) {
-	mem[(*sp)-- + 0x0100] = a;
+void push(uint8_t *mem, uint8_t *sp, uint8_t new_value) {
+	mem[(*sp)-- + 0x0100] = new_value;
 	//*sp = *sp - 1;
 }
 uint8_t pop(uint8_t *mem, uint8_t *sp) { return mem[++(*sp) + 0x0100]; }
@@ -156,8 +157,10 @@ INS_DEF(BMI) { if (bit_get(*s.sr, 7)) { *s.pc = (*get)(s); } }
 INS_DEF(BNE) { if (!bit_get(*s.sr, 1)) { *s.pc = (*get)(s); } }
 INS_DEF(BPL) { if (!bit_get(*s.sr, 7)) { *s.pc = (*get)(s); } }
 INS_DEF(BVC) { if (!bit_get(*s.sr, 6)) { *s.pc = (*get)(s); } }
+INS_DEF(BVS) { if (bit_get(*s.sr, 6)) { *s.pc = (*get)(s); } }
 INS_DEF(BRK) { *s.halt = true; }
 INS_DEF(CLC) { *s.sr = bit_set(*s.sr, 0, 0); }
+INS_DEF(CLD) { /* TODO Decimal */ }
 INS_DEF(CMP) { cmp(s, *s.ac, (*get)(s)); }
 INS_DEF(CPX) { cmp(s, *s.x, (*get)(s)); }
 INS_DEF(CPY) { cmp(s, *s.y, (*get)(s)); }
@@ -185,7 +188,21 @@ INS_DEF(LSR) {
 INS_DEF(NOP) { /* :D */ }
 INS_DEF(ORA) { *s.ac = sr_nz(s.sr, (*get)(s) | *s.ac); }
 INS_DEF(PHA) { push(s.mem, s.sp, *s.ac); }
+INS_DEF(PHP) {
+	uint8_t to_push = *s.sr;
+	// Set break and bit 5 to 1
+	*s.sr = bit_set(*s.sr, 4, 1);
+	*s.sr = bit_set(*s.sr, 5, 1);
+	push(s.mem, s.sp, to_push);
+}
 INS_DEF(PLA) { *s.ac = sr_nz(s.sr, pop(s.mem, s.sp)); }
+INS_DEF(PLP) {
+	uint8_t old_sr = *s.sr;
+	*s.sr = pop(s.mem, s.sp);
+	// Restore old break and bit 5
+	*s.sr = bit_set(*s.sr, 4, bit_get(old_sr, 4));
+	*s.sr = bit_set(*s.sr, 5, bit_get(old_sr, 5));
+}
 INS_DEF(ROL) {
 	int old_c = bit_get(*s.sr, 0);
 	*s.sr = bit_set(*s.sr, 0, bit_get((*get)(s), 7));
@@ -219,7 +236,9 @@ INS_DEF(STX) { (*set)(*s.x, s); }
 INS_DEF(STY) { (*set)(*s.y, s); }
 INS_DEF(TAX) { *s.x = sr_nz(s.sr, *s.ac); }
 INS_DEF(TAY) { *s.y = sr_nz(s.sr, *s.ac); }
+INS_DEF(TSX) { *s.x = sr_nz(s.sr, *s.sp); }
 INS_DEF(TXA) { *s.ac = sr_nz(s.sr, *s.x); }
+INS_DEF(TXS) { *s.sp = sr_nz(s.sr, *s.x); }
 INS_DEF(TYA) { *s.ac = sr_nz(s.sr, *s.y); }
 #undef INS_DEF
 
@@ -265,6 +284,9 @@ ADDR_DEF(zpg, 2,
 ADDR_DEF(zpg_x, 2,
 	return s.mem[s.mem[*s.pc + 1] + *s.x];,
 	s.mem[s.mem[*s.pc + 1] + *s.x] = a;);
+ADDR_DEF(zpg_y, 2,
+	return s.mem[s.mem[*s.pc + 1] + *s.y];,
+	s.mem[s.mem[*s.pc + 1] + *s.y] = a;);
 #undef ADDR_DEF
 
 // Opcodes
@@ -279,8 +301,11 @@ void construct_opcodes_table(struct opcode *o) {
 	o[0x10] = (struct opcode){ ins_BPL, &addr_rel };
 	o[0x20] = (struct opcode){ ins_JSR, &addr_abs_dir };
 	o[0x30] = (struct opcode){ ins_BMI, &addr_rel };
+	// TODO RTI
 	o[0x50] = (struct opcode){ ins_BVC, &addr_rel };
 	o[0x60] = (struct opcode){ ins_RTS, &addr_impl };
+	o[0x70] = (struct opcode){ ins_BVS, &addr_rel };
+	// 0x80 undef
 	o[0x90] = (struct opcode){ ins_BCC, &addr_rel };
 	o[0xA0] = (struct opcode){ ins_LDY, &addr_imm };
 	o[0xB0] = (struct opcode){ ins_BCS, &addr_rel };
@@ -291,52 +316,101 @@ void construct_opcodes_table(struct opcode *o) {
 	// -1
 	o[0x01] = (struct opcode){ ins_ORA, &addr_x_ind };
 	o[0x11] = (struct opcode){ ins_ORA, &addr_ind_y };
+	o[0x21] = (struct opcode){ ins_AND, &addr_x_ind }; // Untested
+	o[0x31] = (struct opcode){ ins_AND, &addr_ind_y }; // Untested
 	o[0x41] = (struct opcode){ ins_EOR, &addr_x_ind };
+	o[0x51] = (struct opcode){ ins_EOR, &addr_ind_y }; // Untested
+	o[0x61] = (struct opcode){ ins_ADC, &addr_x_ind }; // Untested
 	o[0x71] = (struct opcode){ ins_ADC, &addr_ind_y };
 	o[0x81] = (struct opcode){ ins_STA, &addr_x_ind };
 	o[0x91] = (struct opcode){ ins_STA, &addr_ind_y };
-	o[0xB1] = (struct opcode){ ins_LDA, &addr_ind_y };
 	o[0xA1] = (struct opcode){ ins_LDA, &addr_x_ind };
+	o[0xB1] = (struct opcode){ ins_LDA, &addr_ind_y };
+	o[0xC1] = (struct opcode){ ins_CMP, &addr_x_ind }; // Untested
 	o[0xD1] = (struct opcode){ ins_CMP, &addr_ind_y };
+	o[0xE1] = (struct opcode){ ins_SBC, &addr_x_ind }; // Untested
+	o[0xF1] = (struct opcode){ ins_SBC, &addr_ind_y }; // Untested
 	// -2
+	// 0x02 to 0x92 undef
 	o[0xA2] = (struct opcode){ ins_LDX, &addr_imm };
+	// 0xB2 to 0xf2 undef
+	// -3
+	// 0x03 to 0xf3 undef
 	// -4
+	// 0x04 to 0x14 undef
+	// TODO: BIT
+	// 0x34 to 0x74 undef
 	o[0x84] = (struct opcode){ ins_STY, &addr_zpg };
+	o[0x94] = (struct opcode){ ins_STY, &addr_zpg_x }; // Untested
 	o[0xA4] = (struct opcode){ ins_LDY, &addr_zpg };
+	o[0xB4] = (struct opcode){ ins_LDY, &addr_zpg_x }; // Untested
+	o[0xC4] = (struct opcode){ ins_CPY, &addr_zpg }; // Untested
+	// 0xD4 undef
 	o[0xE4] = (struct opcode){ ins_CPX, &addr_zpg };
+	// 0xF4 undef
 	// -5
 	o[0x05] = (struct opcode){ ins_ORA, &addr_zpg };
+	o[0x15] = (struct opcode){ ins_ORA, &addr_zpg_x }; // Untested
 	o[0x25] = (struct opcode){ ins_AND, &addr_zpg };
+	o[0x35] = (struct opcode){ ins_AND, &addr_zpg_x }; // Untested
 	o[0x45] = (struct opcode){ ins_EOR, &addr_zpg };
+	o[0x55] = (struct opcode){ ins_EOR, &addr_zpg_x }; // Untested
 	o[0x65] = (struct opcode){ ins_ADC, &addr_zpg };
+	o[0x75] = (struct opcode){ ins_ADC, &addr_zpg_x }; // Untested
 	o[0x85] = (struct opcode){ ins_STA, &addr_zpg };
 	o[0x95] = (struct opcode){ ins_STA, &addr_zpg_x };
 	o[0xA5] = (struct opcode){ ins_LDA, &addr_zpg };
 	o[0xB5] = (struct opcode){ ins_LDA, &addr_zpg_x };
 	o[0xC5] = (struct opcode){ ins_CMP, &addr_zpg };
+	o[0xD5] = (struct opcode){ ins_CMP, &addr_zpg_x }; // Untested
 	o[0xE5] = (struct opcode){ ins_SBC, &addr_zpg };
 	o[0xF5] = (struct opcode){ ins_SBC, &addr_zpg_x };
 	// -6
 	o[0x06] = (struct opcode){ ins_ASL, &addr_zpg };
+	o[0x16] = (struct opcode){ ins_ASL, &addr_zpg_x }; // Untested
+	o[0x26] = (struct opcode){ ins_ROL, &addr_zpg }; // Untested
+	o[0x36] = (struct opcode){ ins_ROL, &addr_zpg_x }; // Untested
+	o[0x46] = (struct opcode){ ins_LSR, &addr_zpg }; // Untested
+	o[0x56] = (struct opcode){ ins_LSR, &addr_zpg_x }; // Untested
 	o[0x66] = (struct opcode){ ins_ROR, &addr_zpg };
+	o[0x76] = (struct opcode){ ins_ROR, &addr_zpg_x }; // Untested
 	o[0x86] = (struct opcode){ ins_STX, &addr_zpg };
+	o[0x96] = (struct opcode){ ins_STX, &addr_zpg_y }; // Untested
 	o[0xA6] = (struct opcode){ ins_LDX, &addr_zpg };
+	o[0xB6] = (struct opcode){ ins_LDX, &addr_zpg_y }; // Untested
 	o[0xC6] = (struct opcode){ ins_DEC, &addr_zpg };
+	o[0xD6] = (struct opcode){ ins_DEC, &addr_zpg_x }; // Untested
 	o[0xE6] = (struct opcode){ ins_INC, &addr_zpg };
+	o[0xF6] = (struct opcode){ ins_INC, &addr_zpg_x }; // Untested
+	// -7
+	// 0x07 to 0xf7 undef
 	// -8
+	o[0x08] = (struct opcode){ ins_PHP, &addr_impl };
 	o[0x18] = (struct opcode){ ins_CLC, &addr_impl };
+	o[0x28] = (struct opcode){ ins_PLP, &addr_impl };
 	o[0x38] = (struct opcode){ ins_SEC, &addr_impl };
 	o[0x48] = (struct opcode){ ins_PHA, &addr_impl };
+	// TODO: CLI
 	o[0x68] = (struct opcode){ ins_PLA, &addr_impl };
+	// TODO: SEI
 	o[0x88] = (struct opcode){ ins_DEY, &addr_impl };
 	o[0x98] = (struct opcode){ ins_TYA, &addr_impl };
 	o[0xA8] = (struct opcode){ ins_TAY, &addr_impl };
+	// TODO: CLV
 	o[0xC8] = (struct opcode){ ins_INY, &addr_impl };
+	o[0xD8] = (struct opcode){ ins_CLD, &addr_impl };
 	o[0xE8] = (struct opcode){ ins_INX, &addr_impl };
+	// TODO: SED
 	// -9
+	o[0x09] = (struct opcode){ ins_ORA, &addr_imm };
+	o[0x19] = (struct opcode){ ins_ORA, &addr_abs_y }; // Untested
 	o[0x29] = (struct opcode){ ins_AND, &addr_imm };
+	o[0x39] = (struct opcode){ ins_AND, &addr_abs_y }; // Untested
 	o[0x49] = (struct opcode){ ins_EOR, &addr_imm };
+	o[0x59] = (struct opcode){ ins_EOR, &addr_abs_y }; // Untested
 	o[0x69] = (struct opcode){ ins_ADC, &addr_imm };
+	o[0x79] = (struct opcode){ ins_ADC, &addr_abs_y }; // Untested
+	// 0x89 undef
 	o[0x99] = (struct opcode){ ins_STA, &addr_abs_y };
 	o[0xA9] = (struct opcode){ ins_LDA, &addr_imm };
 	o[0xC9] = (struct opcode){ ins_CMP, &addr_imm };
@@ -344,13 +418,24 @@ void construct_opcodes_table(struct opcode *o) {
 	o[0xE9] = (struct opcode){ ins_SBC, &addr_imm };
 	// -A
 	o[0x0A] = (struct opcode){ ins_ASL, &addr_ac };
+	// 0x1a undef
 	o[0x2A] = (struct opcode){ ins_ROL, &addr_ac };
+	// 0x3a undef
 	o[0x4A] = (struct opcode){ ins_LSR, &addr_ac };
+	// 0x5a undef
 	o[0x6A] = (struct opcode){ ins_ROR, &addr_ac };
+	// 0x7a undef
 	o[0x8A] = (struct opcode){ ins_TXA, &addr_impl };
+	o[0x9A] = (struct opcode){ ins_TXS, &addr_impl };
 	o[0xAA] = (struct opcode){ ins_TAX, &addr_impl };
+	o[0xBA] = (struct opcode){ ins_TSX, &addr_impl };
 	o[0xCA] = (struct opcode){ ins_DEX, &addr_impl };
+	// 0xda undef
 	o[0xEA] = (struct opcode){ ins_NOP, &addr_impl };
+	// 0xfa undef
+	// -B
+	// 0x0b to 0xfb undef
+	// TODO: continue
 	// -C
 	o[0x4C] = (struct opcode){ ins_JMP, &addr_abs_dir };
 	o[0x8C] = (struct opcode){ ins_STY, &addr_abs };
@@ -392,13 +477,41 @@ int main(int argc, char** argv) {
 		// If no arg and true: fileNameBuf is set, continue
 		// If no arg and false, halt with instructions
 		if (!os_choose_bin(fileNameBuf)) {
-			puts("Usage: 6502 file.bin");
+			puts("Usage: 6502 file.bin [options]");
+			puts("Options:");
+			printf("-unlimited: Run with no speed limiter (default: %s)\n",
+				DEFAULT_LIMIT_ENABLE ? "limited" : "unlimited");
+			printf("-s(speed_in_khz): Set speed limit (default: %d)\n",
+				DEFAULT_LIMIT_KHZ); 
 			return 0;
 		}
 	}
 	// If have arg, fileNameBuf is just argv[1]
 	else {
 		strcpy(fileNameBuf, argv[1]);
+	}
+
+	// Handle command line: -unlimited
+	bool limit_enable = DEFAULT_LIMIT_ENABLE;
+	for (int i = 1; i < argc; i++) {
+		if (strcmp(argv[i], "-unlimited") == 0) {
+			limit_enable = false;
+			break;
+		}
+	}
+
+	// Handle command line: -s[speed]
+	unsigned long limit_khz = DEFAULT_LIMIT_KHZ;
+	for (int i = 1; i < argc; i++) {
+		if (strncmp(argv[i], "-s", 2) == 0) {
+			unsigned long input = strtol(argv[i] + 2, NULL, 10);
+			if (input == 0) { // Also detects invalid input (strtol returns 0)
+				puts("Invalid speed (must be integer, not 0)");
+				return -1;
+			}
+			limit_khz = input;
+			break;
+		}
 	}
 
 	// =====
@@ -432,7 +545,7 @@ int main(int argc, char** argv) {
 			perror("Cannot read input binary file");
 			return -1;
 		}
-		fread(mem + PC_START, TOTAL_MEM - PC_START, 1, fp);
+		fread(mem + LOAD_START, TOTAL_MEM - LOAD_START, 1, fp);
 		fclose(fp);
 	}
 
@@ -475,7 +588,7 @@ int main(int argc, char** argv) {
 
 	// Init speed limiting
 	unsigned long cycles_this_frame = 0;
-	unsigned long cycles_per_frame = (LIMIT_KHZ * 1000) * // khz -> hz
+	unsigned long cycles_per_frame = (limit_khz * 1000) * // khz -> hz
 		((float)FRAME_INTERVAL / 1000 / 1000 / 1000); // ns -> s
 	
 	// Init stepping
@@ -497,7 +610,7 @@ int main(int argc, char** argv) {
 		}
 
 		// Limit cycles per IO/frame, if enabled and we've done enough this I/O
-		bool limited = LIMIT_ENABLE && cycles_this_frame >= cycles_per_frame;
+		bool limited = limit_enable && cycles_this_frame >= cycles_per_frame;
 
 		// Step sim
 		if (started && !halt && !limited) {
@@ -528,6 +641,9 @@ int main(int argc, char** argv) {
 			// Save PC for debugging purposes
 			uint16_t backup_pc = reg_pc;
 
+			// Check for trapped PC
+			uint16_t trapped_check_old_pc = reg_pc;
+
 			// Execute!
 			if (decoded.instruction)
 				decoded.instruction(decoded.addr_mode->get,
@@ -536,6 +652,10 @@ int main(int argc, char** argv) {
 				if (DEBUG_LOG) printf("Invalid opcode %02x\n", op);
 				if (HALT_ON_INVALID) halt = true;
 			}
+
+			// Increment PC unless instruction said not to
+			if (!no_pc_inc) reg_pc += length;
+			no_pc_inc = false; // Reset for next instruction
 
 			// Debug difflog; compare RAM, print diffs
 			if (DEBUG_DIFFLOG) {
@@ -577,8 +697,16 @@ int main(int argc, char** argv) {
 			}
 
 			// Break if on breakpoint
-			if (DEBUG_BREAKPOINT && (DEBUG_BREAKPOINT_MODE ? ins_count :
-					backup_pc) == DEBUG_BREAKPOINT_VALUE) {
+			bool addr_break = backup_pc == DEBUG_BREAKPOINT_VALUE;
+			bool ins_count_break = ins_count == DEBUG_BREAKPOINT_VALUE;
+			bool trapped_break = trapped_check_old_pc == reg_pc;
+			bool should_break = false;
+			switch (DEBUG_BREAKPOINT_MODE) {
+				case 0: should_break = addr_break; break;
+				case 1: should_break = ins_count_break; break;
+				case 2: should_break = trapped_break; break;
+			}
+			if (DEBUG_BREAKPOINT && should_break) {
 				if (DEBUG_BREAKPOINT_MODE)
 					printf("Breaking at %llu\n", ins_count);
 				else
@@ -600,10 +728,6 @@ int main(int argc, char** argv) {
 			// Log halt
 			if (DEBUG_LOG && halt)
 				puts("Halted.");
-
-			// Increment PC unless instruction said not to
-			if (!no_pc_inc) reg_pc += length;
-			no_pc_inc = false; // Reset for next instruction
 
 			// Count instruction for average speed
 			ins_count++;

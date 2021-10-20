@@ -4,6 +4,8 @@
 #import <string.h>
 #import <stdbool.h>
 
+#define ENABLE_AUTOFOCUS 1
+
 @interface MainView : NSView {
 }
 @end
@@ -71,7 +73,7 @@ void os_create_window(const char* name, int width, int height) {
 		// the bundling into a .app. Everything else can be done w/o XCode.
 		[NSBundle loadNibNamed:@"MainMenu" owner:[NSApp delegate]];
 		#pragma clang diagnostic pop
-		[NSApp activateIgnoringOtherApps:YES];
+		if (ENABLE_AUTOFOCUS) [NSApp activateIgnoringOtherApps:YES];
 		[NSApp finishLaunching];
 
 		// Allows our app to be an "app" without a bundle
