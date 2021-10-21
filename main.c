@@ -15,7 +15,7 @@
 
 // Config
 #define TOTAL_MEM 65536
-#define LOAD_START 0x0600
+#define LOAD_START 0x0000
 #define PC_START 0x0600
 #define STACK_TOP 0x01FF
 #define SCREEN_START 0x0200
@@ -27,14 +27,14 @@
 #define DEFAULT_LIMIT_ENABLE 1
 #define DEFAULT_LIMIT_KHZ 30
 #define START_DELAY 500000000 // In ns
-#define DEBUG_COREDUMP 0 // Coredumps on exit, also enables for step coredump
+#define DEBUG_COREDUMP 1 // Coredumps on exit, also enables for step coredump
 #define DEBUG_COREDUMP_START 0x0100
 #define DEBUG_COREDUMP_END 0x01FF
 #define DEBUG_STEP 0 // Allows user to step per cycle
-#define DEBUG_BREAKPOINT 0 // Goes into stepping mode when breakpoint reached
+#define DEBUG_BREAKPOINT 1 // Goes into stepping mode when breakpoint reached
 #define DEBUG_BREAKPOINT_MODE 2 // 0 = addr, 1 = ins_count, 2 = trapped
-#define DEBUG_BREAKPOINT_VALUE 822
-#define DEBUG_LOG 0 // Logs all instructions processed
+#define DEBUG_BREAKPOINT_VALUE 0x05
+#define DEBUG_LOG 1 // Logs all instructions processed
 #define DEBUG_DIFFLOG 0 // Generates memory and reg changes, to compare & debug
 #define DEBUG_DIFFLOG_FILE "difflog_mine.txt"
 #define HALT_ON_INVALID 1
@@ -74,9 +74,9 @@ struct sim_state { uint16_t *pc; uint8_t *ac; uint8_t *x; uint8_t *y;
 	uint8_t *sr; uint8_t *sp; uint8_t* mem; bool *halt; bool *no_pc_inc; };
 
 // Write memory and registers to STDOUT for debug
-void coredump(struct sim_state s) {
+void coredump(struct sim_state s, uint16_t begin, uint16_t end) {
 	if (!DEBUG_COREDUMP) return;
-	for (int i = DEBUG_COREDUMP_START; i <= DEBUG_COREDUMP_END; i += 0x10) {
+	for (int i = begin; i <= end; i += 0x10) {
 		printf("%04x: ", i);
 		for (int j = i; j < i + 0x10; j++)
 			printf("%02x ", s.mem[j]);
@@ -114,6 +114,7 @@ void push(uint8_t *mem, uint8_t *sp, uint8_t new_value) {
 }
 uint8_t pop(uint8_t *mem, uint8_t *sp) { return mem[++(*sp) + 0x0100]; }
 void cmp(struct sim_state s, uint8_t reg, uint8_t get) {
+	//printf("Comparing %x %x\n", reg, get);
 	uint8_t t = reg - get;
 	if (reg < get) {
 		*s.sr = bit_set(*s.sr, 7, bit_get(t, 7));
@@ -160,7 +161,9 @@ INS_DEF(BVC) { if (!bit_get(*s.sr, 6)) { *s.pc = (*get)(s); } }
 INS_DEF(BVS) { if (bit_get(*s.sr, 6)) { *s.pc = (*get)(s); } }
 INS_DEF(BRK) { *s.halt = true; }
 INS_DEF(CLC) { *s.sr = bit_set(*s.sr, 0, 0); }
-INS_DEF(CLD) { /* TODO Decimal */ }
+INS_DEF(CLD) { *s.sr = bit_set(*s.sr, 3, 0); }
+INS_DEF(CLI) { *s.sr = bit_set(*s.sr, 2, 0); }
+INS_DEF(CLV) { *s.sr = bit_set(*s.sr, 6, 0); }
 INS_DEF(CMP) { cmp(s, *s.ac, (*get)(s)); }
 INS_DEF(CPX) { cmp(s, *s.x, (*get)(s)); }
 INS_DEF(CPY) { cmp(s, *s.y, (*get)(s)); }
@@ -191,8 +194,8 @@ INS_DEF(PHA) { push(s.mem, s.sp, *s.ac); }
 INS_DEF(PHP) {
 	uint8_t to_push = *s.sr;
 	// Set break and bit 5 to 1
-	*s.sr = bit_set(*s.sr, 4, 1);
-	*s.sr = bit_set(*s.sr, 5, 1);
+	to_push = bit_set(to_push, 4, 1);
+	to_push = bit_set(to_push, 5, 1);
 	push(s.mem, s.sp, to_push);
 }
 INS_DEF(PLA) { *s.ac = sr_nz(s.sr, pop(s.mem, s.sp)); }
@@ -213,6 +216,14 @@ INS_DEF(ROR) {
 	*s.sr = bit_set(*s.sr, 0, bit_get((*get)(s), 0));
 	(*set)(sr_nz(s.sr, (*get)(s) >> 1 | old_c << 7), s);
 }
+INS_DEF(RTI) {
+	// Essentially a PLP and then a RTS, but w/o + 1
+	ins_PLP(get, set, s);
+	uint8_t ret_l = pop(s.mem, s.sp);
+	uint8_t ret_h = pop(s.mem, s.sp);
+	*s.pc = i8to16(ret_h, ret_l);
+	*s.no_pc_inc = true;
+}
 INS_DEF(RTS) {
 	uint8_t ret_l = pop(s.mem, s.sp);
 	uint8_t ret_h = pop(s.mem, s.sp);
@@ -231,6 +242,8 @@ INS_DEF(SBC) {
 	*s.ac = sr_nz(s.sr, t);
 }
 INS_DEF(SEC) { *s.sr = bit_set(*s.sr, 0, 1); }
+INS_DEF(SED) { *s.sr = bit_set(*s.sr, 3, 1); }
+INS_DEF(SEI) { *s.sr = bit_set(*s.sr, 2, 1); }
 INS_DEF(STA) { (*set)(*s.ac, s); }
 INS_DEF(STX) { (*set)(*s.x, s); }
 INS_DEF(STY) { (*set)(*s.y, s); }
@@ -238,7 +251,7 @@ INS_DEF(TAX) { *s.x = sr_nz(s.sr, *s.ac); }
 INS_DEF(TAY) { *s.y = sr_nz(s.sr, *s.ac); }
 INS_DEF(TSX) { *s.x = sr_nz(s.sr, *s.sp); }
 INS_DEF(TXA) { *s.ac = sr_nz(s.sr, *s.x); }
-INS_DEF(TXS) { *s.sp = sr_nz(s.sr, *s.x); }
+INS_DEF(TXS) { *s.sp = *s.x; } // TSX sets NZ - TXS does not
 INS_DEF(TYA) { *s.ac = sr_nz(s.sr, *s.y); }
 #undef INS_DEF
 
@@ -265,6 +278,9 @@ ADDR_DEF(abs_y, 3,
 	s.mem[i8to16(s.mem[*s.pc + 2], s.mem[*s.pc + 1])
 		+ *s.y/* + bit_get(*s.sr, 0)*/] = a;);
 ADDR_DEF(imm, 2, return s.mem[*s.pc + 1];, );
+ADDR_DEF(ind_dir, 3,
+	uint16_t hhll = i8to16(s.mem[*s.pc + 2], s.mem[*s.pc + 1]);
+	return i8to16(s.mem[hhll + 1], s.mem[hhll]);, );
 ADDR_DEF(x_ind, 2,
 	uint8_t zp_x = s.mem[*s.pc + 1] + *s.x;
 	return s.mem[i8to16(s.mem[zp_x + 1], s.mem[zp_x])];,
@@ -301,7 +317,7 @@ void construct_opcodes_table(struct opcode *o) {
 	o[0x10] = (struct opcode){ ins_BPL, &addr_rel };
 	o[0x20] = (struct opcode){ ins_JSR, &addr_abs_dir };
 	o[0x30] = (struct opcode){ ins_BMI, &addr_rel };
-	// TODO RTI
+	o[0x40] = (struct opcode){ ins_RTI, &addr_impl };
 	o[0x50] = (struct opcode){ ins_BVC, &addr_rel };
 	o[0x60] = (struct opcode){ ins_RTS, &addr_impl };
 	o[0x70] = (struct opcode){ ins_BVS, &addr_rel };
@@ -316,20 +332,20 @@ void construct_opcodes_table(struct opcode *o) {
 	// -1
 	o[0x01] = (struct opcode){ ins_ORA, &addr_x_ind };
 	o[0x11] = (struct opcode){ ins_ORA, &addr_ind_y };
-	o[0x21] = (struct opcode){ ins_AND, &addr_x_ind }; // Untested
-	o[0x31] = (struct opcode){ ins_AND, &addr_ind_y }; // Untested
+	//o[0x21] = (struct opcode){ ins_AND, &addr_x_ind }; Untested
+	//o[0x31] = (struct opcode){ ins_AND, &addr_ind_y }; Untested
 	o[0x41] = (struct opcode){ ins_EOR, &addr_x_ind };
-	o[0x51] = (struct opcode){ ins_EOR, &addr_ind_y }; // Untested
-	o[0x61] = (struct opcode){ ins_ADC, &addr_x_ind }; // Untested
+	//o[0x51] = (struct opcode){ ins_EOR, &addr_ind_y }; Untested
+	//o[0x61] = (struct opcode){ ins_ADC, &addr_x_ind }; Untested
 	o[0x71] = (struct opcode){ ins_ADC, &addr_ind_y };
 	o[0x81] = (struct opcode){ ins_STA, &addr_x_ind };
 	o[0x91] = (struct opcode){ ins_STA, &addr_ind_y };
 	o[0xA1] = (struct opcode){ ins_LDA, &addr_x_ind };
 	o[0xB1] = (struct opcode){ ins_LDA, &addr_ind_y };
-	o[0xC1] = (struct opcode){ ins_CMP, &addr_x_ind }; // Untested
+	//o[0xC1] = (struct opcode){ ins_CMP, &addr_x_ind }; Untested
 	o[0xD1] = (struct opcode){ ins_CMP, &addr_ind_y };
-	o[0xE1] = (struct opcode){ ins_SBC, &addr_x_ind }; // Untested
-	o[0xF1] = (struct opcode){ ins_SBC, &addr_ind_y }; // Untested
+	//o[0xE1] = (struct opcode){ ins_SBC, &addr_x_ind }; Untested
+	//o[0xF1] = (struct opcode){ ins_SBC, &addr_ind_y }; Untested
 	// -2
 	// 0x02 to 0x92 undef
 	o[0xA2] = (struct opcode){ ins_LDX, &addr_imm };
@@ -341,47 +357,47 @@ void construct_opcodes_table(struct opcode *o) {
 	// TODO: BIT
 	// 0x34 to 0x74 undef
 	o[0x84] = (struct opcode){ ins_STY, &addr_zpg };
-	o[0x94] = (struct opcode){ ins_STY, &addr_zpg_x }; // Untested
+	//o[0x94] = (struct opcode){ ins_STY, &addr_zpg_x }; Untested
 	o[0xA4] = (struct opcode){ ins_LDY, &addr_zpg };
-	o[0xB4] = (struct opcode){ ins_LDY, &addr_zpg_x }; // Untested
-	o[0xC4] = (struct opcode){ ins_CPY, &addr_zpg }; // Untested
+	//o[0xB4] = (struct opcode){ ins_LDY, &addr_zpg_x }; Untested
+	//o[0xC4] = (struct opcode){ ins_CPY, &addr_zpg }; Untested
 	// 0xD4 undef
 	o[0xE4] = (struct opcode){ ins_CPX, &addr_zpg };
 	// 0xF4 undef
 	// -5
 	o[0x05] = (struct opcode){ ins_ORA, &addr_zpg };
-	o[0x15] = (struct opcode){ ins_ORA, &addr_zpg_x }; // Untested
+	//o[0x15] = (struct opcode){ ins_ORA, &addr_zpg_x }; Untested
 	o[0x25] = (struct opcode){ ins_AND, &addr_zpg };
-	o[0x35] = (struct opcode){ ins_AND, &addr_zpg_x }; // Untested
+	//o[0x35] = (struct opcode){ ins_AND, &addr_zpg_x }; Untested
 	o[0x45] = (struct opcode){ ins_EOR, &addr_zpg };
-	o[0x55] = (struct opcode){ ins_EOR, &addr_zpg_x }; // Untested
+	//o[0x55] = (struct opcode){ ins_EOR, &addr_zpg_x }; Untested
 	o[0x65] = (struct opcode){ ins_ADC, &addr_zpg };
-	o[0x75] = (struct opcode){ ins_ADC, &addr_zpg_x }; // Untested
+	//o[0x75] = (struct opcode){ ins_ADC, &addr_zpg_x }; Untested
 	o[0x85] = (struct opcode){ ins_STA, &addr_zpg };
 	o[0x95] = (struct opcode){ ins_STA, &addr_zpg_x };
 	o[0xA5] = (struct opcode){ ins_LDA, &addr_zpg };
 	o[0xB5] = (struct opcode){ ins_LDA, &addr_zpg_x };
 	o[0xC5] = (struct opcode){ ins_CMP, &addr_zpg };
-	o[0xD5] = (struct opcode){ ins_CMP, &addr_zpg_x }; // Untested
+	//o[0xD5] = (struct opcode){ ins_CMP, &addr_zpg_x }; Untested
 	o[0xE5] = (struct opcode){ ins_SBC, &addr_zpg };
 	o[0xF5] = (struct opcode){ ins_SBC, &addr_zpg_x };
 	// -6
 	o[0x06] = (struct opcode){ ins_ASL, &addr_zpg };
-	o[0x16] = (struct opcode){ ins_ASL, &addr_zpg_x }; // Untested
-	o[0x26] = (struct opcode){ ins_ROL, &addr_zpg }; // Untested
-	o[0x36] = (struct opcode){ ins_ROL, &addr_zpg_x }; // Untested
-	o[0x46] = (struct opcode){ ins_LSR, &addr_zpg }; // Untested
-	o[0x56] = (struct opcode){ ins_LSR, &addr_zpg_x }; // Untested
+	//o[0x16] = (struct opcode){ ins_ASL, &addr_zpg_x }; Untested
+	//o[0x26] = (struct opcode){ ins_ROL, &addr_zpg }; Untested
+	//o[0x36] = (struct opcode){ ins_ROL, &addr_zpg_x }; Untested
+	//o[0x46] = (struct opcode){ ins_LSR, &addr_zpg }; Untested
+	//o[0x56] = (struct opcode){ ins_LSR, &addr_zpg_x }; Untested
 	o[0x66] = (struct opcode){ ins_ROR, &addr_zpg };
-	o[0x76] = (struct opcode){ ins_ROR, &addr_zpg_x }; // Untested
+	//o[0x76] = (struct opcode){ ins_ROR, &addr_zpg_x }; Untested
 	o[0x86] = (struct opcode){ ins_STX, &addr_zpg };
-	o[0x96] = (struct opcode){ ins_STX, &addr_zpg_y }; // Untested
+	o[0x96] = (struct opcode){ ins_STX, &addr_zpg_y };
 	o[0xA6] = (struct opcode){ ins_LDX, &addr_zpg };
-	o[0xB6] = (struct opcode){ ins_LDX, &addr_zpg_y }; // Untested
+	o[0xB6] = (struct opcode){ ins_LDX, &addr_zpg_y };
 	o[0xC6] = (struct opcode){ ins_DEC, &addr_zpg };
-	o[0xD6] = (struct opcode){ ins_DEC, &addr_zpg_x }; // Untested
+	//o[0xD6] = (struct opcode){ ins_DEC, &addr_zpg_x }; Untested
 	o[0xE6] = (struct opcode){ ins_INC, &addr_zpg };
-	o[0xF6] = (struct opcode){ ins_INC, &addr_zpg_x }; // Untested
+	o[0xF6] = (struct opcode){ ins_INC, &addr_zpg_x };
 	// -7
 	// 0x07 to 0xf7 undef
 	// -8
@@ -390,32 +406,34 @@ void construct_opcodes_table(struct opcode *o) {
 	o[0x28] = (struct opcode){ ins_PLP, &addr_impl };
 	o[0x38] = (struct opcode){ ins_SEC, &addr_impl };
 	o[0x48] = (struct opcode){ ins_PHA, &addr_impl };
-	// TODO: CLI
+	o[0x58] = (struct opcode){ ins_CLI, &addr_impl };
 	o[0x68] = (struct opcode){ ins_PLA, &addr_impl };
-	// TODO: SEI
+	o[0x78] = (struct opcode){ ins_SEI, &addr_impl };
 	o[0x88] = (struct opcode){ ins_DEY, &addr_impl };
 	o[0x98] = (struct opcode){ ins_TYA, &addr_impl };
 	o[0xA8] = (struct opcode){ ins_TAY, &addr_impl };
-	// TODO: CLV
+	o[0xB8] = (struct opcode){ ins_CLV, &addr_impl };
 	o[0xC8] = (struct opcode){ ins_INY, &addr_impl };
 	o[0xD8] = (struct opcode){ ins_CLD, &addr_impl };
 	o[0xE8] = (struct opcode){ ins_INX, &addr_impl };
-	// TODO: SED
+	o[0xF8] = (struct opcode){ ins_SED, &addr_impl };
 	// -9
 	o[0x09] = (struct opcode){ ins_ORA, &addr_imm };
-	o[0x19] = (struct opcode){ ins_ORA, &addr_abs_y }; // Untested
+	//o[0x19] = (struct opcode){ ins_ORA, &addr_abs_y }; Untested
 	o[0x29] = (struct opcode){ ins_AND, &addr_imm };
-	o[0x39] = (struct opcode){ ins_AND, &addr_abs_y }; // Untested
+	//o[0x39] = (struct opcode){ ins_AND, &addr_abs_y }; Untested
 	o[0x49] = (struct opcode){ ins_EOR, &addr_imm };
-	o[0x59] = (struct opcode){ ins_EOR, &addr_abs_y }; // Untested
+	//o[0x59] = (struct opcode){ ins_EOR, &addr_abs_y }; Untested
 	o[0x69] = (struct opcode){ ins_ADC, &addr_imm };
-	o[0x79] = (struct opcode){ ins_ADC, &addr_abs_y }; // Untested
+	//o[0x79] = (struct opcode){ ins_ADC, &addr_abs_y }; Untested
 	// 0x89 undef
 	o[0x99] = (struct opcode){ ins_STA, &addr_abs_y };
 	o[0xA9] = (struct opcode){ ins_LDA, &addr_imm };
-	o[0xC9] = (struct opcode){ ins_CMP, &addr_imm };
 	o[0xB9] = (struct opcode){ ins_LDA, &addr_abs_y };
+	o[0xC9] = (struct opcode){ ins_CMP, &addr_imm };
+	o[0xD9] = (struct opcode){ ins_CMP, &addr_abs_y };
 	o[0xE9] = (struct opcode){ ins_SBC, &addr_imm };
+	//o[0xF9] = (struct opcode){ ins_SBC, &addr_abs_y }; Untested
 	// -A
 	o[0x0A] = (struct opcode){ ins_ASL, &addr_ac };
 	// 0x1a undef
@@ -435,12 +453,22 @@ void construct_opcodes_table(struct opcode *o) {
 	// 0xfa undef
 	// -B
 	// 0x0b to 0xfb undef
-	// TODO: continue
 	// -C
+	// 0x0c to 0x1c undef
+	// TODO BIT abs
+	// 0x3c undef
 	o[0x4C] = (struct opcode){ ins_JMP, &addr_abs_dir };
+	// 0x5c undef
+	o[0x6C] = (struct opcode){ ins_JMP, &addr_ind_dir };
+	// 0x7c undef
 	o[0x8C] = (struct opcode){ ins_STY, &addr_abs };
+	// 0x9c undef
 	o[0xAC] = (struct opcode){ ins_LDY, &addr_abs };
 	o[0xBC] = (struct opcode){ ins_LDY, &addr_abs_x };
+	//o[0xCC] = (struct opcode){ ins_CPY, &addr_abs }; Untested
+	// 0xdc undef
+	//o[0xEC] = (struct opcode){ ins_CPX, &addr_abs }; Untested
+	// 0xfc undef
 	// -D
 	o[0x0D] = (struct opcode){ ins_ORA, &addr_abs };
 	o[0x7D] = (struct opcode){ ins_ADC, &addr_abs_x };
@@ -449,6 +477,7 @@ void construct_opcodes_table(struct opcode *o) {
 	o[0xAD] = (struct opcode){ ins_LDA, &addr_abs };
 	o[0xBD] = (struct opcode){ ins_LDA, &addr_abs_x };
 	o[0xCD] = (struct opcode){ ins_CMP, &addr_abs };
+	o[0xDD] = (struct opcode){ ins_CMP, &addr_abs_x };
 	// -E
 	o[0x8E] = (struct opcode){ ins_STX, &addr_abs };
 	o[0xAE] = (struct opcode){ ins_LDX, &addr_abs };
@@ -472,7 +501,7 @@ int main(int argc, char** argv) {
 	os_create_colormap(colors, COLOR_COUNT);
 
 	// Handle command line, if no arg, ask with OS file dialog
-	char fileNameBuf[256];
+	char fileNameBuf[256]; // (Security issue :^)
 	if (argc < 2) {
 		// If no arg and true: fileNameBuf is set, continue
 		// If no arg and false, halt with instructions
@@ -707,21 +736,42 @@ int main(int argc, char** argv) {
 				case 2: should_break = trapped_break; break;
 			}
 			if (DEBUG_BREAKPOINT && should_break) {
-				if (DEBUG_BREAKPOINT_MODE)
-					printf("Breaking at %llu\n", ins_count);
-				else
-					printf("Breaking at %04x\n", backup_pc);
+				switch (DEBUG_BREAKPOINT_MODE) {
+					case 0:
+					case 2:
+						printf("Breaking at %04x\n", backup_pc);
+						break;
+					case 1:
+						printf("Breaking at %llu\n", ins_count);
+						break;
+				}
 				on_breakpoint = true;
 			}
 
 			// Let user step through instructions, or coredump
 			if (DEBUG_STEP || (DEBUG_BREAKPOINT && on_breakpoint)) {
 				while (true) {
-					char cmd = getchar();
-					if (cmd == '\n') break;
-					if (cmd == 'c') coredump(sim_state);
-					if (cmd == 'o') on_breakpoint = false;
-					getchar(); // Consume upcoming \n
+					char cmd[32];
+					fgets(cmd, 32, stdin);
+					if (cmd[0] == '\n') break;
+					else if (cmd[0] == 'c') {
+						uint16_t begin = DEBUG_COREDUMP_START;
+						uint16_t end = DEBUG_COREDUMP_END;
+						char *split = strtok(cmd, " ");
+						if (split) {
+							split = strtok(NULL, " ");
+							if (split) {
+								begin = strtol(split, NULL, 16);
+								end = begin;
+								split = strtok(NULL, " ");
+								if (split) {
+									end = strtol(split, NULL, 16);
+								}
+							}
+						}
+						coredump(sim_state, begin, end);
+					}
+					else if (cmd[0] == 'r') on_breakpoint = false;
 				}
 			}
 
@@ -799,7 +849,7 @@ int main(int argc, char** argv) {
 
 		// Calculate average speed and print when either halted or quitting
 		if ((halt || !running) && !avg_speed_done) {
-			coredump(sim_state);
+			coredump(sim_state, DEBUG_COREDUMP_START, DEBUG_COREDUMP_END);
 			avg_speed_done = true;
 			unsigned long long diff = get_clock_ns() - start_time;
 			double diff_s = (double)diff / 1000000000;

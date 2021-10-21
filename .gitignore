@@ -6,3 +6,6 @@ dist
 
 # Vim temporary files
 *.swp
+
+# Mac files
+.DS_Store
