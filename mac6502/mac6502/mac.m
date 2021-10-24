@@ -4,7 +4,7 @@
 #import <string.h>
 #import <stdbool.h>
 
-#define ENABLE_AUTOFOCUS 0
+#define ENABLE_AUTOFOCUS 1
 
 @interface MainView : NSView {
 }

@@ -28,13 +28,14 @@
 #define DEFAULT_LIMIT_KHZ 30
 #define START_DELAY 500000000 // In ns
 #define DEBUG_COREDUMP 1 // Coredumps on exit, also enables for step coredump
-#define DEBUG_COREDUMP_START 0x0100
-#define DEBUG_COREDUMP_END 0x01FF
+#define DEBUG_COREDUMP_START 0x0000
+#define DEBUG_COREDUMP_END 0x00FF
 #define DEBUG_STEP 0 // Allows user to step per cycle
 #define DEBUG_BREAKPOINT 1 // Goes into stepping mode when breakpoint reached
 #define DEBUG_BREAKPOINT_MODE 2 // 0 = addr, 1 = ins_count, 2 = trapped
-#define DEBUG_BREAKPOINT_VALUE 0x05
-#define DEBUG_LOG 1 // Logs all instructions processed
+#define DEBUG_BREAKPOINT_VALUE 106688
+#define DEBUG_LOG 0 // Logs all instructions processed
+#define DEBUG_LOG_CMP 1 // Log compares (useful for Klaus tests) 
 #define DEBUG_DIFFLOG 0 // Generates memory and reg changes, to compare & debug
 #define DEBUG_DIFFLOG_FILE "difflog_mine.txt"
 #define HALT_ON_INVALID 1
@@ -114,7 +115,8 @@ void push(uint8_t *mem, uint8_t *sp, uint8_t new_value) {
 }
 uint8_t pop(uint8_t *mem, uint8_t *sp) { return mem[++(*sp) + 0x0100]; }
 void cmp(struct sim_state s, uint8_t reg, uint8_t get) {
-	//printf("Comparing %x %x\n", reg, get);
+	if (DEBUG_LOG && DEBUG_LOG_CMP)
+		printf("Comparing reg=%x, mem=%x\n", reg, get);
 	uint8_t t = reg - get;
 	if (reg < get) {
 		*s.sr = bit_set(*s.sr, 7, bit_get(t, 7));
@@ -132,20 +134,72 @@ void cmp(struct sim_state s, uint8_t reg, uint8_t get) {
 		*s.sr = bit_set(*s.sr, 0, 1);
 	}
 }
-
-// Instructions
-// TODO: Inline addr code into main loop; pass in get and set flag+value only
-#define INS_DEF(N) void ins_##N(uint16_t (*get)(struct sim_state), \
-	void (*set)(uint8_t, struct sim_state), struct sim_state s)
-INS_DEF(JMP) { *s.pc = (*get)(s); *s.no_pc_inc = true; }
-INS_DEF(ADC) {
-	uint16_t t = *s.ac + (*get)(s) + bit_get(*s.sr, 0);
+// Counting from LSB (assuming little endian)
+uint8_t nibble_get(uint8_t number, int nibble) {
+	return (number >> (4 * nibble)) & 0xF;
+}
+// Manually calculate BCD addition
+uint16_t bcd_add(uint8_t left, uint8_t right, bool carry) {
+	bool carry_one = carry;
+	uint16_t result = 0;
+	for (int i = 0; i < 2; i++) { // 2 nibbles for 1 byte
+		uint8_t nibble_result = nibble_get(left, i) + nibble_get(right, i);
+		// Carry the one...
+		if (carry_one) nibble_result += 1;
+		carry_one = false;
+		while (nibble_result > 9) {
+			nibble_result -= 10;
+			carry_one = true;
+		}
+		// Put into results, one digit (nibble) at a time
+		result |= nibble_result << (4 * i);
+	}
+	// Final carry
+	if (carry_one) result |= 0x100;
+	return result;
+}
+// Manually calculate BCD subtraction 
+uint16_t bcd_sub(uint8_t left, uint8_t right, bool carry) {
+	bool carry_one = !carry;
+	uint16_t result = 0;
+	for (int i = 0; i < 2; i++) { // 2 nibbles for 1 byte
+		int8_t nibble_result = nibble_get(left, i) - nibble_get(right, i);
+		// Carry the one... if negative
+		if (carry_one) nibble_result -= 1;
+		carry_one = false;
+		while (nibble_result < 0) { // nibble_result should be positive after
+			nibble_result += 10;
+			carry_one = true;
+		}
+		// Put into results, one digit (nibble) at a time
+		result |= nibble_result << (4 * i);
+	}
+	// Final carry
+	if (!carry_one) result |= 0x100;
+	return result;
+}
+void adc(struct sim_state s, uint8_t input, bool sub) {
+	uint16_t t;
+	if (bit_get(*s.sr, 3)) { // BCD
+		if (sub) t = bcd_sub(*s.ac, input, bit_get(*s.sr, 0)); 
+		else t = bcd_add(*s.ac, input, bit_get(*s.sr, 0));
+	}
+	else { // Binary ADC/SBC
+		if (sub) input = ~input;
+		t = *s.ac + input + bit_get(*s.sr, 0);
+	}
 	*s.sr = bit_set(*s.sr, 0, bit_get(t, 8)); // Carry
-	bool v = !(bit_get(*s.ac, 7) ^ bit_get((*get)(s), 7)) && // Same sign? 
+	bool v = !(bit_get(*s.ac, 7) ^ bit_get(input, 7)) && // Same sign? 
 		bit_get(*s.ac, 7) ^ bit_get(t, 7); // Different sign for result?
 	*s.sr = bit_set(*s.sr, 6, v); // Overflow
 	*s.ac = sr_nz(s.sr, t);
 }
+
+// Instructions
+#define INS_DEF(N) void ins_##N(uint16_t (*get)(struct sim_state), \
+	void (*set)(uint8_t, struct sim_state), struct sim_state s)
+INS_DEF(JMP) { *s.pc = (*get)(s); *s.no_pc_inc = true; }
+INS_DEF(ADC) { adc(s, (*get)(s), false); }
 INS_DEF(AND) { *s.ac = sr_nz(s.sr, *s.ac & (*get)(s)); }
 INS_DEF(ASL) {
 	*s.sr = bit_set(*s.sr, 0, bit_get((*get)(s), 7));
@@ -154,6 +208,13 @@ INS_DEF(ASL) {
 INS_DEF(BCC) { if (!bit_get(*s.sr, 0)) { *s.pc = (*get)(s); } }
 INS_DEF(BCS) { if (bit_get(*s.sr, 0)) { *s.pc = (*get)(s); } }
 INS_DEF(BEQ) { if (bit_get(*s.sr, 1)) { *s.pc = (*get)(s); } }
+INS_DEF(BIT) {
+	// A AND M
+	sr_nz(s.sr, *s.ac & (*get)(s));
+	// M7 -> N, M6 -> V
+	*s.sr = bit_set(*s.sr, 7, bit_get((*get)(s), 7));
+	*s.sr = bit_set(*s.sr, 6, bit_get((*get)(s), 6));
+}
 INS_DEF(BMI) { if (bit_get(*s.sr, 7)) { *s.pc = (*get)(s); } }
 INS_DEF(BNE) { if (!bit_get(*s.sr, 1)) { *s.pc = (*get)(s); } }
 INS_DEF(BPL) { if (!bit_get(*s.sr, 7)) { *s.pc = (*get)(s); } }
@@ -230,17 +291,9 @@ INS_DEF(RTS) {
 	*s.pc = i8to16(ret_h, ret_l) + 1; // Emulate real 6502 RTS
 	*s.no_pc_inc = true;
 } 
-INS_DEF(SBC) {
-	// 2's complement, where the extra 1 is from carry
-	// If carry is 0, then we effectively subtract 1 more
-	uint8_t b = ~(*get)(s) + bit_get(*s.sr, 0);
-	uint16_t t = *s.ac + b;
-	*s.sr = bit_set(*s.sr, 0, bit_get(t, 8)); // Carry
-	bool v = !(bit_get(*s.ac, 7) ^ bit_get((*get)(s), 7)) && // Same sign? 
-		bit_get(*s.ac, 7) ^ bit_get(t, 7); // Different sign for result?
-	*s.sr = bit_set(*s.sr, 6, v); // Overflow
-	*s.ac = sr_nz(s.sr, t);
-}
+// Just flip the bits man... and then do ADC
+// Trying to do 2s complement manually WILL result in pain by overflow.
+INS_DEF(SBC) { adc(s, (*get)(s), true); }
 INS_DEF(SEC) { *s.sr = bit_set(*s.sr, 0, 1); }
 INS_DEF(SED) { *s.sr = bit_set(*s.sr, 3, 1); }
 INS_DEF(SEI) { *s.sr = bit_set(*s.sr, 2, 1); }
@@ -298,14 +351,19 @@ ADDR_DEF(rel, 2, return *s.pc + (int8_t)s.mem[*s.pc + 1];, );
 ADDR_DEF(zpg, 2,
 	return s.mem[s.mem[*s.pc + 1]];, s.mem[s.mem[*s.pc + 1]] = a;);
 ADDR_DEF(zpg_x, 2,
-	return s.mem[s.mem[*s.pc + 1] + *s.x];,
-	s.mem[s.mem[*s.pc + 1] + *s.x] = a;);
+	uint8_t zp = s.mem[*s.pc + 1] + *s.x; // Force wraparound
+	return s.mem[zp];,
+	uint8_t zp = s.mem[*s.pc + 1] + *s.x; // Force wraparound
+	s.mem[zp] = a;);
 ADDR_DEF(zpg_y, 2,
-	return s.mem[s.mem[*s.pc + 1] + *s.y];,
-	s.mem[s.mem[*s.pc + 1] + *s.y] = a;);
+	uint8_t zp = s.mem[*s.pc + 1] + *s.y; // Force wraparound
+	return s.mem[zp];,
+	uint8_t zp = s.mem[*s.pc + 1] + *s.y; // Force wraparound
+	s.mem[zp] = a;);
 #undef ADDR_DEF
 
 // Opcodes
+// TODO: Add cycles
 struct opcode {
 	void (*instruction)(uint16_t (*get)(struct sim_state), 
 		void (*set)(uint8_t, struct sim_state), struct sim_state s);
@@ -332,20 +390,20 @@ void construct_opcodes_table(struct opcode *o) {
 	// -1
 	o[0x01] = (struct opcode){ ins_ORA, &addr_x_ind };
 	o[0x11] = (struct opcode){ ins_ORA, &addr_ind_y };
-	//o[0x21] = (struct opcode){ ins_AND, &addr_x_ind }; Untested
-	//o[0x31] = (struct opcode){ ins_AND, &addr_ind_y }; Untested
+	o[0x21] = (struct opcode){ ins_AND, &addr_x_ind };
+	o[0x31] = (struct opcode){ ins_AND, &addr_ind_y };
 	o[0x41] = (struct opcode){ ins_EOR, &addr_x_ind };
-	//o[0x51] = (struct opcode){ ins_EOR, &addr_ind_y }; Untested
-	//o[0x61] = (struct opcode){ ins_ADC, &addr_x_ind }; Untested
+	o[0x51] = (struct opcode){ ins_EOR, &addr_ind_y };
+	o[0x61] = (struct opcode){ ins_ADC, &addr_x_ind };
 	o[0x71] = (struct opcode){ ins_ADC, &addr_ind_y };
 	o[0x81] = (struct opcode){ ins_STA, &addr_x_ind };
 	o[0x91] = (struct opcode){ ins_STA, &addr_ind_y };
 	o[0xA1] = (struct opcode){ ins_LDA, &addr_x_ind };
 	o[0xB1] = (struct opcode){ ins_LDA, &addr_ind_y };
-	//o[0xC1] = (struct opcode){ ins_CMP, &addr_x_ind }; Untested
+	o[0xC1] = (struct opcode){ ins_CMP, &addr_x_ind };
 	o[0xD1] = (struct opcode){ ins_CMP, &addr_ind_y };
-	//o[0xE1] = (struct opcode){ ins_SBC, &addr_x_ind }; Untested
-	//o[0xF1] = (struct opcode){ ins_SBC, &addr_ind_y }; Untested
+	o[0xE1] = (struct opcode){ ins_SBC, &addr_x_ind };
+	o[0xF1] = (struct opcode){ ins_SBC, &addr_ind_y };
 	// -2
 	// 0x02 to 0x92 undef
 	o[0xA2] = (struct opcode){ ins_LDX, &addr_imm };
@@ -354,48 +412,48 @@ void construct_opcodes_table(struct opcode *o) {
 	// 0x03 to 0xf3 undef
 	// -4
 	// 0x04 to 0x14 undef
-	// TODO: BIT
+	o[0x24] = (struct opcode){ ins_BIT, &addr_zpg };
 	// 0x34 to 0x74 undef
 	o[0x84] = (struct opcode){ ins_STY, &addr_zpg };
-	//o[0x94] = (struct opcode){ ins_STY, &addr_zpg_x }; Untested
+	o[0x94] = (struct opcode){ ins_STY, &addr_zpg_x };
 	o[0xA4] = (struct opcode){ ins_LDY, &addr_zpg };
-	//o[0xB4] = (struct opcode){ ins_LDY, &addr_zpg_x }; Untested
-	//o[0xC4] = (struct opcode){ ins_CPY, &addr_zpg }; Untested
+	o[0xB4] = (struct opcode){ ins_LDY, &addr_zpg_x };
+	o[0xC4] = (struct opcode){ ins_CPY, &addr_zpg };
 	// 0xD4 undef
 	o[0xE4] = (struct opcode){ ins_CPX, &addr_zpg };
 	// 0xF4 undef
 	// -5
 	o[0x05] = (struct opcode){ ins_ORA, &addr_zpg };
-	//o[0x15] = (struct opcode){ ins_ORA, &addr_zpg_x }; Untested
+	o[0x15] = (struct opcode){ ins_ORA, &addr_zpg_x };
 	o[0x25] = (struct opcode){ ins_AND, &addr_zpg };
-	//o[0x35] = (struct opcode){ ins_AND, &addr_zpg_x }; Untested
+	o[0x35] = (struct opcode){ ins_AND, &addr_zpg_x };
 	o[0x45] = (struct opcode){ ins_EOR, &addr_zpg };
-	//o[0x55] = (struct opcode){ ins_EOR, &addr_zpg_x }; Untested
+	o[0x55] = (struct opcode){ ins_EOR, &addr_zpg_x };
 	o[0x65] = (struct opcode){ ins_ADC, &addr_zpg };
-	//o[0x75] = (struct opcode){ ins_ADC, &addr_zpg_x }; Untested
+	o[0x75] = (struct opcode){ ins_ADC, &addr_zpg_x };
 	o[0x85] = (struct opcode){ ins_STA, &addr_zpg };
 	o[0x95] = (struct opcode){ ins_STA, &addr_zpg_x };
 	o[0xA5] = (struct opcode){ ins_LDA, &addr_zpg };
 	o[0xB5] = (struct opcode){ ins_LDA, &addr_zpg_x };
 	o[0xC5] = (struct opcode){ ins_CMP, &addr_zpg };
-	//o[0xD5] = (struct opcode){ ins_CMP, &addr_zpg_x }; Untested
+	o[0xD5] = (struct opcode){ ins_CMP, &addr_zpg_x };
 	o[0xE5] = (struct opcode){ ins_SBC, &addr_zpg };
 	o[0xF5] = (struct opcode){ ins_SBC, &addr_zpg_x };
 	// -6
 	o[0x06] = (struct opcode){ ins_ASL, &addr_zpg };
-	//o[0x16] = (struct opcode){ ins_ASL, &addr_zpg_x }; Untested
-	//o[0x26] = (struct opcode){ ins_ROL, &addr_zpg }; Untested
-	//o[0x36] = (struct opcode){ ins_ROL, &addr_zpg_x }; Untested
-	//o[0x46] = (struct opcode){ ins_LSR, &addr_zpg }; Untested
-	//o[0x56] = (struct opcode){ ins_LSR, &addr_zpg_x }; Untested
+	o[0x16] = (struct opcode){ ins_ASL, &addr_zpg_x };
+	o[0x26] = (struct opcode){ ins_ROL, &addr_zpg };
+	o[0x36] = (struct opcode){ ins_ROL, &addr_zpg_x };
+	o[0x46] = (struct opcode){ ins_LSR, &addr_zpg };
+	o[0x56] = (struct opcode){ ins_LSR, &addr_zpg_x };
 	o[0x66] = (struct opcode){ ins_ROR, &addr_zpg };
-	//o[0x76] = (struct opcode){ ins_ROR, &addr_zpg_x }; Untested
+	o[0x76] = (struct opcode){ ins_ROR, &addr_zpg_x };
 	o[0x86] = (struct opcode){ ins_STX, &addr_zpg };
 	o[0x96] = (struct opcode){ ins_STX, &addr_zpg_y };
 	o[0xA6] = (struct opcode){ ins_LDX, &addr_zpg };
 	o[0xB6] = (struct opcode){ ins_LDX, &addr_zpg_y };
 	o[0xC6] = (struct opcode){ ins_DEC, &addr_zpg };
-	//o[0xD6] = (struct opcode){ ins_DEC, &addr_zpg_x }; Untested
+	o[0xD6] = (struct opcode){ ins_DEC, &addr_zpg_x };
 	o[0xE6] = (struct opcode){ ins_INC, &addr_zpg };
 	o[0xF6] = (struct opcode){ ins_INC, &addr_zpg_x };
 	// -7
@@ -419,13 +477,13 @@ void construct_opcodes_table(struct opcode *o) {
 	o[0xF8] = (struct opcode){ ins_SED, &addr_impl };
 	// -9
 	o[0x09] = (struct opcode){ ins_ORA, &addr_imm };
-	//o[0x19] = (struct opcode){ ins_ORA, &addr_abs_y }; Untested
+	o[0x19] = (struct opcode){ ins_ORA, &addr_abs_y };
 	o[0x29] = (struct opcode){ ins_AND, &addr_imm };
-	//o[0x39] = (struct opcode){ ins_AND, &addr_abs_y }; Untested
+	o[0x39] = (struct opcode){ ins_AND, &addr_abs_y };
 	o[0x49] = (struct opcode){ ins_EOR, &addr_imm };
-	//o[0x59] = (struct opcode){ ins_EOR, &addr_abs_y }; Untested
+	o[0x59] = (struct opcode){ ins_EOR, &addr_abs_y };
 	o[0x69] = (struct opcode){ ins_ADC, &addr_imm };
-	//o[0x79] = (struct opcode){ ins_ADC, &addr_abs_y }; Untested
+	o[0x79] = (struct opcode){ ins_ADC, &addr_abs_y };
 	// 0x89 undef
 	o[0x99] = (struct opcode){ ins_STA, &addr_abs_y };
 	o[0xA9] = (struct opcode){ ins_LDA, &addr_imm };
@@ -433,7 +491,7 @@ void construct_opcodes_table(struct opcode *o) {
 	o[0xC9] = (struct opcode){ ins_CMP, &addr_imm };
 	o[0xD9] = (struct opcode){ ins_CMP, &addr_abs_y };
 	o[0xE9] = (struct opcode){ ins_SBC, &addr_imm };
-	//o[0xF9] = (struct opcode){ ins_SBC, &addr_abs_y }; Untested
+	o[0xF9] = (struct opcode){ ins_SBC, &addr_abs_y };
 	// -A
 	o[0x0A] = (struct opcode){ ins_ASL, &addr_ac };
 	// 0x1a undef
@@ -455,7 +513,7 @@ void construct_opcodes_table(struct opcode *o) {
 	// 0x0b to 0xfb undef
 	// -C
 	// 0x0c to 0x1c undef
-	// TODO BIT abs
+	o[0x2C] = (struct opcode){ ins_BIT, &addr_abs };
 	// 0x3c undef
 	o[0x4C] = (struct opcode){ ins_JMP, &addr_abs_dir };
 	// 0x5c undef
@@ -465,12 +523,18 @@ void construct_opcodes_table(struct opcode *o) {
 	// 0x9c undef
 	o[0xAC] = (struct opcode){ ins_LDY, &addr_abs };
 	o[0xBC] = (struct opcode){ ins_LDY, &addr_abs_x };
-	//o[0xCC] = (struct opcode){ ins_CPY, &addr_abs }; Untested
+	o[0xCC] = (struct opcode){ ins_CPY, &addr_abs };
 	// 0xdc undef
-	//o[0xEC] = (struct opcode){ ins_CPX, &addr_abs }; Untested
+	o[0xEC] = (struct opcode){ ins_CPX, &addr_abs };
 	// 0xfc undef
 	// -D
 	o[0x0D] = (struct opcode){ ins_ORA, &addr_abs };
+	o[0x1D] = (struct opcode){ ins_ORA, &addr_abs_x };
+	o[0x2D] = (struct opcode){ ins_AND, &addr_abs };
+	o[0x3D] = (struct opcode){ ins_AND, &addr_abs_x };
+	o[0x4D] = (struct opcode){ ins_EOR, &addr_abs };
+	o[0x5D] = (struct opcode){ ins_EOR, &addr_abs_x };
+	o[0x6D] = (struct opcode){ ins_ADC, &addr_abs };
 	o[0x7D] = (struct opcode){ ins_ADC, &addr_abs_x };
 	o[0x8D] = (struct opcode){ ins_STA, &addr_abs };
 	o[0x9D] = (struct opcode){ ins_STA, &addr_abs_x };
@@ -478,13 +542,27 @@ void construct_opcodes_table(struct opcode *o) {
 	o[0xBD] = (struct opcode){ ins_LDA, &addr_abs_x };
 	o[0xCD] = (struct opcode){ ins_CMP, &addr_abs };
 	o[0xDD] = (struct opcode){ ins_CMP, &addr_abs_x };
+	o[0xED] = (struct opcode){ ins_SBC, &addr_abs };
+	o[0xFD] = (struct opcode){ ins_SBC, &addr_abs_x };
 	// -E
+	o[0x0E] = (struct opcode){ ins_ASL, &addr_abs };
+	o[0x1E] = (struct opcode){ ins_ASL, &addr_abs_x };
+	o[0x2E] = (struct opcode){ ins_ROL, &addr_abs };
+	o[0x3E] = (struct opcode){ ins_ROL, &addr_abs_x };
+	o[0x4E] = (struct opcode){ ins_LSR, &addr_abs };
+	o[0x5E] = (struct opcode){ ins_LSR, &addr_abs_x };
+	o[0x6E] = (struct opcode){ ins_ROR, &addr_abs };
+	o[0x7E] = (struct opcode){ ins_ROR, &addr_abs_x };
 	o[0x8E] = (struct opcode){ ins_STX, &addr_abs };
+	// 0x9e undef
 	o[0xAE] = (struct opcode){ ins_LDX, &addr_abs };
 	o[0xBE] = (struct opcode){ ins_LDX, &addr_abs_y };
 	o[0xCE] = (struct opcode){ ins_DEC, &addr_abs };
+	o[0xDE] = (struct opcode){ ins_DEC, &addr_abs_x };
 	o[0xEE] = (struct opcode){ ins_INC, &addr_abs };
 	o[0xFE] = (struct opcode){ ins_INC, &addr_abs_x };
+	// -F
+	// 0x0f to 0xff undef
 }
 
 int main(int argc, char** argv) {
@@ -501,7 +579,7 @@ int main(int argc, char** argv) {
 	os_create_colormap(colors, COLOR_COUNT);
 
 	// Handle command line, if no arg, ask with OS file dialog
-	char fileNameBuf[256]; // (Security issue :^)
+	char fileNameBuf[256];
 	if (argc < 2) {
 		// If no arg and true: fileNameBuf is set, continue
 		// If no arg and false, halt with instructions
