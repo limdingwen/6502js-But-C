@@ -25,7 +25,8 @@ void os_create_window(const char *name, int width, int height) {
 		uint32_t masks = XCB_CW_BACK_PIXEL | XCB_CW_EVENT_MASK;
 		uint32_t values[] = {
 			screen->black_pixel,
-			XCB_EVENT_MASK_EXPOSURE | XCB_EVENT_MASK_KEY_PRESS
+			XCB_EVENT_MASK_EXPOSURE | XCB_EVENT_MASK_KEY_PRESS |
+				XCB_EVENT_MASK_KEY_RELEASE
 		};
 		xcb_create_window(connection, XCB_COPY_FROM_PARENT, window,
 			screen->root, 0, 0, width, height, 10,
@@ -44,6 +45,9 @@ void os_create_window(const char *name, int width, int height) {
 
 	// Get keyboard keymap and state
 	{
+		// FIXME: Need free
+		xkb_x11_setup_xkb_extension(connection, XKB_X11_MIN_MAJOR_XKB_VERSION,
+			XKB_X11_MIN_MINOR_XKB_VERSION, 0, NULL, NULL, NULL, NULL);
 		struct xkb_context *xkb_context =
 			xkb_context_new(XKB_CONTEXT_NO_FLAGS);
 		uint32_t keyboard_device = 
@@ -110,11 +114,29 @@ bool os_poll_event(struct event *ev) {
 
 			// Detect key press
 			case XCB_KEY_PRESS: {
+				// Get keycode
 				uint8_t keycode =((xcb_key_press_event_t*)event)->detail;
-				xkb_keysym_t keysym = xkb_state_key_get_one_sym(keyboard_state,
-					keycode);
+
+				// Updates state; this struct tracks things like SHIFT, CTRL
+				xkb_state_update_key(keyboard_state, keycode, XKB_KEY_DOWN);
+
+				// Keycode + state = unicode
+				char name_buffer[2]; // 1 character + \0
+				xkb_state_key_get_utf8(keyboard_state, keycode, name_buffer,
+					2);
+				//printf("Keycode %d, Unicode %s\n", keycode, name_buffer);
+
+				// Pass to main.c
 				ev->type = ET_KEYPRESS;
-				ev->kp_key = keysym;
+				ev->kp_key = name_buffer[0];
+				found_event = true;
+				break;
+			}
+
+			case XCB_KEY_RELEASE: {
+				// Updates state; this struct tracks things like SHIFT, CTRL
+				uint8_t keycode =((xcb_key_press_event_t*)event)->detail;
+				xkb_state_update_key(keyboard_state, keycode, XKB_KEY_UP);
 				break;
 			}
 			
