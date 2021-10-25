@@ -4,6 +4,14 @@
 Debug
 dist
 
+# Not sure if can release
+#demos
+
+# Temporary files
+difflog_mine.txt
+difflog_theirs.txt
+demos.zip
+
 # Vim temporary files
 *.swp
 
