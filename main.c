@@ -15,7 +15,7 @@
 
 // Config
 #define TOTAL_MEM 65536
-#define LOAD_START 0x0000
+#define LOAD_START 0x0600
 #define PC_START 0x0600
 #define STACK_TOP 0x01FF
 #define SCREEN_START 0x0200

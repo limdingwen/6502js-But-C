@@ -1,6 +1,8 @@
 #include "os.h"
 
 #include <xcb/xcb.h>
+#include <xkbcommon/xkbcommon.h>
+#include <xkbcommon/xkbcommon-x11.h>
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -10,6 +12,7 @@ xcb_window_t window = 0;
 xcb_intern_atom_reply_t *del_win_rep = NULL;
 bool should_exit = false;
 xcb_gcontext_t *xcb_colors = NULL;
+struct xkb_state *keyboard_state;
 
 void os_create_window(const char *name, int width, int height) {
 	// Connect to X
@@ -38,6 +41,18 @@ void os_create_window(const char *name, int width, int height) {
 		connection, xcb_intern_atom(connection, 0, 16, "WM_DELETE_WINDOW"), 0);
 	xcb_change_property(connection, XCB_PROP_MODE_REPLACE, window,
 		(*protocol_rep).atom, 4, 32, 1, &(*del_win_rep).atom);
+
+	// Get keyboard keymap and state
+	{
+		struct xkb_context *xkb_context =
+			xkb_context_new(XKB_CONTEXT_NO_FLAGS);
+		uint32_t keyboard_device = 
+			xkb_x11_get_core_keyboard_device_id(connection);
+		struct xkb_keymap *keymap = xkb_x11_keymap_new_from_device(xkb_context,
+			connection, keyboard_device, XKB_KEYMAP_COMPILE_NO_FLAGS);
+		keyboard_state = xkb_x11_state_new_from_device(keymap, connection,
+			keyboard_device);
+	}
 }
 
 uint16_t ftoi16(float f) { return (uint16_t) (f * 65535); }
@@ -93,24 +108,13 @@ bool os_poll_event(struct event *ev) {
 				found_event = true;
 				break;
 
+			// Detect key press
 			case XCB_KEY_PRESS: {
-				// Hack just to try and get Adventure working
 				uint8_t keycode =((xcb_key_press_event_t*)event)->detail;
-				uint8_t ascii = 0;
-				switch (keycode) {
-					case 21: ascii = 'w'; break;
-					case 8: ascii = 'a'; break;
-					case 9: ascii = 's'; break;
-					case 10: ascii = 'd'; break;
-				}
-				if (ascii) {
-					ev->type = ET_KEYPRESS;
-					ev->kp_key = ascii;
-					found_event = true;
-				}
-				else {
-					found_event = false;
-				}
+				xkb_keysym_t keysym = xkb_state_key_get_one_sym(keyboard_state,
+					keycode);
+				ev->type = ET_KEYPRESS;
+				ev->kp_key = keysym;
 				break;
 			}
 			

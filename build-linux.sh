@@ -1,7 +1,11 @@
 CC=gcc
-I_XCB=/opt/homebrew/include
-L_XCB="/opt/homebrew/lib/libxcb.a \
-	/opt/homebrew/Cellar/libxau/1.0.9/lib/libXau.a \
-	/opt/homebrew/Cellar/libxdmcp/1.1.3/lib/libXdmcp.a"
+INCLUDES="/opt/homebrew/include"
+LIBRARIES="\
+	/opt/homebrew/lib/libxcb.a \
+	/opt/homebrew/lib/libXau.a \
+	/opt/homebrew/lib/libXdmcp.a"
+DYN_LIBRARY_PATH="/opt/homebrew/lib"
+DYN_LIBRARIES="-lxkbcommon-x11 -lxkbcommon"
 
-$CC main.c linux.c -o 6502 -g -Wall -I$I_XCB $L_XCB
+$CC main.c linux.c -o 6502 -g -Wall -I$INCLUDES $LIBRARIES\
+	-L$DYN_LIBRARY_PATH $DYN_LIBRARIES
