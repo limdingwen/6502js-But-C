@@ -8,9 +8,9 @@ A hobby project that replicates the [6502js](https://github.com/skilldrick/6502j
  - Fast: Runs up to 28Mhz on my machine.
  - Correct: Passes Klaus functional tests, and Bruce Clark's decimal mode tests.
  
-For programmers, the OS layer contains an example on how to use X11, Cocoa/Quartz2D or Win32 to draw stuff without a library like SDL2. See [for programmers](#1-for-programmers) for more info.
+For programmers, the OS layer contains an example on how to use X11, Cocoa/Quartz2D or Win32 to draw stuff without a library like SDL2. See [for programmers](#for-programmers) for more info.
 
-This emulator does not have a built-in assembler. Check out [writing your own binaries](#1-writing-your-own-binaries) for a recommended third-party assembler. Alternatively, check out [6502asm](6502asm.com) or [easy6502](https://skilldrick.github.io/easy6502/).
+This emulator does not have a built-in assembler. Check out [writing your own binaries](#writing-your-own-binaries) for a recommended third-party assembler. Alternatively, check out [6502asm](6502asm.com) or [easy6502](https://skilldrick.github.io/easy6502/).
 
 Finally, do note that this emulator does not have accurate cycle emulation (1 instruction = 1 cycle).
 
@@ -18,12 +18,12 @@ Finally, do note that this emulator does not have accurate cycle emulation (1 in
 
 Download binaries for Windows or Mac on the [releases page](https://gitlab.com/limdingwen/6502js-but-c/-/releases).
 
-For Linux, please [compile from source](#1-compilation).
+For Linux, please [compile from source](#compilation).
 
 ## Usage
 
 Downloads come with a folder of demo binaries which you can use to try out the emulator with. If you wish to write your own, please see
-[writing your own binaries](#1-writing-your-own-binaries). (Note: Most of the demos don't belong to me -- check the attribution file in the folder for more info.)
+[writing your own binaries](#writing-your-own-binaries). (Note: Most of the demos don't belong to me -- check the attribution file in the folder for more info.)
 
 For Windows and Mac, simply run by double-clicking the app. However, if you want to change the speed, you'll need to run via command line.
 
