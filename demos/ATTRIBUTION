@@ -1,4 +1,30 @@
-These demos were compiled from the source code available from 6502asm.com.
+These demos were compiled from the source code available from
+https://6502asm.com (by Stian Søreng).
 
-adventure.bin is under GPLv3.
-Other binaries are under no license. Please open an issue at https://gitlab.com/limdingwen/6502js-but-c or send me an email at limdingwen@gmail.com if you wish to remove your binary from this list.
+LICENSED DEMOS
+
+adventure.bin is under GPLv3 by Norman B. Lancaster.
+
+snake.bin is under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/),
+attributed to Nick Morgan at https://skilldrick.github.io/easy6502/
+
+UNLICENSED DEMOS
+
+Other binaries are under no license. Please open an issue at
+https://gitlab.com/limdingwen/6502js-but-c or send me an email at
+limdingwen@gmail.com if you wish to remove your binary from this list.
+
+PJP: alive.bin, softsprites.bin
+Sid Liu: calculator.bin
+DMSC: compo1.bin <daniel.serpell@gmail.com>
+Magnus Wedmark: compo2.bin
+Blake Ramsdell: compo3.bin <blaker@gmail.com>
+Depth(?): demoscene.bin
+Thomas: rle.bin
+Pete Laing: screenpatterns.bin
+Ern0(?): skier.bin <ern0@linkbroker.hu>
+
+(No author): backandforth.bin, byterun.bin, colors.bin, disco.bin,
+fullscreenlogo.bin, gameoflife.bin, noise.bin, random.bin, rorschach.bin,
+selfmodify.bin, sierpinski.bin, spacer.bin, starfield2d.bin, triangles.bin,
+zookeeper.bin
