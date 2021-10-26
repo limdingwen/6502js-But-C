@@ -1,5 +1,9 @@
-
 # 6502js But C
+
+<p float="left">
+  <img src="https://gitlab.com/limdingwen/6502js-but-c/-/raw/main/readme_img/headerpic.png" width="100" />
+  <img src="https://gitlab.com/limdingwen/6502js-but-c/-/raw/main/readme_img/headervid.mov" width="100" /> 
+</p>
 
 A hobby project that replicates the [6502js](https://github.com/skilldrick/6502js) emulator, but with the speed of C. Why? For fun and learning :D
 
