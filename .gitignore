@@ -12,8 +12,7 @@ dist
 difflog_mine.txt
 difflog_theirs.txt
 demos.zip
-
-# Vim temporary files
+xcuserdata/
 *.swp
 
 # Mac files
