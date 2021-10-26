@@ -1,8 +1,8 @@
 # 6502js But C
 
 <p float="left">
-  <img src="https://gitlab.com/limdingwen/6502js-but-c/-/raw/main/readme_img/headerpic.png" width="100" />
-  <img src="https://gitlab.com/limdingwen/6502js-but-c/-/raw/main/readme_img/headervid.mov" width="100" /> 
+  <img src="https://gitlab.com/limdingwen/6502js-but-c/-/raw/main/readme_img/headerpic.png" width="300" />
+  <img src="https://gitlab.com/limdingwen/6502js-but-c/-/raw/main/readme_img/headergif.gif" width="240" /> 
 </p>
 
 A hobby project that replicates the [6502js](https://github.com/skilldrick/6502js) emulator, but with the speed of C. Why? For fun and learning :D
@@ -20,7 +20,7 @@ Finally, do note that this emulator does not have accurate cycle emulation (1 in
 
 ## Installation
 
-Download binaries for Windows or Mac on the [releases page](https://gitlab.com/limdingwen/6502js-but-c/-/releases).
+**Download binaries for Windows or Mac on the [releases page](https://gitlab.com/limdingwen/6502js-but-c/-/releases).**
 
 For Linux, please [compile from source](#compilation).
 
@@ -97,7 +97,7 @@ You'll need [XCB](https://xcb.freedesktop.org/) and [XKBCommon](https://xkbcommo
  - `os.h` contains a common interface for all 3 OSes, inspired by SDL2.
  - `windows.c`, `linux.c`, and `mac6502/mac6502/mac.m` contain working examples of how to create a window, receive user input and draw rects using Win32, X11 (via XCB/XKBCommon) and Cocoa/Quartz2D.
 
-It's not the best code (I'm still learning it myself), and it's not hardware accelerated, but some of this information was *hard* to find, so I hope my code can help you here too.
+It's not the best code (I'm still learning), and it's not hardware accelerated, but some of this information was *hard* to find, so I hope my code can help you here too.
 
 ## Contributing
 
