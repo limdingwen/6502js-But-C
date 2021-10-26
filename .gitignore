@@ -6,12 +6,13 @@ dist
 6502.exe
 
 # Unlicensed code
-6502js
+6502asmcom
 
 # Best not to commit
 cc65
 
-# Temporary files
+# Personal files
+compile_flags.txt
 difflog_mine.txt
 difflog_theirs.txt
 demos.zip
