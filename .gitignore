@@ -5,8 +5,11 @@ Debug
 dist
 6502.exe
 
-# Not sure if can release
-#demos
+# Unlicensed code
+6502js
+
+# Best not to commit
+cc65
 
 # Temporary files
 difflog_mine.txt
