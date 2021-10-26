@@ -3,14 +3,14 @@
 
 A hobby project that replicates the [6502js](https://github.com/skilldrick/6502js) emulator, but with the speed of C. Why? For fun and learning :D
 
-However, this emulator does not have a built-in assembler. Check out [writing your own binaries](#1-writing-your-own-binaries) for a recommended third-party assembler. Alternatively, check out [6502asm](6502asm.com) or [easy6502](https://skilldrick.github.io/easy6502/).
-
  - Simple on the outside: Replicates the simple and educational 6502js environment.
  - Simple on the inside: Plain C, and almost no libraries, not even SDL2.
  - Fast: Runs up to 28Mhz on my machine.
  - Correct: Passes Klaus functional tests, and Bruce Clark's decimal mode tests.
  
-For programmers, the OS layer contains an example on how to use X11, Quartz2D or Windows GDI to draw stuff without a library like SDL2. See [for programmers](#1-for-programmers) for more info.
+For programmers, the OS layer contains an example on how to use X11, Cocoa/Quartz2D or Win32 to draw stuff without a library like SDL2. See [for programmers](#1-for-programmers) for more info.
+
+This emulator does not have a built-in assembler. Check out [writing your own binaries](#1-writing-your-own-binaries) for a recommended third-party assembler. Alternatively, check out [6502asm](6502asm.com) or [easy6502](https://skilldrick.github.io/easy6502/).
 
 Finally, do note that this emulator does not have accurate cycle emulation (1 instruction = 1 cycle).
 
