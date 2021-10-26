@@ -9,7 +9,7 @@ A hobby project that replicates the [6502js](https://github.com/skilldrick/6502j
 
  - Simple on the outside: Replicates the simple and educational 6502js environment.
  - Simple on the inside: Plain C, and almost no libraries, not even SDL2.
- - Fast: Runs up to 28Mhz on my machine. In comparison, 6502js (and the accompanying binaries) run at around 30Khz.
+ - Fast: Runs up to 28Mhz on my machine. In comparison, 6502js (and the accompanying demos) run at around 30Khz.
  - Correct: Passes Klaus functional tests, and Bruce Clark's decimal mode tests.
  
 For programmers, the OS layer contains an example on how to use X11, Cocoa/Quartz2D or Win32 to draw stuff without a library like SDL2. See [for programmers](#for-programmers) for more info.
