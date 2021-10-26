@@ -27,7 +27,7 @@ For Linux, please [compile from source](#compilation).
 ## Usage
 
 Downloads come with a folder of demo binaries which you can use to try out the emulator with. If you wish to write your own, please see
-[writing your own binaries](#writing-your-own-binaries). (Note: Most of the demos don't belong to me -- check the attribution file in the folder for more info.)
+[writing your own binaries](#writing-your-own-binaries).
 
 For Windows and Mac, simply run by double-clicking the app. However, if you want to change the speed, you'll need to run via command line.
 
