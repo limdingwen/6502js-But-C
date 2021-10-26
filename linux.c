@@ -14,6 +14,10 @@ bool should_exit = false;
 xcb_gcontext_t *xcb_colors = NULL;
 struct xkb_state *keyboard_state;
 
+int main(int argc, char **argv) {
+	return our_main(argc, argv);
+}
+
 void os_create_window(const char *name, int width, int height) {
 	// Connect to X
 	connection = xcb_connect(NULL, NULL);
@@ -83,7 +87,7 @@ void os_create_colormap(const float *rgb, int length) {
 	}
 }
 
-bool os_choose_bin(char* path) {
+bool os_choose_bin(char* path, int pathLength) {
 	return false; // Not supported on Linux
 }
 

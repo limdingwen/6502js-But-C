@@ -5,9 +5,11 @@
 enum event_type { ET_IGNORE, ET_KEYPRESS, ET_EXPOSE };
 struct event { enum event_type type; char kp_key; };
 
+int our_main(int argc, char **argv);
+
 void os_create_window(const char*, int, int);
 void os_create_colormap(const float*, int);
-bool os_choose_bin(char*);
+bool os_choose_bin(char*, int);
 bool os_should_exit(void);
 bool os_poll_event(struct event*);
 void os_draw_rect(int, int, int, int, const float*, int);

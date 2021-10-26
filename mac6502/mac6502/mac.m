@@ -59,6 +59,10 @@ MainWindowDelegate *mainWindowDelegate;
 	}
 @end
 
+int main(int argc, char **argv) {
+	return our_main(argc, argv);
+}
+
 void os_create_window(const char* name, int width, int height) {
 	@autoreleasepool {
 		// Initialises NSApp 
@@ -120,7 +124,7 @@ void os_create_colormap(const float *colors, int length) {
 	// Stub, not used
 }
 
-bool os_choose_bin(char* path) {
+bool os_choose_bin(char* path, int pathLength) {
 	NSOpenPanel *p = [NSOpenPanel openPanel];
 	[p setTitle:@"Choose a 6502 binary"];
 	[p setCanChooseDirectories:NO];
@@ -130,7 +134,8 @@ bool os_choose_bin(char* path) {
 	if (result == NSModalResponseOK) {
 		NSString *nsPath = [[p.URLs[0] path]
 			stringByResolvingSymlinksInPath];
-		strcpy(path, [nsPath UTF8String]);
+		strncpy(path, [nsPath UTF8String], pathLength);
+		path[pathLength - 1] = 0; // Manual null-terminate
 		return true;
 	}
 	else {

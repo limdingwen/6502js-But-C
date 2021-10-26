@@ -1,6 +1,7 @@
 #include "os.h"
 
 #include <stdbool.h>
+#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -565,7 +566,7 @@ void construct_opcodes_table(struct opcode *o) {
 	// 0x0f to 0xff undef
 }
 
-int main(int argc, char** argv) {
+int our_main(int argc, char** argv) {
 	// =====
 	// INIT
 	// =====
@@ -583,7 +584,7 @@ int main(int argc, char** argv) {
 	if (argc < 2) {
 		// If no arg and true: fileNameBuf is set, continue
 		// If no arg and false, halt with instructions
-		if (!os_choose_bin(fileNameBuf)) {
+		if (!os_choose_bin(fileNameBuf, sizeof(fileNameBuf))) {
 			puts("Usage: 6502 file.bin [options]");
 			puts("Options:");
 			printf("-unlimited: Run with no speed limiter (default: %s)\n",
@@ -662,7 +663,7 @@ int main(int argc, char** argv) {
 	uint8_t difflog_prev_x = 0;
 	uint8_t difflog_prev_y = 0;
 	uint8_t difflog_prev_sr = 0;
-	uint8_t difflog_prev_sp = 0xFF;
+	//uint8_t difflog_prev_sp = 0xFF;
 	FILE *difflog_fp;
 	if (DEBUG_DIFFLOG) {
 		if (!(difflog_fp = fopen(DEBUG_DIFFLOG_FILE, "w"))) {
@@ -800,7 +801,7 @@ int main(int argc, char** argv) {
 				difflog_prev_x = reg_x;
 				difflog_prev_y = reg_y;
 				difflog_prev_sr = reg_sr;
-				difflog_prev_sp = reg_sp;
+				//difflog_prev_sp = reg_sp;
 			}
 
 			// Break if on breakpoint
@@ -905,6 +906,8 @@ int main(int argc, char** argv) {
 						break;
 					case ET_EXPOSE:
 						full_redraw = true; // Next update will be an I/O frame
+						// FIXME: Getting too many expose events will make sim
+						// too fast!
 						break;
 					default: break;
 				}
