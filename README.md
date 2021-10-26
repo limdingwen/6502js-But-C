@@ -10,7 +10,7 @@ A hobby project that replicates the [6502js](https://github.com/skilldrick/6502j
  
 For programmers, the OS layer contains an example on how to use X11, Cocoa/Quartz2D or Win32 to draw stuff without a library like SDL2. See [for programmers](#for-programmers) for more info.
 
-This emulator does not have a built-in assembler. Check out [writing your own binaries](#writing-your-own-binaries) for a recommended third-party assembler. Alternatively, check out [6502asm](6502asm.com) or [easy6502](https://skilldrick.github.io/easy6502/).
+This emulator does not have a built-in assembler. Check out [writing your own binaries](#writing-your-own-binaries) for a recommended third-party assembler. Alternatively, check out [6502asm](https://6502asm.com) or [easy6502](https://skilldrick.github.io/easy6502/).
 
 Finally, do note that this emulator does not have accurate cycle emulation (1 instruction = 1 cycle).
 
