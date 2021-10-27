@@ -1,3 +1,5 @@
+// Copyright 2021 Lim Ding Wen
+//
 // This file is part of 6502js But C.
 // 
 // 6502js But C is free software: you can redistribute it and/or modify
