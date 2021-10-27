@@ -7,5 +7,8 @@ LIBRARIES="\
 DYN_LIBRARY_PATH="/opt/homebrew/lib"
 DYN_LIBRARIES="-lxkbcommon-x11 -lxkbcommon"
 
-$CC main.c linux.c -o 6502 -g -Os -Wall -I$INCLUDES $LIBRARIES\
+FLAGS=$([[ "$1" == "release" ]] && echo "-Os -flto" || echo "-g")
+echo "Building with flags: $FLAGS"
+
+$CC main.c linux.c -o 6502 $FLAGS -Wall -I$INCLUDES $LIBRARIES\
 	-L$DYN_LIBRARY_PATH $DYN_LIBRARIES
